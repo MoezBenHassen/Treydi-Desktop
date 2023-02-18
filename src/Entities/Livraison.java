@@ -5,6 +5,7 @@ import java.util.Date;
 public class Livraison {
     private int id;
     private Date date_livraison;
+
     private String etat_livraison;
     private String adresse_livraison;
     private int id_livreur;
