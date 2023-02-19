@@ -1,8 +1,5 @@
 package Services;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,6 +197,19 @@ public class UtilisateurService  implements IService<Utilisateur> {
 
     @Override
     public Boolean supprimer(Utilisateur user) {
-        return null;
+        String query ="UPDATE Utilisateur SET archived='"+1+"' WHERE id_user="+user.getId_user();
+        try{
+            PreparedStatement preparedStatement=cnx.prepareStatement(query);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated >0){
+                System.out.println("Deleted user successfully ! ");
+            }else {
+                System.out.println("Delete user failed");
+            }
+            return  true;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }

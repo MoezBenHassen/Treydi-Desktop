@@ -4,13 +4,8 @@ import Utils.Enums.Roles;
 public class Utilisateur {
     private int id_user;
     private String password,nom,prenom,email,adresse,avatar_url;
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
-
     public  Roles role;
-
+    private int archived;
     public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
 
         this.password = password;
@@ -22,6 +17,9 @@ public class Utilisateur {
         this.role = role;
     }
 
+    public  Utilisateur(){
+
+    }
     public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url,Roles role,int id_user) {
         this.password = password;
         this.nom = nom;
@@ -34,9 +32,32 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur() {
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int id_user, int archived) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role = role;
+        this.id_user = id_user;
+        this.archived = archived;
     }
 
+    public Utilisateur(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public int getArchived() {
+        return archived;
+    }
+
+    public void setArchived(int archived) {
+        this.archived = archived;
+    }
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
     public int getId_user() {
         return id_user;
     }
