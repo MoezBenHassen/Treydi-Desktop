@@ -1,21 +1,29 @@
 package Entities;
-
-
 import Utils.Enums.Roles;
 
 import java.util.Date;
-
-public class trader extends utilisateur {
-
+public class Trader extends Utilisateur{
     private int score;
     private Date date_naissance;
 
 
-    public trader( String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance) {
-        super( password, nom, prenom, email, adresse, avatar_url, role);
+
+    public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance) {
+        super(password, nom, prenom, email, adresse, avatar_url, role);
         this.score = score;
         this.date_naissance = date_naissance;
     }
+
+    public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance,int id_user) {
+        super(password, nom, prenom, email, adresse, avatar_url, role,id_user);
+        this.score = score;
+        this.date_naissance = date_naissance;
+    }
+
+    public Trader() {
+
+    }
+
 
     public int getScore() {
         return score;
@@ -35,11 +43,9 @@ public class trader extends utilisateur {
 
     @Override
     public String toString() {
-        return "trader{" +
+        return "\n"+super.toString() + ", " +
                 "score=" + score +
                 ", date_naissance=" + date_naissance +
                 '}';
     }
 }
-
-

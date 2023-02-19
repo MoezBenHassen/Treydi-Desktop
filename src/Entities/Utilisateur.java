@@ -1,13 +1,17 @@
 package Entities;
 import Utils.Enums.Roles;
 
-public class utilisateur {
-
+public class Utilisateur {
     private int id_user;
     private String password,nom,prenom,email,adresse,avatar_url;
-    public static Roles role;
 
-    public utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public  Roles role;
+
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
 
         this.password = password;
         this.nom = nom;
@@ -18,7 +22,19 @@ public class utilisateur {
         this.role = role;
     }
 
-    public utilisateur() {
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url,Roles role,int id_user) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role= role;
+        this.id_user = id_user;
+
+    }
+
+    public Utilisateur() {
     }
 
     public int getId_user() {
@@ -73,7 +89,7 @@ public class utilisateur {
         this.avatar_url = avatar_url;
     }
 
-    public static Roles getRole() {
+    public Roles getRole() {
         return role;
     }
 
@@ -83,7 +99,7 @@ public class utilisateur {
 
     @Override
     public String toString() {
-        return "utilisateur{" +
+        return "\nutilisateur{" +
                 "id_user=" + id_user +
                 ", password='" + password + '\'' +
                 ", nom='" + nom + '\'' +
