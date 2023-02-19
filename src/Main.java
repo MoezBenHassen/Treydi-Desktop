@@ -1,6 +1,8 @@
 
 
+import Entities.Article;
 import Entities.Livraison;
+import Services.ArticleService;
 import Services.LivraisonService;
 
 import java.sql.Date;
@@ -8,10 +10,16 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
+        ArticleService articleService = new ArticleService();
+        //ADD ARTICLE
+        Article article = new Article("Titre article", "Short Description Article", "content", new Date(2023, 02,19), 1, 0, 7,"auteur");
+        //articleService.add(article);
+        // GET ARTICLE
+        System.out.println(articleService.afficher());
+        System.out.println(articleService.afficherArchived());
+
+        /*
         LivraisonService livraisonService = new LivraisonService();
-        //ADD
-        Livraison livraison = new Livraison(new Date(System.currentTimeMillis()),"En-cours","adresse22",4,2);
-        livraisonService.add(livraison);
         //GET
         System.out.println(livraisonService.afficher());
         //UPDATE
@@ -19,5 +27,7 @@ public class Main {
         livraisonService.update(livraisonUpdate);
         //DELETE
         livraisonService.delete(9);
+
+         */
     }
 }
