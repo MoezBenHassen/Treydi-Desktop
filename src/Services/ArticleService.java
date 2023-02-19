@@ -4,10 +4,7 @@ import Entities.Article;
 import Interfaces.IArticleService;
 import Utils.MyDB;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +34,12 @@ public class ArticleService implements IArticleService<Article> {
         }
     }
 
+    /**
+     * Afficher al of the non archived articles in the database
+     *
+     * @return Returns List<Article>
+     * @throws java.sql.SQLException
+     */
     @Override
     public List<Article> afficher() {
         List<Article> articles = new ArrayList<>();
@@ -64,6 +67,12 @@ public class ArticleService implements IArticleService<Article> {
         return articles;
     }
 
+    /**
+     * Afficher  the archived articles in the database only
+     *
+     * @return Returns List<Article>
+     * @throws java.sql.SQLException
+     */
     @Override
     public List<Article> afficherArchived() {
 
@@ -92,14 +101,54 @@ public class ArticleService implements IArticleService<Article> {
         return articles;
     }
 
+    /**
+     * Updated the non archived articles in the database using the ID
+     *
+     * @return Returns true (with success msg) if Updated else false (with fail msg)
+     * @throws java.sql.SQLException
+     */
     @Override
     public Boolean update(Article article) {
-        return null;
+        String query ="UPDATE `article` SET `titre`='"+article.getTitre()+"',`description`='"+article.getDescription()+"'," +
+                     "`contenu`='"+article.getContenu()+"',`date_publication`='"+article.getDate_publication()+"',`id_categorie`='"+article.getId_categorie()+"'," +
+                     "`id_user`='"+article.getId_user()+"',`auteur`='"+article.getAuteur()+"' WHERE id_article="+article.getId_article();
+        try{
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated >0){
+                System.out.println("Updated article successfully ! ");
+            }else {
+                System.out.println("Update failed");
+            }
+            return true;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return  false;
+        }
     }
-
+    /**
+     * Soft delete of an article, changed the `archived` attribute to 0
+     *
+     * @return Returns true (with success msg) if Updated else false (with fail msg)
+     * @throws java.sql.SQLException
+     */
     @Override
     public Boolean delete(Article article) {
-        return null;
+        String query ="UPDATE `article` SET `archived`='"+1+"' WHERE id_article="+article.getId_article();
+        try{
+            PreparedStatement preparedStatement=connection.prepareStatement(query);
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated >0){
+                System.out.println("Deleted article successfully ! ");
+                System.out.println(article.getId_article());
+            }else {
+                System.out.println("Delete failed");
+            }
+            return  true;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
 

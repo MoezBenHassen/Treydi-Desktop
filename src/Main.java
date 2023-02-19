@@ -17,6 +17,12 @@ public class Main {
         // GET ARTICLE
         System.out.println(articleService.afficher());
         System.out.println(articleService.afficherArchived());
+        //UPDATED ARTICLE
+        Article articleUpdate = new Article(2,"ARTICLE 1", "Short Description Article UPDATED", "content", new Date(2023, 02,19), 1, 0, 7,"auteur");
+        articleService.update(articleUpdate);
+        //DELETE ARTICLE
+        articleService.delete(articleUpdate);
+
 
         /*
         LivraisonService livraisonService = new LivraisonService();
