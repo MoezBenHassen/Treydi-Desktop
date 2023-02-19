@@ -26,7 +26,7 @@ public class Article {
         this.auteur = auteur;
     }
 
-    //CONSTRUCTOR WITH ID8ARTICLE
+    //CONSTRUCTOR WITH ID_ARTICLE
     public Article(int id_article, String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, String auteur) {
         this.id_article = id_article;
         this.titre = titre;

@@ -140,9 +140,8 @@ public class ArticleService implements IArticleService<Article> {
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated >0){
                 System.out.println("Deleted article successfully ! ");
-                System.out.println(article.getId_article());
             }else {
-                System.out.println("Delete failed");
+                System.out.println("Delete article failed");
             }
             return  true;
         }catch (SQLException e){
