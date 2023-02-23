@@ -16,22 +16,26 @@ public class ArticleService implements IArticleService<Article> {
     }
 
     @Override
-    public void add(Article article) {
-        try{
+    public int add(Article article) {
+        int rowsInserted = 0;
+        try {
+            java.sql.Date datec = new java.sql.Date(System.currentTimeMillis());
             String query = "INSERT INTO `article`(`titre`, `description`, `contenu`, `date_publication`," +
-                         " `id_categorie`, `archived`, `id_user`, `auteur`) VALUES ('"+article.getTitre()+"','"+article.getDescription()+"'," +
-                         "'"+article.getContenu()+"','"+article.getDate_publication()+"','"+article.getId_categorie()+"','"+article.getArchived()+"','"+article.getId_user()+"'" +
-                         ",'"+article.getAuteur()+"')";
+                    " `id_categorie`, `archived`, `id_user`, `auteur`) VALUES ('" + article.getTitre() + "','" + article.getDescription() + "'," +
+                    "'" + article.getContenu() + "','" + datec + "','" + article.getId_categorie() + "','" + article.getArchived() + "','" + article.getId_user() + "'" +
+                    ",'" + article.getAuteur() + "')";
             statement = connection.createStatement();
-            int rowsInserted = statement.executeUpdate(query);
-            if (rowsInserted >0){
+            rowsInserted = statement.executeUpdate(query);
+            if (rowsInserted > 0) {
                 System.out.println("Inserted successfully ! ");
-            }else {
+                return rowsInserted;
+            } else {
                 System.out.println("Insert failed");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return rowsInserted;
     }
 
     /**

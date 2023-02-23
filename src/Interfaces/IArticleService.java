@@ -3,7 +3,7 @@ package Interfaces;
 import java.util.List;
 
 public interface IArticleService<T> {
-    public void add(T t );
+    public int add(T t );
     public List<T> afficher();
     public List<T> afficherArchived();
     public Boolean update(T t);

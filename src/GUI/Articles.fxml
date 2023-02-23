@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+   <children>
+      <TextField fx:id="txt_titre" layoutX="481.0" layoutY="238.0" prefHeight="35.0" prefWidth="605.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Insérer  titre">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Button layoutX="973.0" layoutY="659.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="33.0" prefWidth="108.0" style="-fx-background-color: #99226d; -fx-background-radius: 11; -fx-font-family: impact;" text="envoyer" textFill="#eccecf">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="36.0" fitWidth="187.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assests/images/treydi3.png" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <TextField id="textfield_description" fx:id="txt_contenu" alignment="TOP_LEFT" layoutX="481.0" layoutY="386.0" prefHeight="133.0" prefWidth="603.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10; -fx-text-fill: #352d50;" text="Contenu">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <AnchorPane layoutX="702.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <TextField fx:id="txt_description" layoutX="482.0" layoutY="313.0" prefHeight="36.0" prefWidth="607.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Description">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="categorieArticleBox" layoutX="921.0" layoutY="560.0" prefWidth="150.0" promptText="Catégorie" style="-fx-text-fill: #352d50;" />
+      <TextField fx:id="txt_auteur" layoutX="484.0" layoutY="562.0" prefHeight="27.0" prefWidth="271.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Auteur">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="493.0" layoutX="464.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="839.0" />
+
+   </children>
+</AnchorPane>

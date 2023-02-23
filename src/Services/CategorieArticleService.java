@@ -17,19 +17,21 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
     }
 
     @Override
-    public void add(CategorieArticle categorieArticle) {
-        try{
-            String query = "INSERT INTO `categorie_article`(`libelle_cat`) VALUES ('"+categorieArticle.getLibelle_cat()+"')";
+    public int add(CategorieArticle categorieArticle) {
+        int rowsInserted = 0;
+        try {
+            String query = "INSERT INTO `categorie_article`(`libelle_cat`) VALUES ('" + categorieArticle.getLibelle_cat() + "')";
             statement = connection.createStatement();
-            int rowsInserted = statement.executeUpdate(query);
-            if (rowsInserted >0){
+            rowsInserted = statement.executeUpdate(query);
+            if (rowsInserted > 0) {
                 System.out.println("Categorie Inserted successfully ! ");
-            }else{
+            } else {
                 System.out.println("Insert failed");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return rowsInserted;
     }
 
     @Override
