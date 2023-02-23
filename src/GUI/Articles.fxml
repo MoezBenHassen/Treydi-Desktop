@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -30,7 +29,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Avatar layoutX="47.0" layoutY="33.0" />
+
          </children>
       </AnchorPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="493.0" layoutX="363.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="839.0">
