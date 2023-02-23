@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="923.0" style="-fx-background-color: #3c2253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfficherListEchangeController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="465.0" layoutX="108.0" layoutY="71.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="709.0">
+            <fill>
+                <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.13870246085011184">
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8232662192393735">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8836689038031321">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+                    <color>
+                        <Color opacity="0.5038167834281921" />
+                    </color>
+                </DropShadow>
+            </effect></Rectangle>
+        <ImageView fitHeight="36.0" fitWidth="187.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+                <Glow />
+            </effect>
+        </ImageView>
+        <Text fill="#eccecf" layoutX="411.25" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vos échanges" AnchorPane.rightAnchor="113.046875">
+            <font>
+                <Font name="Impact" size="16.0" />
+            </font>
+        </Text>
+        <AnchorPane layoutX="702.0" layoutY="4.0" prefHeight="560.0" prefWidth="82.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <Circle fill="#4b0d91" layoutX="43.0" layoutY="52.0" radius="27.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.topAnchor="25.0" />
+            </children>
+        </AnchorPane>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="251.0" layoutX="19.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="64.0" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="135.0">
+            <effect>
+                <DropShadow />
+            </effect>
+        </Rectangle>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a621ff31" height="46.0" layoutX="27.0" layoutY="151.0" stroke="#0000007a" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="48.0" />
+        <TextField fx:id="textfield_libelle1" layoutX="261.0" layoutY="21.0" opacity="0.44" prefHeight="28.0" prefWidth="260.0" promptText="Chercher" style="-fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-background-color: #383a40;" AnchorPane.leftAnchor="261.0" AnchorPane.topAnchor="21.0">
+            <font>
+                <Font name="Impact" size="11.0" />
+            </font>
+        </TextField>
+        <TableView fx:id="tableView" layoutX="123.0" layoutY="87.0" prefHeight="436.0" prefWidth="679.0" style="-fx-background-radius: 20; -fx-opacity: 10;">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="51.0" text="ID" />
+                <TableColumn fx:id="dateColumn" prefWidth="196.0" text="Date de création" />
+                <TableColumn fx:id="user1Column" prefWidth="222.0" text="Premier Utilisateur" />
+                <TableColumn fx:id="user2Column" prefWidth="209.0" text="Deuxiéme Utilisateur" />
+            </columns>
+        </TableView>
+
+    </children>
+</AnchorPane>
