@@ -13,6 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff73" height="493.0" layoutX="363.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="839.0" />
       <TextField fx:id="txt_titre" layoutX="481.0" layoutY="238.0" prefHeight="35.0" prefWidth="605.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Insérer  titre">
          <font>
             <Font name="Impact" size="11.0" />
@@ -31,15 +32,23 @@
             <Glow />
          </effect>
       </ImageView>
-      <TextField id="textfield_description" fx:id="txt_contenu" alignment="TOP_LEFT" layoutX="481.0" layoutY="386.0" prefHeight="133.0" prefWidth="603.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10; -fx-text-fill: #352d50;" text="Contenu">
+      <TextField id="textfield_description" fx:id="txt_contenu" alignment="TOP_LEFT" layoutX="481.0" layoutY="386.0" prefHeight="133.0" prefWidth="603.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-color: pink; -fx-border-radius: 10; -fx-text-fill: #352d50;" text="Contenu">
          <font>
             <Font name="Impact" size="11.0" />
          </font>
       </TextField>
-      <AnchorPane layoutX="702.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="1494.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="-24.0" AnchorPane.topAnchor="3.0">
          <effect>
             <DropShadow />
          </effect>
+         <children>
+            <Button layoutX="23.0" layoutY="818.0" mnemonicParsing="false" style="-fx-background-color: none;" />
+            <ImageView fitHeight="37.0" fitWidth="57.0" layoutX="48.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assests/icons/power-on-icon3-01.png" />
+               </image>
+            </ImageView>
+         </children>
       </AnchorPane>
       <TextField fx:id="txt_description" layoutX="482.0" layoutY="313.0" prefHeight="36.0" prefWidth="607.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Description">
          <font>
@@ -52,7 +61,6 @@
             <Font name="Impact" size="11.0" />
          </font>
       </TextField>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="493.0" layoutX="464.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" width="839.0" />
 
    </children>
 </AnchorPane>
