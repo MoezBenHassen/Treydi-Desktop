@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" stylesheets="@Assests/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff73" height="493.0" layoutX="363.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="839.0" />
-      <TextField fx:id="txt_titre" layoutX="481.0" layoutY="238.0" prefHeight="35.0" prefWidth="605.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Insérer  titre">
+      <AnchorPane layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assests/icons/power-on-icon3-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Avatar layoutX="47.0" layoutY="33.0" />
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="493.0" layoutX="363.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="839.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect></Rectangle>
+      <TextField fx:id="txt_titre" layoutX="481.0" layoutY="238.0" opacity="0.59" prefHeight="35.0" prefWidth="603.0" promptText="Titre" style="-fx-background-color: white; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
          <font>
             <Font name="Impact" size="11.0" />
          </font>
       </TextField>
-      <Button layoutX="973.0" layoutY="659.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="33.0" prefWidth="108.0" style="-fx-background-color: #99226d; -fx-background-radius: 11; -fx-font-family: impact;" text="envoyer" textFill="#eccecf">
+      <Button id="addButton" fx:id="addButton" layoutX="482.0" layoutY="638.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="603.0" style="-fx-background-color: #99226d; -fx-background-radius: 10; -fx-font-family: impact;" styleClass="unitedK" stylesheets="@Assests/css/style.css" text="Ajouter" textFill="#eccecf">
          <font>
             <Font name="Impact" size="12.0" />
          </font>
@@ -32,35 +64,37 @@
             <Glow />
          </effect>
       </ImageView>
-      <TextField id="textfield_description" fx:id="txt_contenu" alignment="TOP_LEFT" layoutX="481.0" layoutY="386.0" prefHeight="133.0" prefWidth="603.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-color: pink; -fx-border-radius: 10; -fx-text-fill: #352d50;" text="Contenu">
+      <TextField id="textfield_description" fx:id="txt_contenu" alignment="TOP_LEFT" layoutX="481.0" layoutY="386.0" opacity="0.59" prefHeight="133.0" prefWidth="603.0" promptText="Contenu" style="-fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-color: pink; -fx-border-radius: 10; -fx-text-fill: #352d50;" styleClass="unitedK">
          <font>
             <Font name="Impact" size="11.0" />
          </font>
       </TextField>
-      <AnchorPane layoutX="1494.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="-24.0" AnchorPane.topAnchor="3.0">
+      <TextField fx:id="txt_description" layoutX="482.0" layoutY="313.0" opacity="0.59" prefHeight="36.0" prefWidth="603.0" promptText="Description" style="-fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <ComboBox fx:id="categorieArticleBox" layoutX="926.0" layoutY="562.0" opacity="0.59" prefHeight="33.0" prefWidth="158.0" promptText="Catégorie" style="-fx-text-fill: #352d50; -fx-background-color: white;" />
+      <TextField fx:id="txt_auteur" layoutX="484.0" layoutY="562.0" opacity="0.59" prefHeight="33.0" prefWidth="271.0" promptText="Auteur" style="-fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Label layoutX="631.0" layoutY="144.0" style="-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 40;" text="Ajouter une article" textAlignment="CENTER" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="470.0" layoutX="27.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
-            <DropShadow />
+            <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
-         <children>
-            <Button layoutX="23.0" layoutY="818.0" mnemonicParsing="false" style="-fx-background-color: none;" />
-            <ImageView fitHeight="37.0" fitWidth="57.0" layoutX="48.0" layoutY="800.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assests/icons/power-on-icon3-01.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <TextField fx:id="txt_description" layoutX="482.0" layoutY="313.0" prefHeight="36.0" prefWidth="607.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Description">
-         <font>
-            <Font name="Impact" size="11.0" />
-         </font>
-      </TextField>
-      <ComboBox fx:id="categorieArticleBox" layoutX="921.0" layoutY="560.0" prefWidth="150.0" promptText="Catégorie" style="-fx-text-fill: #352d50;" />
-      <TextField fx:id="txt_auteur" layoutX="484.0" layoutY="562.0" prefHeight="27.0" prefWidth="271.0" style="-fx-background-color: #504968; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" text="Auteur">
-         <font>
-            <Font name="Impact" size="11.0" />
-         </font>
-      </TextField>
+      </Rectangle>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="73.0" layoutY="282.0" mnemonicParsing="false" onAction="#goToList" prefWidth="43.0" style="-fx-background-color: none;" />
+      <ImageView fitHeight="150.0" fitWidth="54.0" layoutX="57.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assests/icons/categorie-icon-01.png" />
+         </image>
+      </ImageView>
 
    </children>
 </AnchorPane>

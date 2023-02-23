@@ -6,11 +6,18 @@ import Services.ArticleService;
 import Services.CategorieArticleService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +25,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.control.ComboBox;
+
+import javax.swing.*;
+
 public class ArticlefxmlController implements Initializable {
     @FXML
     private Button logoutButton;
@@ -98,5 +108,18 @@ public class ArticlefxmlController implements Initializable {
         }
     }
 
-
+    @FXML
+    void goToList(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
