@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" style="-fx-background-color: #3c2253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseAffichageControlleur">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="669.0" layoutX="112.0" layoutY="75.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1357.0">
+            <fill>
+                <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.13870246085011184">
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8232662192393735">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8836689038031321">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+                    <color>
+                        <Color opacity="0.5038167834281921" />
+                    </color>
+                </DropShadow>
+            </effect></Rectangle>
+        <ImageView fitHeight="36.0" fitWidth="187.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Icon/treydi3.png" />
+            </image>
+            <effect>
+                <Glow />
+            </effect>
+        </ImageView>
+        <AnchorPane layoutX="702.0" layoutY="4.0" prefHeight="528.0" prefWidth="79.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <effect>
+                <DropShadow />
+            </effect>
+         <children>
+            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="21.0" layoutY="726.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/Icons/power-on-icon2.png" />
+               </image>
+            </ImageView>
+         </children>
+        </AnchorPane>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="328.0" layoutX="19.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="64.0" AnchorPane.bottomAnchor="337.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="135.0">
+            <effect>
+                <DropShadow />
+            </effect>
+        </Rectangle>
+        <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="33.0" layoutY="237.0" onMouseClicked="#afficher" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Icon/menu-icon1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="43.0" fitWidth="37.0" layoutX="33.0" layoutY="169.0" onMouseClicked="#gotoajout" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Icon/bouton-ajouter.png" />
+            </image>
+        </ImageView>
+        <TableView fx:id="tableView" layoutX="177.0" layoutY="125.0" prefHeight="549.0" prefWidth="1140.0">
+            <columns>
+                <TableColumn fx:id="titreR" prefWidth="364.0" text="titre" />
+                <TableColumn fx:id="descriptionR" prefWidth="775.0" text="description" />
+            </columns>
+        </TableView>
+      <ImageView fitHeight="44.0" fitWidth="37.0" layoutX="33.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/gear-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="37.0" layoutX="33.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/trash-fill.png" />
+         </image>
+      </ImageView>
+
+
+    </children>
+</AnchorPane>

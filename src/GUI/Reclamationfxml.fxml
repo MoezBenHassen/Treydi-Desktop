@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" style="-fx-background-color: #3c2253;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationfxmlControleur">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="675.0" layoutX="112.0" layoutY="75.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1382.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="75.0">
+         <fill>
+            <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.13870246085011184">
+                     <color>
+                        <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8232662192393735">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8836689038031321">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+               <color>
+                  <Color opacity="0.5038167834281921" />
+               </color>
+            </DropShadow>
+         </effect></Rectangle>
+      <Text fill="#eccecf" layoutX="136.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_titre" layoutX="182.0" layoutY="114.0" prefHeight="27.0" prefWidth="271.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #eccecf;">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Text fill="#eccecf" layoutX="136.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="92.1015625">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="1341.0" layoutY="548.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="33.0" prefWidth="108.0" style="-fx-background-color: #99226d; -fx-background-radius: 11; -fx-font-family: impact;" text="envoyer" textFill="#eccecf">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="36.0" fitWidth="187.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/treydi3.png" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Text fill="WHITE" layoutX="880.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoutez reclamation" AnchorPane.rightAnchor="588.8984375">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="702.0" layoutY="4.0" prefHeight="528.0" prefWidth="79.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fitHeight="33.0" fitWidth="43.0" layoutX="26.0" layoutY="727.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/Icons/power-on-icon2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="21.0" layoutY="665.0" onMouseClicked="#gotoreponse" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/Icons/reply-fill.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="18.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/Icons/3607544701594941675-128.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="305.0" layoutX="20.0" layoutY="221.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="64.0" AnchorPane.bottomAnchor="274.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="221.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <ImageView fx:id="imageAffichage" fitHeight="51.0" fitWidth="52.0" layoutX="27.0" layoutY="316.0" onMouseClicked="#gotodisplay" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/list.png" />
+            
+         </image>
+      </ImageView>
+      <TextArea fx:id="textarea_description" layoutX="142.0" layoutY="259.0" prefHeight="256.0" prefWidth="1319.0" style="-fx-background-radius: 20; -fx-border-width: 0.5; -fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-radius: 20;" stylesheets="@../css/desc.css" />
+      <ImageView fitHeight="43.0" fitWidth="50.0" layoutX="31.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/add.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="31.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/gear-fill.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="51.0" layoutX="31.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/Icons/trash-fill.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>
