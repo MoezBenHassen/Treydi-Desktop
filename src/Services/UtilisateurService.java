@@ -74,6 +74,8 @@ public class UtilisateurService  implements IService<Utilisateur> {
             throw new RuntimeException(e);
         }}
 
+
+
     @Override
     public List<Utilisateur> afficher() {
         List<Utilisateur> utilisateurs = new ArrayList();
@@ -87,7 +89,6 @@ public class UtilisateurService  implements IService<Utilisateur> {
 
             while(rs.next()){
                 String role = rs.getString("role");
-                System.out.println("role value for user with id_user=4: " + role);
 
                 if(Roles.valueOf(role)==Roles.livreur){
                     Livreur livreur = new Livreur();
@@ -100,7 +101,6 @@ public class UtilisateurService  implements IService<Utilisateur> {
                     livreur.setAvatar_url(rs.getString("avatar_url"));
                     livreur.setRole(Roles.valueOf(rs.getString("role")));
                     utilisateurs.add(livreur);
-                    System.out.println("LIVREUR");
                 }
                 if(Roles.valueOf(role)==Roles.trader){
                     Trader trader = new Trader();
@@ -115,7 +115,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
                     trader.setScore((rs.getInt("score")));
                     trader.setDate_naissance(rs.getDate("date_naissance"));
                     utilisateurs.add(trader);
-                    System.out.println("TRADER");
+
                 }
                 if(Roles.valueOf(role)==Roles.admin){
                     Admin admin = new Admin();
@@ -128,7 +128,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
                     admin.setAvatar_url(rs.getString("avatar_url"));
                     admin.setRole(Roles.valueOf(rs.getString("role")));
                     utilisateurs.add(admin);
-                    System.out.println("ADMIN");
+
                 }
             }
             return utilisateurs;
@@ -194,6 +194,22 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return false;
     }
+    public int Validate(String email, String password) {
+        int id=0;
+        try {
+            Statement statement  = cnx.createStatement();
+            String req = "SELECT * FROM `utilisateur` WHERE email ='" + email + "' and password ='" + password + "';";
+            ResultSet rs = statement.executeQuery(req);
+            if (rs.next()) {
+                id = rs.getInt("id_user");
+                return id;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return id;
+    }
 
     @Override
     public Boolean supprimer(Utilisateur user) {
@@ -212,4 +228,25 @@ public class UtilisateurService  implements IService<Utilisateur> {
             return false;
         }
     }
+    public Utilisateur getUserById(int userId) {
+        Utilisateur user = null;
+        try {
+            String qry = "SELECT * FROM Utilisateur WHERE id_user = " + userId + " AND archived = 0;";
+            stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            if (rs.next()) {
+                user = new Utilisateur();
+                user.setId_user(rs.getInt("id_user"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Roles.valueOf(rs.getString("role")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return user;
+    }
+
 }

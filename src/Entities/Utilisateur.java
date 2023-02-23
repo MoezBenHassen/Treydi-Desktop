@@ -43,7 +43,14 @@ public class Utilisateur {
         this.id_user = id_user;
         this.archived = archived;
     }
-
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, Roles role) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.role = role;
+    }
     public Utilisateur(int id_user) {
         this.id_user = id_user;
     }

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="549.0" prefWidth="903.0" style="-fx-background-color: #3c2253;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterItem">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="434.0" layoutX="108.0" layoutY="71.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="549.0">
+         <fill>
+            <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9649122953414917" green="0.08934372663497925" blue="0.6146848797798157" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.13870246085011184">
+                     <color>
+                        <Color red="0.9649122953414917" green="0.08934372663497925" blue="0.6146848797798157" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8232662192393735">
+                     <color>
+                        <Color red="0.24300000071525574" green="0.12600000202655792" blue="0.36000001430511475" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8836689038031321">
+                     <color>
+                        <Color red="0.24300000071525574" green="0.12600000202655792" blue="0.36000001430511475" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.24300000071525574" green="0.12600000202655792" blue="0.36000001430511475" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+               <color>
+                  <Color opacity="0.5038167834281921" />
+               </color>
+            </DropShadow>
+         </effect></Rectangle>
+      <Text fill="#eccecf" layoutX="128.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_libelle" layoutX="192.0" layoutY="90.0" prefHeight="27.0" prefWidth="271.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #eccecf;" text="Insérer libellé">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Text fill="#eccecf" fontSmoothingType="LCD" layoutX="284.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <ComboBox id="dropbox_etat" layoutX="474.0" layoutY="111.0" prefHeight="33.0" prefWidth="157.0" promptText="Videogames" style="-fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: #eccecf;" />
+      <Text fill="#eccecf" layoutX="128.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="522.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #99226d; -fx-background-radius: 11; -fx-font-family: impact;" text="Ajouter Item" textFill="#eccecf">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="36.0" fitWidth="187.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Images/logo.png" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Text fill="WHITE" layoutX="411.25" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajoutez vos objets à votre inventaire" AnchorPane.rightAnchor="113.046875">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Text>
+      <Button layoutX="143.0" layoutY="436.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #87678f; -fx-font-family: impact; -fx-background-radius: 5;" text="Ajouter Image" textFill="WHITE">
+         <font>
+            <Font name="High Tower Text" size="12.0" />
+         </font>
+      </Button>
+      <RadioButton id="radio_type_1" layoutX="280.0" layoutY="331.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Physique Neuf" textFill="#eccecf">
+         <toggleGroup>
+            <ToggleGroup fx:id="radio_type" />
+         </toggleGroup>
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font></RadioButton>
+      <RadioButton id="radio_type_3" layoutX="280.0" layoutY="391.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Virtuelle" textFill="#eccecf" toggleGroup="$radio_type">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font></RadioButton>
+      <RadioButton id="radio_type_4" layoutX="280.0" layoutY="422.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Service" textFill="#eccecf" toggleGroup="$radio_type">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font></RadioButton>
+      <TextField id="textfield_description" fx:id="textfield_description" alignment="TOP_LEFT" layoutX="128.0" layoutY="154.0" prefHeight="133.0" prefWidth="505.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-color: #000000; -fx-border-radius: 10; -fx-text-fill: #eccecf;" text="Insérer description">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3c22538c" height="120.0" layoutX="128.0" layoutY="305.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" style="-fx-arc-height: 70; -fx-arc-width: 70;" width="130.0" />
+      <RadioButton id="radio_type_2" layoutX="280.0" layoutY="361.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Physique Occasion" textFill="#eccecf" toggleGroup="$radio_type">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font></RadioButton>
+      <AnchorPane layoutX="702.0" layoutY="4.0" prefHeight="528.0" prefWidth="79.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Text fill="#eccecf" layoutX="476.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="237.0" layoutX="19.0" layoutY="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="64.0" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="135.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+
+   </children>
+</AnchorPane>
