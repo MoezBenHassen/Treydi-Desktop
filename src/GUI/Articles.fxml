@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -25,8 +26,11 @@
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assests/icons/power-on-icon3-01.png" />
+                        <Image url="@Assests/icons/power3.png" />
                      </image>
+                     <effect>
+                        <ColorAdjust brightness="-0.05" contrast="-1.0" hue="-0.05" saturation="1.0" />
+                     </effect>
                   </ImageView>
                </graphic></Button>
 
@@ -88,12 +92,18 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="73.0" layoutY="282.0" mnemonicParsing="false" onAction="#goToList" prefWidth="43.0" style="-fx-background-color: none;" />
-      <ImageView fitHeight="150.0" fitWidth="54.0" layoutX="57.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Assests/icons/categorie-icon-01.png" />
-         </image>
-      </ImageView>
+      
+      <Button layoutX="48.0" layoutY="273.0" mnemonicParsing="false" onAction="#goToList" prefWidth="43.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assests/icons/article3.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.03" contrast="-1.0" hue="-0.07" saturation="1.0" />
+               </effect>
+            </ImageView>
+         </graphic></Button>
 
    </children>
 </AnchorPane>
