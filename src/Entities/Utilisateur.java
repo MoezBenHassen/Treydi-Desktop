@@ -125,6 +125,7 @@ public class Utilisateur {
         this.role = role;
     }
 
+
     @Override
     public String toString() {
         return "\nutilisateur{" +

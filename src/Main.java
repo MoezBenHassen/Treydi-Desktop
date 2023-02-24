@@ -17,11 +17,9 @@ public class Main {
 
 
         System.out.println("Modification d'une categorie ----------");
-        Utilisateur tr1  = new Trader("pass2","nom2","prenom2","mail@mail2","adress2","url2",Roles.trader,2,new Date(2022,10,10),4);
-        Utilisateur us1 = new Utilisateur(8);
+        Utilisateur tr1  = new Trader("medadem","nom2","prenom2","mail@mail2","adress2","url2",Roles.trader,2,new Date(2022,10,10),0);
        // System.out.println(us.supprimer(us1)) ;
-       System.out.println(us.afficher()) ;
-       us.Validate("moez@gmail.com","");
 
-    }
+      us.add(tr1);
+          }
 }

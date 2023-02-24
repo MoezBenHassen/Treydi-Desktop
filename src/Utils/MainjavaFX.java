@@ -12,9 +12,10 @@ public class MainjavaFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        // /GUI/DashboardAdmin.fxml
+        // /GUI/Login.fxml
         try {
-            Parent root= FXMLLoader.load(getClass().getResource("/GUI/DashboardAdmin.fxml"));
+            Parent root= FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Treydi Desktop Edition");
             primaryStage.setScene(scene);

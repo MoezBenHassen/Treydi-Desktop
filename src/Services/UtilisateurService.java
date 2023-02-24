@@ -30,19 +30,21 @@ public class UtilisateurService  implements IService<Utilisateur> {
             switch (user.getRole()){
                 case admin:
                     final Admin admin = (Admin) user;
-                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`)" +
+                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `archived`)" +
                             "VALUES ('"+ admin.getPassword() +
                             "', '"+ admin.getNom() +
                             "', '" + admin.getPrenom() +
                             "', '" + admin.getEmail() +
                             "', '" + admin.getAdresse() +
                             "', '" + admin.getAvatar_url() +
-                            "', '" + admin.getRole() +"');";
+                            "', '" + admin.getRole() +
+                            "', '" + admin.getArchived() +
+                            "');";
                     System.out.println(statement.executeUpdate(qry) + " Row inserted");
                     break;
                 case trader:
                     final Trader trader = (Trader) user;
-                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `score`, `date_naissance`)" +
+                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `score`, `date_naissance`, `archived`)" +
                             "VALUES ('"+ trader.getPassword() +
                             "', '"+ trader.getNom() +
                             "', '" + trader.getPrenom() +
@@ -51,19 +53,23 @@ public class UtilisateurService  implements IService<Utilisateur> {
                             "', '" + trader.getAvatar_url() +
                             "', '" + trader.getRole()+
                             "', '" + trader.getScore() +
-                            "', '" + trader.getDate_naissance() + "');";
+                            "', '" + trader.getDate_naissance() +
+                            "', '" + trader.getArchived() +
+                            "');";
                     System.out.println(statement.executeUpdate(qry) + " Row inserted");
                     break;
                 case livreur:
                     final Livreur livreur = (Livreur) user;
-                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`)" +
+                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `archived`" +
                             "VALUES ('"+ livreur.getPassword() +
                             "', '"+ livreur.getNom() +
                             "', '" + livreur.getPrenom() +
                             "', '" + livreur.getEmail() +
                             "', '" + livreur.getAdresse() +
                             "', '" + livreur.getAvatar_url() +
-                            "', '" + livreur.getRole()+"');";
+                            "', '" + livreur.getRole()+
+                            "', '" + livreur.getArchived() +
+                            "');";
                     System.out.println(statement.executeUpdate(qry) + " Row inserted");
                     break;
                 default:
