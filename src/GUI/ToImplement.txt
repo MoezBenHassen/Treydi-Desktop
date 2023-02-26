@@ -45,6 +45,5 @@
     public void Minimize (MouseEvent event ){
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setIconified(true);
-
     }
 
