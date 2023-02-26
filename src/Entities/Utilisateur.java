@@ -13,7 +13,8 @@ public class Utilisateur {
         this.image_url = image_url;
     }
 
-    public Utilisateur( String nom, String prenom, String image_url, int tel, String email, String adresse, String interet, int score) {
+    public Utilisateur(int id, String nom, String prenom, String image_url, int tel, String email, String adresse, String interet, int score) {
+        this.id = id;
         this.score = score;
         this.nom = nom;
         this.prenom = prenom;

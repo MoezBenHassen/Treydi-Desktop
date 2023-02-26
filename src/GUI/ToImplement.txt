@@ -1,0 +1,49 @@
+/* ADD IN javafxMain START*/
+
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+
+            scene.setOnMousePressed(event -> {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            });
+
+            scene.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            });
+
+            primaryStage.setWidth(1600);
+            primaryStage.setHeight(900);
+
+            Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+            scene.getStylesheets().add("GUI/Assets/css/style.css");
+
+/*ADD IN fxml CONTROLLER */
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private AnchorPane scenePane;
+    
+    @FXML
+    private ImageView minimize;
+    Stage stage;
+    public void logout(javafx.event.ActionEvent actionEvent) {
+
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to exit ! ");
+
+        if(alert.showAndWait().get() == ButtonType.OK){
+            stage = (Stage) scenePane.getScene().getWindow();
+            System.out.println("YOU XYZ");
+            stage.close();
+        }
+    }
+
+    @FXML
+    public void Minimize (MouseEvent event ){
+        Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage1.setIconified(true);
+    }
+
