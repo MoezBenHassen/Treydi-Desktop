@@ -16,6 +16,7 @@
 
  # Mohamed Dhia Jebali | Java | PIDEV Treydi
 
+ </div>
 Ceci est la partie "Java" de la branche des contributions de Mohamed Dhia Jebali au projet PIDEV.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
