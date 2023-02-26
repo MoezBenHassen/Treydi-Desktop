@@ -54,6 +54,26 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
         return categorieArticles;
     }
 
+    public List<CategorieArticle> getLibelle(int id) {
+        List<CategorieArticle> categorieArticles = new ArrayList<>();
+        try{
+            String query="SELECT libelle_cat FROM `categorie_article` WHERE `id_cat`="+id;
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                CategorieArticle catArticle = new CategorieArticle();
+                catArticle.setLibelle_cat(resultSet.getString("libelle_cat"));
+                categorieArticles.add(catArticle);
+            }
+            return  categorieArticles;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return categorieArticles;
+    }
+
+
+
     @Override
     public List<CategorieArticle> afficherArchived() {
         List<CategorieArticle> categorieArticles = new ArrayList<>();

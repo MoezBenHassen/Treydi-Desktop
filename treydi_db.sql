@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 16, 2023 at 01:40 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Hôte : 127.0.0.1
+-- Généré le : dim. 26 fév. 2023 à 12:36
+-- Version du serveur : 10.4.24-MariaDB
+-- Version de PHP : 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,52 +18,109 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `treydi_db`
+-- Base de données : `treydi_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrateur`
+-- Structure de la table `article`
 --
 
-CREATE TABLE `administrateur` (
-  `id_admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `article` (
+  `id_article` int(11) NOT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `contenu` varchar(255) DEFAULT NULL,
+  `date_publication` date DEFAULT NULL,
+  `id_categorie` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
+  `auteur` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `administrateur`
+-- Déchargement des données de la table `article`
 --
 
-INSERT INTO `administrateur` (`id_admin`) VALUES
-(7);
+INSERT INTO `article` (`id_article`, `titre`, `description`, `contenu`, `date_publication`, `id_categorie`, `archived`, `id_user`, `auteur`) VALUES
+(2, 'ARTICLE 1', 'Short Description Article UPDATED', 'content', '0000-00-00', 1, 1, 7, 'auteur'),
+(3, 'Titre article', 'Short Description Article', 'content', '0000-00-00', 1, 0, 7, 'auteur'),
+(4, 'Titre article', 'Short Description Article', 'content', '0000-00-00', 1, 0, 7, 'auteur'),
+(5, 'Titre article', 'Short Description Article', 'content', '0000-00-00', 1, 1, 7, 'auteur'),
+(6, 'Titre article', 'Short Description Article', 'content', '0000-00-00', 1, 0, 7, 'auteur'),
+(7, 'Insérer  titre', 'Description', 'Contenu', '2023-02-23', 4, 0, 4, 'Description'),
+(8, '123423', 'Description', 'Contenu', '2023-02-23', 4, 0, 4, 'Description');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `categorie_article`
 --
 
-CREATE TABLE `categorie` (
+CREATE TABLE `categorie_article` (
+  `id_cat` int(11) NOT NULL,
+  `libelle_cat` varchar(255) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `categorie_article`
+--
+
+INSERT INTO `categorie_article` (`id_cat`, `libelle_cat`, `archived`) VALUES
+(1, 'News', 0),
+(2, 'short story', 0),
+(3, 'UPDATED RECHERCHEE', 1),
+(4, 'RECHERE', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie_coupon`
+--
+
+CREATE TABLE `categorie_coupon` (
+  `id_categoriecoupon` int(11) NOT NULL,
+  `nom_categorie` varchar(255) DEFAULT NULL,
+  `description_categorie` varchar(255) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `categorie_coupon`
+--
+
+INSERT INTO `categorie_coupon` (`id_categoriecoupon`, `nom_categorie`, `description_categorie`, `archived`) VALUES
+(1, 'categoriecoupon1', 'desc', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie_items`
+--
+
+CREATE TABLE `categorie_items` (
   `id_categorie` int(11) NOT NULL,
-  `nom_categorie` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nom_categorie` varchar(255) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorie`
+-- Déchargement des données de la table `categorie_items`
 --
 
-INSERT INTO `categorie` (`id_categorie`, `nom_categorie`) VALUES
-(1, 'puzzle'),
-(2, 'Video Games'),
-(3, 'Anime'),
-(4, 'Manga'),
-(5, 'Books');
+INSERT INTO `categorie_items` (`id_categorie`, `nom_categorie`, `archived`) VALUES
+(1, 'puzzle', 0),
+(2, 'Video Games', 0),
+(3, 'Anime', 0),
+(4, 'Manga', 0),
+(5, 'Books', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coupon`
+-- Structure de la table `coupon`
 --
 
 CREATE TABLE `coupon` (
@@ -72,21 +129,23 @@ CREATE TABLE `coupon` (
   `description_coupon` varchar(255) DEFAULT NULL,
   `date_expiration` date DEFAULT NULL,
   `etat_coupon` varchar(255) DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_user` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL,
+  `id_categorie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `coupon`
+-- Déchargement des données de la table `coupon`
 --
 
-INSERT INTO `coupon` (`id_coupon`, `titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`) VALUES
-(1, 'Coupon 1', 'coupon de reduction', '2023-02-17', 'state coupon', 5),
-(2, 'Coupon 2', 'description coupon2', '2023-02-18', 'state', 6);
+INSERT INTO `coupon` (`id_coupon`, `titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `archived`, `id_categorie`) VALUES
+(1, 'Coupon 1', 'coupon de reduction', '2023-02-17', 'state coupon', 5, 0, 1),
+(2, 'Coupon 2', 'description coupon2', '2023-02-18', 'state', 6, 0, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `echange`
+-- Structure de la table `echange`
 --
 
 CREATE TABLE `echange` (
@@ -94,44 +153,46 @@ CREATE TABLE `echange` (
   `date_echange` date DEFAULT NULL,
   `id_user1` int(11) DEFAULT NULL,
   `id_user2` int(11) DEFAULT NULL,
-  `id_item` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_item` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `echange`
+-- Déchargement des données de la table `echange`
 --
 
-INSERT INTO `echange` (`id_echange`, `date_echange`, `id_user1`, `id_user2`, `id_item`) VALUES
-(2, '2023-02-01', 5, 6, 1);
+INSERT INTO `echange` (`id_echange`, `date_echange`, `id_user1`, `id_user2`, `id_item`, `archived`) VALUES
+(2, '2023-02-01', 5, 6, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Structure de la table `item`
 --
 
 CREATE TABLE `item` (
   `id_item` int(11) NOT NULL,
   `libelle` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `etat` enum('New','Used') DEFAULT NULL,
+  `etat` enum('Neuf','Occasion') DEFAULT NULL,
   `type` enum('Physical','Digital','Service') DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `id_categorie` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_categorie` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `item`
+-- Déchargement des données de la table `item`
 --
 
-INSERT INTO `item` (`id_item`, `libelle`, `description`, `etat`, `type`, `id_user`, `id_categorie`) VALUES
-(1, 'item1', 'description item1', 'New', 'Physical', 5, 1),
-(2, 'item2', 'description item2', 'Used', 'Digital', 6, 4);
+INSERT INTO `item` (`id_item`, `libelle`, `description`, `etat`, `type`, `id_user`, `id_categorie`, `archived`) VALUES
+(1, 'item1', 'description item1', 'Neuf', 'Physical', 5, 1, 0),
+(2, 'item2', 'description item2', 'Occasion', 'Digital', 6, 4, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `livraison`
+-- Structure de la table `livraison`
 --
 
 CREATE TABLE `livraison` (
@@ -140,38 +201,22 @@ CREATE TABLE `livraison` (
   `etat_livraison` enum('En-cours','Terminé','Annulé') DEFAULT NULL,
   `adresse_livraison` varchar(255) DEFAULT NULL,
   `id_livreur` int(11) DEFAULT NULL,
-  `id_echange` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_echange` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `livraison`
+-- Déchargement des données de la table `livraison`
 --
 
-INSERT INTO `livraison` (`id_livraison`, `date_livraison`, `etat_livraison`, `adresse_livraison`, `id_livreur`, `id_echange`) VALUES
-(1, '2023-02-02', 'En-cours', 'adresse livraison', 4, 2),
-(2, '2023-02-13', 'Annulé', 'adresse livraison', 4, 2);
+INSERT INTO `livraison` (`id_livraison`, `date_livraison`, `etat_livraison`, `adresse_livraison`, `id_livreur`, `id_echange`, `archived`) VALUES
+(1, '2023-02-02', 'En-cours', 'adresse livraison', 4, 2, 0),
+(2, '2023-02-13', 'Annulé', 'adresse livraison', 4, 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `livreur`
---
-
-CREATE TABLE `livreur` (
-  `id_livreur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `livreur`
---
-
-INSERT INTO `livreur` (`id_livreur`) VALUES
-(4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reclamation`
+-- Structure de la table `reclamation`
 --
 
 CREATE TABLE `reclamation` (
@@ -181,40 +226,43 @@ CREATE TABLE `reclamation` (
   `etat_reclamation` enum('Traité','En-cours') DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
   `date_cloture` date DEFAULT NULL,
-  `id_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_user` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reclamation`
+-- Déchargement des données de la table `reclamation`
 --
 
-INSERT INTO `reclamation` (`id_reclamation`, `titre_reclamation`, `description_reclamation`, `etat_reclamation`, `date_creation`, `date_cloture`, `id_user`) VALUES
-(2, 'Reclamation1', 'Description Reclamation1', 'Traité', '2023-02-01', '2023-02-02', 5);
+INSERT INTO `reclamation` (`id_reclamation`, `titre_reclamation`, `description_reclamation`, `etat_reclamation`, `date_creation`, `date_cloture`, `id_user`, `archived`) VALUES
+(2, 'Reclamation1', 'Description Reclamation1', 'Traité', '2023-02-01', '2023-02-02', 5, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trader`
+-- Structure de la table `reponse`
 --
 
-CREATE TABLE `trader` (
-  `id_trader` int(11) NOT NULL,
-  `score` int(11) DEFAULT NULL,
-  `date_naissance` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `reponse` (
+  `id_reponse` int(11) NOT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `id_reclamation` int(11) DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `trader`
+-- Déchargement des données de la table `reponse`
 --
 
-INSERT INTO `trader` (`id_trader`, `score`, `date_naissance`) VALUES
-(5, 356, '0000-00-00'),
-(6, 123, '2023-02-02');
+INSERT INTO `reponse` (`id_reponse`, `titre`, `description`, `date`, `id_reclamation`, `archived`) VALUES
+(1, 'REPONSE 1', 'desc', '2022-09-06', 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -224,44 +272,65 @@ CREATE TABLE `utilisateur` (
   `prenom` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `adresse` varchar(255) DEFAULT NULL,
-  `avatar_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `avatar_url` varchar(255) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  `date_naissance` date DEFAULT NULL,
+  `role` enum('admin','trader','livreur') DEFAULT NULL,
+  `archived` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_user`, `password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`) VALUES
-(4, 'PASS', '(Livreur) torkhani', 'adem', 'email@gmail.com', 'adresse', 'C:/images'),
-(5, 'pass', 'user 1 (trader)', 'prenomUser 1', 'user@gmail.com', 'adresse', 'C://images'),
-(6, 'pass', 'user2 (trader)', 'prenomUser 2', 'user2@gmail.com', 'adresse', 'C:/images'),
-(7, 'cvmlk', ' (admin )user3', 'prenomUser3', 'user3@gmail.com', 'adresse U3', 'C:/images');
+INSERT INTO `utilisateur` (`id_user`, `password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `score`, `date_naissance`, `role`, `archived`) VALUES
+(4, 'PASS', ' torkhani', 'adem', 'email@gmail.com', 'adresse', 'C:/images', NULL, NULL, 'livreur', 0),
+(5, 'pass', 'oussema', 'bourigua', 'oussembouriga@gmail.com', 'fel mseken idourou bel skeken, mestir', 'C://images', 5435, '2023-02-02', 'trader', 0),
+(6, 'pass', 'ben hassen', 'mpez', 'moez@gmail.com', 'adresse', 'C:/images', 457, '2023-02-01', 'trader', 0),
+(7, 'pass', 'kalthoum', 'dridi', 'kalthoum@gmail.com', 'adresse U3', 'C:/images', 645, '2023-02-17', 'admin', 0),
+(8, 'PASS', 'marouan', 'ayed', 'marouan@gmail.com', 'adresse marouan', 'C://images', 6451, '2023-02-23', 'admin', 0),
+(9, 'PASS', 'Dhia', 'Jebali', 'dhia@gmail.com', 'adresse dhia', 'D://images', 5341, '2023-02-01', 'livreur', 0);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `administrateur`
+-- Index pour la table `article`
 --
-ALTER TABLE `administrateur`
-  ADD PRIMARY KEY (`id_admin`);
-
---
--- Indexes for table `categorie`
---
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`id_categorie`);
-
---
--- Indexes for table `coupon`
---
-ALTER TABLE `coupon`
-  ADD PRIMARY KEY (`id_coupon`),
+ALTER TABLE `article`
+  ADD PRIMARY KEY (`id_article`),
+  ADD KEY `id_categorie` (`id_categorie`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `echange`
+-- Index pour la table `categorie_article`
+--
+ALTER TABLE `categorie_article`
+  ADD PRIMARY KEY (`id_cat`);
+
+--
+-- Index pour la table `categorie_coupon`
+--
+ALTER TABLE `categorie_coupon`
+  ADD PRIMARY KEY (`id_categoriecoupon`);
+
+--
+-- Index pour la table `categorie_items`
+--
+ALTER TABLE `categorie_items`
+  ADD PRIMARY KEY (`id_categorie`);
+
+--
+-- Index pour la table `coupon`
+--
+ALTER TABLE `coupon`
+  ADD PRIMARY KEY (`id_coupon`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_categoriecoupon` (`id_categorie`);
+
+--
+-- Index pour la table `echange`
 --
 ALTER TABLE `echange`
   ADD PRIMARY KEY (`id_echange`),
@@ -270,7 +339,7 @@ ALTER TABLE `echange`
   ADD KEY `id_user2` (`id_user2`);
 
 --
--- Indexes for table `item`
+-- Index pour la table `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id_item`),
@@ -278,7 +347,7 @@ ALTER TABLE `item`
   ADD KEY `id_categorie` (`id_categorie`);
 
 --
--- Indexes for table `livraison`
+-- Index pour la table `livraison`
 --
 ALTER TABLE `livraison`
   ADD PRIMARY KEY (`id_livraison`),
@@ -286,112 +355,115 @@ ALTER TABLE `livraison`
   ADD KEY `id_echange` (`id_echange`);
 
 --
--- Indexes for table `livreur`
---
-ALTER TABLE `livreur`
-  ADD PRIMARY KEY (`id_livreur`);
-
---
--- Indexes for table `reclamation`
+-- Index pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
   ADD PRIMARY KEY (`id_reclamation`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `trader`
+-- Index pour la table `reponse`
 --
-ALTER TABLE `trader`
-  ADD PRIMARY KEY (`id_trader`);
+ALTER TABLE `reponse`
+  ADD PRIMARY KEY (`id_reponse`),
+  ADD KEY `reponse_ibfk_1` (`id_reclamation`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `administrateur`
+-- AUTO_INCREMENT pour la table `article`
 --
-ALTER TABLE `administrateur`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `article`
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `categorie_article`
 --
-ALTER TABLE `categorie`
+ALTER TABLE `categorie_article`
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `categorie_coupon`
+--
+ALTER TABLE `categorie_coupon`
+  MODIFY `id_categoriecoupon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `categorie_items`
+--
+ALTER TABLE `categorie_items`
   MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `coupon`
+-- AUTO_INCREMENT pour la table `coupon`
 --
 ALTER TABLE `coupon`
   MODIFY `id_coupon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `echange`
+-- AUTO_INCREMENT pour la table `echange`
 --
 ALTER TABLE `echange`
   MODIFY `id_echange` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `item`
+-- AUTO_INCREMENT pour la table `item`
 --
 ALTER TABLE `item`
   MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `livraison`
+-- AUTO_INCREMENT pour la table `livraison`
 --
 ALTER TABLE `livraison`
   MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `livreur`
---
-ALTER TABLE `livreur`
-  MODIFY `id_livreur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `reclamation`
+-- AUTO_INCREMENT pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
   MODIFY `id_reclamation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `trader`
+-- AUTO_INCREMENT pour la table `reponse`
 --
-ALTER TABLE `trader`
-  MODIFY `id_trader` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `reponse`
+  MODIFY `id_reponse` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `administrateur`
+-- Contraintes pour la table `article`
 --
-ALTER TABLE `administrateur`
-  ADD CONSTRAINT `administrateur_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `utilisateur` (`id_user`);
+ALTER TABLE `article`
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie_article` (`id_cat`),
+  ADD CONSTRAINT `article_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
 
 --
--- Constraints for table `coupon`
+-- Contraintes pour la table `coupon`
 --
 ALTER TABLE `coupon`
-  ADD CONSTRAINT `coupon_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
+  ADD CONSTRAINT `coupon_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`),
+  ADD CONSTRAINT `coupon_ibfk_2` FOREIGN KEY (`id_categorie`) REFERENCES `categorie_coupon` (`id_categoriecoupon`);
 
 --
--- Constraints for table `echange`
+-- Contraintes pour la table `echange`
 --
 ALTER TABLE `echange`
   ADD CONSTRAINT `echange_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`),
@@ -399,36 +471,30 @@ ALTER TABLE `echange`
   ADD CONSTRAINT `echange_ibfk_3` FOREIGN KEY (`id_user2`) REFERENCES `utilisateur` (`id_user`);
 
 --
--- Constraints for table `item`
+-- Contraintes pour la table `item`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`),
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`);
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`id_categorie`) REFERENCES `categorie_items` (`id_categorie`);
 
 --
--- Constraints for table `livraison`
+-- Contraintes pour la table `livraison`
 --
 ALTER TABLE `livraison`
-  ADD CONSTRAINT `livraison_ibfk_1` FOREIGN KEY (`id_livreur`) REFERENCES `livreur` (`id_livreur`),
+  ADD CONSTRAINT `livraison_ibfk_1` FOREIGN KEY (`id_livreur`) REFERENCES `utilisateur` (`id_user`),
   ADD CONSTRAINT `livraison_ibfk_2` FOREIGN KEY (`id_echange`) REFERENCES `echange` (`id_echange`);
 
 --
--- Constraints for table `livreur`
---
-ALTER TABLE `livreur`
-  ADD CONSTRAINT `livreur_ibfk_1` FOREIGN KEY (`id_livreur`) REFERENCES `utilisateur` (`id_user`);
-
---
--- Constraints for table `reclamation`
+-- Contraintes pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
   ADD CONSTRAINT `reclamation_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id_user`);
 
 --
--- Constraints for table `trader`
+-- Contraintes pour la table `reponse`
 --
-ALTER TABLE `trader`
-  ADD CONSTRAINT `trader_ibfk_1` FOREIGN KEY (`id_trader`) REFERENCES `utilisateur` (`id_user`);
+ALTER TABLE `reponse`
+  ADD CONSTRAINT `reponse_ibfk_1` FOREIGN KEY (`id_reclamation`) REFERENCES `reclamation` (`id_reclamation`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

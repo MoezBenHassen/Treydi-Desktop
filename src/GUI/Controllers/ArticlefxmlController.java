@@ -118,7 +118,7 @@ public class ArticlefxmlController implements Initializable {
     }
 
     @FXML
-    void goToList(ActionEvent event) {
+    void goToListArticle(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
         Parent root = null;
         try {
