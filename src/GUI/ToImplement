@@ -27,5 +27,24 @@
     
     @FXML
     private ImageView minimize;
-scene.getStylesheets().add("GUI/Assets/css/style.css");
+    Stage stage;
+    public void logout(javafx.event.ActionEvent actionEvent) {
+
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to exit ! ");
+
+        if(alert.showAndWait().get() == ButtonType.OK){
+            stage = (Stage) scenePane.getScene().getWindow();
+            System.out.println("YOU XYZ");
+            stage.close();
+        }
+    }
+
+    @FXML
+    public void Minimize (MouseEvent event ){
+        Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage1.setIconified(true);
+
+    }
 
