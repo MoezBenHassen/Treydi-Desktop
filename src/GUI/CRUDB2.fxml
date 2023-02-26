@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -33,12 +33,13 @@
             <GaussianBlur radius="63.0" />
          </effect>
       </Ellipse>
-      <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle layoutX="262.0" layoutY="261.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
                <stops>
-                  <Stop color="#b5a814ab" />
-                  <Stop color="#b5cc7a2e" offset="1.0" />
+                  <Stop color="#e18e4aab" />
+                  <Stop color="#e18e4aab" offset="0.007662835249042145" />
+                  <Stop color="#ab60312e" offset="1.0" />
                </stops>
             </RadialGradient>
          </fill>
@@ -53,13 +54,13 @@
          <children>
             <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: none;">
                <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/icons/yellow/power.png" />
+                        <Image url="@Assets/icons/blue/power_icon2.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Circle fill="#dbd32d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/avatar4.png" />
@@ -77,7 +78,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/coupon.png" />
+                  <Image url="@Assets/icons/blue/diamond.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
@@ -85,19 +86,14 @@
                   <Image url="@Assets/icons/blue/loop-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="51.0" layoutY="766.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/help%20(2).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/helmet.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/yellow/icons8-hot-article-50%20(1).png" />
+                  <Image url="@Assets/icons/blue/control-panel.png" />
                </image>
             </ImageView>
             <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
@@ -124,7 +120,7 @@
       <TextField fx:id="txt_titre" layoutX="423.0" layoutY="238.0" opacity="0.59" prefHeight="36.0" prefWidth="774.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
 
       </TextField>
-      <Button id="addButton" fx:id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Ajouter" textFill="#eccecf">
+      <Button id="addButton" fx:id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Ajouter" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -157,7 +153,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/yellow/addition1.png" />
+                  <Image url="@Assets/icons/pink/additionpink.png" />
                </image>
             </ImageView>
          </graphic>
@@ -174,13 +170,23 @@
       <RadioButton id="radio" layoutX="423.0" layoutY="619.0" mnemonicParsing="false" style="-fx-accent-color: red;" styleClass="radio" stylesheets="@Assets/css/style.css" text="RadioButton" textFill="#7c6b9e" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Assets/images/treydiAdmin-05.png" />
+            <Image url="@Assets/images/treydi3.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt_titre1" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
       <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="1354.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/bell.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="1402.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/heart.png" />
          </image>
       </ImageView>
 

@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -124,7 +124,7 @@
       <TextField fx:id="txt_titre" layoutX="423.0" layoutY="238.0" opacity="0.59" prefHeight="36.0" prefWidth="774.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
 
       </TextField>
-      <Button id="addButton" fx:id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Ajouter" textFill="#eccecf">
+      <Button id="addButton" fx:id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Ajouter" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font></Button>

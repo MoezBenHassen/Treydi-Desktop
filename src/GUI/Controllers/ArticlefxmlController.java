@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -44,6 +45,8 @@ public class ArticlefxmlController implements Initializable {
     @FXML
     private TextField txt_auteur ;
 
+    @FXML
+    private ImageView minimize;
 
     Stage stage;
 
@@ -65,6 +68,12 @@ public class ArticlefxmlController implements Initializable {
         }
     }
 
+    @FXML
+    public void Minimize (MouseEvent event ){
+        Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage1.setIconified(true);
+
+    }
     @FXML
     private void afficher_combobox_cat() {
         CategorieArticleService cat = new CategorieArticleService();
