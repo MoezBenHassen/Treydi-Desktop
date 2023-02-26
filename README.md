@@ -8,7 +8,7 @@
 <a href="https://github.com/MoezBenHassen/Treydi-Desktop"> 👁‍🗨 View Demo</a>
 ·
 <!-- Add you issue link here -->
-<a href="https://github.com/MoezBenHassen/Treydi-Desktop/issues"> 🕷 Report Bug</a>
+<a href="https://github.com/MoezBenHassen/Treydi-Desktop/issues"> 🕷 RR Bug</a>
 ·
 <!-- Add you issue/discussion link here too -->
 <a href="https://github.com/MoezBenHassen/Treydi-Desktop/issues"> ⚙ Request Feature</a>
