@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1055.0" style="-fx-background-color: #2c2449; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 3; -fx-border-color: #202042;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierItemController">
+  <children>
+      <Text fill="#eccecf" layoutX="411.25" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier vos items" AnchorPane.rightAnchor="113.046875">
+         <font>
+            <Font name="Impact" size="16.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="702.0" layoutY="4.0" prefHeight="560.0" prefWidth="82.0" style="-fx-background-color: #202042; -fx-background-radius: 30; -fx-border-radius: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <children>
+              <Circle fill="#4b0d91" layoutX="43.0" layoutY="52.0" radius="27.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.topAnchor="25.0" />
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="29.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="103.0">
+                  <image>
+                      <Image url="@Assets/Icons/bucket-fill.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="1.0" />
+                  </effect>
+              </ImageView>
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="29.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Assets/Icons/arrow-left-right.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="0.57" />
+                  </effect>
+              </ImageView>
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="28.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Assets/Icons/gift-fill.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="0.57" />
+                  </effect>
+              </ImageView>
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="30.0" layoutY="526.0" onMouseClicked="#shutdown" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="32.0">
+                  <image>
+                      <Image url="@Assets/Icons/shutdown.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="0.29" />
+                  </effect>
+              </ImageView>
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="28.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Assets/Icons/reply-fill.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="0.57" />
+                  </effect>
+              </ImageView>
+              <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="30.0" layoutY="468.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@Assets/Icons/minimize.png" />
+                  </image>
+                  <effect>
+                      <ColorAdjust brightness="0.29" />
+                  </effect>
+              </ImageView>
+          </children>
+          <effect>
+              <DropShadow color="#0000008c" height="8.25" offsetX="-5.0" radius="6.5625" width="20.0" />
+          </effect>
+      </AnchorPane>
+      <TextField fx:id="textfield_libelle1" layoutX="260.0" layoutY="17.0" opacity="0.44" prefHeight="28.0" prefWidth="260.0" promptText="Chercher" style="-fx-border-width: 1; -fx-background-radius: 10; -fx-background-color: #383a40; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff;" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="17.0">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="230.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="21.0">
+         <image>
+            <Image url="@Assets/Icons/search.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.65" />
+         </effect>
+      </ImageView>
+      <TextField id="textfield_id" fx:id="textfield_id" layoutX="380.0" layoutY="464.0" prefHeight="28.0" prefWidth="148.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff;" text="Insérer ID pour modifier" visible="false">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="280.0" layoutX="30.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="54.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <ImageView id="route_AI" fx:id="route_AI" fitHeight="25.0" fitWidth="25.0" layoutX="45.0" layoutY="211.0" onMouseClicked="#route_AjouterItem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/add.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="42.0" layoutY="265.0" onMouseClicked="#modifier" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/gear-fill.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="434.0" layoutX="243.0" layoutY="86.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="549.0">
+         <fill>
+            <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.13870246085011184">
+                     <color>
+                        <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8232662192393735">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8836689038031321">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+               <color>
+                  <Color opacity="0.5038167834281921" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Rectangle>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="43.0" layoutY="324.0" onMouseClicked="#supprimer" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/trash-fill.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="46.0" layoutY="382.0" onMouseClicked="#route_ChercherItem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/search.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" />
+         </effect>
+      </ImageView>
+      <Text fill="#eccecf" layoutX="263.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_libelle" layoutX="327.0" layoutY="105.0" prefHeight="27.0" prefWidth="271.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff;" text="Insérer libellé">
+         <font>
+            <Font name="Impact" size="11.0" />
+         </font>
+      </TextField>
+      <Text fill="#eccecf" fontSmoothingType="LCD" layoutX="419.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <ComboBox id="dropbox_etat" fx:id="combobox_cat" layoutX="610.0" layoutY="125.0" prefHeight="33.0" prefWidth="157.0" promptText="Choisir Categorie" style="-fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: #eccecf; list-cell: #eccecf;" styleClass=".combo-box .cell:selected {    -fx-text-fill: red;}" stylesheets="@Assets/CSSs/combobox.css" />
+      <Text fill="#eccecf" layoutX="263.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="264.0" layoutY="451.0" mnemonicParsing="false" onAction="#select_image" prefHeight="31.0" prefWidth="130.0" style="-fx-background-color: #87678f; -fx-font-family: impact; -fx-background-radius: 5;" text="Ajouter Image" textFill="WHITE">
+         <font>
+            <Font name="High Tower Text" size="12.0" />
+         </font>
+      </Button>
+      <RadioButton id="radio_type_1" fx:id="radio_type_1" layoutX="415.0" layoutY="342.0" mnemonicParsing="false" selected="true" style="-fx-text-fill: #ffffff;" text="Physique Neuf" textFill="#eccecf">
+         <toggleGroup>
+            <ToggleGroup fx:id="radio_type" />
+         </toggleGroup>
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton id="radio_type_3" fx:id="radio_type_3" layoutX="552.0" layoutY="342.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Virtuelle" textFill="#eccecf">
+         <toggleGroup>
+            <ToggleGroup fx:id="radio_type" />
+         </toggleGroup>
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton id="radio_type_4" fx:id="radio_type_4" layoutX="552.0" layoutY="372.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Service" textFill="#eccecf">
+         <toggleGroup>
+            <ToggleGroup fx:id="radio_type" />
+         </toggleGroup>
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton id="radio_type_2" fx:id="radio_type_2" layoutX="415.0" layoutY="372.0" mnemonicParsing="false" style="-fx-text-fill: #ffffff;" text="Physique Occasion" textFill="#eccecf">
+         <toggleGroup>
+            <ToggleGroup fx:id="radio_type" />
+         </toggleGroup>
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </RadioButton>
+      <Text fill="#eccecf" layoutX="611.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie">
+         <font>
+            <Font name="Impact" size="14.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3c22538c" height="120.0" layoutX="262.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="130.0" />
+      <TextArea id="textarea_description" fx:id="textarea_description" layoutX="262.0" layoutY="165.0" prefHeight="142.0" prefWidth="506.0" style="-fx-background-radius: 20; -fx-border-width: 0.5; -fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-radius: 20;" stylesheets="@Assets/CSSs/desc.css" text="Insérer description" />
+      <Button layoutX="657.0" layoutY="474.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #99226d; -fx-background-radius: 11; -fx-font-family: impact;" text="Modifier Item" textFill="#eccecf">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Button>
+      <ImageView id="imageview_imageurl" fx:id="imageview_imageurl" fitHeight="120.0" fitWidth="130.0" layoutX="262.0" layoutY="320.0" pickOnBounds="true">
+         <image>
+            <Image url="@Assets/Icons/image.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="40.0" layoutY="154.0" onMouseClicked="#route_AfficherItem" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/list.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="146.0" layoutX="27.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Images/logo.png" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a621ff31" height="46.0" layoutX="33.0" layoutY="257.0" stroke="#0000007a" strokeType="INSIDE" style="-fx-arc-height: 20; -fx-arc-width: 20;" width="48.0" />
+
+   </children>
+</AnchorPane>
