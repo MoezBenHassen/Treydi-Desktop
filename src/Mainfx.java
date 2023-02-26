@@ -14,7 +14,7 @@ public class Mainfx extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/AjoutReponse.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/Reclamationfxml.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Treydi");
 

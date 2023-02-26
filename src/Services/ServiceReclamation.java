@@ -54,9 +54,6 @@ public class ServiceReclamation implements IService<Reclamation> {
                     p.setId_reclamation(rs.getInt("id_reclamation"));
                     Reclamations.add(p);
                 }
-
-
-
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }

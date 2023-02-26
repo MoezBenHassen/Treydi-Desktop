@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,9 +25,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReponseAffichageControlleur implements Initializable {
-
-
-
+    
     @FXML
     private TableView<Reponse> tableView;
 
@@ -64,7 +63,7 @@ public class ReponseAffichageControlleur implements Initializable {
 
 
     @FXML
-    private void gotoajout(MouseEvent event) throws IOException {
+     void gotoajout(MouseEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReponse.fxml"));
         Parent root = loader.load();
@@ -73,6 +72,32 @@ public class ReponseAffichageControlleur implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    @FXML
+    void supprimer(MouseEvent event) {
+        Reponse selectedrep = tableView.getSelectionModel().getSelectedItem();
+        if (selectedrep != null) {
+            ServiceReponse servicerep = new ServiceReponse();
+
+            boolean result = servicerep.supprimer(selectedrep);
+
+            if (result) {
+                tableView.getItems().remove(selectedrep);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Erreur lors de la suppression .");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Avertissement");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner  .");
+            alert.showAndWait();
+        }
     }
 
 

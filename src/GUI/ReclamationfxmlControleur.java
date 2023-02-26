@@ -61,7 +61,6 @@ public class ReclamationfxmlControleur implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("le champ titre est vide");
             alert.showAndWait();
-
             return;
         }
 
@@ -74,7 +73,7 @@ public class ReclamationfxmlControleur implements Initializable {
         }
 
         ServiceReclamation sr = new ServiceReclamation();
-        Reclamation R = new Reclamation( 2,titre, description);
+        Reclamation R = new Reclamation( 6,titre, description);
         sr.ajouter(R);
     }
 
@@ -90,7 +89,7 @@ public class ReclamationfxmlControleur implements Initializable {
 
     }
     @FXML
-    void gotoreponse(MouseEvent event) {
+    void gotoreponse(MouseEvent event) throws RuntimeException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReponse.fxml"));
         Parent root = null;
         try {

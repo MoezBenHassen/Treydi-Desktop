@@ -99,7 +99,7 @@
             <Image url="@../Icon/Icons/gear-fill.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="37.0" layoutX="33.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="65.0" fitWidth="37.0" layoutX="33.0" layoutY="382.0" onMouseClicked="#supprimer" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icon/Icons/trash-fill.png" />
          </image>
