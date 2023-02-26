@@ -9,4 +9,4 @@ public interface IService<T> {
     public Boolean modifier(T t);
     public Boolean supprimer(T t);
 }
-}
+
