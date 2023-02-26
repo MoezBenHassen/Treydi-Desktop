@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -21,11 +22,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Node;
 
+import static java.sql.Types.NULL;
 
 
 public class CreerEchangeInterface {
 
     List<Item> items_selectionner = new ArrayList<>();
+
+
+    @FXML
+    private ScrollPane items_grid_scroll;
 
     @FXML
     private ResourceBundle resources;
@@ -55,13 +61,16 @@ public class CreerEchangeInterface {
     @FXML
     private void ajouter(ActionEvent event) {
         System.out.println(items_selectionner);
-        Echange e = new Echange(5,8);
-        es.add(e);
-        es.getIdEchangeByEchange(e, items_selectionner);
+        if (items_selectionner.size() == 0) {
+            System.out.println("EMPTY");
+        } else {
+            Echange e = new Echange(5, 8);
+            es.CreerEchange(e, items_selectionner);
+        }
     }
 
     private void echange_creation() {
-        List<Item> items = is.afficher();
+        List<Item> items = is.afficherUserItems(5);
         int column = 0, row = 0;
 
         for (int i = 0; i < items.size(); i++) {
@@ -70,9 +79,11 @@ public class CreerEchangeInterface {
             Text text = new Text(items.get(i).getLibelle());
             StackPane stackPane = new StackPane(rectangle, text);
             stackPane.setAlignment(Pos.CENTER);
-            row = i / 2;
-            column = i % 2;
-            items_grid.add(stackPane, column, row);
+            if (items.get(i).getId_echange() == NULL) {
+                items_grid.add(stackPane, column, row);
+                row = i / 2;
+                column = i % 2;
+            }
             final int index = i;
             rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override

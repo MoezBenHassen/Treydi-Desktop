@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LivraisonService implements IService<Livraison> {
+public class LivraisonService implements Services.IService<Livraison> {
     Connection con;
     Statement stm;
     public LivraisonService() {

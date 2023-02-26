@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EchangeService implements IService<Echange> {
+public class EchangeService implements Services.IService<Echange> {
     Connection con;
     Statement stm;
     public EchangeService() {
@@ -27,22 +27,22 @@ public class EchangeService implements IService<Echange> {
     }
 
     @Override
-    public List afficher()  {
-        List<Echange> echanges = new ArrayList<>();
+        public List afficher()  {
+            List<Echange> echanges = new ArrayList<>();
 
-        String query="SELECT * from `echange`";
-        try {
-            stm = con.createStatement();
-            ResultSet result=stm.executeQuery(query);
-            while (result.next()){
-                Echange e = new Echange(result.getInt("id_echange"), result.getInt("id_user1"), result.getInt("id_user2"),
-                         result.getDate("date_echange"));
-                echanges.add(e);
+            String query="SELECT * from `echange`";
+            try {
+                stm = con.createStatement();
+                ResultSet result=stm.executeQuery(query);
+                while (result.next()){
+                    Echange e = new Echange(result.getInt("id_echange"), result.getInt("id_user1"), result.getInt("id_user2"),
+                            result.getDate("date_echange"));
+                    echanges.add(e);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return echanges;
+            return echanges;
     }
 
     @Override
@@ -79,10 +79,11 @@ public class EchangeService implements IService<Echange> {
         }
     }
 
-    public void getIdEchangeByEchange(Echange e, List<Item> items) {
+    public void CreerEchange(Echange e, List<Item> items) {
+        java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
         int id_echange = -1;
 
-        String req="INSERT INTO `echange` (`id_user1`) VALUES ('" + e.getId_user1() + "')";
+        String req="INSERT INTO `echange` (`id_user1`, `date_echange`) VALUES ('" + e.getId_user1() + "', '"+current_date+"')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
@@ -98,4 +99,26 @@ public class EchangeService implements IService<Echange> {
             throw new RuntimeException(ex);
         }
     }
+
+    public void ProposerEchange(Echange e, List<Item> items) {
+        java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
+        int id_echange = -1;
+
+        String req="INSERT INTO `echange` (`id_user2`, `date_echange`) VALUES ('" + e.getId_user2() + "', '"+current_date+"')";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
+            ResultSet result = stmt.getGeneratedKeys();
+            if (result.next()){
+                id_echange = result.getInt(1);
+            }
+            for (Item i : items) {
+                stmt = con.createStatement();
+                stmt.executeUpdate("UPDATE `item` SET `id_echange` = '" + id_echange + "' WHERE `id_item`='" + i.getId_item() + "'");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 }

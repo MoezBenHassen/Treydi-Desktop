@@ -47,6 +47,17 @@ public class Item {
         this.id_categorie = id_categorie;
     }
 
+    public Item(int id_item, int id_echange, String libelle, String description, Item.type type, state etat, int id_user, int id_categorie) {
+        this.id_item = id_item;
+        this.id_echange = id_echange;
+        this.libelle = libelle;
+        this.description = description;
+        this.type = type;
+        this.etat = etat;
+        this.id_user = id_user;
+        this.id_categorie = id_categorie;
+    }
+
     public int getId_item() {
         return id_item;
     }

@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/GUI/CreerEchangeInterface.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/AfficherListEchangeInterface.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Echange");
             primaryStage.setScene(scene);
@@ -32,8 +32,8 @@ public class Main extends Application {
         Livraison ll = new Livraison(4,9, 2, "modifier", Livraison.ETAT.Termine);
         l.modifier(ll);*/
 
-        ItemService iss = new ItemService();
-        System.out.println(iss.afficher());
+        //ItemService iss = new ItemService();
+        //System.out.println(iss.afficher());
 
         launch(args);
 
