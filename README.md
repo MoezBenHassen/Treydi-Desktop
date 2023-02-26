@@ -28,3 +28,9 @@ Ceci est la partie "Java" de la branche des contributions de Mohamed Dhia Jebali
 -- | ■ | JDBC
 
 -- | ☐ | JavaFX
+
+-- | -- | ■ | Initials
+
+-- | ☐ | APIs
+
+-- | -- | ■ | Initials
