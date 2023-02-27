@@ -87,3 +87,7 @@
 #supprimer:hover{
     -fx-background-color: #DBD32D !important;
 }
+#deleteButton{
+    -fx-background-color:transparent;
+
+}

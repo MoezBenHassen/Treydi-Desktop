@@ -162,7 +162,7 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+    <Button fx:id="articleToCategorie" layoutX="57.0" layoutY="662.0" mnemonicParsing="false" onAction="#goToCategorie" prefWidth="43.0" style="-fx-background-color: none;">
         <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                 <image>

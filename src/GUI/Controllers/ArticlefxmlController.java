@@ -132,4 +132,19 @@ public class ArticlefxmlController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void goToCategorie(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
