@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.DashbordAdminController">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -86,7 +86,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/help%20(2).png" />
+                  <Image url="@Assets/icons/blue/help (2).png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
@@ -96,7 +96,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
+                  <Image url="@Assets/icons/blue/icons8-hot-article-50 (2).png" />
                </image>
             </ImageView>
             <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
@@ -125,7 +125,7 @@
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
-      
+
       <Button layoutX="56.0" layoutY="320.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <Button layoutX="56.0" layoutY="408.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <Button layoutX="61.0" layoutY="500.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
@@ -163,15 +163,16 @@
          </image>
       </ImageView>
       <Label id="txt" accessibleRole="BUTTON" layoutX="633.0" layoutY="152.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Liste d'utlilisateur" textAlignment="CENTER" />
-      <TableView fx:id="tableView" layoutX="351.0" layoutY="224.0" prefHeight="536.0" prefWidth="902.0">
+      <TableView fx:id="tableView" layoutX="354.0" layoutY="250.0" prefHeight="511.0" prefWidth="896.0">
          <columns>
-            <TableColumn fx:id="tfnom" minWidth="0.0" prefWidth="86.0" text="nom" />
-            <TableColumn fx:id="tfprenom" minWidth="0.0" prefWidth="129.0" text="prenom" />
-            <TableColumn fx:id="tfemail" prefWidth="132.0" text="email" />
-            <TableColumn fx:id="tfadresse" prefWidth="145.0" text="adresse" />
-            <TableColumn fx:id="tfrole" prefWidth="101.0" text="role" />
-            <TableColumn fx:id="tfdate" prefWidth="215.0" text="date_naissance" />
-            <TableColumn fx:id="tfscore" prefWidth="89.0" text="score" />
+            <TableColumn fx:id="tfarchived" prefWidth="72.0" text="archived" />
+            <TableColumn fx:id="tfnom" prefWidth="82.0" text="nom" />
+            <TableColumn fx:id="tfprenom" prefWidth="116.0" text="prenom" />
+            <TableColumn fx:id="tfemail" prefWidth="188.0" text="email" />
+            <TableColumn fx:id="tfadresse" prefWidth="150.0" text="adresse" />
+            <TableColumn fx:id="tfrole" prefWidth="74.0" text="role" />
+            <TableColumn fx:id="tfdate" prefWidth="135.0" text="date_naissance" />
+            <TableColumn fx:id="tfscore" prefWidth="78.0" text="score" />
          </columns>
       </TableView>
 
