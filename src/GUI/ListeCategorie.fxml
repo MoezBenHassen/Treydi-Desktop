@@ -120,14 +120,14 @@
          <effect>
             <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
          </effect></Rectangle>
-      <Label id="txt" accessibleRole="BUTTON" layoutX="695.0" layoutY="135.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Categories" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="652.0" layoutY="137.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Categories Article" textAlignment="CENTER" />
       <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="466.0" layoutX="32.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
       
-      <Button layoutX="56.0" layoutY="298.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="56.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToListArticle" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -135,7 +135,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="56.0" layoutY="386.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="goToAddArticle" layoutX="56.0" layoutY="386.0" mnemonicParsing="false" onAction="#goToAddArticle" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -164,7 +164,7 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Button layoutX="58.0" layoutY="558.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="58.0" layoutY="558.0" mnemonicParsing="false" onAction="#supprimer" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -173,7 +173,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="57.0" layoutY="640.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="57.0" layoutY="640.0" mnemonicParsing="false" onAction="#goToCategorie" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -184,8 +184,8 @@
       </Button>
       <TableView fx:id="tableView" layoutX="379.0" layoutY="256.0" prefHeight="457.0" prefWidth="843.0" stylesheets="@Assets/css/style.css">
         <columns>
-          <TableColumn fx:id="libelleC" prefWidth="399.0" text="Libelle categorie" />
-          <TableColumn fx:id="actionC" prefWidth="443.0" text="Action" />
+          <TableColumn fx:id="libelleC" prefWidth="524.0" text="Libelle categorie" />
+          <TableColumn fx:id="actionC" prefWidth="318.0" text="Action" />
         </columns>
       </TableView>
 

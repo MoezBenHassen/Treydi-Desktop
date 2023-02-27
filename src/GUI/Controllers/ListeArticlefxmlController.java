@@ -116,6 +116,21 @@ public class ListeArticlefxmlController implements Initializable {
         stage1.setIconified(true);
     }
 
+
+    @FXML
+    void goToListArticle(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     @FXML
     void goToAddArticle(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Articles.fxml"));
@@ -130,7 +145,6 @@ public class ListeArticlefxmlController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     @FXML
     void supprimer(ActionEvent event) {
         Article selectedre = tableView.getSelectionModel().getSelectedItem();
@@ -165,7 +179,7 @@ public class ListeArticlefxmlController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Avertissement");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner une réclamation.");
+            alert.setContentText("Veuillez sélectionner un article à supprimer.");
             alert.showAndWait();
         }
 

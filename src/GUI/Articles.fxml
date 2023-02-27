@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.GaussianBlur?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ArticlefxmlController">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -139,13 +129,13 @@
 
       </TextField>
       <Label id="txt" accessibleRole="BUTTON" layoutX="632.0" layoutY="145.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Ajouter une article" textAlignment="CENTER" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="466.0" layoutX="32.0" layoutY="284.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="466.0" layoutX="32.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
 
-      <Button fx:id="goToListArt" layoutX="56.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToListArticle" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="goToListArt" layoutX="56.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToListArticle" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -153,7 +143,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="56.0" layoutY="408.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="56.0" layoutY="386.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -162,7 +152,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="61.0" layoutY="500.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="61.0" layoutY="478.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -171,7 +161,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button id="supprimer" fx:id="supprimer" layoutX="58.0" layoutY="580.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" styleClass="supprimer">
+      <Button id="supprimer" fx:id="supprimer" layoutX="58.0" layoutY="558.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" styleClass="supprimer">
          <graphic>
             <ImageView id="supprimer" fx:id="supprimer" fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -180,7 +170,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="ajoutArticleToCategorie" layoutX="57.0" layoutY="662.0" mnemonicParsing="false" onAction="#goToCategorie" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="ajoutArticleToCategorie" layoutX="57.0" layoutY="640.0" mnemonicParsing="false" onAction="#goToCategorie" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
