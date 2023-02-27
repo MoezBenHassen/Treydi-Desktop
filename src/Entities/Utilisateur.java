@@ -1,6 +1,25 @@
 package Entities;
 
 public class Utilisateur {
+    static int loginid = 0 ;
+    static int logintype = 0 ;
+
+    public static int getLoginid() {
+        return loginid;
+    }
+
+    public static void setLoginid(int x) {
+        loginid = x;
+    }
+
+    public static int getLogintype() {
+        return logintype;
+    }
+
+    public static void setLogintype(int x) {
+        logintype = x;
+    }
+
     private int id_user;
     private String nom, prenom, avatar_url, email, adresse;
 

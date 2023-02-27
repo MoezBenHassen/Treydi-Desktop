@@ -2,7 +2,8 @@ package GUI;
 
 import Entities.Categorie_Items;
 import Entities.Item;
-import Services.CategorieService;
+import Entities.Utilisateur;
+import Services.CategorieItemsService;
 import Services.ItemService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AjouterItemController implements Initializable {
+public class AjouterItemUserController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -54,7 +55,7 @@ public class AjouterItemController implements Initializable {
 
     @FXML
     private void afficher_combobox_cat() {
-        CategorieService sp = new CategorieService();
+        CategorieItemsService sp = new CategorieItemsService();
         List<Categorie_Items> list = sp.afficher();
         for (Categorie_Items categorieItems : list) {
             combobox_cat.getItems().add(categorieItems.getNom_categorie());
@@ -85,7 +86,7 @@ public class AjouterItemController implements Initializable {
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
         ItemService sp = new ItemService();
-        CategorieService sp2 = new CategorieService();
+        CategorieItemsService sp2 = new CategorieItemsService();
 
         List<Categorie_Items> list = sp2.afficher();
         String cbs = (String) combobox_cat.getValue();
@@ -120,14 +121,14 @@ public class AjouterItemController implements Initializable {
             a.setContentText("Assurez-vous d'insérer des entrées valides pour les détails de votre item.") ;
             a.show();
         } else {
-            Item i = new Item(textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), 4, id_cat,0);
+            Item i = new Item(textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), Utilisateur.getLoginid(), id_cat,0);
             sp.ajouter(i);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Operation");
 
             a.setContentText("L'entrée d'item a été insérée avec succès!") ;
             a.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemFXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemUserFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -153,32 +154,6 @@ public class AjouterItemController implements Initializable {
         }
 
 
-    }
-
-    @FXML
-    private void route_SupprimerItem(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SupprimerItemFXML.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        //move around here
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        scene.setFill(Color.TRANSPARENT);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
@@ -234,8 +209,8 @@ public class AjouterItemController implements Initializable {
     }
 
     @FXML
-    private void route_AfficherItem(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemFXML.fxml"));
+    private void route_AfficherItem(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemUserFXML.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -260,8 +235,8 @@ public class AjouterItemController implements Initializable {
     }
 
     @FXML
-    private void supprimer(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemFXML.fxml"));
+    private void supprimer(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemUserFXML.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -292,8 +267,8 @@ public class AjouterItemController implements Initializable {
     }
 
     @FXML
-    private void modifier(MouseEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemFXML.fxml"));
+    private void modifier(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemUserFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -326,8 +301,8 @@ public class AjouterItemController implements Initializable {
     }
 
     @FXML
-    private void route_ChercherItem(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChercherItemFXML.fxml"));
+    private void route_AjouterItem(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterItemUserFXML.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -350,6 +325,33 @@ public class AjouterItemController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void route_ChercherItem(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChercherItemUserFXML.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     private void shutdown(MouseEvent event) throws IOException {

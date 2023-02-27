@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entities.Item;
-import Interfaces.IService;
+import Entities.Utilisateur;
+import Interfaces.IItemCategorieService;
 import Utils.MyDB;
 
 
-public class ItemService implements IService<Item> {
+public class ItemService implements IItemCategorieService<Item> {
 
     Connection cnx;
     Statement stm;
@@ -44,6 +45,37 @@ public class ItemService implements IService<Item> {
 
     @Override
     public List<Item> afficher() {
+        List<Item> items = new ArrayList();
+        try {
+            String qry = "SELECT * FROM `item` WHERE `archived` = 0 AND `id_user` = "+Utilisateur.getLoginid()+";";
+            stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+
+            while (rs.next()) {
+                Item i = new Item();
+                i.setId_item(rs.getInt("id_item"));
+                i.setLibelle(rs.getString("libelle"));
+                i.setDescription(rs.getString("description"));
+                i.setType(Item.type.valueOf(rs.getString("type")));
+                i.setEtat(Item.state.valueOf(rs.getString("etat")));
+                i.setImageurl(rs.getString("imageurl"));
+                i.setId_user(rs.getInt("id_user"));
+                i.setId_categorie(rs.getInt("id_categorie"));
+                i.setId_echange(rs.getInt("id_echange"));
+
+                items.add(i);
+            }
+            return items;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return items;
+
+    } ;
+
+    @Override
+    public List<Item> afficherAdmin() {
         List<Item> items = new ArrayList();
         try {
             String qry = "SELECT * FROM `item` WHERE `archived` = 0";

@@ -1,12 +1,12 @@
 import Entities.Categorie_Items;
 import Entities.Item;
-import Services.CategorieService;
+import Services.CategorieItemsService;
 import Services.ItemService;
 
 public class Old {
     public static void main(String[] args) {
 
-        CategorieService cs = new CategorieService();
+        CategorieItemsService cs = new CategorieItemsService();
         ItemService is = new ItemService();
 
         System.out.println("Insertion des categories ----------");

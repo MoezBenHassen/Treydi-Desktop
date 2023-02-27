@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import Entities.Utilisateur;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,39 +15,78 @@ public class Main extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
 
+
     @Override
     public void start(Stage primaryStage) throws IOException {
 
+        Utilisateur.setLoginid(4);
+        Utilisateur.setLogintype(0);
 
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/AfficherItemFXML.fxml"));
-        Scene scene = new Scene(root);
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
+        if (Utilisateur.getLogintype() == 0) {
+            Parent root = FXMLLoader.load(getClass().getResource("GUI/AfficherItemAdminFXML.fxml"));
+            Scene scene = new Scene(root);
 
-        //move around here
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
 
-        primaryStage.setTitle("Treydi Desktop Edition");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        scene.setFill(Color.TRANSPARENT);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            //move around here
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    primaryStage.setX(event.getScreenX() - xOffset);
+                    primaryStage.setY(event.getScreenY() - yOffset);
+                }
+            });
+
+            primaryStage.setTitle("Treydi Desktop Edition");
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            scene.setFill(Color.TRANSPARENT);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+
+        } else if (Utilisateur.getLogintype() == 1) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("GUI/AfficherItemUserFXML.fxml"));
+            Scene scene = new Scene(root);
+
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+
+            //move around here
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    primaryStage.setX(event.getScreenX() - xOffset);
+                    primaryStage.setY(event.getScreenY() - yOffset);
+                }
+            });
+
+            primaryStage.setTitle("Treydi Desktop Edition");
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            scene.setFill(Color.TRANSPARENT);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+
+        }
 
 
     }
+
 
     public static void main(String[] args) {
         launch(args);

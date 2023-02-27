@@ -1,7 +1,7 @@
 package Services;
 
 import Entities.Categorie_Items;
-import Interfaces.IService;
+import Interfaces.IItemCategorieService;
 import Utils.MyDB;
 
 import java.sql.Connection;
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CategorieService implements IService<Categorie_Items> {
+public class CategorieItemsService implements IItemCategorieService<Categorie_Items> {
 
     Connection cnx;
     Statement stm;
 
-    public CategorieService() {
+    public CategorieItemsService() {
         cnx = MyDB.getInstance().getCnx();
 
     }
@@ -65,6 +65,11 @@ public class CategorieService implements IService<Categorie_Items> {
         }
         return categories;
 
+    }
+
+    @Override
+    public List<Categorie_Items> afficherAdmin() {
+        return afficher();
     }
 
     @Override

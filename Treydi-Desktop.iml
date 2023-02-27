@@ -7,13 +7,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.32.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/Dependencies/mysql-connector-j-8.0.32.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/Dependencies/itextpdf-5.5.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/Dependencies/jxl-2.6.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>
