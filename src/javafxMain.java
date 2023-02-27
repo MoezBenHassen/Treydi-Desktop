@@ -17,9 +17,12 @@ public class javafxMain extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/Articles.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/ListeArticles.fxml"));
             Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+
             Scene scene = new Scene(root);
+
+
             primaryStage.initStyle(StageStyle.UNDECORATED);
 
             scene.setOnMousePressed(event -> {
