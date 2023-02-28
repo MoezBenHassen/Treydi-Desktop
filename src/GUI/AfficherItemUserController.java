@@ -18,14 +18,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -35,6 +34,7 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -72,8 +72,41 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private TableColumn<Item, String> categorieColumn;
 
+    @FXML
+    private TextField textfield_libelle;
+    @FXML
+    private TextArea textarea_description;
+    @FXML
+    private CheckBox cb_type_1 ;
+
+    @FXML
+    private CheckBox cb_type_2 ;
+
+    @FXML
+    private CheckBox cb_type_3 ;
+
+    @FXML
+    private CheckBox cb_type_4 ;
+
+    @FXML
+    private ComboBox combobox_cat ;
+
+    @FXML
+    private Pane chercherPane;
+
+    private  List<Item> items ;
+    private  List<Categorie_Items> categories ;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        ItemService sp = new ItemService();
+        items = sp.afficher();
+        tableView.setItems(FXCollections.observableArrayList(items));
+
+        CategorieItemsService sp2 = new CategorieItemsService();
+        categories = sp2.afficher();
 
         imageurlColumn.setCellValueFactory(new PropertyValueFactory<>("imageurl"));
 
@@ -112,7 +145,7 @@ public class AfficherItemUserController implements Initializable {
                     List<Categorie_Items> list = sp2.afficher();
                     String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
                     ;
-                    System.out.println(cat);
+
                     return new SimpleObjectProperty<>(cat);
                 } catch (Exception e) {
                     System.out.println(e);
@@ -128,7 +161,6 @@ public class AfficherItemUserController implements Initializable {
         etatColumn.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
 
-        afficher();
 
 
     }
@@ -217,16 +249,6 @@ public class AfficherItemUserController implements Initializable {
     }
 
     @FXML
-    private void afficher() {
-
-        ItemService sp = new ItemService();
-        List<Item> items = sp.afficher();
-        tableView.setItems(FXCollections.observableArrayList(items));
-
-
-    }
-
-    @FXML
     private void route_AjouterItem(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterItemUserFXML.fxml"));
         Parent root = loader.load();
@@ -253,29 +275,101 @@ public class AfficherItemUserController implements Initializable {
     }
 
     @FXML
+    private void chercher() {
+
+
+        String c_lib = textfield_libelle.getText();
+        String cd_cat = (String) combobox_cat.getValue();
+        int c_cat = categories.stream().filter((t) -> t.getNom_categorie().equals(cd_cat)).mapToInt((t) -> t.getId_categorie()).sum();
+        String c_mcl = textarea_description.getText();
+
+
+        List<Item> itemstream = items;
+
+        if (!(c_lib.equals("") || c_lib.equals("Insérer libellé"))) {
+            itemstream = itemstream.stream().filter((t) -> t.getLibelle().toLowerCase().contains(c_lib.toLowerCase())).collect(Collectors.toList());
+        }
+        if (!(c_mcl.equals("") || c_mcl.equals("Insérer mots clés"))) {
+            itemstream = itemstream.stream().filter(t -> t.getDescription().toLowerCase().contains(c_mcl.toLowerCase())).collect(Collectors.toList());
+
+        }
+
+        if (cd_cat != null && !cd_cat.equals("Toutes")) {
+            itemstream = itemstream.stream().filter((t) -> t.getId_categorie() == c_cat).collect(Collectors.toList());
+        }
+
+        List<Item> itemstreamc1 = itemstream;
+        List<Item> itemstreamc2 = itemstream;
+        List<Item> itemstreamc3 = itemstream;
+        List<Item> itemstreamc4 = itemstream;
+
+        if (cb_type_1.isSelected()) {
+
+            itemstreamc1 = itemstreamc1.stream().filter((t) -> t.getType() == Item.type.Physique)
+                    .filter((t) -> t.getEtat() == Item.state.Neuf)
+                    .collect(Collectors.toList());
+
+        } else {
+            itemstreamc1 = new ArrayList<>();
+        }
+
+        if (cb_type_2.isSelected()) {
+            itemstreamc2 = itemstreamc2.stream().filter((t) -> t.getType() == Item.type.Physique)
+                    .filter((t) -> t.getEtat() == Item.state.Occasion)
+                    .collect(Collectors.toList());
+        } else {
+            itemstreamc2 = new ArrayList<>();
+        }
+
+
+        if (cb_type_3.isSelected()) {
+            itemstreamc3 = itemstreamc3.stream().filter((t) -> t.getType() == Item.type.Virtuelle)
+                    .collect(Collectors.toList());
+        } else {
+            itemstreamc3 = new ArrayList<>();
+        }
+
+        if (cb_type_4.isSelected()) {
+            itemstreamc4 = itemstreamc4.stream().filter((t) -> t.getType() == Item.type.Service)
+                    .collect(Collectors.toList());
+        } else {
+            itemstreamc4 = new ArrayList<>();
+        }
+
+        if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()) || (cb_type_4.isSelected()))) {
+            tableView.setItems(FXCollections.observableArrayList(itemstream));
+        } else {
+            List<Item> itemstreamcf = itemstreamc1;
+            itemstreamcf.addAll(itemstreamc2);
+            itemstreamcf.addAll(itemstreamc3);
+            itemstreamcf.addAll(itemstreamc4);
+            tableView.setItems(FXCollections.observableArrayList(itemstreamcf));
+        }
+    }
+
+
+
+    @FXML
     private void route_ChercherItem(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChercherItemUserFXML.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        //move around here
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        scene.setFill(Color.TRANSPARENT);
-        stage.setScene(scene);
-        stage.show();
+        chercherPane.setVisible(true);
+    }
+
+    @FXML
+    private void route_ChercherItemH(MouseEvent event) throws IOException {
+        chercherPane.setVisible(false);
+    }
+
+
+    @FXML
+    private void route_ChercherItemR(MouseEvent event) throws IOException {
+        textfield_libelle.setText("Insérer libellé");
+        textarea_description.setText("Insérer mots clés");
+        combobox_cat.setValue("Toutes");
+        cb_type_1.setSelected(false);
+        cb_type_2.setSelected(false);
+        cb_type_3.setSelected(false);
+        cb_type_4.setSelected(false);
+        chercher() ;
     }
 
 

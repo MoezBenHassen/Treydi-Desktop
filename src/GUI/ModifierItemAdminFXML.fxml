@@ -172,11 +172,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="62.0" layoutY="697.0" mnemonicParsing="false" onAction="#route_ChercherItem" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="62.0" layoutY="697.0" mnemonicParsing="false" onAction="#route_CategorieItems" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/magnifier.png" />
+                  <Image url="@Assets/icons/blue/category.png" />
                </image>
             </ImageView>
          </graphic>

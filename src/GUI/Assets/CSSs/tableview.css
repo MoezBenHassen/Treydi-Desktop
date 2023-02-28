@@ -16,7 +16,7 @@
 #tableView .column-header .label {
     -fx-alignment: center_left;
      -fx-background-color: none;
-    -fx-font-size: 20pt;
+    -fx-font-size: 15pt;
     -fx-opacity: 50;
 }
 
@@ -42,7 +42,7 @@
 #tableView .table-cell {
     -fx-border-color: none;
     -fx-border-width: 1 0 0 0;
-    -fx-font-size: 20pt;
+    -fx-font-size: 15pt;
     -fx-text-fill: #eed1d1;
 }
 #tableView .column-header-background{
