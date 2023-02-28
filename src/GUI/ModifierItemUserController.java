@@ -238,7 +238,7 @@ public class ModifierItemUserController implements Initializable {
 
 
     @FXML
-    private void route_AjouterItem(MouseEvent event) throws IOException {
+    private void route_AjouterItem(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterItemUserFXML.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);

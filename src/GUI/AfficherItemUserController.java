@@ -2,7 +2,9 @@ package GUI;
 
 import APIs.ToPDFItem;
 import APIs.ToXLSItem;
+import Entities.Categorie_Items;
 import Entities.Item;
+import Services.CategorieItemsService;
 import Services.ItemService;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AfficherItemUserController implements Initializable {
 
@@ -65,8 +68,9 @@ public class AfficherItemUserController implements Initializable {
 
     @FXML
     private TableColumn<Item, String> idechangeColumn;
+
     @FXML
-    private ImageView route_AI;
+    private TableColumn<Item, String> categorieColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,6 +98,25 @@ public class AfficherItemUserController implements Initializable {
             } catch (Exception e) {
                     System.out.println(e);
             }
+                return null;
+            }
+        });
+
+        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    CategorieItemsService sp2 = new CategorieItemsService();
+                    List<Categorie_Items> list = sp2.afficher();
+                    String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    ;
+                    System.out.println(cat);
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
                 return null;
             }
         });

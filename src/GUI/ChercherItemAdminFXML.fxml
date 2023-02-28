@@ -188,9 +188,10 @@
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
             <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
             <TableColumn fx:id="iditemColumn" minWidth="0.0" prefWidth="40.0" text="ID" />
-            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="208.0" text="Libélle" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="528.0" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="117.0" text="Type" />
+            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="140.0" text="Categorie" />
+            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="198.0" text="Libélle" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="430.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="96.0" text="Type" />
             <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="96.0" text="État" />
             <TableColumn fx:id="iduserColumn" minWidth="0.0" prefWidth="76.0" text="ID User" />
          </columns>

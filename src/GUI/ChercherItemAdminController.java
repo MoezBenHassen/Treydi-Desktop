@@ -94,6 +94,9 @@ public class ChercherItemAdminController implements Initializable {
     @FXML
     private TableColumn<Item, String> iditemColumn;
 
+    @FXML
+    private TableColumn<Item, String> categorieColumn;
+
     private  List<Item> items ;
     private  List<Categorie_Items> list ;
 
@@ -125,6 +128,25 @@ public class ChercherItemAdminController implements Initializable {
             } catch (Exception e) {
                     System.out.println(e);
             }
+                return null;
+            }
+        });
+
+        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    CategorieItemsService sp2 = new CategorieItemsService();
+                    List<Categorie_Items> list = sp2.afficher();
+                    String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    ;
+                    System.out.println(cat);
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
                 return null;
             }
         });
@@ -193,7 +215,7 @@ public class ChercherItemAdminController implements Initializable {
         private void modifier(ActionEvent event) throws IOException {
             Item selectmod = tableView.getSelectionModel().getSelectedItem();
             if (selectmod != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemAdminFXML.fxml"));
                 Parent root = loader.load();
                 ModifierItemAdminController controller = loader.getController();
                 controller.setSelectedItem(selectmod);

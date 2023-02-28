@@ -88,11 +88,12 @@ public class ChercherItemUserController implements Initializable {
 
     @FXML
     private TableColumn<Item, String> idechangeColumn;
+
+    @FXML
+    private TableColumn<Item, String> categorieColumn;
     @FXML
     private ImageView route_AI;
 
-    @FXML
-    private TableColumn<Item, String> iduserColumn;
 
     private  List<Item> items ;
     private  List<Categorie_Items> list ;
@@ -106,7 +107,7 @@ public class ChercherItemUserController implements Initializable {
 
         imageurlColumn.setVisible(false);
 
-        imageColumn.setPrefWidth(65);
+        imageColumn.setPrefWidth(75);
         imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, ImageView>, ObservableValue<ImageView>>() {
 
             @Override
@@ -117,8 +118,8 @@ public class ChercherItemUserController implements Initializable {
                     Image image = new Image(imagePath);
                     ImageView imageView = new ImageView();
                     imageView.setImage(image);
-                    imageView.setFitHeight(60);
-                    imageView.setFitWidth(60);
+                    imageView.setFitHeight(70);
+                    imageView.setFitWidth(70);
 
 
                 return new SimpleObjectProperty<>(imageView);
@@ -129,12 +130,30 @@ public class ChercherItemUserController implements Initializable {
             }
         });
 
+        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    CategorieItemsService sp2 = new CategorieItemsService();
+                    List<Categorie_Items> list = sp2.afficher();
+                    String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    ;
+                    System.out.println(cat);
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
+
 
         libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         etatColumn.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        iduserColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
 
         ItemService sp = new ItemService();
         CategorieItemsService sp2 = new CategorieItemsService();
@@ -193,7 +212,7 @@ public class ChercherItemUserController implements Initializable {
         private void modifier(ActionEvent event) throws IOException {
             Item selectmod = tableView.getSelectionModel().getSelectedItem();
             if (selectmod != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemUserFXML.fxml"));
                 Parent root = loader.load();
                 ModifierItemUserController controller = loader.getController();
                 controller.setSelectedItem(selectmod);

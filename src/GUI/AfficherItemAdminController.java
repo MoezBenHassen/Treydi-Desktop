@@ -2,8 +2,10 @@ package GUI;
 
 import APIs.ToPDFItem;
 import APIs.ToXLSItem;
+import Entities.Categorie_Items;
 import Entities.Item;
 import GUI.ModifierItemAdminController;
+import Services.CategorieItemsService;
 import Services.ItemService;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -37,6 +39,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AfficherItemAdminController implements Initializable {
 
@@ -45,7 +48,7 @@ public class AfficherItemAdminController implements Initializable {
 
 
     @FXML
-    private TableView<Item> tableView ;
+    private TableView<Item> tableView;
 
     @FXML
     private TableColumn<Item, ImageView> imageColumn;
@@ -74,6 +77,10 @@ public class AfficherItemAdminController implements Initializable {
     @FXML
     private TableColumn<Item, String> iditemColumn;
 
+    @FXML
+    private TableColumn<Item, String> categorieColumn;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -87,7 +94,7 @@ public class AfficherItemAdminController implements Initializable {
             @Override
             public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<Item, ImageView> param) {
                 try {
-                String imagePath = param.getValue().getImageurl();
+                    String imagePath = param.getValue().getImageurl();
 
                     Image image = new Image(imagePath);
                     ImageView imageView = new ImageView();
@@ -96,13 +103,33 @@ public class AfficherItemAdminController implements Initializable {
                     imageView.setFitWidth(120);
 
 
-                return new SimpleObjectProperty<>(imageView);
-            } catch (Exception e) {
+                    return new SimpleObjectProperty<>(imageView);
+                } catch (Exception e) {
                     System.out.println(e);
-            }
+                }
                 return null;
             }
         });
+
+        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    CategorieItemsService sp2 = new CategorieItemsService();
+                    List<Categorie_Items> list = sp2.afficher();
+                    String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    ;
+                    System.out.println(cat);
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
+
 
         iditemColumn.setCellValueFactory(new PropertyValueFactory<>("id_item"));
         iduserColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
@@ -131,11 +158,11 @@ public class AfficherItemAdminController implements Initializable {
                 if (response == ButtonType.OK) {
                     boolean res = sp.supprimer(selectdel);
                     if (res) {
-                    tableView.getItems().remove(selectdel);
-                    Alert a = new Alert(Alert.AlertType.INFORMATION);
-                    a.setHeaderText("Notification");
-                    a.setContentText("L'item sélectionné a été supprimé avec succès!");
-                    a.show();
+                        tableView.getItems().remove(selectdel);
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setHeaderText("Notification");
+                        a.setContentText("L'item sélectionné a été supprimé avec succès!");
+                        a.show();
                     } else {
                         Alert a = new Alert(Alert.AlertType.ERROR);
                         a.setHeaderText("Erreur");
@@ -159,43 +186,43 @@ public class AfficherItemAdminController implements Initializable {
         }
     }
 
-        @FXML
-        private void modifier(ActionEvent event) throws IOException {
-            Item selectmod = tableView.getSelectionModel().getSelectedItem();
-            if (selectmod != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemAdminFXML.fxml"));
-                Parent root = loader.load();
-                ModifierItemAdminController controller = loader.getController();
-                controller.setSelectedItem(selectmod);
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        xOffset = event.getSceneX();
-                        yOffset = event.getSceneY();
-                    }
-                });
-                //move around here
-                root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        stage.setX(event.getScreenX() - xOffset);
-                        stage.setY(event.getScreenY() - yOffset);
-                    }
-                });
-                scene.setFill(Color.TRANSPARENT);
-                stage.setScene(scene);
-                stage.show();
+    @FXML
+    private void modifier(ActionEvent event) throws IOException {
+        Item selectmod = tableView.getSelectionModel().getSelectedItem();
+        if (selectmod != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemAdminFXML.fxml"));
+            Parent root = loader.load();
+            ModifierItemAdminController controller = loader.getController();
+            controller.setSelectedItem(selectmod);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+            //move around here
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                }
+            });
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
 
-            } else {
-                Alert a = new Alert(Alert.AlertType.WARNING);
-                a.setHeaderText("Operation");
+        } else {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Operation");
 
-                a.setContentText("Sélectionner item à modifier:");
-                a.show();
+            a.setContentText("Sélectionner item à modifier:");
+            a.show();
 
-            }
+        }
 
 
     }
@@ -263,7 +290,6 @@ public class AfficherItemAdminController implements Initializable {
     }
 
 
-
     @FXML
     private void route_AfficherItem(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemAdminFXML.fxml"));
@@ -291,7 +317,7 @@ public class AfficherItemAdminController implements Initializable {
     }
 
     @FXML
-    private void exls(MouseEvent event)  {
+    private void exls(MouseEvent event) {
         ToXLSItem exporter = new ToXLSItem();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -328,7 +354,7 @@ public class AfficherItemAdminController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("CategorieItemsAdminFXML.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = new Stage() ;
+        Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -351,7 +377,6 @@ public class AfficherItemAdminController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     @FXML

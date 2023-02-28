@@ -187,11 +187,11 @@
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
             <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
-            <TableColumn fx:id="iditemColumn" minWidth="0.0" prefWidth="3.0" text="ID" />
-            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="223.0" text="Libélle" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="601.0" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="124.0" text="Type" />
-            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="97.0" text="État" />
+            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="220.0" text="Libélle" />
+            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="145.0" text="Categorie" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="570.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="90.0" text="Type" />
+            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="95.0" text="État" />
          </columns>
       </TableView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
