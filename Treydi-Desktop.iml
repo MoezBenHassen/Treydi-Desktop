@@ -10,10 +10,20 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.32.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.32.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.23" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.23" recursive="false" />
       </library>
     </orderEntry>
   </component>
