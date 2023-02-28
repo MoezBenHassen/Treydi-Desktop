@@ -1,28 +1,24 @@
 /*Placeholder*/
 
 
-@font-face {
-    font-family: 'uk';
-    src:url('united-kingdom.ttf');
-}
 
-#tableView{
+#tablecoupons{
     -fx-background-color: transparent;
 }
 
-#tableView .column-header,
-#tableView .column-header .filler,
-#tableView .column-header-background .filler {
+#tablecoupons .column-header,
+#tablecoupons .column-header .filler,
+#tablecoupons .column-header-background .filler {
     -fx-background-color: none;
     -fx-border-width: 0;
 }
 
-#tableView .column-header {
+#tablecoupons .column-header {
     -fx-border-width: 0 0 0 0;
     -fx-border-color: transparent;
 }
 
-#tableView .column-header .label {
+#tablecoupons .column-header .label {
     -fx-alignment: center_left;
      -fx-background-color: none;
     -fx-font-size: 12pt;
@@ -48,18 +44,18 @@
         -fx-background-radius: 5;
 }
 
-#tableView .table-cell {
+#tablecoupons .table-cell {
     -fx-border-color: none;
     -fx-border-width: 1 0 0 0;
     -fx-font-size: 12pt;
     -fx-text-fill: #eed1d1;
 }
-#tableView .column-header-background{
+#tablecoupons .column-header-background{
     -fx-background-color: #caa5be !important ;
     -fx-background-radius: 6 6 0 0;
 }
 
-#tableView{
+#tablecoupons{
     -fx-font-family: 'Sans serif' !important;
 }
 

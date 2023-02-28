@@ -16,5 +16,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector-j-8.0.32" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="zxing-1.7-javase" level="project" />
+    <orderEntry type="library" name="zxing-core-2.0" level="project" />
   </component>
 </module>
