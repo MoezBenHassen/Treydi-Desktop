@@ -89,13 +89,12 @@
 }
 #deleteButton{
     -fx-background-color:transparent !important;
-    --fx-border-color: black;
-    -fx-border-width: 2px;
-
 }
 
 #editButton{
     -fx-background-color:transparent !important;
-    -fx-border: solid red 2px;
-    -fx-border-color: black; -fx-border-width: 2px;
+
+}
+#scenePane{
+
 }
