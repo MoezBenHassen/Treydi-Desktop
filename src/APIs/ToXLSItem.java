@@ -11,10 +11,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
-import jxl.write.Label;
+import jxl.write.*;
+import jxl.Workbook;
 import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
+import jxl.write.WritableCell;
 
 public class ToXLSItem {
 
@@ -36,7 +36,7 @@ public class ToXLSItem {
             ObservableList<TableColumn<Item, ?>> columns = tableView.getColumns();
 
             // Write the column headers to the first row of the sheet
-            int columnCount = columns.size();
+            int columnCount = columns.size()-1;
             for (int i = 0; i < columnCount; i++) {
                 String columnHeader = columns.get(i).getText();
                 Label label = new Label(i, 0, columnHeader);
@@ -59,6 +59,8 @@ public class ToXLSItem {
 
                 }
             }
+
+            sheet.removeColumn(1);
 
             // Write the workbook to disk
             workbook.write();

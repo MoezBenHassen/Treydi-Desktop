@@ -3,8 +3,12 @@ package GUI;
 import APIs.ToPDFCategorie_Items;
 import APIs.ToXLSCategorie_Items;
 import Entities.Categorie_Items;
+import Entities.Item;
 import Services.CategorieItemsService;
+import Services.ItemService;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,12 +20,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class CategorieItemsAdminController implements Initializable {
 
@@ -35,7 +41,7 @@ public class CategorieItemsAdminController implements Initializable {
     private TableView<Categorie_Items> tableView;
 
     @FXML
-    private TableColumn<Categorie_Items, String> idcategorieColumn;
+    private TableColumn<Categorie_Items, String> countColumn;
 
     @FXML
     private TableColumn<Categorie_Items, String> nomColumn;
@@ -44,8 +50,27 @@ public class CategorieItemsAdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        idcategorieColumn.setCellValueFactory(new PropertyValueFactory<>("id_categorie"));
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom_categorie"));
+
+        countColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Categorie_Items, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Categorie_Items, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    ItemService sp = new ItemService();
+                    List<Item> items = sp.afficherAdmin();
+                    String cat = String.valueOf(items.stream().filter((t) -> t.getId_categorie() == catid).count());
+                    ;
+
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
 
 
         afficher();

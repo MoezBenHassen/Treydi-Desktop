@@ -143,7 +143,7 @@ public class AfficherItemAdminController implements Initializable {
             }
         });
 
-        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+            categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
@@ -163,8 +163,6 @@ public class AfficherItemAdminController implements Initializable {
         });
 
 
-        iditemColumn.setCellValueFactory(new PropertyValueFactory<>("id_item"));
-        iduserColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
         libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));

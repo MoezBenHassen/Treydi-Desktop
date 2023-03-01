@@ -2,8 +2,8 @@ package APIs;
 
 import Entities.Categorie_Items;
 import Entities.Item;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.PageSize;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -41,7 +41,25 @@ public class ToPDFCategorie_Items {
                     pdfTable.addCell(cell);
                 }
             }
+            document.addTitle("Liste des Categories d'Items");
+            Paragraph paragraph = new Paragraph();
+            paragraph.setAlignment(Element.ALIGN_CENTER);
 
+            Font font = new Font(BaseFont.createFont(), 20);
+            paragraph.setFont(font); ;
+            paragraph.add("Liste des Categories d'Items");
+            Image imagea = Image.getInstance("src/GUI/Assets/images/logo.png");
+            imagea.scaleAbsolute(325, 80);
+            imagea.setAlignment(1);
+            document.add(imagea) ;
+            Paragraph paragraphb = new Paragraph();
+            paragraphb.add(" ");
+            document.add(paragraphb);
+            document.add(paragraph) ;
+
+
+            document.add(paragraphb);
+            document.add(paragraphb);
             document.add(pdfTable);
             document.close();
 

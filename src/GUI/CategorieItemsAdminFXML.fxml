@@ -57,8 +57,8 @@
       </ImageView>
       <TableView fx:id="tableView" layoutX="50.0" layoutY="132.0" prefHeight="443.0" prefWidth="456.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
          <columns>
-            <TableColumn fx:id="idcategorieColumn" minWidth="0.0" prefWidth="95.0" text="ID" />
-            <TableColumn fx:id="nomColumn" minWidth="0.0" prefWidth="336.0" text="Nom" />
+            <TableColumn fx:id="nomColumn" minWidth="0.0" prefWidth="320.0" text="Nom" />
+            <TableColumn fx:id="countColumn" minWidth="0.0" prefWidth="119.0" text="Nbr Items" />
          </columns>
       </TableView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="147.0" layoutX="22.0" layoutY="680.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 80; -fx-arc-width: 80;" width="513.0">

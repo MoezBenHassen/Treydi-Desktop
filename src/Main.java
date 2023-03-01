@@ -20,7 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
         Utilisateur.setLoginid(4);
-        Utilisateur.setLogintype(1);
+        Utilisateur.setLogintype(0);
 
 
         if (Utilisateur.getLogintype() == 0) {
