@@ -37,6 +37,15 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="pop3" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../javax.mail.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="javax.mail" level="project" />
   </component>
 </module>

@@ -113,7 +113,21 @@ public class LoginController implements  Initializable {
             System.out.println("Exception loading FXML file: " + ex.getMessage());
         }
     }
+    public void ForgetPass(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ForgetPass.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
 
+            // Get the current stage and set the new scene
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.setTitle("Inscription");
+            currentStage.show();
+        } catch (IOException ex) {
+            System.out.println("Exception loading FXML file: " + ex.getMessage());
+        }
+    }
 
 
 

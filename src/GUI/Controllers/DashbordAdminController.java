@@ -33,10 +33,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -107,6 +107,45 @@ public class DashbordAdminController implements Initializable {
 
 
     }
+    @FXML
+    void supprimer(javafx.event.ActionEvent event) {
+        Utilisateur selectedre = tableView.getSelectionModel().getSelectedItem();
+        if (selectedre != null) {
+
+            UtilisateurService us = new UtilisateurService();
+
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("Confirmation");
+            confirmation.setHeaderText(null);
+            confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
+            Optional<ButtonType> result = confirmation.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                boolean supprime = us.supprimer(selectedre);
+                if (supprime) {
+                    tableView.getItems().remove(selectedre);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Suppression réussie");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Suppression effectuée avec succès.");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Erreur lors de la suppression.");
+                    alert.showAndWait();
+                }
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Avertissement");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une réclamation.");
+            alert.showAndWait();
+        }
+
+    }
     public void logout(javafx.event.ActionEvent actionEvent) {
 
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
@@ -125,6 +164,7 @@ public class DashbordAdminController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+
 
 /*
     @FXML

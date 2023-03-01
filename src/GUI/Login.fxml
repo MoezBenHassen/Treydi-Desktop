@@ -46,7 +46,7 @@
                   <Font name="System Bold" size="24.0" />
                </font></Text>
             <CheckBox layoutX="109.0" layoutY="449.0" mnemonicParsing="false" text="Souviens-toi de moi" textFill="WHITE" />
-            <Hyperlink layoutX="275.0" layoutY="445.0" text="Mot de passe oublié ?" />
+            <Hyperlink layoutX="275.0" layoutY="445.0" onAction="#ForgetPass" text="Mot de passe oublié ?" />
             <Label layoutX="106.0" layoutY="367.0" text="Mot de passe*" textFill="WHITE" />
             <Label layoutX="106.0" layoutY="287.0" text="Email*" textFill="WHITE" />
             <Text fill="WHITE" layoutX="114.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pas encore inscrit?" wrappingWidth="136.9830722808838" />
@@ -59,29 +59,29 @@
             <Button layoutX="106.0" layoutY="499.0" mnemonicParsing="false" onAction="#login" opacity="0.64" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: #9f4ffb; -fx-background-radius: 25;" text="Login" textFill="WHITE" />
             <ImageView fitHeight="64.0" fitWidth="156.0" layoutX="19.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/treydi3.png" />
+                  <Image url="@Assets/icons/treydi3.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="153.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/google-logo-icon-png-transparent-background-osteopathy-16.png" />
+                  <Image url="@Assets/icons/google-logo-icon-png-transparent-background-osteopathy-16.png" />
                </image>
             </ImageView>
             <TextField fx:id="erreurfd" layoutX="283.0" layoutY="620.0" />
             </children>
         </AnchorPane>
-      <ImageView fitHeight="162.0" fitWidth="187.0" layoutX="626.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="145.0" fitWidth="145.0" layoutX="626.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Icons/Logo-prototype 1-04.png" />
+            <Image url="@Assets/images/log-04.png" />
          </image></ImageView>
       <ImageView fitHeight="225.0" fitWidth="195.0" layoutX="718.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Icons/326206149_485056797161403_2871884209444742411_n.png" />
+            <Image url="@Assets/icons/326206149_485056797161403_2871884209444742411_n.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="197.0" fitWidth="307.0" layoutX="500.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Icons/325090329_888479489025137_4905323802253439878_n.png" />
+            <Image url="@Assets/icons/325090329_888479489025137_4905323802253439878_n.png" />
          </image>
       </ImageView>
       <Text fill="#f5f5f5" layoutX="512.0" layoutY="223.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="Treydi, Dont't Sell" wrappingWidth="168.5537109375">

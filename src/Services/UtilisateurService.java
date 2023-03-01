@@ -253,5 +253,41 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return user;
     }
+    public Utilisateur getUserByEmail(String email) {
+        Utilisateur user = null;
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement("SELECT * FROM utilisateur WHERE email = ?");
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            stm = cnx.createStatement();
 
+            if (rs.next()) {
+                user = new Utilisateur();
+                user.setId_user(rs.getInt("id_user"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Roles.valueOf(rs.getString("role")));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return user;
+    }
+
+
+
+    public void updateUserPassword(Utilisateur user, String newPassword) {
+        user.setPassword(newPassword);
+        try {
+            String qry = "UPDATE utilisateur SET `password`='" + newPassword + "' WHERE id_user = '" + user.getId_user() + "';";
+            stm = cnx.createStatement();
+            stm.executeUpdate(qry);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
