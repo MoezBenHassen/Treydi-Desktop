@@ -1,5 +1,4 @@
 package GUI.Controllers;
-
 import Entities.Article;
 import Entities.CategorieArticle;
 import Services.ArticleService;
@@ -25,38 +24,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.scene.control.ComboBox;
 
-import javax.swing.*;
-
-public class ArticlefxmlController implements Initializable {
-    @FXML
-    private Button logoutButton;
+public class AjouterCategoriefxmlController implements  Initializable {
     @FXML
     private AnchorPane scenePane;
     @FXML
-    private ComboBox categorieArticleBox;
-    @FXML
-    private TextField txt_titre ;
-    @FXML
-    private TextField txt_description ;
-    @FXML
-    private TextField txt_contenu ;
-    @FXML
-    private TextField txt_auteur ;
-
-    @FXML
-    private ImageView minimize;
-
+    private TextField txt_libelle ;
     Stage stage;
 
-
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        afficher_combobox_cat() ;
+
     }
 
     public void logout(javafx.event.ActionEvent actionEvent) {
-
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to exit ! ");
@@ -72,48 +56,29 @@ public class ArticlefxmlController implements Initializable {
     public void Minimize (MouseEvent event ){
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setIconified(true);
-
-    }
-    @FXML
-    private void afficher_combobox_cat() {
-        CategorieArticleService cat = new CategorieArticleService();
-        List<CategorieArticle> list = cat.afficher();
-        for (CategorieArticle categorieArticle : list) {
-            categorieArticleBox.getItems().add(categorieArticle.getLibelle_cat());
-        }
     }
 
     public void ajouter(ActionEvent actionEvent) {
-        ArticleService articleService = new ArticleService();
+        //ArticleService articleService = new ArticleService();
         CategorieArticleService categorieArticleService = new CategorieArticleService();
         List<CategorieArticle> list = categorieArticleService.afficher();
-        String cbs = (String) categorieArticleBox.getValue();
-        int id_cat = list.stream().filter((t) -> t.getLibelle_cat().equals(cbs)).mapToInt((t) -> t.getId_cat()).sum();
-
-        if (txt_titre.getText().equals("") || txt_contenu.getText().equals("") || txt_contenu.getText().equals("") || cbs ==null){
+        List<CategorieArticle> filteredList = list.stream()
+                .filter(categorie -> categorie.getLibelle_cat().contains(txt_libelle.getText()))
+                .collect(Collectors.toList());
+        if (txt_libelle.getText().equals("")){
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("Remplir tout les champs");
             a.show();
         }else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date;
-            try {
-                date = dateFormat.parse("2022-02-23");
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            Article article = new Article(txt_titre.getText(), txt_description.getText(), txt_contenu.getText(), date, id_cat, 0, 4, txt_auteur.getText());
-            int rowsInserted = articleService.add(article);
+            CategorieArticle categorieArticle = new CategorieArticle(txt_libelle.getText());
+
+            int rowsInserted = categorieArticleService.add(categorieArticle);
             if (rowsInserted>0){
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setContentText("Added Successfully");
                 a.show();
-                txt_titre.clear();
-                txt_description.clear();
-                txt_contenu.clear();
-                txt_auteur.clear();
-                categorieArticleBox.setValue(null);
-            }else {
+                txt_libelle.clear();
+            }else{
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setContentText("Add Failed");
                 a.show();
@@ -122,22 +87,6 @@ public class ArticlefxmlController implements Initializable {
             //redirect
         }
     }
-
-    @FXML
-    void goToListArticle(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @FXML
     void goToCategorie(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
@@ -152,6 +101,32 @@ public class ArticlefxmlController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
+    @FXML
+    void goToListArticle(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void goToAddArticle(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Articles.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }

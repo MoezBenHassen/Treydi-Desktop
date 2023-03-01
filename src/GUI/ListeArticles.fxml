@@ -144,7 +144,7 @@
             </ImageView>
         </graphic>
     </Button>
-    <Button layoutX="61.0" layoutY="478.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+    <Button fx:id="openModifcation" layoutX="61.0" layoutY="478.0" mnemonicParsing="false" onAction="#openModifcation" prefWidth="43.0" style="-fx-background-color: none;">
         <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                 <image>

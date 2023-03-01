@@ -65,7 +65,6 @@ public class ListeCategoriefxmlController implements Initializable {
                 deleteButton.setGraphic(deleteImageView);
                 editButton.setOnAction(event -> {
                     CategorieArticle categorie = getTableView().getItems().get(getIndex());
-
                 });
 
                 deleteButton.setOnAction(event -> {
@@ -229,6 +228,21 @@ public class ListeCategoriefxmlController implements Initializable {
     @FXML
     void goToCategorie(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void goToAddCategorie(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ajouterCategorie.fxml"));
         Parent root = null;
         try {
             root = loader.load();

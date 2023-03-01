@@ -62,10 +62,12 @@ public class ListeArticlefxmlController implements Initializable {
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to exit ! ");
 
+
+
         // Access the DialogPane
         DialogPane dialogPane = alert.getDialogPane();
 
-// Apply custom styles
+        // Apply custom styles
         dialogPane.getStylesheets().add(getClass().getResource("../Assets/css/style.css").toExternalForm());
         dialogPane.getStyleClass().add("custom-alert");
 
@@ -197,5 +199,32 @@ public class ListeArticlefxmlController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    @FXML
+    void openModifcation(MouseEvent event) throws IOException {
+        Article selectedArticle = tableView.getSelectionModel().getSelectedItem();
+        String tittre = String.valueOf(selectedArticle.getTitre());
+        String description = String.valueOf(selectedArticle.getDescription());
+        String contenu = String.valueOf(selectedArticle.getContenu());
+        String auteur = String.valueOf(selectedArticle.getAuteur());
+        String categorie = String.valueOf(selectedArticle.getId_categorie());
+
+        if (selectedArticle != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateArticle.fxml"));
+            Parent root = loader.load();
+            UpdateArticlefxmlController updateController = loader.getController();
+            updateController.setTitreText(selectedArticle.getTitre());
+            updateController.setDescriptionText(selectedArticle.getDescription());
+            updateController.setContenuText(selectedArticle.getContenu());
+            updateController.setAuteurText(selectedArticle.getAuteur());
+            updateController.setId_article(selectedArticle.getId_article());
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
     }
 }
