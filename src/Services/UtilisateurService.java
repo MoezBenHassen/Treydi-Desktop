@@ -60,7 +60,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
                     break;
                 case livreur:
                     final Livreur livreur = (Livreur) user;
-                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `archived`" +
+                    qry = "INSERT INTO `utilisateur` (`password`, `nom`, `prenom`, `email`, `adresse`, `avatar_url`, `role`, `archived`)" +
                             "VALUES ('"+ livreur.getPassword() +
                             "', '"+ livreur.getNom() +
                             "', '" + livreur.getPrenom() +

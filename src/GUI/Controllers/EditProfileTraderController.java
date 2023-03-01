@@ -1,4 +1,3 @@
-/*
 package GUI.Controllers;
 
 import Services.UtilisateurService;
@@ -25,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class EditProfileTraderController implements Initializable {
@@ -39,6 +39,8 @@ public class EditProfileTraderController implements Initializable {
     private Button bteditAvatar;
     @FXML
     private AnchorPane scenePane;
+    @FXML
+    private ImageView imageview_imageurl ;
 
     @FXML
     private ImageView ivavatar;
@@ -46,41 +48,40 @@ public class EditProfileTraderController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
+    public void setSelectedUser(Utilisateur item) {
+        selectedUser = item;
+        populateFields();
+    }
 
-    public void handleEditAvatar(ActionEvent event) {
+
+    @FXML
+    private void select_image() {
+
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Avatar Image");
 
-        // configure file chooser to restrict file type to images
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
-        // show the file chooser and retrieve the selected file
-        File selectedFile = fileChooser.showOpenDialog(null);
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
 
-        if (selectedFile != null) {
-            try {
-                // load the selected file into a byte array
-                byte[] imageData = Files.readAllBytes(selectedFile.toPath());
-
-                // create a new Utilisateur object and set the avatar URL to the byte array
-                Utilisateur user = new Utilisateur();
-                user.setAvatar_url(imageData);
-
-                // call the modifier method to save the user with the updated avatar URL in the database
-                UtilisateurService utilisateurService = new UtilisateurService();
-                utilisateurService.modifier(user);
-
-                // load the selected file into an Image object
-                Image image = new Image(selectedFile.toURI().toString());
-
-                // set the Image object in the ImageView ivavatar
-                ivavatar.setImage(image);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (file != null) {
+            Image image = new Image(file.toURI().toString());
+            imageview_imageurl.setImage(image);
         }
     }
+    private void populateFields() {
+        tfnom.setText(selectedUser.getNom());
+        tfprenom.setText(selectedUser.getPrenom());
+        tfpassword.setText(selectedUser.getPassword());
+
+        Image image = new Image(selectedUser.getAvatar_url());
+        imageview_imageurl.setImage(image);
+
+    }
+
 
     @FXML
     public void Minimize(MouseEvent event) {
@@ -103,4 +104,3 @@ public class EditProfileTraderController implements Initializable {
 
 
 }
-*/

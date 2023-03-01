@@ -20,7 +20,7 @@ public class Utilisateur {
     public  Utilisateur(){
 
     }
-    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url,Roles role,int id_user) {
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url,Roles role,int archived) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
@@ -28,7 +28,7 @@ public class Utilisateur {
         this.adresse = adresse;
         this.avatar_url = avatar_url;
         this.role= role;
-        this.id_user = id_user;
+        this.archived = archived;
 
     }
 

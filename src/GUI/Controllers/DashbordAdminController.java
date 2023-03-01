@@ -2,20 +2,19 @@ package GUI.Controllers;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.Enums.Roles;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
@@ -42,6 +41,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class DashbordAdminController implements Initializable {
 
@@ -70,10 +70,28 @@ public class DashbordAdminController implements Initializable {
     @FXML
     private TableColumn<Utilisateur, Integer> tfscore;
     @FXML
+    private TextField textfield_email;
+    @FXML
+    private TextArea textarea_adresse;
+    @FXML
+    private TextField textfield_nom;
+    @FXML
+    private CheckBox cb_type_1 ;
+
+    @FXML
+    private CheckBox cb_type_2 ;
+
+    @FXML
+    private CheckBox cb_type_3 ;
+
+    @FXML
+    private Pane chercherPane;
+    @FXML
     private ImageView minimize;
     @FXML
     private AnchorPane scenePane;
 
+    private List<Utilisateur> users;
     Stage stage;
 
     @Override
@@ -90,7 +108,9 @@ public class DashbordAdminController implements Initializable {
 
 
         afficher() ;
-
+        UtilisateurService us = new UtilisateurService();
+        users = us.afficher();
+        tableView.setItems(FXCollections.observableArrayList(users));
 
 
     }
@@ -103,10 +123,63 @@ public class DashbordAdminController implements Initializable {
         tableView.getItems().clear();
         tableView.getItems().addAll(utilisateurs);
 
-
-
-
     }
+
+    @FXML
+    private void chercher() {
+        String c_email = textfield_email.getText();
+        String c_adr = textarea_adresse.getText();
+        String c_nom = textfield_nom.getText();
+
+        List<Utilisateur> userstream = users;
+
+        if (!(c_email.equals("") || c_email.equals("Insérer email"))) {
+            userstream = userstream.stream().filter((t) -> t.getEmail().toLowerCase().contains(c_email.toLowerCase())).collect(Collectors.toList());
+        }
+
+        if (!(c_adr.equals("") || c_adr.equals("Insérer mots clés"))) {
+            userstream = userstream.stream().filter(t -> t.getAdresse().toLowerCase().contains(c_adr.toLowerCase())).collect(Collectors.toList());
+        }
+        if (!(c_nom.equals("") || c_nom.equals("Insérer nom"))) {
+            userstream = userstream.stream().filter(t -> t.getNom().toLowerCase().contains(c_nom.toLowerCase())).collect(Collectors.toList());
+        }
+
+        List<Utilisateur> userstreamc1 = userstream;
+        List<Utilisateur> userstreamc2 = userstream;
+        List<Utilisateur> userstreamc3 = userstream;
+
+
+        if (cb_type_1.isSelected()) {
+            userstreamc1 = userstreamc1.stream().filter((t) -> t.getRole() == Roles.admin)
+                    .collect(Collectors.toList());
+        } else {
+            userstreamc1 = new ArrayList<>();
+        }
+
+        if (cb_type_2.isSelected()) {
+            userstreamc2 = userstreamc2.stream().filter((t) -> t.getRole() == Roles.trader)
+                    .collect(Collectors.toList());
+        } else {
+            userstreamc2 = new ArrayList<>();
+        }
+
+        if (cb_type_3.isSelected()) {
+            userstreamc3 = userstreamc3.stream().filter((t) -> t.getRole() == Roles.livreur)
+                    .collect(Collectors.toList());
+        } else {
+            userstreamc3 = new ArrayList<>();
+        }
+
+        if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()))) {
+            tableView.setItems(FXCollections.observableArrayList(userstream));
+        } else {
+            List<Utilisateur> userstreamcf = userstreamc1;
+            userstreamcf.addAll(userstreamc2);
+            userstreamcf.addAll(userstreamc3);
+            tableView.setItems(FXCollections.observableArrayList(userstreamcf));
+        }
+    }
+
     @FXML
     void supprimer(javafx.event.ActionEvent event) {
         Utilisateur selectedre = tableView.getSelectionModel().getSelectedItem();
@@ -164,6 +237,30 @@ public class DashbordAdminController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+
+    @FXML
+    private void route_ChercherItem(javafx.event.ActionEvent event) throws IOException {
+        chercherPane.setVisible(true);
+    }
+
+    @FXML
+    private void route_ChercherItemH(MouseEvent event) throws IOException {
+        chercherPane.setVisible(false);
+    }
+
+
+    @FXML
+    private void route_ChercherItemR(MouseEvent event) throws IOException {
+        textfield_email.setText("Insérer email");
+        textarea_adresse.setText("Insérer mots clés");
+        textfield_nom.setText("Insérer nom");
+
+        cb_type_1.setSelected(false);
+        cb_type_2.setSelected(false);
+        cb_type_3.setSelected(false);
+        chercher() ;
+    }
+
 
 
 /*
