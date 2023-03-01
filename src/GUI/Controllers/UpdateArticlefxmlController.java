@@ -1,11 +1,13 @@
 package GUI.Controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -43,6 +45,9 @@ public class UpdateArticlefxmlController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
+    private ImageView minimize;
+
+    @FXML
     private AnchorPane scenePane;
     @FXML
     private ComboBox categorieArticleBox;
@@ -55,24 +60,32 @@ public class UpdateArticlefxmlController implements Initializable {
     @FXML
     private TextField txt_auteur ;
 
-    @FXML
-    private ImageView minimize;
+
 
     Stage stage;
 
 
     private int id_article  ;
+    private double xOffset;
+    private double yOffset;
+    private int id_categorie;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        afficher_combobox_cat();
     }
-    public void logout(javafx.event.ActionEvent actionEvent) {
+    @FXML
+    private void afficher_combobox_cat() {
+        CategorieArticleService cat = new CategorieArticleService();
+        List<CategorieArticle> list = cat.afficher();
+        for (CategorieArticle categorieArticle : list) {
+            categorieArticleBox.getItems().add(categorieArticle.getLibelle_cat());
+        }
+    }
+    public void logout(MouseEvent actionEvent) {
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to exit ! ");
-
-
 
         // Access the DialogPane
         DialogPane dialogPane = alert.getDialogPane();
@@ -89,8 +102,11 @@ public class UpdateArticlefxmlController implements Initializable {
     }
 
 
-    public void setId_article(int idCategorie) {
-        this.id_article = idCategorie;
+    public void setId_article(int idArticle) {
+        this.id_article = idArticle;
+    }
+    public void setId_categorie(int idCategorie) {
+        this.id_categorie = idCategorie;
     }
     public void setTitreText(String text) {
         txt_titre.setText(text);
@@ -105,8 +121,17 @@ public class UpdateArticlefxmlController implements Initializable {
     public void setAuteurText(String text) {
         txt_auteur.setText(text);
     }
+    public void setCategorieArticleBox() {
+        CategorieArticleService categorieArticleService = new CategorieArticleService();
+        List<CategorieArticle> categorieArticles = categorieArticleService.getLibelle(id_article);
+
+        String libelleCat = categorieArticles.get(0).getLibelle_cat();
+
+        categorieArticleBox.setValue(libelleCat);
+
+    }
     @FXML
-    void goToCategorie(ActionEvent event) {
+    void goToCategorie(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
         Parent root = null;
         try {
@@ -115,12 +140,21 @@ public class UpdateArticlefxmlController implements Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }
     @FXML
-    void goToAddArticle(ActionEvent event) {
+    void goToAddArticle(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Articles.fxml"));
         Parent root = null;
         try {
@@ -129,12 +163,21 @@ public class UpdateArticlefxmlController implements Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }
     @FXML
-    void goToListArticle(ActionEvent event) {
+    void goToListArticle(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
         Parent root = null;
         try {
@@ -143,7 +186,16 @@ public class UpdateArticlefxmlController implements Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }
@@ -152,4 +204,27 @@ public class UpdateArticlefxmlController implements Initializable {
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setIconified(true);
     }
+
+    @FXML
+    void modifier (ActionEvent event) throws IOException{
+        String titre = txt_titre.getText().trim();
+        String description = txt_description.getText().trim();
+        String contenu = txt_contenu.getText().trim();
+        String auteur = txt_auteur.getText().trim();
+      //  String categorie = categorieArticleBox.getValue().toString();
+        int id_categorie = id_article;
+        if (titre.equals("") || description.equals("") || contenu.equals("") || auteur.equals("") ){
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("Remplir tout les champs");
+            a.show();
+            return;
+        }else {
+            ArticleService articleService = new ArticleService();
+            Article article = new Article(id_article, titre, description, contenu, id_categorie,auteur);
+            articleService.update(article);
+            stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
+        }
+    }
+
 }

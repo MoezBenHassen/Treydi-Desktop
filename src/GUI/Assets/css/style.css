@@ -95,4 +95,19 @@
     -fx-background-color:transparent !important;
 
 }
+.menuPane{
+    -fx-background-radius: 0 30 30 0 !important;
 
+    -fx-arc-height: 0 30 30 0 !important;
+}
+.scenePane{
+    -fx-background-radius: 30 30 30 30 !important;
+    -fx-background-color: white !important;
+}
+.scenePanePopUp{
+    -fx-border-color: #DBD32D !important ;
+    -fx-border-width: 3 !important;
+    -fx-border-radius: 10 !important;
+    -fx-background-radius: 10 !important;
+
+}

@@ -34,6 +34,8 @@ public class AjouterCategoriefxmlController implements  Initializable {
     @FXML
     private TextField txt_libelle ;
     Stage stage;
+    private double xOffset;
+    private double yOffset;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,7 +73,6 @@ public class AjouterCategoriefxmlController implements  Initializable {
             a.show();
         }else {
             CategorieArticle categorieArticle = new CategorieArticle(txt_libelle.getText());
-
             int rowsInserted = categorieArticleService.add(categorieArticle);
             if (rowsInserted>0){
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -88,7 +89,7 @@ public class AjouterCategoriefxmlController implements  Initializable {
         }
     }
     @FXML
-    void goToCategorie(ActionEvent event) {
+    void goToCategorie(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
         Parent root = null;
         try {
@@ -97,12 +98,21 @@ public class AjouterCategoriefxmlController implements  Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }
     @FXML
-    void goToListArticle(ActionEvent event) {
+    void goToListArticle(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeArticles.fxml"));
         Parent root = null;
         try {
@@ -111,7 +121,16 @@ public class AjouterCategoriefxmlController implements  Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }

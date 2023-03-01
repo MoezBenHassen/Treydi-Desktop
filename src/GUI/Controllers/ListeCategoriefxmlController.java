@@ -65,6 +65,17 @@ public class ListeCategoriefxmlController implements Initializable {
                 deleteButton.setGraphic(deleteImageView);
                 editButton.setOnAction(event -> {
                     CategorieArticle categorie = getTableView().getItems().get(getIndex());
+                    CategorieArticleService categorieArticleService = new CategorieArticleService();
+                    String libelleCategorie = String.valueOf(categorie.getLibelle_cat());
+                    System.out.println(" libelle cAT"+libelleCategorie);
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateCategori.fxml"));
+                    try {
+                        Parent root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 });
 
                 deleteButton.setOnAction(event -> {

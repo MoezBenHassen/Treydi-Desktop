@@ -114,17 +114,19 @@ public class ArticleService implements IArticleService<Article> {
     @Override
     public Boolean update(Article article) {
         String query ="UPDATE `article` SET `titre`='"+article.getTitre()+"',`description`='"+article.getDescription()+"'," +
-                     "`contenu`='"+article.getContenu()+"',`date_publication`='"+article.getDate_publication()+"',`id_categorie`='"+article.getId_categorie()+"'," +
-                     "`id_user`='"+article.getId_user()+"',`auteur`='"+article.getAuteur()+"' WHERE id_article="+article.getId_article();
+                     "`contenu`='"+article.getContenu()+"',`id_categorie`='"+article.getId_categorie()+"'," +
+                     "`auteur`='"+article.getAuteur()+"' WHERE id_article="+article.getId_article();
         try{
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated >0){
                 System.out.println("Updated article successfully ! ");
+                return true;
             }else {
-                System.out.println("Update failed");
+                System.out.println("Update article failed");
+
+                return false;
             }
-            return true;
         }catch (SQLException e){
             System.out.println(e.getMessage());
             return  false;

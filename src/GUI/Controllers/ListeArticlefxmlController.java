@@ -6,6 +6,7 @@ import Services.ArticleService;
 import Services.CategorieArticleService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -29,6 +31,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.control.ComboBox;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 
@@ -57,6 +60,9 @@ public class ListeArticlefxmlController implements Initializable {
     private TableColumn<Article,String> auteurC;
 
     Stage stage;
+    private double xOffset;
+    private double yOffset;
+
     public void logout(javafx.event.ActionEvent actionEvent) {
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -187,7 +193,7 @@ public class ListeArticlefxmlController implements Initializable {
 
     }
     @FXML
-    void goToCategorie(ActionEvent event) {
+    void goToCategorie(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeCategorie.fxml"));
         Parent root = null;
         try {
@@ -196,45 +202,66 @@ public class ListeArticlefxmlController implements Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
         stage.show();
     }
 
 
     @FXML
-    void openModifcation(ActionEvent event) throws IOException {
+    void openModifcation(ActionEvent actionEvent) throws IOException {
         Article selectedArticle = tableView.getSelectionModel().getSelectedItem();
-
         String titreC = String.valueOf(selectedArticle.getTitre());
         String descriptionC = String.valueOf(selectedArticle.getDescription());
         String contenuC = String.valueOf(selectedArticle.getContenu());
         //Date dateC =
         String auteurC = String.valueOf(selectedArticle.getAuteur());
-
-
-
-       int id_categorie = Integer.valueOf(selectedArticle.getId_categorie());
+        int id_categorie = Integer.valueOf(selectedArticle.getId_categorie());
+        int id_article = Integer.valueOf(selectedArticle.getId_article());
        System.out.println(" categorie " + id_categorie);
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateArticle.fxml"));
         Parent root = loader.load();
 
         UpdateArticlefxmlController updateArticlefxmlController = loader.getController();
-
-        updateArticlefxmlController.setTitreText(selectedArticle.getTitre());
-
+        updateArticlefxmlController.setTitreText(titreC);
         updateArticlefxmlController.setDescriptionText(descriptionC);
         updateArticlefxmlController.setContenuText(contenuC);
         updateArticlefxmlController.setAuteurText(auteurC);
-        updateArticlefxmlController.setId_article(id_categorie);
-
-
+        updateArticlefxmlController.setId_article(id_article);
+        updateArticlefxmlController.setId_categorie(id_categorie);
+        updateArticlefxmlController.setCategorieArticleBox();
+        System.out.println(id_categorie);
 
         Scene scene = new Scene(root);
         Stage stage1 = new Stage();
-        stage1.setScene(scene);
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
 
+        scene.setOnMouseDragged(event -> {
+            stage1.setX(event.getScreenX() - xOffset);
+            stage1.setY(event.getScreenY() - yOffset);
+        });
+        stage1.initStyle(StageStyle.UNDECORATED);
+
+        stage1.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+
+
+        stage1.setWidth(1024);
+        stage1.setHeight(768);
+        stage1.setScene(scene);
         stage1.showAndWait();
     }
 }

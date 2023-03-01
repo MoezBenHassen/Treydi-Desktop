@@ -14,6 +14,24 @@ public class Article {
 //CONSTRUCTORS
     public Article() {
     }
+
+    public Article(int id_article, String titre, String description, String contenu, int id_categorie, String auteur) {
+        this.id_article = id_article;
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.id_categorie = id_categorie;
+        this.auteur = auteur;
+    }
+
+    public Article(String titre, String description, String contenu, int id_categorie, String auteur) {
+        this.titre = titre;
+        this.description = description;
+        this.contenu = contenu;
+        this.id_categorie = id_categorie;
+        this.auteur = auteur;
+    }
+
     //constructor without ID_ARTICLE
     public Article(String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, String auteur) {
         this.titre = titre;
@@ -39,7 +57,9 @@ public class Article {
         this.auteur = auteur;
     }
 
-//ADDITIONAL METHODS
+
+
+    //ADDITIONAL METHODS
     @Override
     public String toString() {
         return "\nArticle{" +

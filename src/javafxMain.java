@@ -25,18 +25,17 @@ public class javafxMain extends Application {
             Scene scene = new Scene(root);
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
+            scene.setFill(Color.TRANSPARENT);
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
 
-            // Mouse drag scene
             scene.setOnMousePressed(event -> {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             });
-            scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    primaryStage.setX(event.getScreenX() - xOffset);
-                    primaryStage.setY(event.getScreenY() - yOffset);
-                }
+
+            scene.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
             });
             // set window size
             primaryStage.setWidth(1600);
@@ -49,8 +48,9 @@ public class javafxMain extends Application {
             //Add app title
             primaryStage.setTitle("Treydi ");
             // make scene tranparent
-            scene.setFill(Color.TRANSPARENT);
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
+
+
+
             primaryStage.setScene(scene);
             primaryStage.show();
 
