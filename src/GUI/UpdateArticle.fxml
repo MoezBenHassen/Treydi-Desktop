@@ -107,7 +107,7 @@
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
+      <Rectangle fx:id="" arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -123,7 +123,7 @@
       <TextField fx:id="txt_titre" layoutX="423.0" layoutY="238.0" opacity="0.59" prefHeight="36.0" prefWidth="774.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
 
       </TextField>
-      <Button id="addButton" fx:id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Ajouter" textFill="#eccecf">
+      <Button id="addButton" layoutX="425.0" layoutY="684.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Update article" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -137,14 +137,14 @@
       <TextField fx:id="txt_auteur" layoutX="425.0" layoutY="562.0" opacity="0.59" prefHeight="33.0" prefWidth="303.0" promptText="Auteur" style="-fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;">
 
       </TextField>
-      <Label id="txt" accessibleRole="BUTTON" layoutX="633.0" layoutY="145.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Ajouter une article" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="649.0" layoutY="146.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Modifier l'article" textAlignment="CENTER" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="466.0" layoutX="32.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
 
-      <Button fx:id="goToListArt" layoutX="56.0" layoutY="298.0" mnemonicParsing="false" onAction="#goToListArticle" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="goToListArt" layoutX="56.0" layoutY="298.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -179,7 +179,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="ajoutArticleToCategorie" layoutX="57.0" layoutY="640.0" mnemonicParsing="false" onAction="#goToCategorie" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="ajoutArticleToCategorie" layoutX="57.0" layoutY="640.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>

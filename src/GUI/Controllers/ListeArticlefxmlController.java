@@ -203,28 +203,38 @@ public class ListeArticlefxmlController implements Initializable {
 
 
     @FXML
-    void openModifcation(MouseEvent event) throws IOException {
+    void openModifcation(ActionEvent event) throws IOException {
         Article selectedArticle = tableView.getSelectionModel().getSelectedItem();
-        String tittre = String.valueOf(selectedArticle.getTitre());
-        String description = String.valueOf(selectedArticle.getDescription());
-        String contenu = String.valueOf(selectedArticle.getContenu());
-        String auteur = String.valueOf(selectedArticle.getAuteur());
-        String categorie = String.valueOf(selectedArticle.getId_categorie());
 
-        if (selectedArticle != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateArticle.fxml"));
-            Parent root = loader.load();
-            UpdateArticlefxmlController updateController = loader.getController();
-            updateController.setTitreText(selectedArticle.getTitre());
-            updateController.setDescriptionText(selectedArticle.getDescription());
-            updateController.setContenuText(selectedArticle.getContenu());
-            updateController.setAuteurText(selectedArticle.getAuteur());
-            updateController.setId_article(selectedArticle.getId_article());
+        String titreC = String.valueOf(selectedArticle.getTitre());
+        String descriptionC = String.valueOf(selectedArticle.getDescription());
+        String contenuC = String.valueOf(selectedArticle.getContenu());
+        //Date dateC =
+        String auteurC = String.valueOf(selectedArticle.getAuteur());
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.showAndWait();
-        }
+
+
+       int id_categorie = Integer.valueOf(selectedArticle.getId_categorie());
+       System.out.println(" categorie " + id_categorie);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateArticle.fxml"));
+        Parent root = loader.load();
+
+        UpdateArticlefxmlController updateArticlefxmlController = loader.getController();
+
+        updateArticlefxmlController.setTitreText(selectedArticle.getTitre());
+
+        updateArticlefxmlController.setDescriptionText(descriptionC);
+        updateArticlefxmlController.setContenuText(contenuC);
+        updateArticlefxmlController.setAuteurText(auteurC);
+        updateArticlefxmlController.setId_article(id_categorie);
+
+
+
+        Scene scene = new Scene(root);
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+
+        stage1.showAndWait();
     }
 }
