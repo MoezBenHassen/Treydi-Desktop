@@ -35,9 +35,7 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AfficherItemAdminController implements Initializable {
@@ -115,11 +113,7 @@ public class AfficherItemAdminController implements Initializable {
         CategorieItemsService sp2 = new CategorieItemsService();
         categories = sp2.afficher();
 
-
-
-
         afficher_combobox_cat();
-
 
 
         imageurlColumn.setCellValueFactory(new PropertyValueFactory<>("imageurl"));
@@ -176,6 +170,17 @@ public class AfficherItemAdminController implements Initializable {
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         etatColumn.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // check if it's a double click
+                try {
+                    route_ItemDetails(event);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            }
+        );
+
 
     }
 
@@ -204,10 +209,14 @@ public class AfficherItemAdminController implements Initializable {
         List<Item> itemstream = items;
 
         if (!(c_lib.equals("") || c_lib.equals("Insérer libellé"))) {
-            itemstream = itemstream.stream().filter((t) -> t.getLibelle().toLowerCase().contains(c_lib.toLowerCase())).collect(Collectors.toList());
+
+            Set<String> searchSetClib = new HashSet<>(Arrays.asList(c_lib.split(" ")));
+            itemstream = itemstream.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase()))).collect(Collectors.toList());
+
         }
         if (!(c_mcl.equals("") || c_mcl.equals("Insérer mots clés"))) {
-            itemstream = itemstream.stream().filter(t -> t.getDescription().toLowerCase().contains(c_mcl.toLowerCase())).collect(Collectors.toList());
+            Set<String> searchSetCmcl = new HashSet<>(Arrays.asList(c_mcl.split(" ")));
+            itemstream = itemstream.stream().filter(obj -> searchSetCmcl.stream().anyMatch(word -> obj.getDescription().toLowerCase().contains(word.toLowerCase()))).collect(Collectors.toList());
 
         }
 
@@ -337,6 +346,7 @@ public class AfficherItemAdminController implements Initializable {
             scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
             stage.show();
+
 
         } else {
             Alert a = new Alert(Alert.AlertType.WARNING);
@@ -468,6 +478,42 @@ public class AfficherItemAdminController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    private void route_ItemDetails(MouseEvent event) throws IOException {
+        Item selectedObject = tableView.getSelectionModel().getSelectedItem();
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemDetailsAdminFXML.fxml"));
+        Parent root = loader.load();
+        AfficherItemDetailsAdminController controller = loader.getController();
+        controller.setSelectedItem(selectedObject);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

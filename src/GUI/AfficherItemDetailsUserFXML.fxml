@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="525.0" prefWidth="1127.0" style="-fx-background-color: #2c2449; -fx-background-radius: 30 30 30 30; -fx-border-width: 7; -fx-border-color: #301934; -fx-border-radius: 30 30 30 30;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemDetailsAdminController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="275.0" layoutX="14.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1094.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect>
+      </Rectangle>
+      <ImageView fx:id="image" fitHeight="252.0" fitWidth="280.0" layoutX="407.0" layoutY="62.0" onMouseClicked="#route_Image" pickOnBounds="true">
+         <image>
+            <Image url="@Assets/icons/image.png" />
+         </image>
+      </ImageView>
+      <Text fill="#eccecf" layoutX="20.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_libelle" layoutX="20.0" layoutY="105.0" prefHeight="39.0" prefWidth="379.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-family: impact;" text="Insérer libellé" />
+      <Text fill="#eccecf" layoutX="699.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <Text fill="#eccecf" layoutX="20.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_categorie" layoutX="20.0" layoutY="190.0" prefHeight="39.0" prefWidth="379.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-family: impact;" text="Insérer libellé" />
+      <Text fill="#eccecf" layoutX="20.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type et État">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textfield_typeetat" layoutX="20.0" layoutY="274.0" prefHeight="39.0" prefWidth="379.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-family: impact;" text="Insérer libellé" />
+      <TextArea id="textarea_description" fx:id="textarea_description" layoutX="698.0" layoutY="100.0" prefHeight="211.0" prefWidth="401.0" style="-fx-background-radius: 20; -fx-border-width: 0.5; -fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-radius: 20; -fx-font-size: 18;" stylesheets="@Assets/CSSs/desc.css" text="Insérer description" />
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="1042.0" layoutY="14.0" onMouseClicked="#shutdown" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/power_icon2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="minimize" fitHeight="20.0" fitWidth="20.0" layoutX="1010.0" layoutY="22.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/minusbLUE.png" />
+         </image>
+      </ImageView>
+      <Text fill="#eccecf" layoutX="64.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="164.0" layoutX="14.0" layoutY="339.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1094.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect>
+      </Rectangle>
+      <Text fx:id="t1" fill="#eccecf" layoutX="42.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'items similaires à celui-ci disponibles à l'échange : 0 " wrappingWidth="689.9833889901638">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="t2" fill="#eccecf" layoutX="42.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'articles similaires à celui-ci de tous les utilisateurs : 0" wrappingWidth="689.9833984375">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="t3" fill="#eccecf" layoutX="776.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'articles similaires mais neufs : 0" wrappingWidth="301.0000034086406">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Text>
+      <Text fill="#eccecf" layoutX="224.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dans un échange ?">
+         <font>
+            <Font name="Impact" size="18.0" />
+         </font>
+      </Text>
+      <CheckBox fx:id="ech" disable="true" layoutX="373.0" layoutY="77.0" mnemonicParsing="false" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="164.0" layoutX="736.0" layoutY="339.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 80; -fx-arc-width: 80;" width="20.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect>
+      </Rectangle>
+      <Text fx:id="t4" fill="#eccecf" layoutX="42.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de tous les articles dans la même catégorie : 0" wrappingWidth="689.9833889901638">
+         <font>
+            <Font name="Impact" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449; -fx-background-radius: 50 50 50 50;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemAdminController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449; -fx-background-radius: 30 30 30 30;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemAdminController">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -52,7 +52,7 @@
             <GaussianBlur radius="63.0" />
          </effect>
       </Circle>
-      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042; -fx-background-radius: 0 50 50 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042; -fx-background-radius: 0 30 30 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <effect>
             <DropShadow color="#00000080" offsetX="-5.0" />
          </effect>
@@ -184,20 +184,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView fx:id="tableView" layoutX="231.0" layoutY="221.0" prefHeight="613.0" prefWidth="1197.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
-         <columns>
-            <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
-            <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
-            <TableColumn fx:id="iditemColumn" minWidth="0.0" prefWidth="40.0" text="ID" />
-            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="190.0" text="Libélle" />
-            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="145.0" text="Categorie" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />
-            <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
-            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="105.0" text="État" />
-            <TableColumn fx:id="iduserColumn" minWidth="0.0" prefWidth="85.0" text="ID User" />
-
-               </columns>
-      </TableView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
          <effect>
             <DropShadow color="#00000090" />
@@ -282,7 +268,7 @@
                   <Font name="Impact" size="25.0" />
                </font>
             </Text>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="620.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="619.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
                </image>
@@ -292,7 +278,7 @@
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="618.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
                <image>
-                  <Image url="@Assets/icons/blue/right-arrow.png" />
+                  <Image url="@Assets/icons/blue/loop-arrow.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="0.31" />
@@ -300,6 +286,17 @@
             </ImageView>
          </children>
       </Pane>
+      <TableView fx:id="tableView" layoutX="246.0" layoutY="230.0" prefHeight="599.0" prefWidth="1171.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
+         <columns>
+            <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
+            <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
+            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="230.0" text="Libélle" />
+            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="145.0" text="Categorie" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="428.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="122.0" text="Type" />
+            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="101.0" text="État" />
+         </columns>
+      </TableView>
 
    </children>
 </AnchorPane>

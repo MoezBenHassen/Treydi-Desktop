@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449; -fx-background-radius: 50 50 50 50;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierItemAdminController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449; -fx-background-radius: 30 30 30 30;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierItemAdminController">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -49,7 +49,7 @@
             <GaussianBlur radius="63.0" />
          </effect>
       </Circle>
-      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042; -fx-background-radius: 0 50 50 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042; -fx-background-radius: 0 30 30 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <effect>
             <DropShadow color="#00000080" offsetX="-5.0" />
          </effect>
@@ -225,7 +225,7 @@
             <Font name="Impact" size="20.0" />
          </font>
       </RadioButton>
-      <ImageView id="imageview_imageurl" fx:id="imageview_imageurl" fitHeight="225.0" fitWidth="225.0" layoutX="400.0" layoutY="486.0" pickOnBounds="true">
+      <ImageView id="30 30 30 30" fx:id="30 30 30 30" fitHeight="225.0" fitWidth="225.0" layoutX="400.0" layoutY="486.0" pickOnBounds="true">
          <image>
             <Image url="@Assets/Icons/image.png" />
          </image>
