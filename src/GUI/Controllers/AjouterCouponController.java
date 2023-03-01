@@ -79,6 +79,7 @@ public class AjouterCouponController implements Initializable {
        List<CategorieCoupon> list = cat.afficher();
        String cbs = (String) categoriecouponsbox.getValue();
        int id_cat = list.stream().filter((t) -> t.getNom_categorie().equals(cbs)).mapToInt((t) -> t.getId_categoriecoupon()).sum();
+       System.out.println(id_cat);
 
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
        if (dateexpiration.getValue()==null){
@@ -89,7 +90,6 @@ public class AjouterCouponController implements Initializable {
            return ;
        }
        String date= dateexpiration.getValue().format(formatter);
-       System.out.println();
        String etat=etatcoupon.getText().trim();
 
        if (nom.isEmpty()) {
@@ -116,6 +116,7 @@ public class AjouterCouponController implements Initializable {
            return;
        }
 
+       System.out.println(nom+desc +etat + dateexpiration.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + id_cat);
         Coupon c= new Coupon(nom, desc, etat, dateexpiration.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), id_cat);
         cs.add(c);
            Alert alert= new Alert(Alert.AlertType.CONFIRMATION);

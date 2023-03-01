@@ -98,4 +98,7 @@ public class ModifierCouponController implements Initializable {
         dateexpiration1.setText(dateCoupon);
     }
 
+    public void setCode(String codecoupon) {
+        dateexpiration1.setText(codecoupon);
+    }
 }

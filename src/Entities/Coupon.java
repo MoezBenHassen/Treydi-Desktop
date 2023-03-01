@@ -3,22 +3,32 @@ package Entities;
 import java.util.Date;
 
 public class Coupon {
-private int id_coupon, id_categoriecoupon;
-private String titre_coupon, description_coupon, etat_coupon;
+private int id_coupon, id_categoriecoupon, id_user;
+private String titre_coupon, description_coupon, etat_coupon, code;
 private String date_expiration;
 
-
-    public Coupon(int id_coupon, String titre_coupon, String description_coupon, String date_expiration, String etat_coupon, int id_categoriecoupon) {
-        this.id_coupon = id_coupon;
+    public Coupon( int id_categoriecoupon, int id_user, String titre_coupon, String description_coupon, String etat_coupon, String code, String date_expiration) {
+        this.id_categoriecoupon = id_categoriecoupon;
+        this.id_user = id_user;
         this.titre_coupon = titre_coupon;
         this.description_coupon = description_coupon;
         this.etat_coupon = etat_coupon;
+        this.code = code;
         this.date_expiration = date_expiration;
-        this.id_categoriecoupon=id_categoriecoupon;
     }
 
+    public Coupon(int id_coupon, int id_categoriecoupon, int id_user, String titre_coupon, String description_coupon, String etat_coupon, String code, String date_expiration) {
+        this.id_coupon = id_coupon;
+        this.id_categoriecoupon = id_categoriecoupon;
+        this.id_user = id_user;
+        this.titre_coupon = titre_coupon;
+        this.description_coupon = description_coupon;
+        this.etat_coupon = etat_coupon;
+        this.code = code;
+        this.date_expiration = date_expiration;
+    }
 
-    public Coupon( String titre_coupon, String description_coupon, String etat_coupon, String date_expiration, int id_categoriecoupon) {
+    public Coupon(String titre_coupon, String description_coupon, String etat_coupon, String date_expiration, int id_categoriecoupon) {
         this.titre_coupon = titre_coupon;
         this.description_coupon = description_coupon;
         this.etat_coupon = etat_coupon;
@@ -30,6 +40,10 @@ private String date_expiration;
         this.titre_coupon = titre_coupon;
         this.description_coupon = description_coupon;
         this.etat_coupon = etat_coupon;
+    }
+
+    public Coupon(int id_coupon) {
+        this.id_coupon = id_coupon;
     }
 
     public Coupon() {
@@ -82,15 +96,34 @@ private String date_expiration;
         this.id_categoriecoupon = id_categoriecoupon;
     }
 
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "Coupon{" +
                 "id_coupon=" + id_coupon +
                 ", id_categoriecoupon=" + id_categoriecoupon +
+                ", id_user=" + id_user +
                 ", titre_coupon='" + titre_coupon + '\'' +
                 ", description_coupon='" + description_coupon + '\'' +
                 ", etat_coupon='" + etat_coupon + '\'' +
-                ", date_expiration=" + date_expiration +
+                ", code='" + code + '\'' +
+                ", date_expiration='" + date_expiration + '\'' +
                 '}';
     }
 }
+

@@ -1,21 +1,27 @@
 package Entities;
 
 public class Utilisateur {
-    private int id, tel;
-    private String nom, prenom, password, image_url, email, adresse;
+    private int id, score;
+    private String nom, prenom, password, image_url, email, adresse, role, datenaissance;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, String image_url, int tel, String email, String adresse, String password) {
+    public Utilisateur(int id, String nom, String prenom, String image_url, String datenaissance, String email, String adresse, String password, int score, String role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.image_url = image_url;
-        this.tel = tel;
+        this.datenaissance = datenaissance;
         this.email = email;
         this.adresse = adresse;
         this.password = password;
+        this.score=score;
+        this.role=role;
+    }
+
+    public Utilisateur(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -26,12 +32,13 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public int getTel() {
-        return tel;
+
+    public int getScore() {
+        return score;
     }
 
-    public void setTel(int tel) {
-        this.tel = tel;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getNom() {
@@ -48,6 +55,22 @@ public class Utilisateur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDatenaissance() {
+        return datenaissance;
+    }
+
+    public void setDatenaissance(String datenaissance) {
+        this.datenaissance = datenaissance;
     }
 
     public String getImage_url() {
@@ -86,13 +109,15 @@ public class Utilisateur {
     public String toString() {
         return "Utilisateur{" +
                 "id=" + id +
-                ", tel=" + tel +
+                ", score=" + score +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", password='" + password + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", email='" + email + '\'' +
                 ", adresse='" + adresse + '\'' +
+                ", role='" + role + '\'' +
+                ", datenaissance='" + datenaissance + '\'' +
                 '}';
     }
 }

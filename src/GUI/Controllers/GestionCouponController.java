@@ -1,13 +1,19 @@
 
 
 package GUI.Controllers;
+import APIs.GenerateQRCode;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import Entities.CategorieCoupon;
+import Services.CategorieCouponService;
 import Services.CouponService;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +30,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import javax.swing.text.html.ImageView;
 
@@ -45,22 +52,44 @@ public class GestionCouponController implements Initializable {
     @FXML
     private TableColumn<Coupon, String> categoriecoupon;
 
+    @FXML
+    private TableColumn<Coupon, String> codecoupon;
+
     Stage stage;
     @FXML
     private AnchorPane scenePane;
     private double xOffset = 0;
     private double yOffset = 0;
 
+    private List<CategorieCoupon> categories;
+
     ObservableList<Coupon> CouponList = FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle rb) {
+        CategorieCouponService c = new CategorieCouponService();
+        categories = c.afficher();
         afficher();
         tablecoupons.setItems(CouponList);
         nomcoupon.setCellValueFactory(new PropertyValueFactory<>("titre_coupon"));
         descriptioncoupon.setCellValueFactory(new PropertyValueFactory<>("description_coupon"));
         etatcoupon.setCellValueFactory(new PropertyValueFactory<>("etat_coupon"));
         dateexpiration.setCellValueFactory(new PropertyValueFactory<>("date_expiration"));
-        categoriecoupon.setCellValueFactory(new PropertyValueFactory<>("id_categoriecoupon"));
+        codecoupon.setCellValueFactory(new PropertyValueFactory<>("code"));
+
+
+        categoriecoupon.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coupon, String>, ObservableValue<String>>() {
+
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Coupon, String> param) {
+                try {
+                    int catid = param.getValue().getId_categoriecoupon();
+                    String cat = categories.stream().filter((t) -> t.getId_categoriecoupon() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
+    });
     }
 
     @FXML
@@ -79,6 +108,7 @@ public class GestionCouponController implements Initializable {
         String description = String.valueOf(selectedcoupon.getDescription_coupon());
         String etat = String.valueOf(selectedcoupon.getEtat_coupon());
         String date = String.valueOf(selectedcoupon.getDate_expiration());
+        String code = String.valueOf(selectedcoupon.getCode());
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../modification.fxml"));
@@ -88,6 +118,7 @@ public class GestionCouponController implements Initializable {
             modificationControlleur.setDescriptionText(selectedcoupon.getDescription_coupon());
             modificationControlleur.setEtatText(selectedcoupon.getEtat_coupon());
             modificationControlleur.setDate(selectedcoupon.getDate_expiration());
+            modificationControlleur.setCode(selectedcoupon.getCode());
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

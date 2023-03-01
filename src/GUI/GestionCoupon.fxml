@@ -107,7 +107,7 @@
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="230.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1159.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -182,13 +182,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView id="tablecoupons" fx:id="tablecoupons" layoutX="364.0" layoutY="256.0" prefHeight="472.0" prefWidth="880.0" stylesheets="@Assets/css/style.css">
+      <TableView id="tablecoupons" fx:id="tablecoupons" layoutX="275.0" layoutY="256.0" prefHeight="472.0" prefWidth="1070.0" stylesheets="@Assets/css/style.css">
          <columns>
-            <TableColumn fx:id="nomcoupon" prefWidth="129.0" text="Nom Coupon" />
-            <TableColumn fx:id="descriptioncoupon" prefWidth="185.0" text="Description Coupon" />
-            <TableColumn fx:id="etatcoupon" prefWidth="123.0" text="Etat Coupon" />
-            <TableColumn fx:id="dateexpiration" prefWidth="248.0" text="Date Expiration Coupon" />
-            <TableColumn fx:id="categoriecoupon" prefWidth="192.0" text="Catégorie Coupon" />
+            <TableColumn fx:id="nomcoupon" prefWidth="126.00003051757812" text="Nom Coupon" />
+            <TableColumn fx:id="descriptioncoupon" prefWidth="222.0" text="Description Coupon" />
+            <TableColumn fx:id="etatcoupon" prefWidth="131.0" text="Etat Coupon" />
+            <TableColumn fx:id="dateexpiration" prefWidth="207.0" text="Date Expiration Coupon" />
+            <TableColumn fx:id="categoriecoupon" prefWidth="191.0" text="Catégorie Coupon" />
+            <TableColumn fx:id="codecoupon" prefWidth="191.0" text="Code Coupon" />
          </columns>
       </TableView>
 
