@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Echange {
     private int id_echange;
+    private String titre_echange;
     private int id_user1;
     private int id_user2;
     private Date date_echange;
@@ -32,6 +33,22 @@ public class Echange {
         this.id_user1 = id_user1;
         this.id_user2 = id_user2;
         this.date_echange = date_echange;
+    }
+
+    public Echange(int id_echange, String titre_echange, int id_user1, int id_user2, Date date_echange) {
+        this.id_echange = id_echange;
+        this.titre_echange = titre_echange;
+        this.id_user1 = id_user1;
+        this.id_user2 = id_user2;
+        this.date_echange = date_echange;
+    }
+
+    public String getTitre_echange() {
+        return titre_echange;
+    }
+
+    public void setTitre_echange(String titre_echange) {
+        this.titre_echange = titre_echange;
     }
 
     public int getId_echange() {
