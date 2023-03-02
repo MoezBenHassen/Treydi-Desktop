@@ -15,6 +15,7 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #2c2449;" styleClass="scenePanePopUp" stylesheets="@Assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.UpdateCategoriefxmlController">
    <children>
@@ -85,6 +86,7 @@
             <Image url="@Assets/icons/blue/close_blue.png" />
          </image>
       </ImageView>
+      <Rating layoutX="125.0" layoutY="60.0" />
 
    </children>
 </AnchorPane>

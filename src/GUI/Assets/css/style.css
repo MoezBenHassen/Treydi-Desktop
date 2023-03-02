@@ -75,10 +75,9 @@
 
 
 .custom-alert {
-    -fx-background-color: red;
-    -fx-border-color: red;
-        -fx-border-radius: 50;
-
+    -fx-background-color: pink;
+    -fx-border-color: pink;
+    -fx-border-radius: 50;
 }
 .anchor{
 

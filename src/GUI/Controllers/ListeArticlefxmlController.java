@@ -76,7 +76,6 @@ public class ListeArticlefxmlController implements Initializable {
         // Apply custom styles
         dialogPane.getStylesheets().add(getClass().getResource("../Assets/css/style.css").toExternalForm());
         dialogPane.getStyleClass().add("custom-alert");
-
         if(alert.showAndWait().get() == ButtonType.OK){
             stage = (Stage) scenePane.getScene().getWindow();
             System.out.println("YOU XYZ");
