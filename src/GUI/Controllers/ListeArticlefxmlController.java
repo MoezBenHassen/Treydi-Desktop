@@ -4,6 +4,7 @@ import Entities.Article;
 import Entities.CategorieArticle;
 import Services.ArticleService;
 import Services.CategorieArticleService;
+import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,6 +33,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.control.ComboBox;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import javax.swing.*;
 
@@ -58,6 +60,8 @@ public class ListeArticlefxmlController implements Initializable {
     private TableColumn<Article, String> categorieC;
     @FXML
     private TableColumn<Article,String> auteurC;
+    @FXML private Node topcircle;
+    @FXML private Node bottomcirlce ;
 
     Stage stage;
     private double xOffset;
@@ -106,6 +110,24 @@ public class ListeArticlefxmlController implements Initializable {
        //PREVENT HORIZONTAL SCROLL BAR >>>>
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(topcircle);
+        translateTransition.setDuration(Duration.millis(2000));
+        translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        translateTransition.setByX(30);
+        translateTransition.setByZ(-30);
+        translateTransition.setByY(-30);
+
+        translateTransition.setByX(-30);
+        translateTransition.setByZ(-30);
+        translateTransition.setByY(30);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
+
+        translateTransition.setNode(bottomcirlce);
+        translateTransition.setDuration(Duration.millis(1000));
+        translateTransition.setByX(-200);
+        translateTransition.setByY(200);
         afficher();
     }
 
