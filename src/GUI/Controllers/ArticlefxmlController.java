@@ -4,6 +4,7 @@ import Entities.Article;
 import Entities.CategorieArticle;
 import Services.ArticleService;
 import Services.CategorieArticleService;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,12 +27,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.control.ComboBox;
+import javafx.util.Duration;
 
 import javax.swing.*;
 
 public class ArticlefxmlController implements Initializable {
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button addButton;
+
     @FXML
     private AnchorPane scenePane;
     @FXML
@@ -53,6 +58,14 @@ public class ArticlefxmlController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         afficher_combobox_cat() ;
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(addButton);
+        translateTransition.setDuration(Duration.millis(600));
+        translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+        translateTransition.setByX(5);
+        translateTransition.setByY(3);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
     }
 
     public void logout(javafx.event.ActionEvent actionEvent) {

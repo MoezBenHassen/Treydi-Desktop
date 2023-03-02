@@ -1,5 +1,6 @@
 package GUI.Controllers;
 
+import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
