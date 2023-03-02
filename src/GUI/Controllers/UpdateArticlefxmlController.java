@@ -212,7 +212,7 @@ public class UpdateArticlefxmlController implements Initializable {
         String contenu = txt_contenu.getText().trim();
         String auteur = txt_auteur.getText().trim();
       //  String categorie = categorieArticleBox.getValue().toString();
-        int id_categorie = id_article;
+//        int id_categorie = id_article;
         if (titre.equals("") || description.equals("") || contenu.equals("") || auteur.equals("") ){
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("Remplir tout les champs");

@@ -232,6 +232,7 @@ public class ListeArticlefxmlController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateArticle.fxml"));
         Parent root = loader.load();
 
+        //set fields in the other controller
         UpdateArticlefxmlController updateArticlefxmlController = loader.getController();
         updateArticlefxmlController.setTitreText(titreC);
         updateArticlefxmlController.setDescriptionText(descriptionC);
@@ -244,6 +245,7 @@ public class ListeArticlefxmlController implements Initializable {
 
         Scene scene = new Scene(root);
         Stage stage1 = new Stage();
+        // drag and move page method
         scene.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
@@ -263,5 +265,6 @@ public class ListeArticlefxmlController implements Initializable {
         stage1.setHeight(768);
         stage1.setScene(scene);
         stage1.showAndWait();
+        afficher();
     }
 }

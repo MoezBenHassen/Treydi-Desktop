@@ -18,7 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,91 +49,123 @@ public class ListeCategoriefxmlController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         libelleC.setCellValueFactory(new PropertyValueFactory<>("libelle_cat"));
-        actionC.setCellFactory(column -> new TableCell<CategorieArticle, String>() {
-            final Button editButton = new Button("");
-            final Button deleteButton = new Button("");
+        actionC.setCellFactory(column -> {
+            return new TableCell<CategorieArticle, String>() {
+                final Button editButton = new Button("");
+                final Button deleteButton = new Button("");
 
-            {
-                Image editImage = new Image(getClass().getResourceAsStream("../Assets/icons/yellow/pencil.png"));
-                ImageView editImageView = new ImageView(editImage);
-                editImageView.setFitHeight(20);
-                editImageView.setFitWidth(20);
-                editButton.setGraphic(editImageView);
+                {
+                    Image editImage = new Image(getClass().getResourceAsStream("../Assets/icons/yellow/pencil.png"));
+                    ImageView editImageView = new ImageView(editImage);
+                    editImageView.setFitHeight(20);
+                    editImageView.setFitWidth(20);
+                    editButton.setGraphic(editImageView);
 
-                Image deleteImage = new Image(getClass().getResourceAsStream("../Assets/icons/yellow/trash-bin.png"));
-                ImageView deleteImageView = new ImageView(deleteImage);
-                deleteImageView.setFitHeight(20);
-                deleteImageView.setFitWidth(20);
-                deleteButton.setGraphic(deleteImageView);
-                editButton.setOnAction(event -> {
-                    CategorieArticle categorie = getTableView().getItems().get(getIndex());
-                    CategorieArticleService categorieArticleService = new CategorieArticleService();
-                    String libelleCategorie = String.valueOf(categorie.getLibelle_cat());
-                    System.out.println(" libelle cAT"+libelleCategorie);
-
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateCategori.fxml"));
-                    try {
-                        Parent root = loader.load();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                });
-
-                deleteButton.setOnAction(event -> {
-                    CategorieArticle categorie = getTableView().getItems().get(getIndex());
-                    //DELETE
-                    if (categorie != null) {
-
+                    Image deleteImage = new Image(getClass().getResourceAsStream("../Assets/icons/yellow/trash-bin.png"));
+                    ImageView deleteImageView = new ImageView(deleteImage);
+                    deleteImageView.setFitHeight(20);
+                    deleteImageView.setFitWidth(20);
+                    deleteButton.setGraphic(deleteImageView);
+                    editButton.setOnAction(event -> {
+                        CategorieArticle selectedCategorie = getTableView().getItems().get(getIndex());
                         CategorieArticleService categorieArticleService = new CategorieArticleService();
+                        //values to pass
+                        String libelleCategorie = String.valueOf(selectedCategorie.getLibelle_cat());
+                        int id_categorie = Integer.valueOf(selectedCategorie.getId_cat());
+                        System.out.println(" libelle cAT" + libelleCategorie);
 
-                        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-                        confirmation.setTitle("Confirmation");
-                        confirmation.setHeaderText(null);
-                        confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
-                        Optional<ButtonType> result = confirmation.showAndWait();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../UpdateCategorie.fxml"));
+                        try {
+                            Parent root = loader.load();
 
-                        if (result.isPresent() && result.get() == ButtonType.OK) {
-                            boolean supprime = categorieArticleService.delete(categorie);
-                            if (supprime) {
-                                tableView.getItems().remove(categorie);
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setTitle("Suppression réussie");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Suppression effectuée avec succès.");
-                                alert.showAndWait();
-                            } else {
-                                Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Erreur");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Erreur lors de la suppression.");
-                                alert.showAndWait();
-                            }
+                            //set fields in the other controller
+                            UpdateCategoriefxmlController updateCategoriefxmlController = loader.getController();
+                            updateCategoriefxmlController.setLibelleCategorie(libelleCategorie);
+                            updateCategoriefxmlController.setId_categorie(id_categorie);
+                            Scene scene = new Scene(root);
+
+                            Stage stage1 = new Stage();
+                            final double[] xOffset = new double[1];
+                            final double[] yOffset = new double[1];
+
+                            scene.setOnMousePressed(eventM -> {
+                                xOffset[0] = eventM.getSceneX();
+                                yOffset[0] = eventM.getSceneY();
+                            });
+
+                            scene.setOnMouseDragged(eventM -> {
+                                stage1.setX(eventM.getScreenX() - xOffset[0]);
+                                stage1.setY(eventM.getScreenY() - yOffset[0]);
+                            });
+                            stage1.initStyle(StageStyle.UNDECORATED);
+                            stage1.initStyle(StageStyle.TRANSPARENT);
+                            scene.setFill(Color.TRANSPARENT);
+                            stage1.setWidth(1024);
+                            stage1.setHeight(768);
+                            stage1.setScene(scene);
+                            stage1.showAndWait();
+                            afficher();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
                         }
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Avertissement");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Veuillez sélectionner une catégorie à supprimer.");
-                        alert.showAndWait();
-                    }
-                });
-                editButton.setId("editButton");
-                deleteButton.setId("deleteButton");
-            }
 
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
+                    });
 
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    HBox hBox = new HBox(editButton, deleteButton);
-                    hBox.setSpacing(10);
-                    setGraphic(hBox);
+                    deleteButton.setOnAction(event -> {
+                        CategorieArticle categorie = getTableView().getItems().get(getIndex());
+                        //DELETE
+                        if (categorie != null) {
+
+                            CategorieArticleService categorieArticleService = new CategorieArticleService();
+
+                            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                            confirmation.setTitle("Confirmation");
+                            confirmation.setHeaderText(null);
+                            confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
+                            Optional<ButtonType> result = confirmation.showAndWait();
+
+                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                boolean supprime = categorieArticleService.delete(categorie);
+                                if (supprime) {
+                                    tableView.getItems().remove(categorie);
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                    alert.setTitle("Suppression réussie");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Suppression effectuée avec succès.");
+                                    alert.showAndWait();
+                                } else {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setTitle("Erreur");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Erreur lors de la suppression.");
+                                    alert.showAndWait();
+                                }
+                            }
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Avertissement");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Veuillez sélectionner une catégorie à supprimer.");
+                            alert.showAndWait();
+                        }
+                    });
+                    editButton.setId("editButton");
+                    deleteButton.setId("deleteButton");
                 }
-            }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        HBox hBox = new HBox(editButton, deleteButton);
+                        hBox.setSpacing(10);
+                        setGraphic(hBox);
+                    }
+                }
+            };
         });
 
 
