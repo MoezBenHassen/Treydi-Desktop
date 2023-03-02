@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageReclamationControlleurUser">
+    <children>
+        <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <fill>
+                <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
+                    <stops>
+                        <Stop color="#b5a814ab" />
+                        <Stop color="#b5cc7a2e" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <GaussianBlur radius="63.0" />
+            </effect>
+        </Circle>
+        <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="122.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-1.0">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+                <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/avatar4.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/treasure-chest1.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/fast-delivery.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/coupon.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/loop-arrow.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/pink/help%20(1).png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/helmet.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="48.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/hot_article_icon.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/minusbLUE.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="667.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/replay%20(2).png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="818.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Assets/icons/blue/power_icon2.png" />
+                    </image>
+                </ImageView>
+
+            </children>
+        </AnchorPane>
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="689.0" layoutX="197.0" layoutY="142.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1171.0">
+            <fill>
+                <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.13870246085011184">
+                            <color>
+                                <Color blue="0.6146848797798157" green="0.08934372663497925" red="0.9649122953414917" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8232662192393735">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.8836689038031321">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color blue="0.36000001430511475" green="0.12600000202655792" red="0.24300000071525574" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <DropShadow height="10.0" radius="7.0" spread="0.66" width="20.0">
+                    <color>
+                        <Color opacity="0.5038167834281921" />
+                    </color>
+                </DropShadow>
+            </effect></Rectangle>
+        <TableView fx:id="tableView" layoutX="235.0" layoutY="188.0" prefHeight="576.0" prefWidth="1069.0" stylesheets="@Assets/css/style.css">
+            <columns>
+                <TableColumn fx:id="titreC" prefWidth="250.00003051757812" text="titre" />
+                <TableColumn fx:id="descriptionC" prefWidth="711.0" text="description" />
+                <TableColumn fx:id="id_reclamation" minWidth="0.0" prefWidth="52.0" text="id" visible="false" />
+            </columns>
+        </TableView>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Assets/images/treydi3.png" />
+            </image></ImageView>
+        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="386.0" layoutX="30.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
+            <effect>
+                <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
+            </effect>
+        </Rectangle>
+        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="383.0" onMouseClicked="#gotoajout" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Assets/icons/blue/addition.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="62.0" layoutX="50.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Assets/icons/pink/list.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="559.0" onMouseClicked="#supprimer" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Assets/icons/blue/trash-bin.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="473.0" onMouseClicked="#openModifcation" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Assets/icons/blue/pencil.png" />
+            </image>
+        </ImageView>
+      <TextField fx:id="titrechercher" layoutX="21.0" layoutY="188.0" onInputMethodTextChanged="#chercher" onKeyPressed="#chercher" onKeyReleased="#chercher" onKeyTyped="#chercher" prefHeight="31.0" prefWidth="162.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+    </children>
+
+</AnchorPane>

@@ -20,10 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ModificationControlleur implements Initializable {
-   private Reclamation selectedReclamation;
-   @FXML
-   private TextField titreTextField;
+public class ModifierReclamationUserControlleur implements Initializable {
+    private Reclamation selectedReclamation;
+    @FXML
+    private TextField titreTextField;
     @FXML
     private TextField descriptionTextField;
     private int idReclamation  ;
@@ -58,13 +58,13 @@ public class ModificationControlleur implements Initializable {
         stage = (Stage) scenePane.getScene().getWindow();
         stage.close();
     }
-   public void setTitreText(String text) {
-       titreTextField.setText(text);
-   }
+    public void setTitreText(String text) {
+        titreTextField.setText(text);
+    }
     public void setDescriptionText(String text) {
         descriptionTextField.setText(text);
     }
-        Stage stage;
+    Stage stage;
     @FXML
     private AnchorPane scenePane;
     public void logout(MouseEvent event) {
