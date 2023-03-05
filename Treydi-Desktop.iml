@@ -16,7 +16,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql-connector-j-8.0.32" level="project" />
     <orderEntry type="library" name="controlsfx-8.40.11" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.0.32" level="project" />
   </component>
 </module>
