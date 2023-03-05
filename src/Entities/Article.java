@@ -15,6 +15,12 @@ public class Article {
     public Article() {
     }
 
+    public Article(String titre, String description, int id_categorie) {
+        this.titre = titre;
+        this.description = description;
+        this.id_categorie = id_categorie;
+    }
+
     public Article(int id_article, String titre, String description, String contenu, int id_categorie, String auteur) {
         this.id_article = id_article;
         this.titre = titre;
