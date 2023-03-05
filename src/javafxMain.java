@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +17,7 @@ public class javafxMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AffListEchange.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/AffListEchangeLivreur.fxml"));
             Parent root = loader.load();
 
             DatabaseMonitor databaseMonitor = new DatabaseMonitor();
@@ -54,7 +52,7 @@ public class javafxMain extends Application {
             databaseThread.start();
 
             // ui notif label changes text after new entry
-            entryLabel = (Label) loader.getNamespace().get("entryLabel");
+            /*entryLabel = (Label) loader.getNamespace().get("entryLabel");
             entryLabel.textProperty().bind(databaseMonitor.messageProperty());
             databaseMonitor.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                 @Override
@@ -62,7 +60,7 @@ public class javafxMain extends Application {
                     entryLabel.textProperty().unbind();
                     entryLabel.setText("");
                 }
-            });
+            });*/
 
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());

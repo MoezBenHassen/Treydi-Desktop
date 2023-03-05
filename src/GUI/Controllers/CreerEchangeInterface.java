@@ -53,8 +53,6 @@ public class CreerEchangeInterface {
 
     @FXML
     void initialize() {
-        assert items_grid != null : "fx:id=\"items_grid\" was not injected: check your FXML file 'CreerEchangeInterface.fxml'.";
-        assert echange_grid != null : "fx:id=\"echange_grid\" was not injected: check your FXML file 'CreerEchangeInterface.fxml'.";
         echange_creation();
     }
 
@@ -81,7 +79,7 @@ public class CreerEchangeInterface {
             stackPane.setAlignment(Pos.CENTER);
             if (items.get(i).getId_echange() == NULL) {
                 items_grid.add(stackPane, column, row);
-                row = (i + 1) / 4;
+                row = i / 4;
                 column = i % 4;
             }
             final int index = i;
@@ -106,7 +104,7 @@ public class CreerEchangeInterface {
                             newRectangle.setFill(Color.BLUE);
                             items_selectionner.remove(items.get(index));
                             echange_grid.getChildren().remove(newStackPane);
-                            items_grid.add(stackPane, column, row);
+                            items_grid.add(stackPane, index % 4, index / 4);
                             rectangle.setFill(Color.BLUE);
                         }
                     });
@@ -131,6 +129,7 @@ public class CreerEchangeInterface {
             }
         }
     }
+
 
 
     //LOGOUT

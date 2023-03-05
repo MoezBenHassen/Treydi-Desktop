@@ -31,14 +31,13 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class AccEchangeLivreur implements Initializable {
+public class InfoLivraisonLivreur implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
-    private Echange selectedEchange;
+    private Livraison selectedLivraison;
 
     @FXML
     private Button logoutButton;
@@ -60,40 +59,24 @@ public class AccEchangeLivreur implements Initializable {
     ItemService is = new ItemService();
     LivraisonService ls = new LivraisonService();
     EchangeService es = new EchangeService();
+    Echange e = new Echange();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
 
-    public void setSelectedEchangeAccLiv(Echange echange) {
-        this.selectedEchange = echange;
+    public void setSelectedLivraisonInfo(Livraison livraison) {
+        this.selectedLivraison = livraison;
+        System.out.println(selectedLivraison);
+        e = es.getEchangeByLivraison(selectedLivraison);
         loadItemsUser1();
         loadItemsUser2();
     }
 
-    @FXML
-    private void creerLivraison(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setHeaderText("Accepter");
-        a.setContentText("vous etes sure ?");
-
-        Optional<ButtonType> result = a.showAndWait();
-        result.ifPresent(buttonType -> {
-            if (buttonType == ButtonType.OK) {
-                Livraison l = new Livraison(4, selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
-                ls.add(l);
-                es.updateEchangeLivToAcc(selectedEchange);
-                try {
-                    goToListLivraisonLivreur(event);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-    }
-
     public void loadItemsUser1(){
-        List<Item> items = is.afficherUserItemsEchange(selectedEchange.getId_user1(),selectedEchange);
+
+        List<Item> items = is.afficherUserItemsEchange(e.getId_user1(),e);
         int column = 0, row = 0;
         for (int i = 0; i < items.size(); i++) {
             Rectangle rectangle = new Rectangle(60, 60);
@@ -105,11 +88,11 @@ public class AccEchangeLivreur implements Initializable {
             row = i / 4;
             column = i % 4;
 
+        }
     }
-}
 
     public void loadItemsUser2(){
-        List<Item> items = is.afficherUserItemsEchange(selectedEchange.getId_user2(),selectedEchange);
+        List<Item> items = is.afficherUserItemsEchange(e.getId_user2(),e);
         int column = 0, row = 0;
         for (int i = 0; i < items.size(); i++) {
             Rectangle rectangle = new Rectangle(60, 60);
@@ -147,6 +130,14 @@ public class AccEchangeLivreur implements Initializable {
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void annulerButton(MouseEvent event){
+        ls.annulerLivraisonLivreur(selectedLivraison, es.getEchangeByLivraison(selectedLivraison));
+    }
+
+    public void completerButton(MouseEvent event){
+        ls.completerLivraisonLivreur(selectedLivraison);
     }
 
     public void goToListLivraisonLivreur(ActionEvent event) throws IOException {

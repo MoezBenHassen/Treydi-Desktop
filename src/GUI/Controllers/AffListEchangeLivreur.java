@@ -89,8 +89,7 @@ public class AffListEchangeLivreur {
     }
 
     private void moveToAccEch(MouseEvent event) throws IOException {
-        //Parent root = FXMLLoader.load(getClass().getResource("/GUI/AccEchangeLivreur.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AccEchangeLivreur.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/AccEchangeLivreur.fxml"));
         Parent root = loader.load();
         AccEchangeLivreur controller = loader.getController();
         controller.setSelectedEchangeAccLiv(selectedEchange);

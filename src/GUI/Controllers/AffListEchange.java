@@ -2,17 +2,12 @@ package GUI.Controllers;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
 
 import Entities.Echange;
 import Services.EchangeService;
-import Utils.MyDB;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,9 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class AffListEchange {
 
@@ -98,7 +90,7 @@ public class AffListEchange {
 
     private void moveToProposerEch(MouseEvent event) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("/GUI/AccEchangeLivreur.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ProposerEchange.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/ProposerEchange.fxml"));
         Parent root = loader.load();
         ProposerEchange controller = loader.getController();
         controller.setSelectedEchangeProposer(selectedEchange);

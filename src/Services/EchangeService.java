@@ -144,11 +144,11 @@ public class EchangeService implements Services.IService<Echange> {
             throw new RuntimeException(ex);
         }
     }
-
+    //for livreur
     public List afficherEchangeAccepter()  {
         List<Echange> echanges = new ArrayList<>();
 
-        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2 != '"+NULL+"'";
+        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2 != '"+NULL+"' AND liv_etat = '"+Echange.ETAT.Non_Accepter+"' ";
         try {
             stm = con.createStatement();
             ResultSet result=stm.executeQuery(req);
@@ -162,7 +162,7 @@ public class EchangeService implements Services.IService<Echange> {
         }
         return echanges;
     }
-
+    //for user
     public List afficherEchangeNonAccepter()  {
         List<Echange> echanges = new ArrayList<>();
 
@@ -200,5 +200,19 @@ public class EchangeService implements Services.IService<Echange> {
         return null;
     }
 
+    public Boolean updateEchangeLivToAcc(Echange e) {
+        String req = "UPDATE `echange` SET `liv_etat` = '"+Echange.ETAT.Accepter+"' WHERE `id_echange` = '"+e.getId_echange()+"'";
+        try {
+            stm = con.createStatement();
+            int rowsUpdated = stm.executeUpdate(req);
+            if (rowsUpdated >0){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
 }

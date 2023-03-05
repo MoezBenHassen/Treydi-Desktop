@@ -80,7 +80,7 @@ public class ProposerEchange {
             StackPane stackPane = new StackPane(rectangle, text);
             stackPane.setAlignment(Pos.CENTER);
             user1_items.add(stackPane, column, row);
-            row = (i + 1) / 4;
+            row = i / 4;
             column = i % 4;
         }
     }
@@ -97,7 +97,7 @@ public class ProposerEchange {
             stackPane.setAlignment(Pos.CENTER);
             if (items.get(i).getId_echange() == NULL) {
                 items_grid.add(stackPane, column, row);
-                row = (i + 1) / 4;
+                row = i / 4;
                 column = i % 4;
             }
             final int index = i;

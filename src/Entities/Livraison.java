@@ -10,7 +10,7 @@ public class Livraison {
     Date date_creation_livraison, date_terminer_livraison;
 
 
-    Livraison() {}
+    public Livraison() {}
 
     public Livraison(int id_livraison) {
         this.id_livraison = id_livraison;
@@ -31,15 +31,23 @@ public class Livraison {
         this.etat = etat;
     }
 
-    public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, ETAT etat, Date date_creation_livraison) {
+    public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat) {
         this.id_livraison = id_livraison;
         this.id_livreur = id_livreur;
         this.id_echange = id_echange;
         this.adresse_livraison1 = adresse_livraison1;
+        this.adresse_livraison2 = adresse_livraison2;
         this.etat = etat;
-        this.date_creation_livraison = date_creation_livraison;
     }
 
+    public Livraison(int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat) {
+        this.id_livraison = id_livraison;
+        this.id_livreur = id_livreur;
+        this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.adresse_livraison2 = adresse_livraison2;
+        this.etat = etat;
+    }
     public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat, Date date_creation_livraison, Date date_terminer_livraison) {
         this.id_livraison = id_livraison;
         this.id_livreur = id_livreur;
@@ -123,9 +131,11 @@ public class Livraison {
                 "id_livraison=" + id_livraison +
                 ", id_livreur=" + id_livreur +
                 ", id_echange=" + id_echange +
-                ", adresse_livraison='" + adresse_livraison1 + '\'' +
+                ", adresse_livraison1='" + adresse_livraison1 + '\'' +
+                ", adresse_livraison2='" + adresse_livraison2 + '\'' +
                 ", etat=" + etat +
-                ", date_livraison=" + date_creation_livraison +
+                ", date_creation_livraison=" + date_creation_livraison +
+                ", date_terminer_livraison=" + date_terminer_livraison +
                 '}';
     }
 }

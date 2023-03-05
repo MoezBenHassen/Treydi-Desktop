@@ -8,7 +8,7 @@ public class Echange {
     private int id_user1;
     private int id_user2;
     private Date date_echange;
-
+    public enum ETAT {Non_Accepter, Accepter};
 
 
     public Echange() {}

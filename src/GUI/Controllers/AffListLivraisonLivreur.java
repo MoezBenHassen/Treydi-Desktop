@@ -1,9 +1,13 @@
 package GUI.Controllers;
 
+import Entities.Echange;
 import Entities.Livraison;
 import Services.LivraisonService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -11,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AffListLivraisonLivreur {
@@ -28,6 +33,8 @@ public class AffListLivraisonLivreur {
     private TableView<Livraison> livraison_table_view;
 
     LivraisonService ls = new LivraisonService();
+
+    Livraison selectedLivraison;
 
     @FXML
     void initialize() {
@@ -47,14 +54,41 @@ public class AffListLivraisonLivreur {
         adresse_livraison_1.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison1"));
         adresse_livraison_2.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison2"));
 
+        livraison_table_view.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                selectedLivraison = livraison_table_view.getSelectionModel().getSelectedItem();
+
+                if (selectedLivraison != null) {
+                    try {
+                        moveToInfoLivraisonLivreur(event);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+
         afficher_livraison_list();
     }
 
     @FXML
     private void afficher_livraison_list() {
-        List<Livraison> livraisons = ls.afficher();
+        List<Livraison> livraisons = ls.afficherIdLivreur(4);
         livraison_table_view.getItems().clear();
         livraison_table_view.getItems().addAll(livraisons);
+    }
+
+    private void moveToInfoLivraisonLivreur(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/InfoLivraisonLivreur.fxml"));
+        Parent root = loader.load();
+        InfoLivraisonLivreur controller = loader.getController();
+        controller.setSelectedLivraisonInfo(selectedLivraison);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        scene.getStylesheets().add("GUI/Assets/css/style.css");
+        stage.setTitle("Acc");
+        stage.show();
     }
 
     //LOGOUT

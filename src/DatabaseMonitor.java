@@ -30,8 +30,8 @@ public class DatabaseMonitor extends Task<Void> {
                 // compare
                 if (!latestEntry.equals(previousEntry)) {
                     previousEntry = latestEntry;
-                    Platform.runLater(() -> updateMessage(latestEntry)); // Update the UI with the new entry
-                    System.out.println("New entry added: " + latestEntry); // Update the UI with the new entry
+                    Platform.runLater(() -> updateMessage(latestEntry));
+                    System.out.println("New entry added: " + latestEntry);
                 } else {
                     System.out.println("No new entry added");
                 }

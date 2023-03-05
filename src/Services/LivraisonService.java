@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Echange;
 import Entities.Livraison;
 import Utils.MyDB;
 import java.sql.Connection;
@@ -20,8 +21,8 @@ public class LivraisonService implements Services.IService<Livraison> {
     public void add(Livraison l) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
 
-        String req = "INSERT INTO `livraison` ( `date_livraison`, `etat_livraison`, `adresse_livraison`, `id_livreur`, `id_echange`)"
-                + "VALUES ('"+current_date+"', '"+l.getEtat()+"', '"+l.getAdresse_livraison1()+"', '"+l.getId_livreur()+"', '"+l.getId_echange()+"')";
+        String req = "INSERT INTO `livraison` ( `date_creation_livraison`, `etat_livraison`, `adresse_livraison1`, `adresse_livraison2`,  `id_livreur`, `id_echange`)"
+                + "VALUES ('"+current_date+"', '"+l.getEtat()+"', '"+l.getAdresse_livraison1()+"', '"+l.getAdresse_livraison2()+"', '"+l.getId_livreur()+"', '"+l.getId_echange()+"')";
         try {
             stm = con.createStatement();
             stm.executeUpdate(req);
@@ -94,6 +95,88 @@ public class LivraisonService implements Services.IService<Livraison> {
             } else {
                 throw new RuntimeException("No record found");
             }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    //for user adresse livraison
+    public String userAdresse1(Echange e){
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()) {
+                return result.getString("adresse");
+            } else {
+                throw new RuntimeException("No record found");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    public String userAdresse2(Echange e){
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user2()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()) {
+                return result.getString("adresse");
+            } else {
+                throw new RuntimeException("No record found");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
+    //afficher la list des livraison qui appartient a se livreur to be replaced with current user
+    public List<Livraison> afficherIdLivreur(int id_livreur) {
+        List<Livraison> livraison = new ArrayList<>();
+
+        String query = "SELECT * from `livraison` WHERE `id_livreur` = '"+id_livreur+"' AND archived = 0";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(query);
+            while (result.next()) {
+                Livraison l = new Livraison(result.getInt("id_livraison"), result.getInt("id_livreur"), result.getInt("id_echange"),
+                        result.getString("adresse_livraison1"), result.getString("adresse_livraison2"), Livraison.ETAT.valueOf(result.getString("etat_livraison")),
+                        result.getDate("date_creation_livraison"), result.getDate("date_terminer_livraison"));
+                livraison.add(l);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return livraison;
+    }
+
+    public Boolean annulerLivraisonLivreur(Livraison l, Echange e){
+        String req1 = "UPDATE livraison SET archived = 1 AND etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id_livraison = '"+ l.getId_livraison()+"' ";
+
+        try {
+            stm = con.createStatement();
+            int rowsDeleted = stm.executeUpdate(req1);
+            if (rowsDeleted > 0) {
+                String req2 = "UPDATE echange SET liv_etat = '"+Echange.ETAT.Non_Accepter+"' WHERE id_echange = '"+e.getId_echange()+"' ";
+                stm.executeUpdate(req2);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public void completerLivraisonLivreur(Livraison l){
+        String req1 = "UPDATE livraison SET etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id_livraison = '"+ l.getId_livraison()+"' ";
+
+        try {
+            stm = con.createStatement();
+            stm.executeUpdate(req1);
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
