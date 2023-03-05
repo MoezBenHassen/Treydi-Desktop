@@ -109,7 +109,7 @@
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="651.0" layoutX="217.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1228.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="729.0" layoutX="189.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1243.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -122,7 +122,7 @@
          <effect>
             <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
          </effect></Rectangle>
-      <Label id="txt" accessibleRole="BUTTON" layoutX="753.0" layoutY="129.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Items" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="753.0" layoutY="101.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Items" textAlignment="CENTER" />
       <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="493.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
@@ -286,7 +286,7 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tableView" layoutX="246.0" layoutY="230.0" prefHeight="599.0" prefWidth="1171.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
+      <TableView fx:id="tableView" layoutX="219.0" layoutY="168.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
             <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />

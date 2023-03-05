@@ -6,6 +6,7 @@
 #tableView .column-header .filler,
 #tableView .column-header-background .filler {
     -fx-background-color: none;
+    -fx-h
     -fx-border-width: 0;
 }
 
@@ -72,6 +73,11 @@
     -fx-background-color: none;
 }
 
+.column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
 
 .custom-alert {
     -fx-background-color: red;
@@ -82,6 +88,8 @@
 .anchor{
 
 }
+
+
 ﻿
 zelda the wand of gamelon
 Zelda_#3853

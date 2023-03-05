@@ -225,7 +225,7 @@
             <Font name="Impact" size="20.0" />
          </font>
       </RadioButton>
-      <ImageView id="30 30 30 30" fx:id="30 30 30 30" fitHeight="225.0" fitWidth="225.0" layoutX="400.0" layoutY="486.0" pickOnBounds="true">
+      <ImageView id="imageview_imageurl" fx:id="imageview_imageurl" fitHeight="225.0" fitWidth="225.0" layoutX="400.0" layoutY="486.0" pickOnBounds="true">
          <image>
             <Image url="@Assets/Icons/image.png" />
          </image>

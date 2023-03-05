@@ -10,11 +10,14 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,15 +26,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
+import javax.smartcardio.Card;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +76,7 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private TableColumn<Item, String> categorieColumn;
 
+
     @FXML
     private TextField textfield_libelle;
     @FXML
@@ -93,7 +99,12 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private Pane chercherPane;
 
+    @FXML
+    private ScrollPane scrollpane;
+
+
     private  List<Item> items ;
+
     private  List<Categorie_Items> categories ;
 
     @Override
@@ -102,6 +113,18 @@ public class AfficherItemUserController implements Initializable {
 
         ItemService sp = new ItemService();
         items = sp.afficher();
+        CategorieItemsService sp2 = new CategorieItemsService();
+        categories = sp2.afficher();
+        afficher(items) ;
+
+        combobox_cat.getItems().add("Toutes");
+        for (Categorie_Items categorieItems : categories) {
+            combobox_cat.getItems().add(categorieItems.getNom_categorie());
+        }
+
+
+
+        /**
         tableView.setItems(FXCollections.observableArrayList(items));
 
         CategorieItemsService sp2 = new CategorieItemsService();
@@ -169,9 +192,78 @@ public class AfficherItemUserController implements Initializable {
                     }
                 }
         );
+*/
 
 
 
+    }
+
+    @FXML
+    private void afficher(List<Item> items) {
+        GridPane gridpane = new GridPane();
+
+        scrollpane.setContent(gridpane);
+
+        Slider slider = new Slider(0.5, 2, 1);
+
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            gridpane.setScaleX(newValue.doubleValue());
+            gridpane.setScaleY(newValue.doubleValue());
+        });
+
+
+        int row = 0;
+        int col = 0;
+        for (Item obj : items) {
+
+            Image image = new Image(obj.getImageurl());
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(182);
+            imageView.setFitWidth(182);
+
+            Label libelleLabel = new Label(obj.getLibelle());
+            libelleLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 20");
+
+            String cat = categories.stream().filter((t) -> t.getId_categorie() == obj.getId_categorie()).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+            Label categorieLabel = new Label(cat);
+            categorieLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15;");
+
+            Label typeetatLabel = new Label();
+            typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+            Label emp = new Label("");
+
+            if (obj.getType().equals("Physique")) {
+                if (obj.getEtat().equals("Neuf")) {
+                    typeetatLabel.setText("Physique Neuf");
+                } else {
+                    typeetatLabel.setText("Physique Occasion");
+                }
+            } else if (obj.getType().equals("Virtuelle")) {
+                typeetatLabel.setText("Virtuelle");
+            } else {
+                typeetatLabel.setText("Service");
+            }
+
+            VBox vbox = new VBox(imageView, libelleLabel, categorieLabel, typeetatLabel);
+            vbox.setSpacing(4);
+            vbox.setPrefWidth(208);
+            vbox.setPrefHeight(283);
+            vbox.setAlignment(Pos.CENTER);
+
+            vbox.setStyle("-fx-background-color: rgba(156, 156, 156, 0.24); -fx-background-radius: 22");
+
+            gridpane.add(vbox, col, row);
+
+            col++;
+            if (col == 5) {
+                col = 0;
+                row++;
+            }
+        }
+
+        gridpane.setHgap(27);
+        gridpane.setVgap(35);
 
     }
 
@@ -387,13 +479,13 @@ public class AfficherItemUserController implements Initializable {
         }
 
         if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()) || (cb_type_4.isSelected()))) {
-            tableView.setItems(FXCollections.observableArrayList(itemstream));
+            afficher(itemstream) ;
         } else {
             List<Item> itemstreamcf = itemstreamc1;
             itemstreamcf.addAll(itemstreamc2);
             itemstreamcf.addAll(itemstreamc3);
             itemstreamcf.addAll(itemstreamc4);
-            tableView.setItems(FXCollections.observableArrayList(itemstreamcf));
+            afficher(itemstreamcf) ;
         }
     }
 
