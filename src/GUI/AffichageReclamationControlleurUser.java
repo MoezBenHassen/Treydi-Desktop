@@ -146,10 +146,10 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             stage.initStyle(StageStyle.UNDECORATED);
             scene.setFill(Color.TRANSPARENT);
             stage.initStyle(StageStyle.TRANSPARENT);
-           /* stage.setWidth(1024);
-            stage.setHeight(768); */
             stage.setScene(scene);
             stage.showAndWait();
+            afficher();
+
         }
     }
 

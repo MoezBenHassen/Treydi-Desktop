@@ -5,55 +5,114 @@ import Entities.Reponse;
 
 import Services.ServiceReponse;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AffichageReponseUserControlleur  implements Initializable {
 
-    @FXML
-    private TableView<Reponse> tableView;
 
     @FXML
-    private TableColumn<Reponse, String> titreR;
+    private VBox pnrep = null;
+    @FXML
+    private Label titrerep;
 
     @FXML
-    private TableColumn<Reponse, String> descriptionR;
+    private Label descriptionrep;
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private Label idrep;
+    private List<Reponse> reponses;
+
     @FXML
     private int idReclamation;
-    public void setIdReclamation(int idReclamation) {this.idReclamation = idReclamation;
-        System.out.println(idReclamation);
-        afficherRep(idReclamation);
 
+    public void setIdReclamation(int idReclamation) {
+        this.idReclamation = idReclamation;
+        System.out.println(idReclamation);
+        afficherRe(idReclamation);
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        titreR.setCellValueFactory(new PropertyValueFactory<>("titre_reponse"));
-        descriptionR.setCellValueFactory(new PropertyValueFactory<>("description_reponse"));
 
 
-    }
-   @FXML
+
+
+        }
+
+
+    @FXML
+    private void afficherRe(int idReclamation) {
+        ServiceReponse sp = new ServiceReponse();
+        reponses = sp.afficherRep(idReclamation);
+        System.out.println(idReclamation);
+        VBox vbox = new VBox();
+
+        scrollPane.setContent(vbox);
+
+        Slider slider = new Slider(0.5, 2, 1);
+        slider.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent;");
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            vbox.setScaleX(newValue.doubleValue());
+            vbox.setScaleY(newValue.doubleValue());
+        });
+        scrollPane.setStyle("-fx-background-color: transparent;");
+
+        for (Reponse obj : reponses) {
+
+            Label titrerep = new Label(obj.getTitre_reponse());
+            Label descriptionrep = new Label(obj.getDescription_reponse());
+
+            titrerep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            descriptionrep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            HBox hbox = new HBox(titrerep, descriptionrep);
+            titrerep.setAlignment(Pos.CENTER_LEFT);
+
+            descriptionrep.setAlignment(Pos.CENTER);
+            hbox.setSpacing(150);
+            hbox.setPrefWidth(1090);
+            hbox.setPrefHeight(150);
+            hbox.setStyle("-fx-background-radius: 25");
+            hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: #56144D; -fx-text-fill: #56144D !important; -fx-border-radius: 5;-fx-background-radius: 5;"));
+            hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-color: transparent;"));
+            hbox.setAlignment(Pos.CENTER_LEFT);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.setStyle("-fx-background-color: transparent; -fx-background-radius: 25");
+
+            vbox.getChildren().add(hbox);
+
+
+        }
+}
+
+
+
+   /*@FXML
     private void afficherRep(int idReclamation) {
         ServiceReponse sr = new ServiceReponse();
-        List<Reponse> Reponsess = sr.afficherRep(idReclamation) ;
-        tableView.getItems().clear();
+
+         tableView.getItems().clear();
         tableView.getItems().addAll(Reponsess);
 
-    }
+    }*/
 
     /*@FXML
     private void afficher() {
@@ -97,7 +156,7 @@ public class AffichageReponseUserControlleur  implements Initializable {
             stage.showAndWait();
         }
     }*/
-    @FXML
+    /*@FXML
     void supprimer(MouseEvent event) {
         Reponse selectedrep = tableView.getSelectionModel().getSelectedItem();
         if (selectedrep != null) {
@@ -121,29 +180,29 @@ public class AffichageReponseUserControlleur  implements Initializable {
             alert.setContentText("Veuillez sélectionner  .");
             alert.showAndWait();
         }
-    }
+    }*/
 
-    Stage stage;
-    @FXML
-    private AnchorPane scenePane;
-    public void logout(MouseEvent event) {
+        Stage stage;
+        @FXML
+        private AnchorPane scenePane;
+        public void logout (MouseEvent event){
 
-        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to exit ! ");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText("You're about to exit ! ");
 
-        if(alert.showAndWait().get() == ButtonType.OK){
-            stage = (Stage) scenePane.getScene().getWindow();
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                stage = (Stage) scenePane.getScene().getWindow();
 
-            stage.close();
+                stage.close();
+            }
         }
-    }
 
-    @FXML
-    public void Minimize (MouseEvent event ){
-        Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage1.setIconified(true);
-    }
+        @FXML
+        public void Minimize (MouseEvent event ){
+            Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage1.setIconified(true);
+        }
 
-}
+    }
 

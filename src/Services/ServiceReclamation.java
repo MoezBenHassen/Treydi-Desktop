@@ -88,11 +88,6 @@ public class ServiceReclamation implements IService<Reclamation> {
 
 
 
-
-
-
-
-
     public Boolean supprimer(Reclamation R){
 
         String qry = "UPDATE `reclamation` SET `archived`='"+ 1 +"' where id_reclamation ='" + R.getId_reclamation() + "'";
@@ -105,6 +100,9 @@ public class ServiceReclamation implements IService<Reclamation> {
             return false;
         }
     }
+
+
+
 
     }
 

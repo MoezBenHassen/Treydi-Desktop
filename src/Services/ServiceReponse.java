@@ -24,7 +24,7 @@ public class ServiceReponse implements IService<Reponse> {
        java.sql.Date dateR = new java.sql.Date(System.currentTimeMillis());
         try {
             String qry = "INSERT INTO `reponse`( `titre_reponse`, `description_reponse`, `date_reponse`, `id_reclamation`, `archived`) VALUES ('" + Re.getTitre_reponse() + "','" + Re.getDescription_reponse() + "','" + dateR + "','" + Re.getId_reclamation() + "','" + 0 +"')";
-            String qry2 = "UPDATE `reclamation` SET `etat_reclamation`='" + Etat_reclamation.Traité + "',`date_cloture`='" +  dateclo + "'  WHERE id_reclamation=" + Re.getId_reclamation();
+            String qry2 = "UPDATE `reclamation` SET `etat_reclamation`='" + Etat_reclamation.Traité + "',`date_cloture`='" +  dateclo + "'   WHERE id_reclamation=" + Re.getId_reclamation();
             stm = cnx.createStatement();
             stm.addBatch(qry);
             stm.addBatch(qry2);
