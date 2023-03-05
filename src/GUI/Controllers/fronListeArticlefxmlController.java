@@ -44,13 +44,13 @@ public class fronListeArticlefxmlController implements Initializable {
         try{
             for (int i = 0; i < recentlyAdded.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                System.out.println("CHOSE");
+
                 fxmlLoader.setLocation(getClass().getResource("../articleCard.fxml"));
-                System.out.println("CHOSE2");
+
                 VBox cardBox = fxmlLoader.load();
-                System.out.println("CHOSE3");
+
                 articleCardController articleCardController = fxmlLoader.getController();
-                System.out.println("Setting data for article " + recentlyAdded.get(i).getDescription());
+
                 articleCardController.setData(recentlyAdded.get(i));
                 cardLayout.getChildren().add(cardBox);
             }
