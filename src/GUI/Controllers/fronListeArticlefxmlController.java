@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,23 +42,26 @@ public class fronListeArticlefxmlController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recentlyAdded = new ArrayList<>(recentlyAdded());
-        try{
+
             for (int i = 0; i < recentlyAdded.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../articleCard.fxml"));
 
-                fxmlLoader.setLocation(getClass().getResource("../articleCard.fxml"));
-
-                VBox cardBox = fxmlLoader.load();
+                //fxmlLoader.setLocation(getClass().getResource("../articleCard.fxml"));
+                VBox cardBox = null;
+                try {
+                    cardBox = fxmlLoader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 articleCardController articleCardController = fxmlLoader.getController();
 
                 articleCardController.setData(recentlyAdded.get(i));
+                System.out.println("End of initialize method");
                 cardLayout.getChildren().add(cardBox);
             }
-        }catch (IOException e){
-            Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null,e);
-        }
-        System.out.println("End of initialize method");
+
+
     }
 
     private List<Article> recentlyAdded(){

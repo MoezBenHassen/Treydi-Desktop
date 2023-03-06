@@ -119,3 +119,14 @@
 .shadow{
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 10);
 }
+.articleCardContent{
+    -fx-padding: 10 10 10 10;
+}
+.articleCard{
+    -fx-padding: 7 7 7 7;
+}
+
+.categorieButton{
+    -fx-background-radius: 50;
+    -fx-background-color: yellow;
+}

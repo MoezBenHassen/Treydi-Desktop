@@ -70,6 +70,8 @@ public class USERListeArticlesController implements Initializable {
     private void afficherArticles(){
         ArticleService articleService = new ArticleService();
         articles= articleService.afficher();
+
+
         VBox vBox= new VBox();
         scrollPane.setContent(vBox);
         Slider slider = new Slider(0.5,2,1);
@@ -84,9 +86,15 @@ public class USERListeArticlesController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../cardA.fxml"));
 
-            HBox hBox = null;
+
+                    HBox hBox = null;
             try {
                 hBox = loader.load();
+                cardAController cardAController = loader.getController();
+
+                System.out.println("CCCCCC");
+                cardAController.setData(obj.getTitre(), obj.getDescription(), obj.getId_categorie());
+                System.out.println("FFFFF");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

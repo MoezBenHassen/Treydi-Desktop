@@ -171,11 +171,7 @@
       </Button>
       <VBox fx:id="vbox1" layoutX="191.0" layoutY="202.0" prefHeight="592.0" prefWidth="1238.0">
          <children>
-            <ScrollPane fx:id="scrollPane" prefHeight="593.0" prefWidth="1307.0" stylesheets="@Assets/css/style.css">
-               <content>
-                  <VBox fx:id="cardLayout" prefHeight="591.0" prefWidth="1238.0" stylesheets="@Assets/css/style.css" />
-               </content>
-            </ScrollPane>
+            <ScrollPane fx:id="scrollPane" prefHeight="593.0" prefWidth="1307.0" stylesheets="@Assets/css/style.css" />
          </children>
       </VBox>
 
