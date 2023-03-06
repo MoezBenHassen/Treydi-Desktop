@@ -94,6 +94,14 @@ public class USERListeArticlesController implements Initializable {
 
                 System.out.println("CCCCCC");
                 cardAController.setData(obj.getTitre(), obj.getDescription(), obj.getId_categorie());
+
+                vBox.setAlignment(Pos.CENTER_LEFT);
+                vBox.setStyle("-fx-background-color: transparent !important; -fx-background-radius: 25 ");
+                HBox finalHBox = hBox;
+                hBox.setOnMouseEntered(e -> finalHBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+                HBox finalHBox1 = hBox;
+                hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
+                vBox.setSpacing(8);
                 System.out.println("FFFFF");
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -115,6 +123,7 @@ public class USERListeArticlesController implements Initializable {
             */
 
             vBox.getChildren().add(hBox);
+            scrollPane.setContent(vBox);
         }
     }
 }

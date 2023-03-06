@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="948.0" spacing="15.0" style="-fx-background-radius: 15;" styleClass="articleCard" stylesheets="@Assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.cardAController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="880.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-radius: 15;" styleClass="shadow" stylesheets="@Assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.cardAController">
    <children>
-      <ImageView fitHeight="186.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Assets/images/clean.jpg" />
-         </image>
-      </ImageView>
-      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="897.0" spacing="15.0" style="-fx-background-color: RED;" styleClass="articleCardContent" stylesheets="@Assets/css/style.css">
+      <VBox alignment="CENTER_LEFT" prefHeight="134.0" prefWidth="739.0" spacing="5.0" styleClass="articleCardContent" stylesheets="@Assets/css/style.css">
          <children>
             <Label fx:id="cardTitle" text="Titre">
                <font>
-                  <Font name="System Bold" size="55.0" />
+                  <Font name="System Bold" size="38.0" />
                </font>
             </Label>
             <Label fx:id="cardDescription" text="Description">
@@ -27,7 +22,16 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="categorieButton" mnemonicParsing="false" styleClass="categorieButton" stylesheets="@Assets/css/style.css" text="Button" />
+            <Rating prefHeight="32.0" prefWidth="138.0" />
+            <Button fx:id="categorieButton" mnemonicParsing="false" style="-fx-font-family: impact;" styleClass="categorieButton" stylesheets="@Assets/css/style.css" text="Button">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
          </children></VBox>
    </children>
+   <padding>
+      <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+   </padding>
 </HBox>

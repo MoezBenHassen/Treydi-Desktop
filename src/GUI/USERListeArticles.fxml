@@ -9,7 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -169,11 +168,6 @@
          </graphic>
       </Button>
       <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
-      <ScrollPane fx:id="scrollPane" layoutX="343.0" layoutY="221.0" prefHeight="546.0" prefWidth="911.0" stylesheets="@Assets/css/style.css">
-         <content>
-            <VBox fx:id="cardLayout" prefHeight="546.0" prefWidth="915.0" stylesheets="@Assets/css/style.css" />
-         </content>
-      </ScrollPane>
-
+      <ScrollPane fx:id="scrollPane" layoutX="343.0" layoutY="221.0" prefHeight="546.0" prefWidth="911.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/style.css" />
    </children>
 </AnchorPane>
