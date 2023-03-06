@@ -11,13 +11,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -26,6 +30,9 @@ import java.util.ResourceBundle;
 public class AffichageReponseUserControlleur  implements Initializable {
 
 
+    HBox hbox ;
+    @FXML
+    private ImageView supp ;
     @FXML
     private VBox pnrep = null;
     @FXML
@@ -52,8 +59,6 @@ public class AffichageReponseUserControlleur  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-
 
 
         }
@@ -83,36 +88,51 @@ public class AffichageReponseUserControlleur  implements Initializable {
 
             titrerep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
             descriptionrep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
-            HBox hbox = new HBox(titrerep, descriptionrep);
-            titrerep.setAlignment(Pos.CENTER_LEFT);
+            HBox hbox= new HBox(titrerep, descriptionrep);
 
+            hbox.setOnMouseClicked(event -> {
+                supp.setOnMouseClicked(event1 -> {
+                    boolean result = sp.supprimer(obj);
+                    if (result) {
+                        vbox.getChildren().remove(hbox);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Erreur lors de la suppression.");
+                        alert.showAndWait();
+                    }
+                });
+            });
+            titrerep.setAlignment(Pos.CENTER_LEFT);
             descriptionrep.setAlignment(Pos.CENTER);
-            hbox.setSpacing(150);
+
+
+
+            hbox.setSpacing(300);
             hbox.setPrefWidth(1090);
             hbox.setPrefHeight(150);
-            hbox.setStyle("-fx-background-radius: 25");
-            hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: #56144D; -fx-text-fill: #56144D !important; -fx-border-radius: 5;-fx-background-radius: 5;"));
-            hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-color: transparent;"));
+            hbox.setStyle("-fx-background-radius: 25 ;-fx-background-color: rgba(255, 255, 255, 0.5);");
+
+           // hbox.setOnMouseEntered(e -> finalhbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+            // HBox finalHBox1 = hBox;
+            // hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
+
+            hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+
+            hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
+
+          //  hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+           // hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-color: transparent;"));
             hbox.setAlignment(Pos.CENTER_LEFT);
             vbox.setAlignment(Pos.CENTER);
+            vbox.setSpacing(8);
             vbox.setStyle("-fx-background-color: transparent; -fx-background-radius: 25");
 
             vbox.getChildren().add(hbox);
 
-
         }
 }
-
-
-
-   /*@FXML
-    private void afficherRep(int idReclamation) {
-        ServiceReponse sr = new ServiceReponse();
-
-         tableView.getItems().clear();
-        tableView.getItems().addAll(Reponsess);
-
-    }*/
 
     /*@FXML
     private void afficher() {
@@ -180,8 +200,9 @@ public class AffichageReponseUserControlleur  implements Initializable {
             alert.setContentText("Veuillez sélectionner  .");
             alert.showAndWait();
         }
-    }*/
 
+    }
+*/
         Stage stage;
         @FXML
         private AnchorPane scenePane;

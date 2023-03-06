@@ -150,7 +150,7 @@
                 <Image url="@Assets/icons/pink/list.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="supp" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/blue/trash-bin.png" />
             </image>
