@@ -1,6 +1,7 @@
 package GUI.Controllers;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
+import Utils.CurrentUser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import Utils.CurrentUser;
 import javax.swing.text.html.ImageView;
 
 public class LoginController implements  Initializable {
@@ -26,6 +27,8 @@ public class LoginController implements  Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    private Roles role;
     @FXML
     private Button logoutButton;
 
@@ -53,6 +56,12 @@ public class LoginController implements  Initializable {
         if (id != 0) {
             Utilisateur user = us.getUserById(id);
             try {
+                // Set the current user instance
+                CurrentUser.setInstance(CurrentUser.getInstance(
+                        user.getPassword(), user.getNom(), user.getPrenom(),
+                        user.getEmail(), user.getAdresse(), user.getAvatar_url(),
+                        user.getRole(), user.getId_user()));
+
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setTitle("Welcome to Treydi");
                 System.out.println("User role: " + user.getRole());
@@ -65,7 +74,11 @@ public class LoginController implements  Initializable {
                     stage.setScene(scene);
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
-               }
+                    CurrentUser currentUser = CurrentUser.getInstance();
+                    Roles userRole = currentUser.getRole();
+                    System.out.println("User role: " + userRole);
+
+                }
                 if (user.getRole().name().equalsIgnoreCase(Roles.livreur.name())) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../LivreurHome.fxml"));
                     Parent root = loader.load();
@@ -74,7 +87,9 @@ public class LoginController implements  Initializable {
                     stage.setTitle("Login");
                     stage.setScene(scene);
                     stage.show();
-
+                    CurrentUser currentUser = CurrentUser.getInstance();
+                    Roles userRole = currentUser.getRole();
+                    System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                 }
@@ -86,17 +101,20 @@ public class LoginController implements  Initializable {
                     stage.setTitle("Login");
                     stage.setScene(scene);
                     stage.show();
-
+                    CurrentUser currentUser = CurrentUser.getInstance();
+                    Roles userRole = currentUser.getRole();
+                    System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                 }
-                } catch (IOException ex) {
+            } catch (IOException ex) {
                 System.out.println("Exception loading FXML file: " + ex.getMessage());
             }
         } else {
             erreurfd.setText("Vérifiez votre Email et Mot de passe");
         }
     }
+
     @FXML
     public void inscription(javafx.event.ActionEvent event) {
         try {

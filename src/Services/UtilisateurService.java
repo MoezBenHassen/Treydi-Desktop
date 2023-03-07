@@ -143,7 +143,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return null;
     }
-    @Override
+  @Override
     public Boolean modifier(Utilisateur user){
         try {
             String qry = "";
@@ -199,6 +199,8 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return false;
     }
+
+
     public int Validate(String email, String password) {
         int id=0;
         try {
@@ -253,6 +255,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return user;
     }
+
     public Utilisateur getUserByEmail(String email) {
         Utilisateur user = null;
         try {

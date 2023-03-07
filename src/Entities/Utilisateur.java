@@ -1,5 +1,6 @@
 package Entities;
 import Utils.Enums.Roles;
+import javafx.scene.image.Image;
 
 public class Utilisateur {
     private int id_user;
@@ -51,9 +52,26 @@ public class Utilisateur {
         this.adresse = adresse;
         this.role = role;
     }
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, int id_user) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.id_user = id_user;
+    }
     public Utilisateur(int id_user) {
         this.id_user = id_user;
     }
+
+    public Utilisateur(String password, String nom, String prenom, String avatarUrl, int id_user, int archived) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_user = id_user;
+        this.archived = archived;
+    }
+
 
     public int getArchived() {
         return archived;

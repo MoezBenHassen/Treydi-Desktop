@@ -14,13 +14,18 @@ public class Trader extends Utilisateur{
         this.date_naissance = date_naissance;
     }
 
-    public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance,int archived) {
+    public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score,int archived, Date date_naissance) {
         super(password, nom, prenom, email, adresse, avatar_url, role,archived);
         this.score = score;
         this.date_naissance = date_naissance;
     }
     public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance,int id_user,int archived) {
         super(password, nom, prenom, email, adresse, avatar_url, role,id_user,archived);
+        this.score = score;
+        this.date_naissance = date_naissance;
+    }
+    public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance,int id_user) {
+        super(password, nom, prenom, email, adresse, avatar_url, role,id_user);
         this.score = score;
         this.date_naissance = date_naissance;
     }

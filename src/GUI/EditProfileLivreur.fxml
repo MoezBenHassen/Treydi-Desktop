@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane1" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.EditProfileTraderController">
+<AnchorPane id="AnchorPane" fx:id="scenePane1" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.EditProfileLivreurController">
    <children>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
@@ -93,7 +93,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/yellow/helmet.png" />
+                  <Image url="@Assets/icons/blue/helmet.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">

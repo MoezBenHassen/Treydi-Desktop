@@ -1,9 +1,10 @@
 package GUI.Controllers;
 
+import Entities.Livreur;
 import Entities.Trader;
+import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.CurrentUser;
-import Utils.Enums.Roles;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,22 +18,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import Entities.Utilisateur;
-import Services.UtilisateurService;
 import javafx.stage.Stage;
-import javafx.scene.image.ImageView;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class EditProfileTraderController implements Initializable {
+public class EditProfileLivreurController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
     private Utilisateur selectedUser;
@@ -99,13 +97,13 @@ public class EditProfileTraderController implements Initializable {
             a.setContentText("Veuillez remplir tous les champs.");
             a.show();
         } else  {
-            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),null,CurrentUser.getInstance().getRole(),12,new Date(0,0,0),CurrentUser.getInstance().getId_user(),0);
+            Utilisateur newUser = new Livreur(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),null,CurrentUser.getInstance().getRole(),CurrentUser.getInstance().getId_user(),0);
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Notification");
             a.setContentText("L'utilisateur a été modifié avec succès!");
             a.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/TraderHome.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LivreurHome.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -137,7 +135,7 @@ public class EditProfileTraderController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-    public void logout(javafx.event.ActionEvent actionEvent) {
+    public void logout(ActionEvent actionEvent) {
 
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");

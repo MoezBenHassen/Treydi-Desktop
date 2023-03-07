@@ -171,32 +171,26 @@
             <Font size="21.0" />
          </font>
       </Text>
-      <TextField layoutX="492.0" layoutY="583.0" opacity="0.61" prefHeight="31.0" prefWidth="261.0" />
-      <Text fill="WHITE" layoutX="401.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Text>
       <TextField layoutX="492.0" layoutY="503.0" opacity="0.61" prefHeight="31.0" prefWidth="261.0" />
-      <Text fill="WHITE" layoutX="401.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+      <Text fill="WHITE" layoutX="401.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
       <TextField layoutX="493.0" layoutY="426.0" opacity="0.61" prefHeight="31.0" prefWidth="261.0" />
-      <Text fill="WHITE" layoutX="401.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+      <Text fill="WHITE" layoutX="401.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
       <TextField layoutX="492.0" layoutY="353.0" opacity="0.61" prefHeight="31.0" prefWidth="261.0" />
-      <Text fill="WHITE" layoutX="400.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+      <Text fill="WHITE" layoutX="400.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
       <TextField layoutX="892.0" layoutY="273.0" opacity="0.61" prefHeight="31.0" prefWidth="261.0" />
-      <Text fill="WHITE" layoutX="800.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+      <Text fill="WHITE" layoutX="800.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom">
          <font>
             <Font size="21.0" />
          </font>

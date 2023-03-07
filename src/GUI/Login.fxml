@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -36,11 +37,6 @@
                         <Insets />
                     </opaqueInsets>
                 </TextField>
-                <TextField fx:id="tfpassword" accessibleRole="RADIO_MENU_ITEM" layoutX="106.0" layoutY="400.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-width: 0;">
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                </TextField>
                 <Text fill="WHITE" layoutX="97.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="126.98307228088379">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -68,6 +64,7 @@
                </image>
             </ImageView>
             <TextField fx:id="erreurfd" layoutX="283.0" layoutY="620.0" />
+            <PasswordField fx:id="tfpassword" layoutX="106.0" layoutY="399.0" opacity="0.7" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
             </children>
         </AnchorPane>
       <ImageView fitHeight="145.0" fitWidth="145.0" layoutX="626.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

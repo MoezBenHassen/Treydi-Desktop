@@ -1,32 +1,24 @@
 package Utils;
 
-import Entities.Utilisateur;
 import Utils.Enums.Roles;
 
 import java.util.Date;
 
 public class CurrentUser {
-
-    private static CurrentUser instance;
-    private Utilisateur currentUser;
-
-    public Utilisateur getCurrentUser() {
-        return currentUser;
-    }
-
-    private CurrentUser(Utilisateur currentUser) {
-        this.currentUser = currentUser;
-    }
-    private int id_user;
-    private String password,nom,prenom,email,adresse,avatar_url;
-    public Roles role;
+    // Add fields specific to Trader
     private int score;
     private Date date_naissance;
+    private String sessionId;
 
+    private static CurrentUser instance;
 
-    //Admin
-    public CurrentUser(int id_user, String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
-        this.id_user = id_user;
+    private int id_user;
+    private String password, nom, prenom, email, adresse, avatar_url;
+    private Roles role;
+    private int archived;
+
+    // Private constructor to prevent instantiation from outside the class
+    private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id_user) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
@@ -34,45 +26,45 @@ public class CurrentUser {
         this.adresse = adresse;
         this.avatar_url = avatar_url;
         this.role = role;
+        this.id_user =id_user;
     }
-    public static CurrentUser getInstance(int id_user, String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
-        if (instance == null)
-            instance = new CurrentUser(id_user,password,nom,prenom,email,adresse,avatar_url,role);
+
+    public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id_user) {
+        if (instance == null) {
+            // Synchronize here to ensure that only one instance is created
+            synchronized (CurrentUser.class) {
+                if (instance == null) {
+                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role, id_user);
+                }
+            }
+        }
         return instance;
     }
 
-    //Trader
+    public static CurrentUser getInstance() {
+        return instance;
+    }
 
-    public CurrentUser(int id_user, String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, Date date_naissance) {
-        this.id_user = id_user;
-        this.password = password;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.adresse = adresse;
-        this.avatar_url = avatar_url;
-        this.role = role;
+    // Add methods specific to Trader
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
         this.score = score;
+    }
+
+    public Date getDate_naissance() {
+        return date_naissance;
+    }
+
+    public void setDate_naissance(Date date_naissance) {
         this.date_naissance = date_naissance;
     }
-    public static CurrentUser getInstance(int id_user, String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role ,int score, Date date_naissance) {
-        if (instance == null)
-            instance = new CurrentUser(id_user,password,nom,prenom,email,adresse,avatar_url,role,score,date_naissance);
-        return instance;
+
+    public static void setInstance(CurrentUser instance) {
+        CurrentUser.instance = instance;
     }
-    //livreur
-    /*
-    public CurrentUser(int id_user, String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
-        this.id_user = id_user;
-        this.password = password;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.adresse = adresse;
-        this.avatar_url = avatar_url;
-        this.role = role;
-    }
-     */
 
     public int getId_user() {
         return id_user;
@@ -138,28 +130,42 @@ public class CurrentUser {
         this.role = role;
     }
 
-    public int getScore() {
-        return score;
+    public int getArchived() {
+        return archived;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setArchived(int archived) {
+        this.archived = archived;
     }
 
-    public Date getDate_naissance() {
-        return date_naissance;
-    }
-
-    public void setDate_naissance(Date date_naissance) {
-        this.date_naissance = date_naissance;
-    }
-    public static void clearInstance() {
-        instance = null;
-    }
-    public static CurrentUser getInstance() {
-        return instance;
-    }
-    public static void setInstance(Utilisateur user) {
-        instance=new CurrentUser(user);
+    // Override toString method to include Trader specific fields
+    @Override
+    public String toString() {
+        if (this.role == Roles.trader) {
+            return "\nTrader{" +
+                    "id_user=" + id_user +
+                    ", password='" + password + '\'' +
+                    ", nom='" + nom + '\'' +
+                    ", prenom='" + prenom + '\'' +
+                    ", email='" + email + '\'' +
+                    ", adresse='" + adresse + '\'' +
+                    ", avatar_url='" + avatar_url + '\'' +
+                    ", role=" + role +
+                    ", score=" + score +
+                    ", date_naissance=" + date_naissance +
+                    '}';
+        } else {
+            return "\nCurrentUser{" +
+                    "id_user=" + id_user +
+                    ", password='" + password + '\'' +
+                    ", nom='" + nom + '\'' +
+                    ", prenom='" + prenom + '\'' +
+                    ", email='" + email + '\'' +
+                    ", adresse='" + adresse + '\'' +
+                    ", avatar_url='" + avatar_url + '\'' +
+                    ", role=" + role +
+                    '}';
+        }
     }
 }
+
