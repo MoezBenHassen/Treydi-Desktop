@@ -1,8 +1,10 @@
 package GUI.Controllers;
+import Entities.Trader;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.Enums.Roles;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
@@ -44,6 +47,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class DashbordAdminController implements Initializable {
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML
     private TableView<Utilisateur> tableView;
@@ -105,6 +110,7 @@ public class DashbordAdminController implements Initializable {
         tfrole.setCellValueFactory(new PropertyValueFactory<>("role"));
         tfscore.setCellValueFactory(new PropertyValueFactory<>("score"));
         tfdate.setCellValueFactory(new PropertyValueFactory<>("date_naissance"));
+        tfid_user.setCellValueFactory(new PropertyValueFactory<>("id_user"));
 
 
         afficher() ;
@@ -219,6 +225,70 @@ public class DashbordAdminController implements Initializable {
         }
 
     }
+    @FXML
+    private void modifier(javafx.event.ActionEvent event) throws IOException {
+        Utilisateur selectmod = tableView.getSelectionModel().getSelectedItem();
+        if (selectmod != null) {
+            if (selectmod instanceof Trader) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ModifierTrader.fxml"));
+                Parent root = loader.load();
+                ModifierTraderController controller = loader.getController();
+                controller.setSelectedUser((Trader) selectmod);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        xOffset = event.getSceneX();
+                        yOffset = event.getSceneY();
+                    }
+                });
+                //move around here
+                root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage.setX(event.getScreenX() - xOffset);
+                        stage.setY(event.getScreenY() - yOffset);
+                    }
+                });
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ModifierUser.fxml"));
+                Parent root = loader.load();
+                ModifierUserController controller = loader.getController();
+                controller.setSelectedUser(selectmod);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        xOffset = event.getSceneX();
+                        yOffset = event.getSceneY();
+                    }
+                });
+                //move around here
+                root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage.setX(event.getScreenX() - xOffset);
+                        stage.setY(event.getScreenY() - yOffset);
+                    }
+                });
+                scene.setFill(Color.TRANSPARENT);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } else {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setHeaderText("Operation");
+            a.setContentText("Sélectionner item à modifier:");
+            a.show();
+        }
+    }
+
+
     public void logout(javafx.event.ActionEvent actionEvent) {
 
         Alert alert=new Alert(Alert.AlertType.CONFIRMATION);

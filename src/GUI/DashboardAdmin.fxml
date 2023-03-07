@@ -140,7 +140,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="50.0" layoutY="414.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="50.0" layoutY="414.0" mnemonicParsing="false" onAction="#modifier" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -178,6 +178,7 @@
       <Label id="txt" accessibleRole="BUTTON" layoutX="633.0" layoutY="152.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Liste d'utlilisateur" textAlignment="CENTER" />
       <TableView fx:id="tableView" layoutX="354.0" layoutY="250.0" prefHeight="511.0" prefWidth="896.0" stylesheets="@Assets/css/style.css">
          <columns>
+            <TableColumn fx:id="tfid_user" prefWidth="75.0" text="id_user" visible="false" />
             <TableColumn fx:id="tfarchived" prefWidth="72.0" text="archived" />
             <TableColumn fx:id="tfnom" prefWidth="82.0" text="nom" />
             <TableColumn fx:id="tfprenom" prefWidth="116.0" text="prenom" />
