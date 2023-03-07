@@ -155,12 +155,16 @@
                 <Image url="@Assets/icons/blue/trash-bin.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="mod" fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/blue/pencil.png" />
             </image>
         </ImageView>
-      <ScrollPane fx:id="scrollPane" layoutX="216.0" layoutY="166.0" prefHeight="641.0" prefWidth="1116.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/scrollepane.css" />
+      <ScrollPane fx:id="scrollpane" layoutX="219.0" layoutY="167.0" prefHeight="641.0" prefWidth="1123.0" style="-fx-background-color: transparant;" stylesheets="@Assets/css/scrollepane.css">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
 
     </children>
 

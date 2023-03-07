@@ -38,7 +38,6 @@ public class ServiceReclamation implements IService<Reclamation> {
         public  List<Reclamation> afficher() {
             List<Reclamation> Reclamations = new ArrayList();
             try {
-
                 String qry = "SELECT * FROM `reclamation`  WHERE archived = 0";
                 stm = cnx.createStatement();
 
@@ -52,7 +51,7 @@ public class ServiceReclamation implements IService<Reclamation> {
                     p.setEtat_reclamation(Etat_reclamation.valueOf(rs.getString("etat_reclamation")));
                     p.setDate_creation(rs.getDate("date_creation"));
                     p.setDate_cloture(rs.getDate("date_cloture"));
-                    p.setId_reclamation(rs.getInt("id_reclamation"));
+                    p.setId_user(rs.getInt("id_user"));
                     Reclamations.add(p);
                 }
             } catch (SQLException ex) {

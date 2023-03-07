@@ -4,22 +4,37 @@ import Entities.Reclamation;
 import Entities.Reponse;
 import Services.ServiceReclamation;
 import Services.ServiceReponse;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -30,27 +45,210 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
+
 public class AffichageReclamationControlleurUser  implements Initializable {
+
     @FXML
     private TextField titrechercher;
     private  List<Reclamation> reclist ;
     @FXML
-    private TableView<Reclamation> tableView;
-
-    @FXML
-    private TableColumn<Reclamation, String> titreC;
-
-    @FXML
-    private TableColumn<Reclamation, String> descriptionC;
-
-    @FXML
-    private TableColumn<Reclamation,Integer> id_reclamation;
-
+    private  ScrollPane scrollPane1  ;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tableView.setOnMouseClicked(event -> {
+
+        afficher() ;
+    }
+     @FXML
+     private void afficher(){
+        ServiceReclamation sp = new ServiceReclamation();
+        reclist = sp.afficher();
+
+        VBox vbox1 = new VBox();
+        scrollPane1.setContent(vbox1);
+        scrollPane1.setStyle("-fx-background-color: transparent;");
+
+
+        Slider slider = new Slider(0.5, 2, 1);
+        slider.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent;");
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            vbox1.setScaleX(newValue.doubleValue());
+            vbox1.setScaleY(newValue.doubleValue());
+        });
+
+
+        for (Reclamation rec : reclist) {
+
+            Label titrerec = new Label(rec.getTitre_reclamation());
+            Label descriptionrec = new Label(rec.getDescription());
+
+            Label etat = new Label(rec.getEtat_reclamation().toString());
+
+            Image image = new Image(getClass().getResource("/GUI/Assets/icons/blue/trash-bin.png").toExternalForm());
+            Image image2 = new Image(getClass().getResource("/GUI/Assets/icons/blue/pencil.png").toExternalForm());
+            ImageView mod = new ImageView();
+            mod.setImage(image2);
+            mod.setFitWidth(35);
+            mod.setFitHeight(35);
+            // create the ScaleTransition animation
+            ScaleTransition scaleTransition2 = new ScaleTransition(Duration.millis(100), mod);
+            scaleTransition2.setToX(1.2);
+            scaleTransition2.setToY(1.2);
+            // add the animation to the ImageView when the mouse enters
+            mod.setOnMouseEntered(event -> {
+                scaleTransition2.play();
+            });
+
+            // remove the animation from the ImageView when the mouse exits
+            mod.setOnMouseExited(event -> {
+                scaleTransition2.stop();
+                mod.setScaleX(1);
+                mod.setScaleY(1);
+            });
+
+            ImageView supp = new ImageView();
+            supp.setImage(image);
+            supp.setFitWidth(40);
+            supp.setFitHeight(40);
+            // set the preferred width of each label
+            titrerec.setPrefWidth(150);
+            descriptionrec.setPrefWidth(250);
+            etat.setPrefWidth(100);
+            // create the ScaleTransition animation
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), supp);
+            scaleTransition.setToX(1.2);
+            scaleTransition.setToY(1.2);
+            // add the animation to the ImageView when the mouse enters
+            supp.setOnMouseEntered(event -> {
+                scaleTransition.play();
+            });
+
+            // remove the animation from the ImageView when the mouse exits
+            supp.setOnMouseExited(event -> {
+                scaleTransition.stop();
+                supp.setScaleX(1);
+                supp.setScaleY(1);
+            });
+
+            titrerec.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            descriptionrec.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            etat.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            HBox hbox1 = new HBox( titrerec, descriptionrec,etat,supp,mod );
+            // set the spacing between elements
+            hbox1.setSpacing(30);
+
+            // set the padding around the hbox container
+            hbox1.setPadding(new Insets(30, 30, 30, 30));
+            descriptionrec.setWrapText(true);
+            descriptionrec.setPrefWidth(500);
+            titrerec.setWrapText(true);
+            titrerec.setPrefWidth(250);
+
+            titrerec.setAlignment(Pos.CENTER_LEFT);
+            descriptionrec.setAlignment(Pos.CENTER_LEFT);
+            etat.setAlignment(Pos.CENTER);
+            hbox1.setPrefWidth(1120);
+            //hbox1.setPrefHeight(100);
+            hbox1.setMaxWidth(descriptionrec.getMaxWidth());
+            hbox1.setStyle("-fx-background-radius: 25 ;-fx-background-color: rgba(255, 255, 255, 0.5);");
+
+
+
+            hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+            hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
+
+            hbox1.setAlignment(Pos.CENTER_LEFT);
+            vbox1.setAlignment(Pos.CENTER);
+            vbox1.setSpacing(8);
+            vbox1.setStyle("-fx-background-color: transparent; -fx-background-radius: 25");
+
+            vbox1.getChildren().add(hbox1);
+
+
+            AtomicInteger clickCounter = new AtomicInteger();
+            hbox1.setOnMouseClicked(event -> {
+                clickCounter.getAndIncrement();
+                if (clickCounter.get() == 2) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("affichageReponseUser.fxml"));
+                    Parent root = loader.load();
+                    // assuming you have a controller for the affichageReponse.fxml file
+                    AffichageReponseUserControlleur controller = loader.getController();
+                    // pass any necessary data to the controller
+                    System.out.println(rec.getId_reclamation());
+                    controller.setIdReclamation(rec.getId_reclamation());
+                    // switch to the affichageReponse.fxml view
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) hbox1.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                    clickCounter.set(0); // Reset click counter
+                }
+
+            });
+
+
+            supp.setOnMouseClicked(event1 -> {
+                    Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmation.setTitle("Confirmation");
+                    confirmation.setHeaderText(null);
+                    confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
+                    Optional<ButtonType> result2 = confirmation.showAndWait();
+
+
+                    if (result2.isPresent() && result2.get() == ButtonType.OK) {
+                    boolean result = sp.supprimer(rec);
+                    if (result) {
+                        vbox1.getChildren().remove(hbox1);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Suppression réussie");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Suppression effectuée avec succès.");
+                        alert.showAndWait();
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Erreur lors de la suppression.");
+                        alert.showAndWait();
+                    }
+                    }
+                });
+
+                    mod.setOnMouseClicked(event3 -> {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierReclamationUser.fxml"));
+                        Parent root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        ModifierReclamationUserControlleur modificationreclamationControlleur = loader.getController();
+                        modificationreclamationControlleur.setTitreText(rec.getTitre_reclamation());
+                        modificationreclamationControlleur.setDescriptionText(rec.getDescription());
+                        modificationreclamationControlleur.setIdReclamation(rec.getId_reclamation());
+
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.showAndWait();
+                        afficher();
+
+                    });
+
+
+
+
+        }
+
+
+    }
+
+       /* tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
                 // load the affichageReponse.fxml file
@@ -78,19 +276,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
         afficher();
         ServiceReclamation sr = new ServiceReclamation();
         reclist = sr.afficher();
-
-    }
-
-
-
-    @FXML
-    private void afficher() {
-        ServiceReclamation sr = new ServiceReclamation();
-        List<Reclamation> reclamations = sr.afficher() ;
-        tableView.getItems().clear();
-        tableView.getItems().addAll(reclamations);
-    }
-
+*/
 
     @FXML
     private void gotoajout(MouseEvent event) throws IOException {
@@ -127,6 +313,8 @@ public class AffichageReclamationControlleurUser  implements Initializable {
         stage.show();
     }
 */
+
+    /*
     @FXML
     void openModifcation(MouseEvent event) throws IOException {
         Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
@@ -152,9 +340,9 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
         }
     }
+*/
 
-
-    @FXML
+    /*@FXML
     void supprimer(MouseEvent event) {
         Reclamation selectedre = tableView.getSelectionModel().getSelectedItem();
         if (selectedre != null) {
@@ -192,7 +380,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             alert.showAndWait();
         }
 
-    }
+    }*/
     Stage stage;
     @FXML
     private AnchorPane scenePane;
@@ -213,8 +401,9 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     public void Minimize (MouseEvent event ){
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setIconified(true);
+
     }
-    @FXML
+   /* @FXML
     private void chercher() {
         String titreCe = titrechercher.getText();
         List<Reclamation> Restream = reclist ;
@@ -224,5 +413,5 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
             tableView.setItems(FXCollections.observableArrayList(Restream));
 
-    }
+    }*/
 }
