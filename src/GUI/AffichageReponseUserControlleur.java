@@ -203,6 +203,7 @@ public class AffichageReponseUserControlleur  implements Initializable {
             hbox.setSpacing(300);
             hbox.setPrefWidth(1120);
             hbox.setPrefHeight(100);
+            hbox.setMaxWidth(descriptionrep.getMaxWidth());
             hbox.setStyle("-fx-background-radius: 25 ;-fx-background-color: rgba(255, 255, 255, 0.5);");
 
            // hbox.setOnMouseEntered(e -> finalhbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));

@@ -21,8 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,7 +37,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,15 +52,20 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     @FXML
     private  ScrollPane scrollPane1  ;
 
-
+    HBox hbox1 ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         afficher() ;
+
     }
+
+
      @FXML
      private void afficher(){
         ServiceReclamation sp = new ServiceReclamation();
+
+        // lena ba3eed yo5ou id_user
         reclist = sp.afficher();
 
         VBox vbox1 = new VBox();
@@ -186,7 +189,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                    clickCounter.set(0); // Reset click counter
+                    clickCounter.set(0);
                 }
 
             });
@@ -241,12 +244,12 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                     });
 
 
-
-
         }
 
 
     }
+
+
 
        /* tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -410,8 +413,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
         if (!(titreCe.equals("") )) {
             Restream = Restream.stream().filter((t) -> t.getTitre_reclamation().toLowerCase().contains(titreCe.toLowerCase())).collect(Collectors.toList());
         }
-
-            tableView.setItems(FXCollections.observableArrayList(Restream));
-
+        hbox1.getChildren().setAll(Restream);
     }*/
 }

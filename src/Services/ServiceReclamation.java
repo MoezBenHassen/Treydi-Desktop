@@ -61,10 +61,36 @@ public class ServiceReclamation implements IService<Reclamation> {
             return Reclamations;
 
         }
-/*
-    @Override
-    public List<T> afficherUser(){}
-        */
+
+
+    public List<Reclamation> afficherUser(int id){
+       List<Reclamation> Reclamations = new ArrayList();
+            try {
+                String qry = "SELECT * FROM `reclamation`  WHERE archived = 0 AND id_user = "+id;
+                stm = cnx.createStatement();
+
+                ResultSet rs = stm.executeQuery(qry);
+
+                while (rs.next()) {
+                    Reclamation p = new Reclamation();
+                    p.setId_reclamation(rs.getInt("id_reclamation"));
+                    p.setTitre_reclamation(rs.getString("titre_reclamation"));
+                    p.setDescription(rs.getString("description_reclamation"));
+                    p.setEtat_reclamation(Etat_reclamation.valueOf(rs.getString("etat_reclamation")));
+                    p.setDate_creation(rs.getDate("date_creation"));
+                    p.setDate_cloture(rs.getDate("date_cloture"));
+                    p.setId_user(rs.getInt("id_user"));
+                    Reclamations.add(p);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return Reclamations;
+
+
+    }
+
     @Override
     public Boolean modifier(Reclamation R){
 

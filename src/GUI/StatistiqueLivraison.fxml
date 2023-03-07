@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" stylesheets="@Assets/css/scrollpane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageReponseUserControlleur">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StatistiqueLivraisonControleur">
     <children>
         <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
             <fill>
@@ -32,7 +34,7 @@
                 <DropShadow />
             </effect>
             <children>
-                <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+                <Circle fill="#dbd32d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
                 <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Assets/icons/avatar4.png" />
@@ -80,12 +82,12 @@
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="667.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Assets/icons/pink/replay.png" />
+                        <Image url="@Assets/icons/blue/replay%20(2).png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="818.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Assets/icons/blue/power_icon2.png" />
+                        <Image url="@Assets/icons/yellow/power.png" />
                     </image>
                 </ImageView>
 
@@ -133,7 +135,7 @@
             </effect></Rectangle>
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@Assets/images/treydi3.png" />
+                <Image url="@Assets/images/treydiAdmin-05.png" />
             </image></ImageView>
         <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="386.0" layoutX="30.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
             <effect>
@@ -147,25 +149,27 @@
         </ImageView>
         <ImageView fitHeight="50.0" fitWidth="62.0" layoutX="50.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@Assets/icons/pink/list.png" />
+                <Image url="@Assets/icons/yellow/menu.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="supp" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/blue/trash-bin.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="mod" fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/blue/pencil.png" />
             </image>
         </ImageView>
-      <ScrollPane fx:id="scrollpane" layoutX="219.0" layoutY="167.0" prefHeight="641.0" prefWidth="1123.0" style="-fx-background-color: transparant;" stylesheets="@Assets/css/scrollepane.css">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
+        <BarChart fx:id="barChart" layoutX="228.0" layoutY="162.0" prefHeight="579.0" prefWidth="1110.0" title="Reclamation Par Mois">
+            <xAxis>
+                <CategoryAxis label="mois" side="BOTTOM" fx:id="xAxis" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" label="Reclamation" side="LEFT" />
+            </yAxis>
+        </BarChart>
 
     </children>
-
 </AnchorPane>
