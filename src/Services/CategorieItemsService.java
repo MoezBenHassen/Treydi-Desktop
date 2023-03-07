@@ -106,7 +106,13 @@ public class CategorieItemsService implements IItemCategorieService<Categorie_It
         return false;
     }
 
+    @Override
+    public Boolean like(Categorie_Items categorieItems) {
+        return null;
+    }
 
-
-
+    @Override
+    public Boolean dislike(Categorie_Items categorieItems) {
+        return null;
+    }
 }

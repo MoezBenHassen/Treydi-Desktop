@@ -1,12 +1,11 @@
 package GUI;
 
-import APIs.ToPDFCategorie_Items;
-import APIs.ToXLSCategorie_Items;
+import APIs.ToPDF;
+import APIs.ToXLS;
 import Entities.Categorie_Items;
 import Entities.Item;
 import Services.CategorieItemsService;
 import Services.ItemService;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,17 +16,13 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Callback;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class CategorieItemsAdminController implements Initializable {
 
@@ -184,34 +179,16 @@ public class CategorieItemsAdminController implements Initializable {
 
     @FXML
     private void exls(MouseEvent event) {
-        ToXLSCategorie_Items exporter = new ToXLSCategorie_Items();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items XLS");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("XLS Files (*.xls)", "*.xls");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToXLSCategorie_Items(tableView, selectedFile);
-        }
-
+        ToXLS exporter = new ToXLS();
+        exporter.ToXLSCategorie_Items(tableView);
 
     }
 
     @FXML
     private void epdf(MouseEvent event) throws IOException {
-        ToPDFCategorie_Items exporter = new ToPDFCategorie_Items();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items PDF");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToPDFCategorie_Items(tableView, selectedFile.getPath());
-        }
+        ToPDF exporter = new ToPDF();
+            exporter.ToPDFCategorie_Items(tableView);
+
 
     }
 

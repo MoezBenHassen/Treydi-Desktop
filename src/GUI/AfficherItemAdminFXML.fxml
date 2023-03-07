@@ -4,10 +4,12 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
@@ -109,7 +111,7 @@
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="729.0" layoutX="189.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1243.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="729.0" layoutX="205.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1227.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -220,9 +222,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <Pane fx:id="chercherPane" layoutX="3.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0" visible="false">
+      <Pane fx:id="chercherPane" layoutX="-3.0" layoutY="114.0" prefHeight="749.0" prefWidth="200.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="651.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="749.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
                <effect>
                   <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
                </effect>
@@ -231,7 +233,7 @@
                      <stops>
                         <Stop color="#4f4f4fda" />
                         <Stop color="#4f4f4fda" offset="0.0078125" />
-                        <Stop color="#9e9e9e47" offset="1.0" />
+                        <Stop color="#9c9c9c47" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </fill>
@@ -268,7 +270,7 @@
                   <Font name="Impact" size="25.0" />
                </font>
             </Text>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="619.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="715.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
                </image>
@@ -276,7 +278,7 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="618.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="714.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
                <image>
                   <Image url="@Assets/icons/blue/loop-arrow.png" />
                </image>
@@ -284,9 +286,27 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
+            <Text fill="#eccecf" layoutX="20.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Triéer par" wrappingWidth="136.13818359375">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <RadioButton id="radio_type_1" fx:id="radio_type_1" layoutX="20.0" layoutY="648.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Type et état" textFill="#eccecf">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radio_type" />
+               </toggleGroup>
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
+            <RadioButton id="radio_type_2" fx:id="radio_type_2" layoutX="20.0" layoutY="681.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Libellé" textFill="#eccecf" toggleGroup="$radio_type">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
          </children>
       </Pane>
-      <TableView fx:id="tableView" layoutX="219.0" layoutY="168.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
+      <TableView fx:id="tableView" layoutX="230.0" layoutY="168.0" prefHeight="697.0" prefWidth="1175.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
             <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />

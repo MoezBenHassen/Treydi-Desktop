@@ -1,7 +1,7 @@
 package GUI;
 
-import APIs.ToPDFItem;
-import APIs.ToXLSItem;
+import APIs.ToPDF;
+import APIs.ToXLS;
 import Entities.Categorie_Items;
 import Entities.Item;
 import Services.CategorieItemsService;
@@ -10,13 +10,11 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -28,18 +26,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
-import javax.smartcardio.Card;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -93,6 +89,11 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private CheckBox cb_type_4 ;
 
+
+    @FXML
+    private ToggleGroup radio_type ;
+
+
     @FXML
     private ComboBox combobox_cat ;
 
@@ -116,6 +117,32 @@ public class AfficherItemUserController implements Initializable {
         CategorieItemsService sp2 = new CategorieItemsService();
         categories = sp2.afficher();
         afficher(items) ;
+
+
+        imageurlColumn.setCellValueFactory(new PropertyValueFactory<>("imageurl"));
+        libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        etatColumn.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
+                try {
+                    int catid = param.getValue().getId_categorie();
+                    String cat = categories.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    ;
+
+                    return new SimpleObjectProperty<>(cat);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
+
+
+        tableView.setItems(FXCollections.observableArrayList(items));
 
         combobox_cat.getItems().add("Toutes");
         for (Categorie_Items categorieItems : categories) {
@@ -200,6 +227,9 @@ public class AfficherItemUserController implements Initializable {
 
     @FXML
     private void afficher(List<Item> items) {
+
+        ItemService sp = new ItemService();
+
         GridPane gridpane = new GridPane();
 
         scrollpane.setContent(gridpane);
@@ -233,22 +263,95 @@ public class AfficherItemUserController implements Initializable {
 
             Label emp = new Label("");
 
-            if (obj.getType().equals("Physique")) {
+            if (obj.getType().toString().equals("Physique")) {
                 if (obj.getEtat().equals("Neuf")) {
                     typeetatLabel.setText("Physique Neuf");
                 } else {
                     typeetatLabel.setText("Physique Occasion");
                 }
-            } else if (obj.getType().equals("Virtuelle")) {
+            } else if (obj.getType().toString().equals("Virtuelle")) {
                 typeetatLabel.setText("Virtuelle");
-            } else {
+            } else if (obj.getType().toString().equals("Service")) {
                 typeetatLabel.setText("Service");
             }
 
-            VBox vbox = new VBox(imageView, libelleLabel, categorieLabel, typeetatLabel);
-            vbox.setSpacing(4);
+            Image modimage = new Image("GUI/Assets/icons/pink/pencil.png");
+            ImageView modimageView = new ImageView(modimage);
+            modimageView.setFitHeight(30);
+            modimageView.setFitWidth(30);
+
+            modimageView.setOnMouseClicked(event -> {
+                try {
+                    modifier(event,obj) ;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            Image supimage = new Image("GUI/Assets/icons/pink/trash-bin.png");
+            ImageView supimageView = new ImageView(supimage);
+            supimageView.setFitHeight(30);
+            supimageView.setFitWidth(30);
+
+            supimageView.setOnMouseClicked(event -> {
+                supprimer(event,obj) ;
+            });
+
+            Image detimage = new Image("GUI/Assets/icons/pink/magnifier.png");
+            ImageView detimageView = new ImageView(detimage);
+            detimageView.setFitHeight(30);
+            detimageView.setFitWidth(30);
+
+            detimageView.setOnMouseClicked(event -> {
+                try {
+                    route_ItemDetails(event,obj); ;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+
+
+            HBox buttons = new HBox(modimageView, supimageView, detimageView);
+            buttons.setSpacing(24);
+            buttons.setAlignment(Pos.CENTER);
+
+            Label like = new Label("👍 "+obj.getLikes());
+            like.setStyle("-fx-text-fill: #775cfa; -fx-font-family: impact; -fx-font-size: 25");
+
+            Label dislike = new Label("\uD83D\uDC4E "+obj.getDislikes());
+            dislike.setStyle("-fx-text-fill: #775cfa; -fx-font-family: impact; -fx-font-size: 25");
+
+            HBox likes = new HBox(like, dislike);
+            likes.setSpacing(15);
+            likes.setAlignment(Pos.CENTER);
+
+
+            like.setOnMouseClicked(event -> {
+                try {
+                    sp.like(obj) ;
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                List<Item> itemss = sp.afficher();
+                afficher(itemss) ;
+            });
+
+            dislike.setOnMouseClicked(event -> {
+                try {
+                    sp.dislike(obj) ;
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                List<Item> itemss = sp.afficher();
+                afficher(itemss) ;
+            });
+
+
+            VBox vbox = new VBox(imageView, libelleLabel, categorieLabel, typeetatLabel,buttons, likes);
+            vbox.setSpacing(6);
             vbox.setPrefWidth(208);
-            vbox.setPrefHeight(283);
+            vbox.setPrefHeight(370);
             vbox.setAlignment(Pos.CENTER);
 
             vbox.setStyle("-fx-background-color: rgba(156, 156, 156, 0.24); -fx-background-radius: 22");
@@ -263,13 +366,13 @@ public class AfficherItemUserController implements Initializable {
         }
 
         gridpane.setHgap(27);
-        gridpane.setVgap(35);
+        gridpane.setVgap(31);
+
 
     }
 
     @FXML
-    private void supprimer(ActionEvent event) {
-        Item selectdel = tableView.getSelectionModel().getSelectedItem();
+    private void supprimer(MouseEvent event,Item selectdel) {
         if (selectdel != null) {
             ItemService sp = new ItemService();
 
@@ -281,7 +384,8 @@ public class AfficherItemUserController implements Initializable {
                 if (response == ButtonType.OK) {
                     boolean res = sp.supprimer(selectdel);
                     if (res) {
-                    tableView.getItems().remove(selectdel);
+                        items = sp.afficher() ;
+                        afficher(items);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setHeaderText("Notification");
                     a.setContentText("L'item sélectionné a été supprimé avec succès!");
@@ -310,8 +414,7 @@ public class AfficherItemUserController implements Initializable {
     }
 
         @FXML
-        private void modifier(ActionEvent event) throws IOException {
-            Item selectmod = tableView.getSelectionModel().getSelectedItem();
+        private void modifier(MouseEvent event, Item selectmod) throws IOException {
             if (selectmod != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierItemUserFXML.fxml"));
                 Parent root = loader.load();
@@ -351,13 +454,12 @@ public class AfficherItemUserController implements Initializable {
     }
 
     @FXML
-    private void route_ItemDetails(MouseEvent event) throws IOException {
-        Item selectedObject = tableView.getSelectionModel().getSelectedItem();
+    private void route_ItemDetails(MouseEvent event, Item selectedObject) throws IOException {
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemDetailsUserFXML.fxml"));
         Parent root = loader.load();
-        AfficherItemDetailsAdminController controller = loader.getController();
+        AfficherItemDetailsUserController controller = loader.getController();
         controller.setSelectedItem(selectedObject);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -479,14 +581,31 @@ public class AfficherItemUserController implements Initializable {
         }
 
         if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()) || (cb_type_4.isSelected()))) {
-            afficher(itemstream) ;
         } else {
-            List<Item> itemstreamcf = itemstreamc1;
-            itemstreamcf.addAll(itemstreamc2);
-            itemstreamcf.addAll(itemstreamc3);
-            itemstreamcf.addAll(itemstreamc4);
-            afficher(itemstreamcf) ;
+            itemstream = itemstreamc1;
+            itemstream.addAll(itemstreamc2);
+            itemstream.addAll(itemstreamc3);
+            itemstream.addAll(itemstreamc4);
+
         }
+
+        RadioButton selected_radio_type = (RadioButton) radio_type.getSelectedToggle();
+        if (selected_radio_type != null) {
+            String srt = selected_radio_type.getText();
+
+            if (srt.equals("Type et état")) {
+                itemstream = itemstream.stream().sorted(Comparator.comparing(t -> t.getEtat())).collect(Collectors.toList());
+            }
+
+            if (srt.equals("Libellé")) {
+                itemstream = itemstream.stream().sorted(Comparator.comparing(t -> t.getLibelle())).collect(Collectors.toList());
+            }
+        }
+
+
+
+        afficher(itemstream) ;
+        tableView.setItems(FXCollections.observableArrayList(itemstream));
     }
 
 
@@ -511,6 +630,7 @@ public class AfficherItemUserController implements Initializable {
         cb_type_2.setSelected(false);
         cb_type_3.setSelected(false);
         cb_type_4.setSelected(false);
+        radio_type.selectToggle(null);
         chercher() ;
     }
 
@@ -544,34 +664,17 @@ public class AfficherItemUserController implements Initializable {
 
     @FXML
     private void exls(MouseEvent event)  {
-        ToXLSItem exporter = new ToXLSItem();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items XLS");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("XLS Files (*.xls)", "*.xls");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToXLSItem(tableView, selectedFile);
+        ToXLS exporter = new ToXLS();
+            exporter.ToXLSItem(tableView);
         }
 
 
-    }
+
 
     @FXML
     private void epdf(MouseEvent event) throws IOException {
-        ToPDFItem exporter = new ToPDFItem();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items PDF");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToPDFItem(tableView, selectedFile.getPath());
-        }
+        ToPDF exporter = new ToPDF();
+        exporter.ToPDFItem(tableView);
 
     }
 

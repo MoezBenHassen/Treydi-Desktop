@@ -25,10 +25,14 @@ public class Item {
 
     private int id_echange ;
 
+    private int likes ;
+
+    private int dislikes ;
+
     public Item() {
     }
 
-    public Item(int id_item, String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange) {
+    public Item(int id_item, String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange,int likes,int dislikes) {
         this.id_item = id_item;
         this.libelle = libelle;
         this.description = description;
@@ -38,9 +42,11 @@ public class Item {
         this.id_user = id_user;
         this.id_categorie = id_categorie;
         this.id_echange = id_echange;
+        this.likes = likes;
+        this.dislikes = dislikes;
     }
 
-    public Item(String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange) {
+    public Item(String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange,int likes,int dislikes) {
         this.libelle = libelle;
         this.description = description;
         this.type = type;
@@ -49,6 +55,24 @@ public class Item {
         this.id_user = id_user;
         this.id_categorie = id_categorie;
         this.id_echange = id_echange;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
     }
 
     public String getImageurl() {
@@ -135,6 +159,8 @@ public class Item {
                 ", id_user=" + id_user +
                 ", id_categorie=" + id_categorie +
                 ", id_echange=" + id_echange +
+                ", likes=" + likes +
+                ", dislikes=" + dislikes +
                 '}';
     }
 }

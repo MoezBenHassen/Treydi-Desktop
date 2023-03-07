@@ -1,17 +1,10 @@
 package GUI;
 
-import APIs.ToPDFItem;
-import APIs.ToXLSItem;
+import APIs.ToPDF;
 import Entities.Categorie_Items;
 import Entities.Item;
-import GUI.ModifierItemAdminController;
 import Services.CategorieItemsService;
 import Services.ItemService;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,20 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
-import javafx.util.Callback;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -82,6 +69,12 @@ public class AfficherItemDetailsUserController implements Initializable {
 
     @FXML
     private CheckBox ech ;
+
+    @FXML
+    private Label likes;
+
+    @FXML
+    private Label dislikes;
 
 
 
@@ -182,12 +175,16 @@ public class AfficherItemDetailsUserController implements Initializable {
                 .count();
         t4.setText("Nombre d'items avec le méme categorie : " + String.valueOf(x4));
 
+        likes.setText("\uD83D\uDC4D "+selectedItem.getLikes());
+        dislikes.setText("\uD83D\uDC4E "+selectedItem.getDislikes());
+
+
 
     }
 
     @FXML
     private void route_Image(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemDetailsAdminFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherItemImageFXML.fxml"));
         Parent root = loader.load();
         AfficherItemImageController controller = loader.getController();
         controller.setSelectedItem(selectedItem);

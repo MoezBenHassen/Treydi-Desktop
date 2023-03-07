@@ -1,17 +1,11 @@
 package GUI;
 
-import APIs.ToPDFItem;
-import APIs.ToXLSItem;
+import APIs.ToPDF;
 import Entities.Categorie_Items;
 import Entities.Item;
-import GUI.ModifierItemAdminController;
 import Services.CategorieItemsService;
 import Services.ItemService;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+import com.itextpdf.kernel.colors.Lab;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,20 +14,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
-import javafx.util.Callback;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -77,6 +65,12 @@ public class AfficherItemDetailsAdminController implements Initializable {
 
     @FXML
     private Text t4;
+
+    @FXML
+    private Label likes;
+
+    @FXML
+    private Label dislikes;
 
     @FXML
     private CheckBox ech;
@@ -178,6 +172,9 @@ public class AfficherItemDetailsAdminController implements Initializable {
                 .filter((t) -> t.getId_categorie() == selectedItem.getId_categorie())
                 .count();
         t4.setText("Nombre d'items avec le méme categorie : " + String.valueOf(x4));
+
+        likes.setText("\uD83D\uDC4D "+selectedItem.getLikes());
+        dislikes.setText("\uD83D\uDC4E "+selectedItem.getDislikes());
 
 
     }

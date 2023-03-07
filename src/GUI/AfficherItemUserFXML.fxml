@@ -4,9 +4,13 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
@@ -109,7 +113,7 @@
          </children>
       </AnchorPane>
       <Label id="txt" accessibleRole="BUTTON" layoutX="730.0" layoutY="99.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Vos Items" textAlignment="CENTER" />
-      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="398.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="225.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
@@ -132,15 +136,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="62.0" layoutY="521.0" mnemonicParsing="false" onAction="#modifier" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/pencil.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/images/treydi3.png" />
@@ -152,15 +147,6 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Button layoutX="62.0" layoutY="607.0" mnemonicParsing="false" onAction="#supprimer" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/trash-bin.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
          <effect>
             <DropShadow color="#00000090" />
@@ -197,9 +183,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <Pane fx:id="chercherPane" layoutX="24.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0" visible="false">
+      <Pane fx:id="chercherPane" layoutX="24.0" layoutY="104.0" prefHeight="749.0" prefWidth="200.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="651.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="749.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
                <effect>
                   <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
                </effect>
@@ -245,7 +231,7 @@
                   <Font name="Impact" size="25.0" />
                </font>
             </Text>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="619.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="715.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
                </image>
@@ -253,7 +239,7 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="618.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="714.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
                <image>
                   <Image url="@Assets/icons/blue/loop-arrow.png" />
                </image>
@@ -261,9 +247,38 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
+            <Text fill="#eccecf" layoutX="20.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Triéer par" wrappingWidth="136.13818359375">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <RadioButton id="radio_type_1" fx:id="radio_type_1" layoutX="20.0" layoutY="648.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Type et état" textFill="#eccecf" toggleGroup="$radio_type">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radio_type" />
+               </toggleGroup>
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
+            <RadioButton id="radio_type_2" fx:id="radio_type_2" layoutX="20.0" layoutY="681.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Libellé" textFill="#eccecf" toggleGroup="$radio_type">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" focusTraversable="false" hmax="0.0" layoutX="250.0" layoutY="173.0" prefHeight="704.0" prefWidth="1160.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" vmax="0.0" />
+      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
+      <TableView fx:id="tableView" layoutX="229.0" layoutY="178.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css" visible="false">
+         <columns>
+            <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
+            <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
+            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="230.0" text="Libélle" />
+            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="145.0" text="Categorie" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="428.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="122.0" text="Type" />
+            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="101.0" text="État" />
+         </columns>
+      </TableView>
 
    </children>
 </AnchorPane>

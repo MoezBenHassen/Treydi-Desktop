@@ -120,7 +120,7 @@
             <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
          </effect></Rectangle>
       <Label id="txt" accessibleRole="BUTTON" layoutX="730.0" layoutY="128.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Ajouter Item" textAlignment="CENTER" />
-      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="398.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="225.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
@@ -143,15 +143,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="62.0" layoutY="521.0" mnemonicParsing="false" onAction="#modifier" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/pencil.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/images/treydi3.png" />
@@ -163,15 +154,6 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Button layoutX="62.0" layoutY="607.0" mnemonicParsing="false" onAction="#supprimer" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/trash-bin.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Text fill="#eccecf" layoutX="400.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé">
          <font>
             <Font name="Impact" size="32.0" />

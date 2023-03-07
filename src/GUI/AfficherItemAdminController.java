@@ -1,10 +1,9 @@
 package GUI;
 
-import APIs.ToPDFItem;
-import APIs.ToXLSItem;
+import APIs.ToPDF;
+import APIs.ToXLS;
 import Entities.Categorie_Items;
 import Entities.Item;
-import GUI.ModifierItemAdminController;
 import Services.CategorieItemsService;
 import Services.ItemService;
 import javafx.application.Platform;
@@ -77,12 +76,16 @@ public class AfficherItemAdminController implements Initializable {
     @FXML
     private TableColumn<Item, String> categorieColumn;
 
+
     @FXML
     private TextField textfield_libelle;
     @FXML
     private TextArea textarea_description;
     @FXML
     private CheckBox cb_type_1 ;
+
+    @FXML
+    private ToggleGroup radio_type ;
 
     @FXML
     private CheckBox cb_type_2 ;
@@ -261,14 +264,29 @@ public class AfficherItemAdminController implements Initializable {
         }
 
         if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()) || (cb_type_4.isSelected()))) {
-            tableView.setItems(FXCollections.observableArrayList(itemstream));
         } else {
-            List<Item> itemstreamcf = itemstreamc1;
-            itemstreamcf.addAll(itemstreamc2);
-            itemstreamcf.addAll(itemstreamc3);
-            itemstreamcf.addAll(itemstreamc4);
-            tableView.setItems(FXCollections.observableArrayList(itemstreamcf));
+            itemstream = itemstreamc1;
+            itemstream.addAll(itemstreamc2);
+            itemstream.addAll(itemstreamc3);
+            itemstream.addAll(itemstreamc4);
+
         }
+
+        RadioButton selected_radio_type = (RadioButton) radio_type.getSelectedToggle();
+
+        if (selected_radio_type != null) {
+            String srt = selected_radio_type.getText();
+
+            if (srt.equals("Type et état")) {
+                itemstream = itemstream.stream().sorted(Comparator.comparing(t -> t.getEtat())).collect(Collectors.toList());
+            }
+
+            if (srt.equals("Libellé")) {
+                itemstream = itemstream.stream().sorted(Comparator.comparing(t -> t.getLibelle())).collect(Collectors.toList());
+            }
+        }
+
+        tableView.setItems(FXCollections.observableArrayList(itemstream));
     }
 
 
@@ -404,6 +422,7 @@ public class AfficherItemAdminController implements Initializable {
         cb_type_2.setSelected(false);
         cb_type_3.setSelected(false);
         cb_type_4.setSelected(false);
+        radio_type.selectToggle(null);
         chercher() ;
     }
 
@@ -435,35 +454,18 @@ public class AfficherItemAdminController implements Initializable {
     }
 
     @FXML
-    private void exls(MouseEvent event) {
-        ToXLSItem exporter = new ToXLSItem();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items XLS");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("XLS Files (*.xls)", "*.xls");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToXLSItem(tableView, selectedFile);
-        }
-
-
+    private void exls(MouseEvent event)  {
+        ToXLS exporter = new ToXLS();
+        exporter.ToXLSItem(tableView);
     }
+
+
+
 
     @FXML
     private void epdf(MouseEvent event) throws IOException {
-        ToPDFItem exporter = new ToPDFItem();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setTitle("Exporter Items PDF");
-        FileChooser.ExtensionFilter xlsFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
-        fileChooser.getExtensionFilters().add(xlsFilter);
-        Window stage = null;
-        File selectedFile = fileChooser.showSaveDialog(stage);
-        if (selectedFile != null) {
-            exporter.ToPDFItem(tableView, selectedFile.getPath());
-        }
+        ToPDF exporter = new ToPDF();
+        exporter.ToPDFItem(tableView);
 
     }
 
