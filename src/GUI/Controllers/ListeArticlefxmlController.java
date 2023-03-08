@@ -150,6 +150,9 @@ public class ListeArticlefxmlController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ArticleDetails.fxml"));
         Parent root = loader.load();
 
+        ArticleDetailsController articleDetailsController = loader.getController();
+        articleDetailsController.setSelectedArticle(selectedArticle);
+
         Scene scene = new Scene(root);
 
         Stage stage1 = new Stage();

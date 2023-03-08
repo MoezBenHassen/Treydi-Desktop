@@ -93,12 +93,12 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" styleClass="categorieButton" stylesheets="@Assets/css/style.css" text="Gaming" />
+                  <Button fx:id="categorieButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" styleClass="categorieButton" stylesheets="@Assets/css/style.css" text="Button" />
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <Label id="txt" fx:id="titre_article" accessibleRole="BUTTON" layoutX="122.0" layoutY="50.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Dragon Ball Z: Budokai Tenkaichi 4 Release Date" textAlignment="CENTER" />
+      <Label id="txt" fx:id="titre_article" accessibleRole="BUTTON" contentDisplay="CENTER" layoutX="125.0" layoutY="50.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Dragon Ball Z: Budokai Tenkaichi 4 Release Date" textAlignment="CENTER" />
       <ScrollPane layoutX="61.0" layoutY="232.0" prefHeight="415.0" prefWidth="909.0" style="-fx-background-color: transparent;">
          <content>
             <TextFlow prefHeight="498.0" prefWidth="891.0" style="-fx-background-color: transparent;">

@@ -29,10 +29,7 @@ public class cardAController implements Initializable {
         cardTitle.setText(titre);
         System.out.println("here");
         cardDescription.setText(description);
-        CategorieArticleService categorieArticleService = new CategorieArticleService();
 
-        String cat= categorieArticleService.getLibelle(id_cat).get(0).getLibelle_cat();
-        categorieButton.setText(cat);
         System.out.println("here2");
     }
 }

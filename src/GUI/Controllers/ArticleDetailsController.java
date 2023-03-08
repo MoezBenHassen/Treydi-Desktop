@@ -1,22 +1,22 @@
 package GUI.Controllers;
 
+import Entities.Article;
+import Entities.CategorieArticle;
+import Services.CategorieArticleService;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ArticleDetailsController implements Initializable {
@@ -31,12 +31,40 @@ public class ArticleDetailsController implements Initializable {
 
     @FXML
     private Label titre_article;
+    @FXML
+    private Text text_content;
+    @FXML
+    private Button categorieButton;
+    @FXML
+    private Article selectedArticle;
     Stage stage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
 
     }
+
+    public void setSelectedArticle(Article selectedArticle) {
+        this.selectedArticle = selectedArticle;
+        populateArticleFields();
+    }
+    private void populateArticleFields(){
+        System.out.println("Selected article: " + selectedArticle);
+        if (selectedArticle == null) {
+            return;
+        }
+        text_author_date.setText(selectedArticle.getAuteur() + " | " + selectedArticle.getDate_publication());
+        titre_article.setText(selectedArticle.getTitre());
+        if (categorieButton != null) {
+            categorieButton.setText("zzzzzzzzz");
+        }else {
+
+        }
+        text_content.setText(selectedArticle.getContenu());
+
+    }
+
+
 
     @FXML
     public void Minimize (MouseEvent event ){
@@ -46,7 +74,7 @@ public class ArticleDetailsController implements Initializable {
     @FXML
     public void logout(MouseEvent actionEvent) {
             stage = (Stage) scenePane.getScene().getWindow();
-            System.out.println("YOU XYZ");
+            System.out.println("closed article detail pain");
             stage.close();
         }
 }
