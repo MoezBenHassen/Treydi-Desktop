@@ -103,6 +103,7 @@ public class GestionCategoriesController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("La ligne a été supprimé avec succès!");
                 alert.show();
+                afficher();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
