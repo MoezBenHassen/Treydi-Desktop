@@ -20,7 +20,7 @@ public class javafxMain extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/USERListeArticles.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/ListeArticles.fxml"));
 
             Scene scene = new Scene(root);
 

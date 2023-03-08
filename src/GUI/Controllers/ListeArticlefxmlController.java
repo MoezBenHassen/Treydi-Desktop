@@ -128,9 +128,53 @@ public class ListeArticlefxmlController implements Initializable {
         translateTransition.setDuration(Duration.millis(1000));
         translateTransition.setByX(-200);
         translateTransition.setByY(200);
+
         afficher();
+
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2){
+                // Check if it's a double click
+                try {
+                    goToArticleDetails(event);
+                }catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
+    @FXML
+    private void goToArticleDetails(MouseEvent mouseEvent)throws IOException{
+        Article selectedArticle = tableView.getSelectionModel().getSelectedItem();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ArticleDetails.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        Stage stage1 = new Stage();
+        final double[] xOffset = new double[1];
+        final double[] yOffset = new double[1];
+
+        scene.setOnMousePressed(eventM -> {
+            xOffset[0] = eventM.getSceneX();
+            yOffset[0] = eventM.getSceneY();
+        });
+
+        scene.setOnMouseDragged(eventM -> {
+            stage1.setX(eventM.getScreenX() - xOffset[0]);
+            stage1.setY(eventM.getScreenY() - yOffset[0]);
+        });
+        stage1.initStyle(StageStyle.UNDECORATED);
+        stage1.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        stage1.setWidth(1024);
+        stage1.setHeight(768);
+        stage1.setScene(scene);
+        stage1.showAndWait();
+        afficher();
+
+    }
     private void afficher() {
         ArticleService articleService = new ArticleService();
         List<Article> articles = articleService.afficher() ;
