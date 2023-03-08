@@ -60,31 +60,33 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
         titrechercher.textProperty().addListener((obs, oldVal, newVal) -> {
             String titre = titrechercher.getText().trim();
-            List<Reclamation> reclamationsFiltrees = reclist.stream()
+            List<Reclamation> reclamationsFiltrees1 = reclist.stream()
                     .filter(recc -> recc.getTitre_reclamation().toLowerCase().contains(titre.toLowerCase()))
                     .collect(Collectors.toList());
+            List<Reclamation> reclamationsFiltrees2 = reclist.stream()
+                    .filter(recc -> recc.getDescription().toLowerCase().contains(titre.toLowerCase()))
+                    .collect(Collectors.toList());
+            List<Reclamation> reclamationsFiltrees = new ArrayList<>(); ;
+            reclamationsFiltrees.addAll(reclamationsFiltrees1) ;
+            reclamationsFiltrees.addAll(reclamationsFiltrees2);
             afficher(reclamationsFiltrees);
         });
+        afficher(reclist) ;
     }
 
      @FXML
      private void afficher(List<Reclamation> reclist){
         ServiceReclamation sp = new ServiceReclamation();
 
-
-
         VBox vbox1 = new VBox();
         scrollPane1.setContent(vbox1);
         scrollPane1.setStyle("-fx-background-color: transparent;");
-
-
         Slider slider = new Slider(0.5, 2, 1);
         slider.setStyle("-fx-background-color: transparent; -fx-control-inner-background: transparent;");
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             vbox1.setScaleX(newValue.doubleValue());
             vbox1.setScaleY(newValue.doubleValue());
         });
-
 
         for (Reclamation rec : reclist) {
 
@@ -119,8 +121,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             supp.setImage(image);
             supp.setFitWidth(40);
             supp.setFitHeight(40);
-
-
             titrerec.setPrefWidth(150);
             descriptionrec.setPrefWidth(250);
             etat.setPrefWidth(100);
@@ -132,21 +132,17 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             supp.setOnMouseEntered(event -> {
                 scaleTransition.play();
             });
-
-
             supp.setOnMouseExited(event -> {
                 scaleTransition.stop();
                 supp.setScaleX(1);
                 supp.setScaleY(1);
             });
-
             titrerec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             descriptionrec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             etat.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             HBox hbox1 = new HBox( titrerec, descriptionrec,etat,mod ,supp);
 
             hbox1.setSpacing(30);
-
 
             hbox1.setPadding(new Insets(30, 30, 30, 30));
             descriptionrec.setWrapText(true);
@@ -164,7 +160,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15; -fx-background-color: transparent;"));
 
 
-
             hbox1.setAlignment(Pos.CENTER_LEFT);
             vbox1.setAlignment(Pos.CENTER);
             vbox1.setSpacing(8);
@@ -173,10 +168,8 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             vbox1.getChildren().add(hbox1);
 
 
-            AtomicInteger clickCounter = new AtomicInteger();
             hbox1.setOnMouseClicked(event -> {
-                clickCounter.getAndIncrement();
-                if (clickCounter.get() == 2) {
+                if (event.getClickCount() == 2)  {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichageReponseUser.fxml"));
                     Parent root = loader.load();
@@ -193,18 +186,16 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                    clickCounter.set(0);
+
                 }
 
             });
             supp.setOnMouseClicked(event1 -> {
-                clickCounter.set(0);
                     Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmation.setTitle("Confirmation");
                     confirmation.setHeaderText(null);
                     confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
                     Optional<ButtonType> result2 = confirmation.showAndWait();
-
 
                     if (result2.isPresent() && result2.get() == ButtonType.OK) {
                     boolean result = sp.supprimer(rec);
@@ -226,7 +217,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 });
 
                     mod.setOnMouseClicked(event3 -> {
-                        clickCounter.set(0);
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierReclamationUser.fxml"));
                         Parent root = null;
                         try {
@@ -242,14 +232,17 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                         Stage stage = new Stage();
                         stage.setScene(scene);
                         stage.showAndWait();
-                      //  afficher(reclist);
+                        ref();
                     });
-
-
         }
-
-
     }
+    private  void ref(){
+        ServiceReclamation sr = new ServiceReclamation();
+        List<Reclamation> reclis ;
+        reclis = sr.afficher();
+        afficher(reclis);
+    }
+
        /* tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
@@ -343,8 +336,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
         }
     }
 */
-
-
     Stage stage;
     @FXML
     private AnchorPane scenePane;
@@ -367,13 +358,5 @@ public class AffichageReclamationControlleurUser  implements Initializable {
         stage1.setIconified(true);
 
     }
-   /* @FXML
-    private void chercher() {
-        String titreCe = titrechercher.getText();
-        List<Reclamation> Restream = reclist ;
-        if (!(titreCe.equals("") )) {
-            Restream = Restream.stream().filter((t) -> t.getTitre_reclamation().toLowerCase().contains(titreCe.toLowerCase())).collect(Collectors.toList());
-        }
-        hbox1.getChildren().setAll(Restream);
-    }*/
+
 }

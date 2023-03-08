@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -51,7 +52,6 @@ public class ModifierReclamationUserControlleur implements Initializable {
             alert.showAndWait();
             return;
         }
-
         ServiceReclamation sre = new ServiceReclamation();
         Reclamation R = new Reclamation(idReclamation,titre, description) ;
         sre.modifier(R);

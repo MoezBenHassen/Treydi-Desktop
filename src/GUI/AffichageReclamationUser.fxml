@@ -153,10 +153,10 @@
             </image>
         </ImageView>
       <ScrollPane fx:id="scrollPane1" layoutX="215.0" layoutY="169.0" prefHeight="653.0" prefWidth="1138.0" style="-fx-background-color: trasparant;" stylesheets="@Assets/css/scrollepane.css" />
-        <TextField fx:id="titrechercher" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-        <Label id="txt" accessibleRole="BUTTON" layoutX="562.0" layoutY="92.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Affichage une Reclamation" textAlignment="CENTER" />
+        <TextField fx:id="titrechercher" layoutX="500.0" layoutY="44.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+        <Label id="txt" accessibleRole="BUTTON" layoutX="572.0" layoutY="92.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Affichage une Reclamation" textAlignment="CENTER" />
 
-        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="1041.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="1049.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>

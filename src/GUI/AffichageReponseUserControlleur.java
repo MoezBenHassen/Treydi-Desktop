@@ -95,7 +95,7 @@ public class AffichageReponseUserControlleur  implements Initializable {
             Label titrerep = new Label(obj.getTitre_reponse());
             Label descriptionrep = new Label(obj.getDescription_reponse());
 
-            Image image = new Image(getClass().getResource("/GUI/Assets/icons/blue/trash-bin.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/GUI/Assets/icons/pink/trash-bin.png").toExternalForm());
 
             ImageView supp = new ImageView();
             supp.setImage(image);
