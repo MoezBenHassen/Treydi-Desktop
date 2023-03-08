@@ -185,14 +185,17 @@
       <TableView fx:id="tableView" layoutX="343.0" layoutY="230.0" prefHeight="523.0" prefWidth="914.0" stylesheets="@Assets/css/style.css">
         <columns>
           <TableColumn fx:id="titreC" prefWidth="154.0" text="Titre" />
-          <TableColumn fx:id="descriptionC" prefWidth="134.0" text="Description" />
-            <TableColumn fx:id="contenuC" prefWidth="157.0" text="Contenu" />
-            <TableColumn fx:id="datePubC" prefWidth="231.0" text="Date de publication" />
+          <TableColumn fx:id="descriptionC" maxWidth="-1.0" minWidth="-Infinity" prefWidth="338.0" text="Description" />
+            <TableColumn fx:id="datePubC" prefWidth="167.0" text="Date de publication" />
 
             <TableColumn fx:id="categorieC" prefWidth="115.0" text="Categorie" />
             <TableColumn fx:id="auteurC" minWidth="0.0" prefWidth="118.0" text="Auteur" />
+            <TableColumn fx:id="contenuC" prefWidth="17.0" text="Contenu" visible="false" />
         </columns>
       </TableView>
 
 </children>
+   <effect>
+      <DropShadow color="#bc0606" height="255.0" radius="127.0" width="255.0" />
+   </effect>
 </AnchorPane>

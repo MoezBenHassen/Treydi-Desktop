@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="880.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-radius: 15;" styleClass="shadow" stylesheets="@Assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.cardAController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="900.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-radius: 15;" styleClass="shadow" stylesheets="@Assets/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.cardAController">
    <children>
-      <ImageView fitHeight="179.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageCard" fitHeight="179.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/images/clean.jpg" />
          </image>
@@ -21,12 +21,12 @@
          <children>
             <Label fx:id="cardTitle" text="Titre">
                <font>
-                  <Font name="System Bold" size="38.0" />
+                  <Font name="System Bold" size="27.0" />
                </font>
             </Label>
             <Label fx:id="cardDescription" text="Description">
                <font>
-                  <Font size="26.0" />
+                  <Font size="19.0" />
                </font>
             </Label>
             <Rating prefHeight="32.0" prefWidth="138.0" />

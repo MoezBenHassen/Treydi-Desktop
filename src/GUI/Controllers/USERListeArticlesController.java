@@ -7,18 +7,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class USERListeArticlesController implements Initializable {
     @FXML
@@ -86,7 +91,6 @@ public class USERListeArticlesController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../cardA.fxml"));
 
-
                     HBox hBox = null;
             try {
                 hBox = loader.load();
@@ -95,7 +99,7 @@ public class USERListeArticlesController implements Initializable {
                 System.out.println("CCCCCC");
                 cardAController.setData(obj.getTitre(), obj.getDescription(), obj.getId_categorie());
 
-                vBox.setAlignment(Pos.CENTER_LEFT);
+                vBox.setAlignment(Pos.CENTER);
                 vBox.setStyle("-fx-background-color: transparent !important; -fx-background-radius: 25 ");
                 HBox finalHBox = hBox;
                 hBox.setOnMouseEntered(e -> finalHBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
@@ -103,6 +107,56 @@ public class USERListeArticlesController implements Initializable {
                 hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
                 vBox.setSpacing(8);
                 System.out.println("FFFFF");
+
+                AtomicInteger clickCounter = new AtomicInteger();
+                HBox finalHBox2 = hBox;
+                hBox.setOnMouseClicked(event -> {
+                    clickCounter.getAndIncrement();
+                    if (clickCounter.get() == 2) {
+                        try {
+                            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../ArticleDetails.fxml"));
+                            //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("AffichageReponseUser.fxml"));
+                            Parent root = loader2.load();
+
+                            //AffichageReponseUserControlleur controller = loader2.getController();
+
+                            ArticleDetailsController articleDetailsController = loader2.getController();
+                            articleDetailsController.setSelectedArticle(obj);
+                            System.out.println(obj);
+
+
+
+                            Scene scene = new Scene(root);
+
+                            Stage stage1 = new Stage();
+                            final double[] xOffset = new double[1];
+                            final double[] yOffset = new double[1];
+
+                            scene.setOnMousePressed(eventM -> {
+                                xOffset[0] = eventM.getSceneX();
+                                yOffset[0] = eventM.getSceneY();
+                            });
+
+                            scene.setOnMouseDragged(eventM -> {
+                                stage1.setX(eventM.getScreenX() - xOffset[0]);
+                                stage1.setY(eventM.getScreenY() - yOffset[0]);
+                            });
+                            stage1.initStyle(StageStyle.UNDECORATED);
+                            stage1.initStyle(StageStyle.TRANSPARENT);
+                            scene.setFill(Color.TRANSPARENT);
+                            stage1.setWidth(1024);
+                            stage1.setHeight(768);
+                            stage1.setScene(scene);
+                            stage1.showAndWait();
+                            afficherArticles();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        clickCounter.set(0);
+                    }
+
+                });
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -126,4 +180,7 @@ public class USERListeArticlesController implements Initializable {
             scrollPane.setContent(vBox);
         }
     }
+
+
+
 }

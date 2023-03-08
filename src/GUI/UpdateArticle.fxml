@@ -96,6 +96,31 @@
             <Image url="@Assets/icons/blue/close_blue.png" />
          </image>
       </ImageView>
+      <Label layoutX="135.0" layoutY="159.0" text="Titre" textFill="#eed1d1">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="133.0" layoutY="229.0" text="Description" textFill="#eed1d1">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="133.0" layoutY="302.0" text="Contenu" textFill="#eed1d1">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="478.0" text="Auteur" textFill="#eed1d1">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="680.0" layoutY="478.0" text="Catégorie" textFill="#eed1d1">
+         <font>
+            <Font name="Impact" size="17.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

@@ -47,7 +47,7 @@
             <GaussianBlur radius="63.0" />
          </effect>
       </Circle>
-      <Rectangle fx:id="" arcHeight="5.0" arcWidth="5.0" height="537.0" layoutX="21.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="988.0">
+      <Rectangle fx:id="" arcHeight="5.0" arcWidth="5.0" height="537.0" layoutX="21.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="988.0" AnchorPane.bottomAnchor="86.0" AnchorPane.topAnchor="142.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -98,7 +98,15 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Label id="txt" fx:id="titre_article" accessibleRole="BUTTON" contentDisplay="CENTER" layoutX="125.0" layoutY="50.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Dragon Ball Z: Budokai Tenkaichi 4 Release Date" textAlignment="CENTER" />
+      <AnchorPane layoutX="85.0" layoutY="14.0" prefHeight="124.0" prefWidth="861.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="124.0" prefWidth="861.0">
+               <children>
+                  <Label id="txt" fx:id="titre_article" accessibleRole="BUTTON" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="124.0" prefWidth="898.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact; -fx-wrap-text: true;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Dragon Ball Z: Budokai Tenkaichi 4  azeahjzea &#10;zoieua zeioaz eoazie aoe iauozei uazeopaieuaope iuazeoaiz" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
       <ScrollPane layoutX="61.0" layoutY="232.0" prefHeight="415.0" prefWidth="909.0" style="-fx-background-color: transparent;">
          <content>
             <TextFlow prefHeight="498.0" prefWidth="891.0" style="-fx-background-color: transparent;">

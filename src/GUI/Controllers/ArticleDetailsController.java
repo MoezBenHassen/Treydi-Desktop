@@ -49,21 +49,26 @@ public class ArticleDetailsController implements Initializable {
         populateArticleFields();
     }
     private void populateArticleFields(){
-        System.out.println("Selected article: " + selectedArticle);
+
         if (selectedArticle == null) {
             return;
         }
         text_author_date.setText(selectedArticle.getAuteur() + " | " + selectedArticle.getDate_publication());
         titre_article.setText(selectedArticle.getTitre());
-        if (categorieButton != null) {
-            categorieButton.setText("zzzzzzzzz");
-        }else {
 
-        }
+        CategorieArticleService categorieArticleService = new CategorieArticleService();
+        List<CategorieArticle> categorieArticles = categorieArticleService.getLibelle(selectedArticle.getId_article());
+
+        String libelleCat = categorieArticles.get(0).getLibelle_cat();
+
+        categorieButton.setText(libelleCat);
+
         text_content.setText(selectedArticle.getContenu());
+        titre_article.setWrapText(true);
+        titre_article.setPrefWidth(820);
+
 
     }
-
 
 
     @FXML
