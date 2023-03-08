@@ -6,6 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
@@ -30,7 +33,7 @@
          <effect>
             <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
          </effect></Rectangle>
-      <Label id="txt" accessibleRole="BUTTON" layoutX="191.0" layoutY="253.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Scanner votre QR Code pour obtenir " textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="189.0" layoutY="289.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Scanner votre QR Code pour obtenir " textAlignment="CENTER" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/images/treydi3.png" />
@@ -38,11 +41,16 @@
       </ImageView>
       <Button layoutX="58.0" layoutY="580.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="285.0" layoutY="310.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="votre code de coupon:" textAlignment="CENTER" />
-      <ImageView fx:id="qrcode" fitHeight="310.0" fitWidth="330.0" layoutX="319.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../APIs/img/image.png" />
-         </image></ImageView>
+      <Label id="txt" accessibleRole="BUTTON" layoutX="285.0" layoutY="339.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="votre code de coupon:" textAlignment="CENTER" />
+      <Label id="txt" fx:id="label" accessibleRole="BUTTON" alignment="CENTER" layoutX="264.0" layoutY="211.0" prefHeight="50.0" prefWidth="421.0" style="-fx-text-fill: white; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" textAlignment="CENTER" />
+      <GridPane fx:id="pane" layoutX="321.0" layoutY="421.0" prefHeight="300.0" prefWidth="300.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
 
    </children>
 </AnchorPane>

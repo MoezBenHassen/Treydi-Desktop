@@ -17,7 +17,7 @@ public class javafxMain extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/GestionCoupon.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/TransformScore.fxml"));
             Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
             Scene scene = new Scene(root);
             primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -43,6 +43,7 @@ public class javafxMain extends Application {
 
         } catch (IOException ex) {
             System.out.println("Err"+ex.getMessage());
+            ex.printStackTrace();
         }
 
     }

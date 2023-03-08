@@ -3,8 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
@@ -149,29 +148,21 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <TableView id="tablecoupons" fx:id="tablecoupons" layoutX="307.0" layoutY="272.0" prefHeight="472.0" prefWidth="1070.0" stylesheets="@Assets/css/style.css">
-         <columns>
-            <TableColumn fx:id="nomcoupon" prefWidth="126.00003051757812" text="Nom Coupon" />
-            <TableColumn fx:id="descriptioncoupon" prefWidth="222.0" text="Description Coupon" />
-            <TableColumn fx:id="etatcoupon" prefWidth="131.0" text="Etat Coupon" />
-            <TableColumn fx:id="dateexpiration" prefWidth="207.0" text="Date Expiration Coupon" />
-            <TableColumn fx:id="categoriecoupon" prefWidth="191.0" text="Catégorie Coupon" />
-            <TableColumn fx:id="codecoupon" prefWidth="191.0" text="Code Coupon" />
-         </columns>
-      </TableView>
-      <Pane fx:id="pane" layoutX="21.0" layoutY="322.0" prefHeight="314.0" prefWidth="200.0" visible="false">
+      <Pane fx:id="pane" layoutX="21.0" layoutY="333.0" prefHeight="385.0" prefWidth="200.0">
          <children>
             <TextField fx:id="titre" layoutX="9.0" layoutY="81.0" onInputMethodTextChanged="#envoyer" onKeyTyped="#envoyer" opacity="0.59" prefHeight="36.0" prefWidth="178.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
             <TextField fx:id="motscles" layoutX="8.0" layoutY="137.0" onInputMethodTextChanged="#envoyer" onKeyTyped="#envoyer" opacity="0.59" prefHeight="69.0" prefWidth="178.0" promptText="Mots clés" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-            <ComboBox fx:id="categoriecouponsbox" layoutX="8.0" layoutY="226.0" onAction="#envoyer" onInputMethodTextChanged="#envoyer" onKeyPressed="#envoyer" onKeyReleased="#envoyer" onKeyTyped="#envoyer" opacity="0.55" prefHeight="33.0" prefWidth="178.0" promptText="Catégorie" style="-fx-text-fill: #352d50; -fx-background-color: white; -fx-font-family: Impact;" />
+            <ComboBox fx:id="categoriecouponsbox" layoutX="8.0" layoutY="286.0" onAction="#envoyer" onInputMethodTextChanged="#envoyer" onKeyPressed="#envoyer" onKeyReleased="#envoyer" onKeyTyped="#envoyer" opacity="0.55" prefHeight="33.0" prefWidth="178.0" promptText="Catégorie" style="-fx-text-fill: #352d50; -fx-background-color: white; -fx-font-family: Impact;" />
             <Label id="txt" accessibleRole="BUTTON" layoutX="31.0" layoutY="14.0" prefHeight="56.0" prefWidth="232.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 30; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Recherche" textAlignment="CENTER" />
-            <ImageView fx:id="refresh" fitHeight="31.0" fitWidth="35.0" layoutX="81.0" layoutY="276.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refresh" fitHeight="31.0" fitWidth="35.0" layoutX="83.0" layoutY="339.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/pink/loop-arrow.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="etatbox" layoutX="8.0" layoutY="232.0" onAction="#envoyer" onInputMethodTextChanged="#envoyer" onKeyPressed="#envoyer" onKeyReleased="#envoyer" onKeyTyped="#envoyer" opacity="0.55" prefHeight="33.0" prefWidth="178.0" promptText="Etat" style="-fx-text-fill: #352d50; -fx-background-color: white; -fx-font-family: Impact;" />
          </children>
       </Pane>
+      <ScrollPane fx:id="scrollpane" layoutX="357.0" layoutY="251.0" prefHeight="471.0" prefWidth="959.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/scollpanestyle.css" />
 
    </children>
 </AnchorPane>

@@ -78,6 +78,7 @@ public class GestionCategoriesController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.showAndWait();
+            afficher();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Avertissement");

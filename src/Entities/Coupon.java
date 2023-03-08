@@ -1,11 +1,13 @@
 package Entities;
 
-import java.util.Date;
-
 public class Coupon {
 private int id_coupon, id_categoriecoupon, id_user;
-private String titre_coupon, description_coupon, etat_coupon, code;
+private String titre_coupon, description_coupon, code;
+private String etat_coupon;
+
 private String date_expiration;
+
+
 
     public Coupon( int id_categoriecoupon, int id_user, String titre_coupon, String description_coupon, String etat_coupon, String code, String date_expiration) {
         this.id_categoriecoupon = id_categoriecoupon;

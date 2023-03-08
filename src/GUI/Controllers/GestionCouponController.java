@@ -89,14 +89,14 @@ public class GestionCouponController implements Initializable {
                 }
                 return null;
             }
-    });
+        });
     }
 
     @FXML
     private void afficher() {
-            CouponService cs= new CouponService();
-            List<Coupon> coupons = cs.afficher();
-            CouponList.addAll(coupons);
+        CouponService cs= new CouponService();
+        List<Coupon> coupons = cs.afficher();
+        CouponList.addAll(coupons);
     }
 
 
@@ -104,11 +104,11 @@ public class GestionCouponController implements Initializable {
     private void modifier(ActionEvent event) throws IOException {
         Coupon selectedcoupon = (Coupon) tablecoupons.getSelectionModel().getSelectedItem();
         if (selectedcoupon != null) {
-        String nom = String.valueOf(selectedcoupon.getTitre_coupon());
-        String description = String.valueOf(selectedcoupon.getDescription_coupon());
-        String etat = String.valueOf(selectedcoupon.getEtat_coupon());
-        String date = String.valueOf(selectedcoupon.getDate_expiration());
-        String code = String.valueOf(selectedcoupon.getCode());
+            String nom = String.valueOf(selectedcoupon.getTitre_coupon());
+            String description = String.valueOf(selectedcoupon.getDescription_coupon());
+            String etat = String.valueOf(selectedcoupon.getEtat_coupon());
+            String date = String.valueOf(selectedcoupon.getDate_expiration());
+            String code = String.valueOf(selectedcoupon.getCode());
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../modification.fxml"));
@@ -214,4 +214,3 @@ public class GestionCouponController implements Initializable {
     }
 
 }
-

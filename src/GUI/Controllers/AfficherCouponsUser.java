@@ -1,56 +1,46 @@
-package GUI.Controllers;
 
+
+package GUI.Controllers;
 import Entities.CategorieCoupon;
 import Entities.Coupon;
 import Entities.Utilisateur;
 import Services.CategorieCouponService;
 import Services.CouponService;
-import com.sun.org.apache.xml.internal.security.Init;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
-import javafx.util.Callback;
-import javafx.beans.property.SimpleObjectProperty;
+
+
 
 public class AfficherCouponsUser implements Initializable {
-    @FXML
-    private TableColumn<Coupon, String> nomcoupon;
-    @FXML
-    private TableColumn<Coupon, String> descriptioncoupon;
-    @FXML
-    private TableColumn<Coupon, String> etatcoupon;
-    @FXML
-    private TableColumn<Coupon, String> dateexpiration;
-    @FXML
-    private TableColumn<Coupon, String> categoriecoupon;
-    @FXML
-    private TableColumn<Coupon, String> codecoupon;
 
     @FXML
-    private TableView tablecoupons;
+    private ScrollPane scrollpane;
+    Stage stage;
+    @FXML
+    private AnchorPane scenePane;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @FXML
     private Pane pane;
-
     @FXML
     private TextField titre;
     @FXML
@@ -58,16 +48,15 @@ public class AfficherCouponsUser implements Initializable {
     @FXML
     private ComboBox categoriecouponsbox;
 
-    private List<CategorieCoupon> categories;
-    private List<Coupon> coupons;
-    Stage stage;
     @FXML
-    private AnchorPane scenePane;
-    ObservableList<Coupon> CouponList = FXCollections.observableArrayList();
+    private ComboBox etatbox;
+    private  List<Coupon> coupons ;
+    private List<CategorieCoupon> categories;
 
 
-    Utilisateur u = new Utilisateur(5);
+    Utilisateur u= new Utilisateur(5);
 
+    @FXML
     public void logout(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -82,55 +71,209 @@ public class AfficherCouponsUser implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        CouponService sp = new CouponService();
-        coupons = sp.afficherParUser(u);
-        CategorieCouponService sp2 = new CategorieCouponService();
-        categories = sp2.afficher();
-        afficher();
-        tablecoupons.setItems(CouponList);
-        nomcoupon.setCellValueFactory(new PropertyValueFactory<>("titre_coupon"));
-        descriptioncoupon.setCellValueFactory(new PropertyValueFactory<>("description_coupon"));
-        etatcoupon.setCellValueFactory(new PropertyValueFactory<>("etat_coupon"));
-        dateexpiration.setCellValueFactory(new PropertyValueFactory<>("date_expiration"));
-        codecoupon.setCellValueFactory(new PropertyValueFactory<>("code"));
-        categoriecoupon.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coupon, String>, ObservableValue<String>>() {
+        CouponService cs = new CouponService();
+        coupons = cs.afficherParUser(u);
+        CategorieCouponService c = new CategorieCouponService();
+        categories = c.afficher();
+        afficher(coupons);
 
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Coupon, String> param) {
-                try {
-                    int catid = param.getValue().getId_categoriecoupon();
-                    String cat = categories.stream().filter((t) -> t.getId_categoriecoupon() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
-                    return new SimpleObjectProperty<>(cat);
-                } catch (Exception e) {
-                    System.out.println(e);
+        categoriecouponsbox.getItems().add("Toutes");
+        for (CategorieCoupon categorieCoupon : categories) {
+            categoriecouponsbox.getItems().add(categorieCoupon.getNom_categorie());
+        }
+
+        etatbox.getItems().add("Tous");
+        Set<String> etatSet = new HashSet<>();
+        for (Coupon coupon : coupons) {
+            String etat = coupon.getEtat_coupon();
+            if (!etatSet.contains(etat)) {
+                etatSet.add(etat);
+                etatbox.getItems().add(etat);
+            }
+        }
+    }
+
+
+
+    @FXML
+    private void afficher(List<Coupon> coupons) {
+        GridPane gridpane = new GridPane();
+
+        scrollpane.setContent(gridpane);
+
+        Slider slider = new Slider(0.5, 2, 1);
+
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            gridpane.setScaleX(newValue.doubleValue());
+            gridpane.setScaleY(newValue.doubleValue());
+        });
+
+        int row = 0;
+        int col = 0;
+
+
+        for (Coupon obj : coupons) {
+            {
+                if (obj.getId_categoriecoupon() == 1) {
+                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/bronze.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(182);
+                    imageView.setFitWidth(182);
+
+                    Label libelleNom = new Label(obj.getTitre_coupon());
+                    libelleNom.setStyle("-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 20");
+
+                    String cat = categories.stream().filter((t) -> t.getId_categoriecoupon() == obj.getId_categoriecoupon()).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    Label categorieLabel = new Label(cat);
+                    categorieLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15;");
+
+                    Label descLabel = new Label(obj.getDescription_coupon());
+                    descLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label typeetatLabel = new Label(String.valueOf(obj.getEtat_coupon()));
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label dateLabel = new Label(obj.getDate_expiration());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label codeLabel = new Label(obj.getCode());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    VBox vbox = new VBox(imageView, libelleNom, categorieLabel,descLabel, typeetatLabel, codeLabel, dateLabel);
+                    vbox.setSpacing(4);
+                    vbox.setPrefWidth(208);
+                    vbox.setPrefHeight(283);
+                    vbox.setAlignment(Pos.CENTER);
+
+                    vbox.setStyle("-fx-background-color: rgba(156, 156, 156, 0.24); -fx-background-radius: 22");
+
+                    gridpane.add(vbox, col, row);
+
+                    col++;
+                    if (col == 5) {
+                        col = 0;
+                        row++;
+                    }
+                } else if (obj.getId_categoriecoupon() == 2) {
+                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/silver.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(182);
+                    imageView.setFitWidth(182);
+
+                    Label libelleNom = new Label(obj.getTitre_coupon());
+                    libelleNom.setStyle("-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 20");
+
+                    String cat = categories.stream().filter((t) -> t.getId_categoriecoupon() == obj.getId_categoriecoupon()).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    Label categorieLabel = new Label(cat);
+                    categorieLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15;");
+
+                    Label descLabel = new Label(obj.getDescription_coupon());
+                    descLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label typeetatLabel = new Label(String.valueOf(obj.getEtat_coupon()));
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label dateLabel = new Label(obj.getDate_expiration());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label codeLabel = new Label(obj.getCode());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    VBox vbox = new VBox(imageView, libelleNom, categorieLabel, descLabel, typeetatLabel, codeLabel, dateLabel);
+                    vbox.setSpacing(4);
+                    vbox.setPrefWidth(208);
+                    vbox.setPrefHeight(283);
+                    vbox.setAlignment(Pos.CENTER);
+
+                    vbox.setStyle("-fx-background-color: rgba(156, 156, 156, 0.24); -fx-background-radius: 22");
+
+                    gridpane.add(vbox, col, row);
+
+                    col++;
+                    if (col == 5) {
+                        col = 0;
+                        row++;
+                    }
+                } else if (obj.getId_categoriecoupon() == 3) {
+                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/gold.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(182);
+                    imageView.setFitWidth(182);
+
+                    Label libelleNom = new Label(obj.getTitre_coupon());
+                    libelleNom.setStyle("-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 20");
+
+                    String cat = categories.stream().filter((t) -> t.getId_categoriecoupon() == obj.getId_categoriecoupon()).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
+                    Label categorieLabel = new Label(cat);
+                    categorieLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15;");
+
+                    Label descLabel = new Label(obj.getDescription_coupon());
+                    descLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label typeetatLabel = new Label(String.valueOf(obj.getEtat_coupon()));
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label dateLabel = new Label(obj.getDate_expiration());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    Label codeLabel = new Label(obj.getCode());
+                    typeetatLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-size: 15");
+
+                    VBox vbox = new VBox(imageView, libelleNom, categorieLabel, descLabel, typeetatLabel, codeLabel, dateLabel);
+                    vbox.setSpacing(4);
+                    vbox.setPrefWidth(208);
+                    vbox.setPrefHeight(283);
+                    vbox.setAlignment(Pos.CENTER);
+
+                    vbox.setStyle("-fx-background-color: rgba(156, 156, 156, 0.24); -fx-background-radius: 22");
+
+                    gridpane.add(vbox, col, row);
+
+                    col++;
+                    if (col == 5) {
+                        col = 0;
+                        row++;
+                    }
                 }
-                return null;
+
+                gridpane.setHgap(27);
+                gridpane.setVgap(35);
             }
 
-        });
+        }
 
     }
 
 
 
     @FXML
-    private void afficher() {
-        CouponService cs = new CouponService();
-        List<Coupon> coupons = cs.afficherParUser(u);
-        CouponList.addAll(coupons);
-
+    public void gotocoupon(javafx.scene.input.MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainFidelite.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void Minimize(MouseEvent mouseEvent) {
+    @FXML
+    public void Minimize(javafx.scene.input.MouseEvent mouseEvent) {
         Stage stage1 = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage1.setIconified(true);
-    }
+        stage1.setIconified(true); }
 
-    public void envoyer() {
+
+    @FXML
+    public void envoyer(KeyEvent keyEvent) {
 
         String titreText = titre.getText();
         String catText = (String) categoriecouponsbox.getValue();
+        String etatText= (String) etatbox.getValue();
         int c_cat = categories.stream().filter((t) -> t.getNom_categorie().equals(catText)).mapToInt((t) -> t.getId_categoriecoupon()).sum();
-        System.out.println(c_cat);
         String descText = motscles.getText();
 
         List<Coupon> couponstream = coupons;
@@ -144,42 +287,29 @@ public class AfficherCouponsUser implements Initializable {
 
         }
 
-        if (catText != null && !catText.equals("Catégories")) {
-            System.out.println("message");
+        if (etatText != null && !etatText.equals("Tous")) {
+            couponstream = couponstream.stream().filter((t) -> t.getEtat_coupon() == etatText).collect(Collectors.toList());
+        }
+
+        if (catText != null && !catText.equals("Toutes")) {
             couponstream = couponstream.stream().filter((t) -> t.getId_categoriecoupon() == c_cat).collect(Collectors.toList());
         }
 
-        tablecoupons.setItems(FXCollections.observableArrayList(couponstream));
+        afficher(couponstream) ;
+
     }
 
-
-    public void chercher(MouseEvent mouseEvent) {
-        categoriecouponsbox.setValue("Catégories");
-        for (CategorieCoupon categorieCoupon : categories) {
-            categoriecouponsbox.getItems().add(categorieCoupon.getNom_categorie());
-        }
+    public void chercher(javafx.scene.input.MouseEvent mouseEvent) {
         pane.setVisible(true);
     }
 
-    public void refresh(MouseEvent mouseEvent) {
+    @FXML
+    public void refresh(javafx.scene.input.MouseEvent mouseEvent) {
         titre.clear();
         motscles.clear();
         categoriecouponsbox.getItems().clear();
-
-    }
-
-    public void gotocoupon(MouseEvent mouseEvent) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainFidelite.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        etatbox.getItems().clear();
+        afficher(coupons);
     }
 }
 

@@ -73,7 +73,7 @@ public class CouponService implements IService<Coupon> {
 
     public int affecterCouponCasual(Utilisateur u) {
         UtilisateurService cs = new UtilisateurService();
-        Coupon c = new Coupon(1, u.getId(), "CouponCasual", "Coupon 30% sur la livraison", "Valide", "CasCoupon23","2023-04-01");
+        Coupon c = new Coupon(1, u.getId(), "Coupon Mars", "Coupon 30% sur la livraison", "VALID", "CasCoupon23","2023-04-01");
         int couponId = -1;
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
@@ -93,7 +93,7 @@ public class CouponService implements IService<Coupon> {
 
     public int affecterCouponSpecial(Utilisateur u) {
         UtilisateurService cs = new UtilisateurService();
-        Coupon c = new Coupon(2, u.getId(), "CouponSpecial", "Coupon 100% Livraison", "Valide", "SpecCoupon23","2023-04-01");
+        Coupon c = new Coupon(2, u.getId(), "Coupon Mars Silver", "Coupon 100% Livraison", "VALID", "SpecCoupon23","2023-04-01");
         int couponId = -1;
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
@@ -113,7 +113,7 @@ public class CouponService implements IService<Coupon> {
 
     public int affecterCouponExclusif(Utilisateur u) {
         UtilisateurService cs= new UtilisateurService();
-        Coupon c = new Coupon(3, u.getId(), "CouponExclusif", "Carte de recharge OOREDOO", "Valide", "LoyaltyCoupon23","2023-04-01");
+        Coupon c = new Coupon(3, u.getId(), "Coupon Mars Gold", "Carte de recharge OOREDOO", "VALID", "LoyaltyCoupon23","2023-04-01");
         int couponId = -1;
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";

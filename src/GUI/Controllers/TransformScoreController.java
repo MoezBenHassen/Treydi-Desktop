@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -34,7 +35,7 @@ public class TransformScoreController implements Initializable {
     @FXML
     private Label score;
     @FXML
-    private TextField transformme;
+    private TextField transform1, transform2, transform3;
 
     Utilisateur user = new Utilisateur(5);
 
@@ -71,73 +72,85 @@ public class TransformScoreController implements Initializable {
     }
 
     public void goToQR(ActionEvent actionEvent) throws IOException, SQLException {
-        String s = transformme.getText();
-        int sum = Integer.parseInt(s);
-        if (!s.isEmpty()) {
+        int t1 = Integer.parseInt(transform1.getText());
+        int t2 = Integer.parseInt(transform2.getText());
+        int t3 = Integer.parseInt(transform3.getText());
 
-            if (getScore() > sum && (sum==1000) || (sum==2000) || (sum==5000)) {
-                if (sum == 1000) {
+        int sum = t1 + t2 + t3;
+        int i;
+        if (!(t1 == 0) || !(t2 == 0) || !(t3 == 0)) {
+            if (getScore() >= sum) {
+                if (t1 != 0) {
                     CouponService cs = new CouponService();
                     UtilisateurService us = new UtilisateurService();
-                    int c = cs.affecterCouponCasual(user);
-                    us.setScore(user, sum);
-                    String code = cs.getCode(c);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
-                    Parent root = loader.load();
-                    QrCodeController qc = loader.getController();
-                    qc.setQrCode(code);
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.showAndWait();
-                    getScore();
-                } else if (sum == 2000) {
+                    for (i = 0; i < t1; i++) {
+                        int c = cs.affecterCouponCasual(user);
+                        String code = cs.getCode(c);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
+                        Parent root = loader.load();
+                        QrCodeController qc = loader.getController();
+                        qc.setQrCode(code);
+                        qc.setTitreText("Coupon Casual " + (i + 1));
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.showAndWait();
+                    }
+                    us.setScore(user, t1 * 1000);
+                }
+                if (t2 != 0) {
                     CouponService cs = new CouponService();
                     UtilisateurService us = new UtilisateurService();
-                    int id = cs.affecterCouponSpecial(user);
-                    us.setScore(user, sum);
-                    String code = cs.getCode(id);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
-                    Parent root = loader.load();
-                    QrCodeController qc = loader.getController();
-                    qc.setQrCode(code);
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.showAndWait();
-                    getScore();
-                } else if (sum == 5000) {
+                    for (i = 0; i < t2; i++) {
+                        int id = cs.affecterCouponSpecial(user);
+                        String code = cs.getCode(id);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
+                        Parent root = loader.load();
+                        QrCodeController qc = loader.getController();
+                        qc.setQrCode(code);
+                        qc.setTitreText("Coupon Special " + (i + 1));
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.showAndWait();
+                    }
+                    us.setScore(user, t2 * 2000);
+                }
+                if (t3 != 0) {
                     CouponService cs = new CouponService();
                     UtilisateurService us = new UtilisateurService();
-                    int id = cs.affecterCouponExclusif(user);
-                    us.setScore(user, sum);
-                    String code = cs.getCode(id);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
-                    Parent root = loader.load();
-                    QrCodeController qc = loader.getController();
-                    qc.setQrCode(code);
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.showAndWait();
-                    getScore();
+                    for (i = 0; i < t3; i++) {
+                        int id = cs.affecterCouponExclusif(user);
+                        us.setScore(user, t3 * 5000);
+                        String code = cs.getCode(id);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../qrcode.fxml"));
+                        Parent root = loader.load();
+                        QrCodeController qc = loader.getController();
+                        qc.setQrCode(code);
+                        qc.setTitreText("Coupon Exclusif " + (i + 1));
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.showAndWait();
+                    }
+                    us.setScore(user, t3 * 1000);
+                }
+            } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Score insuffisant!");
+                    alert.showAndWait();
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText(null);
-                alert.setContentText("Nombre inseré invalide!");
+                alert.setContentText("Veuillez entrer un nombre.");
                 alert.showAndWait();
             }
         }
-            else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez entrer un nombre.");
-            alert.showAndWait();
-        }
-    }
+
 
     public void gotoafficher(MouseEvent mouseEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MyCoupons.fxml"));
@@ -152,6 +165,17 @@ public class TransformScoreController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void NumberOnly(KeyEvent keyEvent) {
+        char c = keyEvent.getCharacter().charAt(0);
+        if (!(Character.isDigit(c))) {
+            keyEvent.consume();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("ERREUR! Entrez une valeur numérique.");
+            alert.showAndWait();
+        }
+    }
+
 }
-
-

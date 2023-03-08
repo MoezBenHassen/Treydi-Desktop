@@ -106,7 +106,7 @@
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="201.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -141,14 +141,14 @@
          </image>
       </ImageView>
       <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="613.0" layoutY="350.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="1000 XP►                      Coupon Mensuel" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="390.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="1000 XP►                      Coupon Mensuel" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="1198.0" layoutY="249.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="XP" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="608.0" layoutY="136.0" prefHeight="56.0" prefWidth="468.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Transformer votre score" textAlignment="CENTER" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="616.0" layoutY="561.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 20; -fx-font-family: arial;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Saisir le nombre des points à transformer:" textAlignment="CENTER" />
-      <TextField fx:id="transformme" alignment="CENTER" layoutX="610.0" layoutY="605.0" opacity="0.59" prefHeight="36.0" prefWidth="394.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="612.0" layoutY="400.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="2000 XP►                      Coupon Spécial" textAlignment="CENTER" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="612.0" layoutY="453.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="5000 XP►                      Coupon Exclusif" textAlignment="CENTER" />
-      <Button id="addButton" fx:id="envoyer" layoutX="678.0" layoutY="675.0" mnemonicParsing="false" onAction="#goToQR" prefHeight="36.0" prefWidth="248.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Envoyer" textFill="#eccecf">
+      <Label id="txt" accessibleRole="BUTTON" layoutX="523.0" layoutY="303.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 30; -fx-font-family: arial;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Saisir le nombre des points à transformer:" textAlignment="CENTER" />
+      <TextField fx:id="transform1" alignment="CENTER" layoutX="951.0" layoutY="392.0" onKeyTyped="#NumberOnly" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="458.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="2000 XP►                      Coupon Spécial" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="454.0" layoutY="524.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="5000 XP►                      Coupon Exclusif" textAlignment="CENTER" />
+      <Button id="addButton" fx:id="envoyer" layoutX="676.0" layoutY="618.0" mnemonicParsing="false" onAction="#goToQR" prefHeight="36.0" prefWidth="248.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Envoyer" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font>
@@ -158,6 +158,8 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
+      <TextField fx:id="transform2" alignment="CENTER" layoutX="951.0" layoutY="461.0" onKeyTyped="#NumberOnly" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
+      <TextField fx:id="transform3" alignment="CENTER" layoutX="951.0" layoutY="527.0" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
 
    </children>
 </AnchorPane>

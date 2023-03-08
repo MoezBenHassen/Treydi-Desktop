@@ -20,6 +20,7 @@ import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -89,7 +90,16 @@ public class AjouterCouponController implements Initializable {
            alert.showAndWait();
            return ;
        }
-       String date= dateexpiration.getValue().format(formatter);
+       LocalDate dateChoisie = dateexpiration.getValue();
+       LocalDate dateAujourdhui = LocalDate.now();
+       if (dateChoisie.isBefore(dateAujourdhui)) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setHeaderText(null);
+           alert.setContentText("La date choisie est antérieure à la date d'aujourd'hui");
+           alert.showAndWait();
+           return;
+       }
+       String date = dateChoisie.format(formatter);
        String etat=etatcoupon.getText().trim();
 
        if (nom.isEmpty()) {
@@ -116,8 +126,7 @@ public class AjouterCouponController implements Initializable {
            return;
        }
 
-       System.out.println(nom+desc +etat + dateexpiration.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + id_cat);
-        Coupon c= new Coupon(nom, desc, etat, dateexpiration.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), id_cat);
+        Coupon c= new Coupon(nom, desc, etat, date, id_cat);
         cs.add(c);
            Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
            alert.setHeaderText(null);
