@@ -149,7 +149,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="59.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="59.0" layoutY="343.0" onMouseClicked="#route_userlist" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/icons/blue/list.png" />
          </image>

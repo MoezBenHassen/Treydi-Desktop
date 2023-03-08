@@ -102,8 +102,7 @@
                         <Image url="@Assets/icons/avatar4.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
+               </graphic></Button>
 
             </children>
         </AnchorPane>

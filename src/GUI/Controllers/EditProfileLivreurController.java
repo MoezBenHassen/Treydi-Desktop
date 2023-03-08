@@ -21,8 +21,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,7 +109,11 @@ public class EditProfileLivreurController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LivreurHome.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.initStyle(StageStyle.UNDECORATED);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override

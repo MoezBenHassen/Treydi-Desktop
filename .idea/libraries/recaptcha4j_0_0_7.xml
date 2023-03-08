@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="recaptcha4j-0.0.7">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Documents/recaptcha4j-0.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/APIs/recaptcha4j-0.0.7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

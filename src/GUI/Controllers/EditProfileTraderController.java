@@ -16,11 +16,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -48,12 +51,17 @@ public class EditProfileTraderController implements Initializable {
     @FXML
     private ImageView imageview_imageurl ;
 
+
+    @FXML
+    private ImageView avatarImg;
+
     Stage stage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populateFields();
         Image image = new Image(CurrentUser.getInstance().getAvatar_url());
         imageview_imageurl.setImage(image);
+        avatarImg.setImage(image);
 
     }
     public void setSelectedUser(Trader tr) {
@@ -88,7 +96,7 @@ public class EditProfileTraderController implements Initializable {
         tfdate.setText(CurrentUser.getInstance().getDate_naissance());
         Image image = new Image(CurrentUser.getInstance().getAvatar_url());
         imageview_imageurl.setImage(image);
-
+        avatarImg.setImage(image);
 
     }
     @FXML
@@ -126,8 +134,13 @@ public class EditProfileTraderController implements Initializable {
                     stage.setY(event.getScreenY() - yOffset);
                 }
             });
+            stage.initStyle(StageStyle.UNDECORATED);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
             stage.setScene(scene);
             stage.show();
+
         }
     }
 

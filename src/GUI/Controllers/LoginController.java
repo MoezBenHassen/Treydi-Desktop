@@ -19,8 +19,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import Utils.CurrentUser;
+import javafx.stage.StageStyle;
+
 import javax.swing.text.html.ImageView;
 
 public class LoginController implements  Initializable {
@@ -76,6 +79,13 @@ public class LoginController implements  Initializable {
                     Stage stage = new Stage();
                     stage.setTitle("Login");
                     stage.setScene(scene);
+
+
+
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                     CurrentUser currentUser = CurrentUser.getInstance();
@@ -102,12 +112,14 @@ public class LoginController implements  Initializable {
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
-                    System.out.println(CurrentUser.getInstance().getScore());
+                 /*   System.out.println(CurrentUser.getInstance().getScore());
                     System.out.println(CurrentUser.getInstance().getDate_naissance());
                     System.out.println("----------");
                     System.out.println(CurrentUser.getInstance().getAvatar_url());
                     System.out.println("----------");
                     System.out.println(CurrentUser.getInstance().getNom());
+                    *
+                  */
                 }
                 if (trader.getRole().name().equalsIgnoreCase(Roles.trader.name())) {
                     CurrentUser.setInstance(CurrentUser.getInstance(
@@ -118,6 +130,12 @@ public class LoginController implements  Initializable {
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
+
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+
+
                     stage.setTitle("Login");
                     stage.setScene(scene);
                     stage.show();
@@ -126,7 +144,7 @@ public class LoginController implements  Initializable {
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
-                    System.out.println(CurrentUser.getInstance().getScore());
+                  /*  System.out.println(CurrentUser.getInstance().getScore());
                     System.out.println(CurrentUser.getInstance().getAdresse());
                     System.out.println(CurrentUser.getInstance().getEmail());
                     System.out.println(CurrentUser.getInstance().getPassword());
@@ -135,6 +153,8 @@ public class LoginController implements  Initializable {
                     System.out.println("----------");
                     System.out.println(CurrentUser.getInstance().getDate_naissance());
                     System.out.println(CurrentUser.getInstance().getNom());
+                    */
+
                 }
             } catch (IOException ex) {
                 System.out.println("Exception loading FXML file: " + ex.getMessage());
@@ -154,6 +174,8 @@ public class LoginController implements  Initializable {
             // Get the current stage and set the new scene
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(scene);
+
+
             currentStage.setTitle("Inscription");
             currentStage.show();
         } catch (IOException ex) {
