@@ -31,6 +31,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.scene.control.ComboBox;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -63,6 +65,8 @@ public class ListeArticlefxmlController implements Initializable {
     @FXML private Node topcircle;
     @FXML private Node bottomcirlce ;
 
+    @FXML
+    private TextField rechercheField;
     Stage stage;
     private double xOffset;
     private double yOffset;
@@ -128,9 +132,18 @@ public class ListeArticlefxmlController implements Initializable {
         translateTransition.setDuration(Duration.millis(1000));
         translateTransition.setByX(-200);
         translateTransition.setByY(200);
-
-        afficher();
-
+//affichage
+        ArticleService articleService = new ArticleService();
+        List<Article> articles = articleService.afficher() ;
+        afficher(articles);
+        // filtre affichage
+        rechercheField.textProperty().addListener((obs, oldVal, newVal) -> {
+            String titre = rechercheField.getText().trim();
+            List<Article> articlesSearch = articles.stream()
+                    .filter(recc -> recc.getTitre().toLowerCase().contains(titre.toLowerCase()))
+                    .collect(Collectors.toList());
+            afficher(articlesSearch);
+        });
         tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2){
                 // Check if it's a double click
@@ -141,6 +154,10 @@ public class ListeArticlefxmlController implements Initializable {
                 }
             }
         });
+    }
+    private void afficher(List<Article> articleList) {
+        tableView.getItems().clear();
+        tableView.getItems().addAll(articleList);
     }
 
     @FXML
@@ -175,14 +192,8 @@ public class ListeArticlefxmlController implements Initializable {
         stage1.setHeight(768);
         stage1.setScene(scene);
         stage1.showAndWait();
-        afficher();
+        //afficher(a);
 
-    }
-    private void afficher() {
-        ArticleService articleService = new ArticleService();
-        List<Article> articles = articleService.afficher() ;
-        tableView.getItems().clear();
-        tableView.getItems().addAll(articles);
     }
 
 
@@ -333,6 +344,6 @@ public class ListeArticlefxmlController implements Initializable {
         stage1.setHeight(768);
         stage1.setScene(scene);
         stage1.showAndWait();
-        afficher();
+        //afficher();
     }
 }

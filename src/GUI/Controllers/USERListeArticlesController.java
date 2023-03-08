@@ -73,10 +73,10 @@ public class USERListeArticlesController implements Initializable {
 
         rechercheField.textProperty().addListener((obs, oldVal, newVal) -> {
             String titre = rechercheField.getText().trim();
-            List<Article> reclamationsFiltrees = articleList.stream()
+            List<Article> articlesSearch = articleList.stream()
                     .filter(recc -> recc.getTitre().toLowerCase().contains(titre.toLowerCase()))
                     .collect(Collectors.toList());
-            afficherArticles(reclamationsFiltrees);
+            afficherArticles(articlesSearch);
         });
     }
 
@@ -126,7 +126,8 @@ public class USERListeArticlesController implements Initializable {
                 HBox finalHBox2 = hBox;
                 hBox.setOnMouseClicked(event -> {
                     clickCounter.getAndIncrement();
-                    if (clickCounter.get() == 2) {
+
+                    if (event.getClickCount() == 2) {
                         try {
                             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../ArticleDetails.fxml"));
                             //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("AffichageReponseUser.fxml"));

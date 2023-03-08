@@ -152,7 +152,7 @@
             <Image url="@Assets/images/treydi3.png" />
          </image>
       </ImageView>
-      <TextField fx:id="rechercheField" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <TextField fx:id="rechercheField" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" promptText="Rechercher un article" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
       <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/icons/blue/magnifier.png" />
