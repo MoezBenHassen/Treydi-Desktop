@@ -1,9 +1,14 @@
 <component name="libraryTable">
   <library name="mysql.connector.java" type="repository">
-    <properties maven-id="mysql:mysql-connector-java:5.1.23" />
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.23/mysql-connector-java-5.1.23.jar!/" />
-    </CLASSES>
+    <properties maven-id="mysql:mysql-connector-java:5.1.23">
+      <exclude>
+        <dependency maven-id="mysql:mysql-connector-java" />
+      </exclude>
+    </properties>
+    <ANNOTATIONS>
+      <root url="file://$USER_HOME$/Desktop/db" />
+    </ANNOTATIONS>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
