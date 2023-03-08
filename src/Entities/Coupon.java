@@ -38,10 +38,11 @@ private String date_expiration;
         this.id_categoriecoupon=id_categoriecoupon;
     }
 
-    public Coupon( String titre_coupon, String description_coupon, String date_expiration, String etat_coupon) {
+    public Coupon( String titre_coupon, String description_coupon, String etat_coupon, String date_expiration) {
         this.titre_coupon = titre_coupon;
         this.description_coupon = description_coupon;
         this.etat_coupon = etat_coupon;
+        this.date_expiration = date_expiration;
     }
 
     public Coupon(int id_coupon) {
@@ -50,6 +51,16 @@ private String date_expiration;
 
     public Coupon() {
     }
+
+    public Coupon(int idcoupon, String titre_coupon, String description_coupon, String etat_coupon, String date_expiration, String code) {
+        this.id_coupon= idcoupon;
+        this.titre_coupon = titre_coupon;
+        this.description_coupon = description_coupon;
+        this.etat_coupon = etat_coupon;
+        this.date_expiration = date_expiration;
+        this.code = code;
+    }
+
     public int getId_coupon() {
         return id_coupon;
     }

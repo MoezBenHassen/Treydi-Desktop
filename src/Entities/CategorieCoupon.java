@@ -14,6 +14,12 @@ public CategorieCoupon () {
         this.description_categorie = description_categorie;
     }
 
+    public CategorieCoupon(int id_categoriecoupon, String nom_categorie, String description_categorie) {
+    this.id_categoriecoupon= id_categoriecoupon;
+    this.nom_categorie=nom_categorie;
+    this.description_categorie=description_categorie;
+    }
+
     public int getId_categoriecoupon() {
         return id_categoriecoupon;
     }

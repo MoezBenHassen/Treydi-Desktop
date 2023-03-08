@@ -114,16 +114,19 @@ public class GestionCouponController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../modification.fxml"));
             Parent root = loader.load();
             ModifierCouponController modificationControlleur = loader.getController();
+            modificationControlleur.setSelectedItem(selectedcoupon);
             modificationControlleur.setTitreText(selectedcoupon.getTitre_coupon());
             modificationControlleur.setDescriptionText(selectedcoupon.getDescription_coupon());
             modificationControlleur.setEtatText(selectedcoupon.getEtat_coupon());
             modificationControlleur.setDate(selectedcoupon.getDate_expiration());
             modificationControlleur.setCode(selectedcoupon.getCode());
+            modificationControlleur.setIdCoupon(selectedcoupon.getId_coupon());
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.showAndWait();
+            refresh();
 
 
         } else {
@@ -149,7 +152,7 @@ public class GestionCouponController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("La ligne a été supprimé avec succès!");
                 alert.show();
-                afficher();
+                refresh();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
@@ -197,6 +200,14 @@ public class GestionCouponController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    private void refresh(){
+        CouponService sr = new CouponService();
+        List<Coupon> coupons = sr.afficher();
+        ObservableList<Coupon> couponObservableList = FXCollections.observableArrayList(coupons);
+        tablecoupons.setItems(couponObservableList);
     }
 
     @FXML

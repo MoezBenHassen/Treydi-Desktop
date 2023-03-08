@@ -41,14 +41,15 @@
       <Button layoutX="58.0" layoutY="580.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <TextField fx:id="nomcoupon1" layoutX="208.0" layoutY="228.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-      <TextField fx:id="descriptioncoupon1" layoutX="207.0" layoutY="326.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Description" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-      <TextField fx:id="etatcoupon1" layoutX="206.0" layoutY="432.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Etat Coupon" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-      <TextField fx:id="dateexpiration1" layoutX="205.0" layoutY="539.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Date Expiration: YYYY-MM-JJ" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <TextField fx:id="descriptioncoupon1" layoutX="206.0" layoutY="308.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Description" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <TextField fx:id="etatcoupon1" layoutX="205.0" layoutY="396.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Etat Coupon" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <TextField fx:id="dateexpiration1" layoutX="205.0" layoutY="482.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Date Expiration: YYYY-MM-JJ" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
       <Button id="addButton" fx:id="envoyer" layoutX="499.0" layoutY="700.0" mnemonicParsing="false" onAction="#modifier" prefHeight="36.0" prefWidth="281.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Envoyer" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <TextField fx:id="code1" layoutX="204.0" layoutY="569.0" opacity="0.59" prefHeight="53.0" prefWidth="547.0" promptText="Code Coupon" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
 
    </children>
 </AnchorPane>

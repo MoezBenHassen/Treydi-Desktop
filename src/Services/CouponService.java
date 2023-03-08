@@ -57,7 +57,7 @@ public class CouponService implements IService<Coupon> {
 
     public Boolean modifier(Coupon c) {
         try {
-            String qry = "UPDATE `coupon` SET `titre_coupon`='" + c.getTitre_coupon() + "',`description_coupon`='" + c.getDescription_coupon() + "',`etat_coupon`='" + c.getEtat_coupon() + "'";
+            String qry = "UPDATE `coupon` SET `titre_coupon`='" + c.getTitre_coupon() + "', `description_coupon`='" + c.getDescription_coupon() + "', `etat_coupon`='" + c.getEtat_coupon() + "', `date_expiration`='" + c.getDate_expiration() + "', `code`='" + c.getCode() + "' WHERE `id_coupon`='" + c.getId_coupon() + "';";
             stm = cnx.createStatement();
             int rset = stm.executeUpdate(qry);
             System.out.println("Update Successful!");

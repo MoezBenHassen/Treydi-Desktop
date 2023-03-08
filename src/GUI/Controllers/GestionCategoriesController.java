@@ -71,14 +71,17 @@ public class GestionCategoriesController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../modificationcat.fxml"));
             Parent root = loader.load();
             ModifierCategorieController modificationControlleur = loader.getController();
+            modificationControlleur.setSelectedItem(selectedcat);
             modificationControlleur.setTitreText(selectedcat.getNom_categorie());
             modificationControlleur.setDescriptionText(selectedcat.getDescription_categorie());
+            modificationControlleur.setIdText(selectedcat.getId_categoriecoupon());
+
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.showAndWait();
-            afficher();
+            refresh();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Avertissement");
@@ -103,7 +106,7 @@ public class GestionCategoriesController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("La ligne a été supprimé avec succès!");
                 alert.show();
-                afficher();
+                refresh();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
@@ -127,6 +130,12 @@ public class GestionCategoriesController implements Initializable {
         stage1.setIconified(true);
     }
 
+    private  void refresh(){
+        CategorieCouponService sr = new CategorieCouponService();
+        List<CategorieCoupon> cats = sr.afficher();
+        ObservableList<CategorieCoupon> catsObservableList = FXCollections.observableArrayList(cats);
+        tablecategories.setItems(catsObservableList);
+    }
     @FXML
     public void gotoAjouter(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterCategorie.fxml"));

@@ -141,7 +141,7 @@
          </image>
       </ImageView>
       <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
-      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="390.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="1000 XP►                      Coupon Mensuel" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="390.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="1000 XP►                      Coupon Casual" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="1198.0" layoutY="249.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="XP" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="608.0" layoutY="136.0" prefHeight="56.0" prefWidth="468.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Transformer votre score" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="523.0" layoutY="303.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 30; -fx-font-family: arial;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Saisir le nombre des points à transformer:" textAlignment="CENTER" />

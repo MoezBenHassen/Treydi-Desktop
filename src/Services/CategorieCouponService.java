@@ -60,9 +60,8 @@ public class CategorieCouponService implements IService<CategorieCoupon> {
 @Override
     public Boolean modifier(CategorieCoupon c) {
         try {
-                String qry = "UPDATE `categorie_coupon` SET ( `nom_categorie`, `description_categorie`) " +
-                        "VALUES ('" + c.getNom_categorie() + "','" + c.getDescription_categorie() + "')";
-                stm = cnx.createStatement();
+            String qry = "UPDATE `categorie_coupon` SET `nom_categorie`='" + c.getNom_categorie() + "', `description_categorie`='" + c.getDescription_categorie() + "' WHERE `id_categoriecoupon`='" + c.getId_categoriecoupon() + "';";
+            stm = cnx.createStatement();
                 int rqu = stm.executeUpdate(qry);
             }
         catch (SQLException ex) {

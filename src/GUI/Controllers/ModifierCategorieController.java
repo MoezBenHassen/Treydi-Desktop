@@ -25,6 +25,9 @@ public class ModifierCategorieController implements Initializable {
     @FXML
     private AnchorPane scenePane;
 
+    private CategorieCoupon categorieCoupon;
+    private int idCategoriecoupon  ;
+
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -39,7 +42,7 @@ public class ModifierCategorieController implements Initializable {
         if (titre.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setContentText("le champ titre est vide");
+            alert.setContentText("le champ titre est vide !!!");
             alert.showAndWait();
             return;
         }
@@ -54,7 +57,7 @@ public class ModifierCategorieController implements Initializable {
 
 
         CategorieCouponService cs = new CategorieCouponService();
-        CategorieCoupon c = new CategorieCoupon(titre, description) ;
+        CategorieCoupon c = new CategorieCoupon(idCategoriecoupon,titre, description) ;
         cs.modifier(c);
         stage = (Stage) scenePane.getScene().getWindow();
         Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
@@ -74,5 +77,12 @@ public class ModifierCategorieController implements Initializable {
         descriptioncategorie.setText(descriptionCoupon);
     }
 
+
+    public void setIdText(int idCategoriecoupon) {
+        {this.idCategoriecoupon = idCategoriecoupon;}
+    }
+
+    public void setSelectedItem(CategorieCoupon categorieCoupon) {
+        this.categorieCoupon = categorieCoupon;}
 
 }

@@ -4,7 +4,11 @@ import Entities.Coupon;
 import Services.CouponService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -13,11 +17,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ModifierCouponController implements Initializable {
     @FXML
-    private TextField nomcoupon1, etatcoupon1, descriptioncoupon1;
+    private TextField nomcoupon1, etatcoupon1, descriptioncoupon1, code1;
 
     @FXML
     private TextField dateexpiration1;
@@ -25,6 +30,9 @@ public class ModifierCouponController implements Initializable {
     Stage stage;
     @FXML
     private AnchorPane scenePane;
+
+    private Coupon selectedCoupon;
+    private int idcoupon  ;
 
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -36,12 +44,13 @@ public class ModifierCouponController implements Initializable {
             String description = descriptioncoupon1.getText().trim();
             String etat = etatcoupon1.getText().trim();
             String date = dateexpiration1.getText().trim();
+            String code = code1.getText().trim();
 
 
             if (titre.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("le champ titre est vide");
+                alert.setContentText("le champ titre est vide!!!");
                 alert.showAndWait();
                 return;
             }
@@ -57,7 +66,7 @@ public class ModifierCouponController implements Initializable {
             if (etat.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("le champ description est vide !!!");
+                alert.setContentText("le champ etat est vide !!!");
                 alert.showAndWait();
                 return;
             }
@@ -65,13 +74,22 @@ public class ModifierCouponController implements Initializable {
             if (date.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
-                alert.setContentText("le champ description est vide !!!");
+                alert.setContentText("le champ date est vide !!!");
                 alert.showAndWait();
                 return;
             }
 
+            if (code.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("le champ code est vide !!!");
+                alert.showAndWait();
+                return;
+            }
+
+
             CouponService cs = new CouponService();
-            Coupon c = new Coupon(titre, description, date, etat) ;
+            Coupon c = new Coupon(idcoupon,titre, description, etat, date, code) ;
             cs.modifier(c);
             stage = (Stage) scenePane.getScene().getWindow();
             Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
@@ -79,6 +97,7 @@ public class ModifierCouponController implements Initializable {
             alert.setContentText("SUCCESS! Le coupon a été modifié.");
             alert.showAndWait();
             stage.close();
+
         }
 
 
@@ -99,6 +118,12 @@ public class ModifierCouponController implements Initializable {
     }
 
     public void setCode(String codecoupon) {
-        dateexpiration1.setText(codecoupon);
+        code1.setText(codecoupon);
     }
+
+    public void setSelectedItem(Coupon coupon) {
+        selectedCoupon = coupon;}
+
+    public void setIdCoupon(int idcoupon) {this.idcoupon = idcoupon;}
+
 }
