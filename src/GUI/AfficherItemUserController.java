@@ -4,6 +4,7 @@ import APIs.ToPDF;
 import APIs.ToXLS;
 import Entities.Categorie_Items;
 import Entities.Item;
+import Entities.Utilisateur;
 import Services.CategorieItemsService;
 import Services.ItemService;
 import javafx.application.Platform;
@@ -88,6 +89,9 @@ public class AfficherItemUserController implements Initializable {
 
     @FXML
     private CheckBox cb_type_4 ;
+
+    @FXML
+    private CheckBox all ;
 
 
     @FXML
@@ -310,11 +314,20 @@ public class AfficherItemUserController implements Initializable {
                 }
             });
 
+            HBox buttons = new HBox();
+
+            if (obj.getId_user() == Utilisateur.getLoginid())
+            {
+                 buttons = new HBox(modimageView, supimageView, detimageView);
+                buttons.setSpacing(24);
+                buttons.setAlignment(Pos.CENTER);
+            } else {
+                 buttons = new HBox(detimageView);
+                buttons.setSpacing(24);
+                buttons.setAlignment(Pos.CENTER);
+            }
 
 
-            HBox buttons = new HBox(modimageView, supimageView, detimageView);
-            buttons.setSpacing(24);
-            buttons.setAlignment(Pos.CENTER);
 
             Label like = new Label("👍 "+obj.getLikes());
             like.setStyle("-fx-text-fill: #775cfa; -fx-font-family: impact; -fx-font-size: 25");
@@ -330,22 +343,34 @@ public class AfficherItemUserController implements Initializable {
             like.setOnMouseClicked(event -> {
                 try {
                     sp.like(obj) ;
+                    chercher();
+
+
+
+
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                List<Item> itemss = sp.afficher();
-                afficher(itemss) ;
+
+
             });
 
             dislike.setOnMouseClicked(event -> {
                 try {
                     sp.dislike(obj) ;
+                    chercher();
+
+
+
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                List<Item> itemss = sp.afficher();
-                afficher(itemss) ;
+
+
+
             });
+
+
 
 
             VBox vbox = new VBox(imageView, libelleLabel, categorieLabel, typeetatLabel,buttons, likes);
@@ -384,8 +409,7 @@ public class AfficherItemUserController implements Initializable {
                 if (response == ButtonType.OK) {
                     boolean res = sp.supprimer(selectdel);
                     if (res) {
-                        items = sp.afficher() ;
-                        afficher(items);
+                chercher() ;
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setHeaderText("Notification");
                     a.setContentText("L'item sélectionné a été supprimé avec succès!");
@@ -523,6 +547,13 @@ public class AfficherItemUserController implements Initializable {
         int c_cat = categories.stream().filter((t) -> t.getNom_categorie().equals(cd_cat)).mapToInt((t) -> t.getId_categorie()).sum();
         String c_mcl = textarea_description.getText();
 
+        ItemService sp = new ItemService();
+
+        if (all.isSelected()) {
+            items = sp.afficherAdmin() ;
+        } else {
+            items = sp.afficher() ;
+        }
 
         List<Item> itemstream = items;
 
@@ -634,6 +665,23 @@ public class AfficherItemUserController implements Initializable {
         chercher() ;
     }
 
+    @FXML
+    private void allitems(ActionEvent event) throws IOException {
+        if (all.isSelected()) {
+            ItemService sp = new ItemService();
+            items = sp.afficherAdmin();
+            afficher(items);
+            chercher();
+        } else {
+            ItemService sp = new ItemService();
+            items = sp.afficher();
+            afficher(items);
+            chercher();
+        }
+    }
+
+
+
 
 
     @FXML
@@ -677,6 +725,17 @@ public class AfficherItemUserController implements Initializable {
         exporter.ToPDFItem(tableView);
 
     }
+
+    @FXML
+    private void fact(MouseEvent event)  {
+        ToPDF exporter = new ToPDF();
+        int user = Utilisateur.getLoginid() ;
+        List<Integer> ech = items.stream().map(t -> t.getId_echange()).collect(Collectors.toList());
+        System.out.println(ech);
+
+        exporter.ToPDFEchangeInst(tableView,user, ech);
+    }
+
 
 
 

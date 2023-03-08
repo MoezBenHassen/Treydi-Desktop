@@ -6,14 +6,19 @@ import Entities.Item;
 import Services.CategorieItemsService;
 import Services.ItemService;
 import com.itextpdf.kernel.colors.Lab;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,49 +27,56 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class AfficherItemDetailsAdminController implements Initializable {
-
     private double xOffset = 0;
     private double yOffset = 0;
 
 
-    private List<Item> items;
-    private List<Categorie_Items> categories;
+    private  List<Item> items ;
+    private  List<Categorie_Items> categories ;
+
+
 
 
     @FXML
     private TextField textfield_libelle;
     @FXML
-    private TextArea textarea_description;
+    private Label descla;
 
     @FXML
     private TextField textfield_categorie;
 
     @FXML
-    private TextField textfield_typeetat;
+    private TextField textfield_typeetat ;
 
     @FXML
-    private Item selectedItem;
+    private Item selectedItem ;
 
     @FXML
-    private ImageView image;
+    private ImageView image ;
 
     @FXML
-    private Text t1;
+    private Text t1 ;
 
     @FXML
-    private Text t2;
+    private Text t2 ;
 
     @FXML
-    private Text t3;
+    private Text t3 ;
 
     @FXML
-    private Text t4;
+    private Text t4 ;
+
+    @FXML
+    private CheckBox ech ;
 
     @FXML
     private Label likes;
@@ -73,7 +85,8 @@ public class AfficherItemDetailsAdminController implements Initializable {
     private Label dislikes;
 
     @FXML
-    private CheckBox ech;
+    private Button google;
+
 
 
     @Override
@@ -83,6 +96,8 @@ public class AfficherItemDetailsAdminController implements Initializable {
 
         CategorieItemsService sp2 = new CategorieItemsService();
         categories = sp2.afficher();
+
+
 
     }
 
@@ -94,7 +109,7 @@ public class AfficherItemDetailsAdminController implements Initializable {
 
     private void populateFields() {
         textfield_libelle.setText(selectedItem.getLibelle());
-        textarea_description.setText(selectedItem.getDescription());
+        descla.setText(selectedItem.getDescription());
         System.out.println();
 
         Image newImage = new Image(selectedItem.getImageurl());
@@ -130,7 +145,6 @@ public class AfficherItemDetailsAdminController implements Initializable {
         textfield_libelle.setEditable(false);
         textfield_categorie.setEditable(false);
         textfield_typeetat.setEditable(false);
-        textarea_description.setEditable(false);
 
 
         Set<String> searchSetClib = new HashSet<>(Arrays.asList(selectedItem.getLibelle().split(" ")));
@@ -141,7 +155,7 @@ public class AfficherItemDetailsAdminController implements Initializable {
 
         t1.setText("Nombre d'items similaires à celui-ci disponibles à l'échange : " + String.valueOf(x1));
 
-        long x2 = items.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase()))).count();
+        long x2 = items.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase()))).count() - 1;
         t2.setText("Nombre d'items similaires à celui-ci de tous les utilisateurs : " + String.valueOf(x2));
 
 
@@ -150,13 +164,13 @@ public class AfficherItemDetailsAdminController implements Initializable {
                 long x3 = items.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase())))
                         .filter((t) -> t.getType() == Item.type.Physique)
                         .filter((t) -> t.getEtat() == Item.state.Occasion)
-                        .count();
+                        .count() ;
                 t3.setText("Nombre d'items similaires mais utilisé : " + String.valueOf(x3));
             } else {
                 long x3 = items.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase())))
                         .filter((t) -> t.getType() == Item.type.Physique)
                         .filter((t) -> t.getEtat() == Item.state.Neuf)
-                        .count();
+                        .count() ;
                 t3.setText("Nombre d'items similaires mais neufs : " + String.valueOf(x3));
             }
 
@@ -170,11 +184,27 @@ public class AfficherItemDetailsAdminController implements Initializable {
 
         long x4 = items.stream().filter(obj -> searchSetClib.stream().anyMatch(word -> obj.getLibelle().toLowerCase().contains(word.toLowerCase())))
                 .filter((t) -> t.getId_categorie() == selectedItem.getId_categorie())
-                .count();
+                .count() - 1;
         t4.setText("Nombre d'items avec le méme categorie : " + String.valueOf(x4));
 
         likes.setText("\uD83D\uDC4D "+selectedItem.getLikes());
         dislikes.setText("\uD83D\uDC4E "+selectedItem.getDislikes());
+
+        descla.setAlignment(Pos.TOP_LEFT) ;
+        google.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    String str = "https://www.google.com/search?q=" + selectedItem.getLibelle() ;
+                    str = str.replaceAll(" ", "+") ;
+                    URI uri = new URI(str);
+                    Desktop.getDesktop().browse(uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
 
     }
