@@ -1,5 +1,9 @@
 package GUI.Controllers;
 
+import Entities.Trader;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
+import Utils.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +27,8 @@ import java.util.ResourceBundle;
 public class LivreurHomeController implements Initializable {
     @FXML
     private Button logoutButton;
-
+    @FXML
+    private ImageView avatar;
     @FXML
     private AnchorPane scenePane;
 
@@ -32,7 +38,8 @@ public class LivreurHomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Image image = new Image(CurrentUser.getInstance().getAvatar_url());
+        avatar.setImage(image);
     }
     public void logout(javafx.event.ActionEvent actionEvent) {
 
@@ -53,7 +60,7 @@ public class LivreurHomeController implements Initializable {
         stage.setIconified(true);
     }
     @FXML
-    private void route_Profile(MouseEvent event) throws IOException {
+    private void route_Profile(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../EditProfileLivreur.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);

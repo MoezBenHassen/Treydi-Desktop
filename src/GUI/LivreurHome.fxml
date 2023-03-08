@@ -60,11 +60,6 @@
                         </ImageView>
                     </graphic></Button>
                 <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
-                <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" onMouseClicked="#route_Profile" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Assets/icons/avatar4.png" />
-                    </image>
-                </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Assets/icons/blue/treasure-chest1.png" />
@@ -188,6 +183,15 @@
             </graphic>
         </Button>
         <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Button fx:id="home" layoutX="1497.0" layoutY="49.0" mnemonicParsing="false" onAction="#route_Profile" prefHeight="69.0" prefWidth="70.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/avatar4.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
 
     </children>
 </AnchorPane>

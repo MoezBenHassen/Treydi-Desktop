@@ -11,9 +11,9 @@ import java.sql.Date;
 public class Main {
     public static void main(String[] args) {
         UtilisateurService us = new UtilisateurService();
-        Utilisateur tr = new Trader("newpassword3", "NewNom5", "NewPrenom5", "newavatar_urllll","fff","ff",Roles.trader, 12,"new Date(2000,1,1)",21,0);
+        Utilisateur tr = new Trader("aaz", "NewNom5", "NewPrenom5", "aaz","Tunis","file:/D:/avatar1.png",Roles.trader, 12,"2000-1-1",0);
 
-        us.modifier(tr);
+        us.add(tr);
 
     }
 }

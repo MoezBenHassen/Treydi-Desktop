@@ -97,7 +97,7 @@
                 </ImageView>
             <Button fx:id="home" layoutX="24.0" layoutY="51.0" mnemonicParsing="false" onAction="#route_Profile" prefHeight="69.0" prefWidth="70.0" style="-fx-background-color: none;">
                <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="avatar" fitHeight="80.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Assets/icons/avatar4.png" />
                      </image>

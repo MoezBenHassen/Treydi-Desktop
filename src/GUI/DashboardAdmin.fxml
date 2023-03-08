@@ -64,7 +64,7 @@
                   </ImageView>
                </graphic></Button>
             <Circle fill="#dbd32d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="avatar" fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/avatar4.png" />
                </image>
@@ -91,7 +91,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/help (2).png" />
+                  <Image url="@Assets/icons/blue/help%20(2).png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
@@ -101,7 +101,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/icons8-hot-article-50 (2).png" />
+                  <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
                </image>
             </ImageView>
             <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
@@ -190,7 +190,7 @@
       </TableView>
 
 
-      <Pane fx:id="chercherPane" layoutX="3.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0">
+      <Pane fx:id="chercherPane" layoutX="3.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="367.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
                <effect>

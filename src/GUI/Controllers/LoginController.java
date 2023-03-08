@@ -1,4 +1,5 @@
 package GUI.Controllers;
+import Entities.Trader;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.CurrentUser;
@@ -55,17 +56,20 @@ public class LoginController implements  Initializable {
         int id = us.Validate(tfemail.getText(), tfpassword.getText());
         if (id != 0) {
             Utilisateur user = us.getUserById(id);
+            Trader trader =  us.getTraderById(id);
             try {
                 // Set the current user instance
-                CurrentUser.setInstance(CurrentUser.getInstance(
-                        user.getPassword(), user.getNom(), user.getPrenom(),
-                        user.getEmail(), user.getAdresse(), user.getAvatar_url(),
-                        user.getRole(), user.getId_user()));
+
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setTitle("Welcome to Treydi");
                 System.out.println("User role: " + user.getRole());
                 if (user.getRole().name().equalsIgnoreCase(Roles.admin.name())) {
+                    CurrentUser.setInstance(CurrentUser.getInstance(
+                            user.getPassword(), user.getNom(), user.getPrenom(),
+                            user.getEmail(), user.getAdresse(), user.getAvatar_url(),
+                            user.getRole(), user.getId_user()));
+                    System.out.println(CurrentUser.getInstance().getId_user());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../DashboardAdmin.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -80,6 +84,12 @@ public class LoginController implements  Initializable {
 
                 }
                 if (user.getRole().name().equalsIgnoreCase(Roles.livreur.name())) {
+                    CurrentUser.setInstance(CurrentUser.getInstance(
+                            user.getPassword(), user.getNom(), user.getPrenom(),
+                            user.getEmail(), user.getAdresse(), user.getAvatar_url(),
+                            user.getRole(), user.getId_user()));
+
+                    System.out.println(CurrentUser.getInstance().getId_user());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../LivreurHome.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -92,8 +102,18 @@ public class LoginController implements  Initializable {
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
+                    System.out.println(CurrentUser.getInstance().getScore());
+                    System.out.println(CurrentUser.getInstance().getDate_naissance());
+                    System.out.println("----------");
+                    System.out.println(CurrentUser.getInstance().getAvatar_url());
+                    System.out.println("----------");
+                    System.out.println(CurrentUser.getInstance().getNom());
                 }
-                if (user.getRole().name().equalsIgnoreCase(Roles.trader.name())) {
+                if (trader.getRole().name().equalsIgnoreCase(Roles.trader.name())) {
+                    CurrentUser.setInstance(CurrentUser.getInstance(
+                            user.getPassword(), user.getNom(), user.getPrenom(),
+                            user.getEmail(), user.getAdresse(), user.getAvatar_url(),
+                            user.getRole(),trader.getScore(),trader.getDate_naissance(), user.getId_user()));
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../TraderHome.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -106,6 +126,15 @@ public class LoginController implements  Initializable {
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
+                    System.out.println(CurrentUser.getInstance().getScore());
+                    System.out.println(CurrentUser.getInstance().getAdresse());
+                    System.out.println(CurrentUser.getInstance().getEmail());
+                    System.out.println(CurrentUser.getInstance().getPassword());
+                    System.out.println(CurrentUser.getInstance().getPrenom());
+                    System.out.println(CurrentUser.getInstance().getAvatar_url());
+                    System.out.println("----------");
+                    System.out.println(CurrentUser.getInstance().getDate_naissance());
+                    System.out.println(CurrentUser.getInstance().getNom());
                 }
             } catch (IOException ex) {
                 System.out.println("Exception loading FXML file: " + ex.getMessage());

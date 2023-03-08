@@ -238,17 +238,43 @@ public class UtilisateurService  implements IService<Utilisateur> {
     public Utilisateur getUserById(int userId) {
         Utilisateur user = null;
         try {
-            String qry = "SELECT * FROM Utilisateur WHERE id_user = " + userId + " AND archived = 0;";
+            String qry = "SELECT * FROM utilisateur WHERE id_user = " + userId + " AND archived = 0;";
             stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             if (rs.next()) {
                 user = new Utilisateur();
                 user.setId_user(rs.getInt("id_user"));
                 user.setNom(rs.getString("nom"));
+                user.setAdresse(rs.getString("adresse"));
+                user.setAvatar_url(rs.getString("avatar_url"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(Roles.valueOf(rs.getString("role")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return user;
+    }
+    public Trader getTraderById(int userId) {
+        Trader user = null;
+        try {
+            String qry = "SELECT * FROM utilisateur WHERE id_user = " + userId + " AND archived = 0;";
+            stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            if (rs.next()) {
+                user = new Trader();
+                user.setId_user(rs.getInt("id_user"));
+                user.setNom(rs.getString("nom"));
+                user.setPrenom(rs.getString("prenom"));
+                user.setAdresse(rs.getString("adresse"));
+                user.setAvatar_url(rs.getString("avatar_url"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setRole(Roles.valueOf(rs.getString("role")));
+                user.setScore(rs.getInt("score"));
+                user.setDate_naissance(rs.getString("date_naissance"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

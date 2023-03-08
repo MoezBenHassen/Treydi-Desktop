@@ -53,15 +53,15 @@
          <children>
             <Button layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: none;">
                <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/icons/yellow/power.png" />
+                        <Image url="@Assets/icons/blue/power_icon2.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Circle fill="#dbd32d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fx:id="ivavatar" fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/avatar4.png" />
                </image>
@@ -78,30 +78,25 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/coupon.png" />
+                  <Image url="@Assets/icons/blue/diamond.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/loop-arrow.png" />
+                  <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                <image>
+                  <Image url="@Assets/icons/blue/control-panel.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="760.0" pickOnBounds="true" preserveRatio="true">
+               <image>
                   <Image url="@Assets/icons/blue/help%20(2).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/yellow/helmet.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="minimize1" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
                </image>

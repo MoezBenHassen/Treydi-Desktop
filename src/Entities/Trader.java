@@ -24,6 +24,7 @@ public class Trader extends Utilisateur{
         this.score = score;
         this.date_naissance = date_naissance;
     }
+
     public Trader(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int score, String date_naissance,int id_user) {
         super(password, nom, prenom, email, adresse, avatar_url, role,id_user);
         this.score = score;

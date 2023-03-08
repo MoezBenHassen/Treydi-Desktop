@@ -7,7 +7,7 @@ import java.util.Date;
 public class CurrentUser {
     // Add fields specific to Trader
     private int score;
-    private Date date_naissance;
+    private String date_naissance;
     private String sessionId;
 
     private static CurrentUser instance;
@@ -28,6 +28,18 @@ public class CurrentUser {
         this.role = role;
         this.id_user =id_user;
     }
+ private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int score,String date_naissance, int id_user) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role = role;
+        this.score = score;
+        this.date_naissance=date_naissance;
+        this.id_user =id_user;
+    }
 
     public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id_user) {
         if (instance == null) {
@@ -40,12 +52,30 @@ public class CurrentUser {
         }
         return instance;
     }
+  public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int score,String date_naissance, int id_user) {
+        if (instance == null) {
+            // Synchronize here to ensure that only one instance is created
+            synchronized (CurrentUser.class) {
+                if (instance == null) {
+                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role,score,date_naissance, id_user);
+                }
+            }
+        }
+        return instance;
+    }
 
     public static CurrentUser getInstance() {
         return instance;
     }
 
+
+
     // Add methods specific to Trader
+
+
+    public static void setInstance(CurrentUser instance) {
+        CurrentUser.instance = instance;
+    }
     public int getScore() {
         return score;
     }
@@ -54,16 +84,12 @@ public class CurrentUser {
         this.score = score;
     }
 
-    public Date getDate_naissance() {
+    public String getDate_naissance() {
         return date_naissance;
     }
 
-    public void setDate_naissance(Date date_naissance) {
+    public void setDate_naissance(String date_naissance) {
         this.date_naissance = date_naissance;
-    }
-
-    public static void setInstance(CurrentUser instance) {
-        CurrentUser.instance = instance;
     }
 
     public int getId_user() {
@@ -150,8 +176,8 @@ public class CurrentUser {
                     ", email='" + email + '\'' +
                     ", adresse='" + adresse + '\'' +
                     ", avatar_url='" + avatar_url + '\'' +
-                    ", role=" + role +
-                    ", score=" + score +
+                    ", role=" + role + '\'' +
+                    ", score=" + score + '\'' +
                     ", date_naissance=" + date_naissance +
                     '}';
         } else {

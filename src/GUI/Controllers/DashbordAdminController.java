@@ -130,7 +130,6 @@ public class DashbordAdminController implements Initializable {
     @FXML
     private void chercher() {
         String searchText = textfield_search.getText().toLowerCase();
-
         List<Utilisateur> userstream = users.stream()
                 .filter((t) -> t.getEmail().toLowerCase().contains(searchText)
                         || t.getNom().toLowerCase().contains(searchText))

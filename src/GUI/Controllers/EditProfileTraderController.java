@@ -48,11 +48,13 @@ public class EditProfileTraderController implements Initializable {
     @FXML
     private ImageView imageview_imageurl ;
 
-    @FXML
-    private ImageView ivavatar;
     Stage stage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        populateFields();
+        Image image = new Image(CurrentUser.getInstance().getAvatar_url());
+        imageview_imageurl.setImage(image);
+
     }
     public void setSelectedUser(Trader tr) {
         selectedUser = tr;
@@ -80,13 +82,12 @@ public class EditProfileTraderController implements Initializable {
         }
     }
     private void populateFields() {
-        tfnom.setText(selectedUser.getNom());
-        tfprenom.setText(selectedUser.getPrenom());
-        tfpassword.setText(selectedUser.getPassword());
-        tfdate.setText(selectedUser.getDate_naissance());
-
-       /* Image image = new Image(selectedUser.getAvatar_url());
-        imageview_imageurl.setImage(image); */
+        tfnom.setText(CurrentUser.getInstance().getNom());
+        tfprenom.setText(CurrentUser.getInstance().getPrenom());
+        tfpassword.setText(CurrentUser.getInstance().getPassword());
+        tfdate.setText(CurrentUser.getInstance().getDate_naissance());
+        Image image = new Image(CurrentUser.getInstance().getAvatar_url());
+        imageview_imageurl.setImage(image);
 
 
     }
@@ -98,8 +99,9 @@ public class EditProfileTraderController implements Initializable {
             a.setHeaderText("Erreur");
             a.setContentText("Veuillez remplir tous les champs.");
             a.show();
+
         } else  {
-            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),null,CurrentUser.getInstance().getRole(),12,tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
+            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRole(),CurrentUser.getInstance().getScore(), tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Notification");
@@ -109,7 +111,6 @@ public class EditProfileTraderController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -129,8 +130,6 @@ public class EditProfileTraderController implements Initializable {
             stage.show();
         }
     }
-
-
 
     @FXML
     public void Minimize(MouseEvent event) {

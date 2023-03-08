@@ -123,17 +123,17 @@ public class InscriptionController implements Initializable {
         if (validateCaptcha()) {
             if (srt.equals("trader")) {
                 rt = Roles.valueOf("trader");
-                Utilisateur user = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), null, rt, 0,"2000-2-2", 0);
+                Utilisateur user = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), "file:/D:/avatar4.png", rt, 0,"2000-2-2", 0);
                 if (tfpassword.getText().isEmpty() || tfnom.getText().isEmpty() || tfprenom.getText().isEmpty() || tfemail.getText().isEmpty() || tfadresse.getText().isEmpty()) {
-
-                    System.out.println("Error: Please fill in all the fields.");
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Error: Please fill in all the fields.");
+                    alert.show();
                 } else {
                     us.add(user);
                     openLoginPage(event);
                 }
             } else if (srt.equals("livreur")) {
                 rt = Roles.valueOf("livreur");
-                Utilisateur user2 = new Livreur(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), null, Roles.livreur, 0);
+                Utilisateur user2 = new Livreur(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), "file:/D:/avatar4.png", Roles.livreur, 0);
                 if (tfpassword.getText().isEmpty() || tfnom.getText().isEmpty() || tfprenom.getText().isEmpty() || tfemail.getText().isEmpty() || tfadresse.getText().isEmpty()) {
 
                     System.out.println("Error: Please fill in all the fields.");

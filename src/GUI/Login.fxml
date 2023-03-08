@@ -63,7 +63,10 @@
                   <Image url="@Assets/icons/google-logo-icon-png-transparent-background-osteopathy-16.png" />
                </image>
             </ImageView>
-            <TextField fx:id="erreurfd" layoutX="283.0" layoutY="620.0" />
+            <TextField fx:id="erreurfd" layoutX="136.0" layoutY="613.0" opacity="0.36" prefHeight="37.0" prefWidth="269.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
             <PasswordField fx:id="tfpassword" layoutX="106.0" layoutY="399.0" opacity="0.7" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
             </children>
         </AnchorPane>

@@ -1,5 +1,9 @@
 package GUI.Controllers;
 
+import Entities.Trader;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
+import Utils.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +27,8 @@ import java.util.ResourceBundle;
 public class TraderHomeController implements Initializable {
     @FXML
     private Button logoutButton;
+    @FXML
+    private ImageView avatar;
 
     @FXML
     private AnchorPane scenePane;
@@ -32,6 +39,8 @@ public class TraderHomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image image = new Image(CurrentUser.getInstance().getAvatar_url());
+        avatar.setImage(image);
 
     }
     public void logout(javafx.event.ActionEvent actionEvent) {
