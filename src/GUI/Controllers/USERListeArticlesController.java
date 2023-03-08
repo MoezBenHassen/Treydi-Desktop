@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class USERListeArticlesController implements Initializable {
     @FXML
@@ -35,6 +36,10 @@ public class USERListeArticlesController implements Initializable {
     @FXML
     private List<Article> articles;
     Stage stage;
+
+    @FXML
+    private TextField rechercheField;
+    private  List<Article> articleList ;
     @FXML
     public void Minimize (MouseEvent event ){
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -62,7 +67,17 @@ public class USERListeArticlesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println(recentlyAdded());
-        afficherArticles();
+        ArticleService articleService = new ArticleService();
+        articleList = articleService.afficher();
+        afficherArticles(articleList);
+
+        rechercheField.textProperty().addListener((obs, oldVal, newVal) -> {
+            String titre = rechercheField.getText().trim();
+            List<Article> reclamationsFiltrees = articleList.stream()
+                    .filter(recc -> recc.getTitre().toLowerCase().contains(titre.toLowerCase()))
+                    .collect(Collectors.toList());
+            afficherArticles(reclamationsFiltrees);
+        });
     }
 
     private List<Article> recentlyAdded(){
@@ -72,9 +87,9 @@ public class USERListeArticlesController implements Initializable {
     }
 
     @FXML
-    private void afficherArticles(){
+    private void afficherArticles(List<Article> articleList){
         ArticleService articleService = new ArticleService();
-        articles= articleService.afficher();
+       // articles= articleService.afficher();
 
 
         VBox vBox= new VBox();
@@ -84,8 +99,7 @@ public class USERListeArticlesController implements Initializable {
 
         scrollPane.setStyle("-fx-background-color: transparent;");
 
-        for (Article obj: articles
-             ) {
+        for (Article obj: articleList) {
             Label titre = new Label(obj.getTitre());
             Label description = new Label(obj.getDescription());
 
@@ -148,7 +162,7 @@ public class USERListeArticlesController implements Initializable {
                             stage1.setHeight(768);
                             stage1.setScene(scene);
                             stage1.showAndWait();
-                            afficherArticles();
+                            afficherArticles(articleList);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
