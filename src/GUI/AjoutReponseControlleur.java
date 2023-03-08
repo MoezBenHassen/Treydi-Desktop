@@ -53,6 +53,13 @@ public class AjoutReponseControlleur implements Initializable {
             alert.showAndWait();
             return;
         }
+        if (titre.length() > 20) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("le titre ne doit pas dépasser 20 caractères");
+            alert.showAndWait();
+            return;
+        }
 
         if (description.isEmpty()) {
 
@@ -66,6 +73,24 @@ public class AjoutReponseControlleur implements Initializable {
         ServiceReponse sre = new ServiceReponse();
         Reponse R = new Reponse(titre, description,idReclamation) ;
         sre.ajouter(R);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("La Reponse a été ajoutée avec succès !");
+        alert.setOnCloseRequest(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAffichage.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        alert.showAndWait();
+
+
     }
 
     @FXML
@@ -81,7 +106,7 @@ public class AjoutReponseControlleur implements Initializable {
     }
     @FXML
     void gotoreclamation(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReclamationAdmin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAffichage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

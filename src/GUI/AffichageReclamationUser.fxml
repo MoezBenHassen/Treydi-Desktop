@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -93,7 +94,7 @@
             </children>
         </AnchorPane>
 
-        <Rectangle arcHeight="5.0" arcWidth="5.0" height="689.0" layoutX="197.0" layoutY="142.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1171.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="693.0" layoutX="197.0" layoutY="151.0" opacity="0.66" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1171.0">
             <fill>
                 <RadialGradient centerX="0.5221402847458956" centerY="0.18611984974954407" focusAngle="-64.29" focusDistance="-0.09160305343511455" radius="1.0">
                     <stops>
@@ -136,7 +137,7 @@
             <image>
                 <Image url="@Assets/images/treydi3.png" />
             </image></ImageView>
-        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="386.0" layoutX="30.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
+        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="193.0" layoutX="30.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
             <effect>
                 <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
             </effect>
@@ -151,18 +152,16 @@
                 <Image url="@Assets/icons/pink/list.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/trash-bin.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/pencil.png" />
-            </image>
-        </ImageView>
-      <TextField fx:id="titrechercher" layoutX="21.0" layoutY="188.0" prefHeight="31.0" prefWidth="162.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-      <ScrollPane fx:id="scrollPane1" layoutX="215.0" layoutY="165.0" prefHeight="645.0" prefWidth="1132.0" style="-fx-background-color: trasparant;" stylesheets="@Assets/css/scrollepane.css" />
+      <ScrollPane fx:id="scrollPane1" layoutX="215.0" layoutY="169.0" prefHeight="653.0" prefWidth="1138.0" style="-fx-background-color: trasparant;" stylesheets="@Assets/css/scrollepane.css" />
+        <TextField fx:id="titrechercher" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+        <Label id="txt" accessibleRole="BUTTON" layoutX="562.0" layoutY="92.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Affichage une Reclamation" textAlignment="CENTER" />
+
+        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="1041.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
+
     </children>
 
 </AnchorPane>

@@ -61,7 +61,7 @@
                         <Image url="@Assets/icons/blue/loop-arrow.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" onMouseClicked="#gotoaffichageRec" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Assets/icons/blue/help%20(2).png" />
                     </image>
@@ -83,7 +83,7 @@
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="667.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Assets/icons/blue/replay%20(2).png" />
+                        <Image url="@Assets/icons/yellow/replay%20(1).png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="818.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
@@ -149,7 +149,7 @@
                 <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
             </effect>
         </Rectangle>
-        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="386.0" onMouseClicked="#gotoajout" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/blue/addition.png" />
             </image>

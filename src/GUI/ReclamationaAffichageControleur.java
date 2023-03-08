@@ -88,7 +88,7 @@ public class ReclamationaAffichageControleur implements Initializable {
     }
 
 
-    @FXML
+    /*@FXML
     private void gotoajout(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReclamationAdmin.fxml"));
         Parent root = loader.load();
@@ -96,7 +96,18 @@ public class ReclamationaAffichageControleur implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }*/
+    @FXML
+    private void gotoAffichagereponse(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReponseAffichage.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
+
+
     @FXML
     void openReponse(MouseEvent event) throws IOException {
         Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
@@ -122,7 +133,7 @@ public class ReclamationaAffichageControleur implements Initializable {
         stage.show();
     }
 
-    @FXML
+   /* @FXML
     void openModifcation(MouseEvent event) throws IOException {
         Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
         String tittre = String.valueOf(selectedReclamation.getTitre_reclamation());
@@ -145,7 +156,7 @@ public class ReclamationaAffichageControleur implements Initializable {
             stage.showAndWait();
             afficher();
         }
-    }
+    }*/
     @FXML
      void chercher() {
         String searchText = titrecher.getText().toLowerCase();

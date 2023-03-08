@@ -15,7 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -64,9 +64,9 @@ public class ReponseAffichageControlleur implements Initializable {
 
 
     @FXML
-     void gotoajout(MouseEvent event) throws IOException {
+     void gotoaffichageRec(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReponse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAffichage.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -74,7 +74,7 @@ public class ReponseAffichageControlleur implements Initializable {
         stage.show();
 
     }
-//jdid
+
     @FXML
     void openModifcation(MouseEvent event) throws IOException {
         Reponse selectedReponse = tableView.getSelectionModel().getSelectedItem();
@@ -103,24 +103,33 @@ public class ReponseAffichageControlleur implements Initializable {
     void supprimer(MouseEvent event) {
         Reponse selectedrep = tableView.getSelectionModel().getSelectedItem();
         if (selectedrep != null) {
-            ServiceReponse servicerep = new ServiceReponse();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Voulez-vous vraiment supprimer cette réponse ?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                ServiceReponse servicerep = new ServiceReponse();
 
-            boolean result = servicerep.supprimer(selectedrep);
+                boolean res = servicerep.supprimer(selectedrep);
 
-            if (result) {
-                tableView.getItems().remove(selectedrep);
+                if (res) {
+                    tableView.getItems().remove(selectedrep);
+                } else {
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setTitle("Erreur");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("Erreur lors de la suppression .");
+                    alert2.showAndWait();
+                }
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText(null);
-                alert.setContentText("Erreur lors de la suppression .");
-                alert.showAndWait();
+                // do nothing
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Avertissement");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner  .");
+            alert.setContentText("Veuillez sélectionner une réponse.");
             alert.showAndWait();
         }
     }

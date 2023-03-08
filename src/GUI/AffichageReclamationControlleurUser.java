@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
@@ -51,19 +50,28 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     private  List<Reclamation> reclist ;
     @FXML
     private  ScrollPane scrollPane1  ;
-
     HBox hbox1 ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficher() ;
+        ServiceReclamation sp = new ServiceReclamation();
+        // lena ba3eed yo5ou id_user
+        reclist = sp.afficher();
+        afficher(reclist) ;
+
+        titrechercher.textProperty().addListener((obs, oldVal, newVal) -> {
+            String titre = titrechercher.getText().trim();
+            List<Reclamation> reclamationsFiltrees = reclist.stream()
+                    .filter(recc -> recc.getTitre_reclamation().toLowerCase().contains(titre.toLowerCase()))
+                    .collect(Collectors.toList());
+            afficher(reclamationsFiltrees);
+        });
     }
 
      @FXML
-     private void afficher(){
+     private void afficher(List<Reclamation> reclist){
         ServiceReclamation sp = new ServiceReclamation();
 
-        // lena ba3eed yo5ou id_user
-        reclist = sp.afficher();
+
 
         VBox vbox1 = new VBox();
         scrollPane1.setContent(vbox1);
@@ -85,22 +93,22 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
             Label etat = new Label(rec.getEtat_reclamation().toString());
 
-            Image image = new Image(getClass().getResource("/GUI/Assets/icons/blue/trash-bin.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/GUI/Assets/icons/pink/trash-bin.png").toExternalForm());
             Image image2 = new Image(getClass().getResource("/GUI/Assets/icons/pink/pencil.png").toExternalForm());
             ImageView mod = new ImageView();
             mod.setImage(image2);
             mod.setFitWidth(35);
             mod.setFitHeight(35);
-            // create the ScaleTransition animation
+
             ScaleTransition scaleTransition2 = new ScaleTransition(Duration.millis(100), mod);
             scaleTransition2.setToX(1.2);
             scaleTransition2.setToY(1.2);
-            // add the animation to the ImageView when the mouse enters
+
             mod.setOnMouseEntered(event -> {
                 scaleTransition2.play();
             });
 
-            // remove the animation from the ImageView when the mouse exits
+
             mod.setOnMouseExited(event -> {
                 scaleTransition2.stop();
                 mod.setScaleX(1);
@@ -111,20 +119,21 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             supp.setImage(image);
             supp.setFitWidth(40);
             supp.setFitHeight(40);
-            // set the preferred width of each label
+
+
             titrerec.setPrefWidth(150);
             descriptionrec.setPrefWidth(250);
             etat.setPrefWidth(100);
-            // create the ScaleTransition animation
+
             ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), supp);
             scaleTransition.setToX(1.2);
             scaleTransition.setToY(1.2);
-            // add the animation to the ImageView when the mouse enters
+
             supp.setOnMouseEntered(event -> {
                 scaleTransition.play();
             });
 
-            // remove the animation from the ImageView when the mouse exits
+
             supp.setOnMouseExited(event -> {
                 scaleTransition.stop();
                 supp.setScaleX(1);
@@ -134,11 +143,11 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             titrerec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             descriptionrec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             etat.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
-            HBox hbox1 = new HBox( titrerec, descriptionrec,etat,supp,mod );
-            // set the spacing between elements
+            HBox hbox1 = new HBox( titrerec, descriptionrec,etat,mod ,supp);
+
             hbox1.setSpacing(30);
 
-            // set the padding around the hbox container
+
             hbox1.setPadding(new Insets(30, 30, 30, 30));
             descriptionrec.setWrapText(true);
             descriptionrec.setPrefWidth(500);
@@ -149,15 +158,12 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             descriptionrec.setAlignment(Pos.CENTER_LEFT);
             etat.setAlignment(Pos.CENTER);
             hbox1.setPrefWidth(1120);
-            //hbox1.setPrefHeight(100);
             hbox1.setMaxWidth(descriptionrec.getMaxWidth());
-            hbox1.setStyle("-fx-background-radius: 25 ;-fx-background-color: transparant;");
+            hbox1.setStyle("-fx-background-radius: 25 ;-fx-background-color: transparent;");
             hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-radius: 15; -fx-background-color: #56144D;"));
             hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15; -fx-background-color: transparent;"));
 
 
-           // hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-color: #56144D; -fx-background-radius: 15;"));
-           // hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15;  -fx-background-color: #56144D;"));
 
             hbox1.setAlignment(Pos.CENTER_LEFT);
             vbox1.setAlignment(Pos.CENTER);
@@ -172,14 +178,14 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 clickCounter.getAndIncrement();
                 if (clickCounter.get() == 2) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("affichageReponseUser.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichageReponseUser.fxml"));
                     Parent root = loader.load();
-                    // assuming you have a controller for the affichageReponse.fxml file
+
                     AffichageReponseUserControlleur controller = loader.getController();
-                    // pass any necessary data to the controller
+
                     System.out.println(rec.getId_reclamation());
                     controller.setIdReclamation(rec.getId_reclamation());
-                    // switch to the affichageReponse.fxml view
+
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) hbox1.getScene().getWindow();
                     stage.setScene(scene);
@@ -191,16 +197,8 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 }
 
             });
-          /*  titrechercher.onInputMethodTextChangedProperty().addListener((obs, oldVal, newVal) -> {
-                String titre = titrechercher.getText().trim();
-                List<Reclamation> reclamationsFiltrees = reclist.stream()
-                        .filter(recc -> recc.getTitre_reclamation().toLowerCase().contains(titre.toLowerCase()))
-                        .collect(Collectors.toList());
-                afficherReclamationsFiltrees(reclamationsFiltrees);
-
-            });*/
-
             supp.setOnMouseClicked(event1 -> {
+                clickCounter.set(0);
                     Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmation.setTitle("Confirmation");
                     confirmation.setHeaderText(null);
@@ -228,6 +226,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 });
 
                     mod.setOnMouseClicked(event3 -> {
+                        clickCounter.set(0);
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierReclamationUser.fxml"));
                         Parent root = null;
                         try {
@@ -243,8 +242,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                         Stage stage = new Stage();
                         stage.setScene(scene);
                         stage.showAndWait();
-                        afficher();
-
+                      //  afficher(reclist);
                     });
 
 
@@ -252,13 +250,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
 
     }
-
-
-
-
-
-
-
        /* tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
@@ -353,45 +344,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     }
 */
 
-    /*@FXML
-    void supprimer(MouseEvent event) {
-        Reclamation selectedre = tableView.getSelectionModel().getSelectedItem();
-        if (selectedre != null) {
 
-            ServiceReclamation servicere = new ServiceReclamation();
-
-            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmation.setTitle("Confirmation");
-            confirmation.setHeaderText(null);
-            confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ?");
-            Optional<ButtonType> result = confirmation.showAndWait();
-
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                boolean supprime = servicere.supprimer(selectedre);
-                if (supprime) {
-                    tableView.getItems().remove(selectedre);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Suppression réussie");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Suppression effectuée avec succès.");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Erreur lors de la suppression.");
-                    alert.showAndWait();
-                }
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Avertissement");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner une réclamation.");
-            alert.showAndWait();
-        }
-
-    }*/
     Stage stage;
     @FXML
     private AnchorPane scenePane;

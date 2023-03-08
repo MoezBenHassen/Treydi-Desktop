@@ -56,6 +56,13 @@ public class ReclamationUserControleur implements Initializable {
             alert.showAndWait();
             return;
         }
+        if (titre.length() > 20) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("le titre ne doit pas dépasser 20 caractères");
+            alert.showAndWait();
+            return;
+        }
 
         if (description.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
