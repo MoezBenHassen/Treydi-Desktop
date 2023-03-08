@@ -148,7 +148,7 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Pane fx:id="pane" layoutX="21.0" layoutY="333.0" prefHeight="385.0" prefWidth="200.0">
+      <Pane fx:id="pane" layoutX="21.0" layoutY="333.0" prefHeight="385.0" prefWidth="200.0" visible="false">
          <children>
             <TextField fx:id="titre" layoutX="9.0" layoutY="81.0" onInputMethodTextChanged="#envoyer" onKeyTyped="#envoyer" opacity="0.59" prefHeight="36.0" prefWidth="178.0" promptText="Titre" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
             <TextField fx:id="motscles" layoutX="8.0" layoutY="137.0" onInputMethodTextChanged="#envoyer" onKeyTyped="#envoyer" opacity="0.59" prefHeight="69.0" prefWidth="178.0" promptText="Mots clés" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />

@@ -147,7 +147,7 @@
       <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="642.0" layoutY="284.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 28; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Vous possédez un score de" textAlignment="CENTER" />
       <Label id="txt" accessibleRole="BUTTON" layoutX="782.0" layoutY="414.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="XP" textAlignment="CENTER" />
-      <Button id="addButton" fx:id="consult" layoutX="410.0" layoutY="558.0" mnemonicParsing="false" onAction="#gotoafficher" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Consulter mes coupons" textFill="#eccecf">
+      <Button id="addButton" fx:id="consult" layoutX="410.0" layoutY="558.0" mnemonicParsing="false" onMouseClicked="#gotoafficher" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Consulter mes coupons" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font>

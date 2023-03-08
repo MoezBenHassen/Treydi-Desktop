@@ -94,7 +94,7 @@ public class MainFideliteController implements Initializable {
 
     }
 
-    public void gotoafficher(ActionEvent actionEvent) {
+    public void gotoafficher(MouseEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MyCoupons.fxml"));
         Parent root = null;
         try {

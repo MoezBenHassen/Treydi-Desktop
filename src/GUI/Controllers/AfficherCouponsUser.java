@@ -83,15 +83,10 @@ public class AfficherCouponsUser implements Initializable {
         }
 
         etatbox.getItems().add("Tous");
-        Set<String> etatSet = new HashSet<>();
-        for (Coupon coupon : coupons) {
-            String etat = coupon.getEtat_coupon();
-            if (!etatSet.contains(etat)) {
-                etatSet.add(etat);
-                etatbox.getItems().add(etat);
+        etatbox.getItems().add("VALID");
+        etatbox.getItems().add("NOT VALID");
             }
-        }
-    }
+
 
 
 
@@ -150,7 +145,7 @@ public class AfficherCouponsUser implements Initializable {
                     gridpane.add(vbox, col, row);
 
                     col++;
-                    if (col == 5) {
+                    if (col == 4) {
                         col = 0;
                         row++;
                     }
@@ -190,7 +185,7 @@ public class AfficherCouponsUser implements Initializable {
                     gridpane.add(vbox, col, row);
 
                     col++;
-                    if (col == 5) {
+                    if (col == 4) {
                         col = 0;
                         row++;
                     }
@@ -230,7 +225,7 @@ public class AfficherCouponsUser implements Initializable {
                     gridpane.add(vbox, col, row);
 
                     col++;
-                    if (col == 5) {
+                    if (col == 4) {
                         col = 0;
                         row++;
                     }
@@ -268,27 +263,30 @@ public class AfficherCouponsUser implements Initializable {
 
 
     @FXML
-    public void envoyer(KeyEvent keyEvent) {
-
+    public void envoyer() {
         String titreText = titre.getText();
         String catText = (String) categoriecouponsbox.getValue();
         String etatText= (String) etatbox.getValue();
+        System.out.println(etatText);
+        System.out.println(catText);
         int c_cat = categories.stream().filter((t) -> t.getNom_categorie().equals(catText)).mapToInt((t) -> t.getId_categoriecoupon()).sum();
         String descText = motscles.getText();
 
         List<Coupon> couponstream = coupons;
 
-        if (!(titreText.equals("") || titreText.equals("Titre"))) {
-            couponstream = couponstream.stream().filter((t) -> t.getTitre_coupon().toLowerCase().contains(titreText.toLowerCase())).collect(Collectors.toList());
+         if (!(titreText.equals("") || titreText.equals("Titre"))) {
+            Set<String> searchSetTitre = new HashSet<>(Arrays.asList(titreText.split(" ")));
+            couponstream = couponstream.stream().filter(obj -> searchSetTitre.stream().anyMatch(word -> obj.getTitre_coupon().toLowerCase().contains(word.toLowerCase()))).collect(Collectors.toList());
         }
 
         if (!(descText.equals("") || descText.equals("Mots clés"))) {
-            couponstream = couponstream.stream().filter(t -> t.getDescription_coupon().toLowerCase().contains(descText.toLowerCase())).collect(Collectors.toList());
-
+            Set<String> searchSetDesc = new HashSet<>(Arrays.asList(descText.split(" ")));
+            couponstream = couponstream.stream().filter(obj -> searchSetDesc.stream().anyMatch(word -> obj.getDescription_coupon().toLowerCase().contains(word.toLowerCase()))).collect(Collectors.toList());
         }
 
         if (etatText != null && !etatText.equals("Tous")) {
-            couponstream = couponstream.stream().filter((t) -> t.getEtat_coupon() == etatText).collect(Collectors.toList());
+            Set<String> searchSetEtat = new HashSet<>(Arrays.asList(etatText.split(" ")));
+            couponstream = couponstream.stream().filter(obj -> searchSetEtat.stream().anyMatch(word -> obj.getEtat_coupon().toLowerCase().contains(word.toLowerCase()))).collect(Collectors.toList());
         }
 
         if (catText != null && !catText.equals("Toutes")) {

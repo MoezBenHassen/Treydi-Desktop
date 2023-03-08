@@ -72,28 +72,54 @@ public class CouponService implements IService<Coupon> {
 
 
     public int affecterCouponCasual(Utilisateur u) {
-        UtilisateurService cs = new UtilisateurService();
-        Coupon c = new Coupon(1, u.getId(), "Coupon Mars", "Coupon 30% sur la livraison", "VALID", "CasCoupon23","2023-04-01");
-        int couponId = -1;
-        try {
-            String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
-
-            stm = cnx.createStatement();
-            stm.executeUpdate(qry, Statement.RETURN_GENERATED_KEYS);
-            ResultSet rs = stm.getGeneratedKeys();
-            if (rs.next()) {
-                couponId = rs.getInt(1);
+            UtilisateurService cs = new UtilisateurService();
+            int couponCounter = 0;
+            try {
+                String qry = "SELECT MAX(id_coupon) FROM coupon";
+                stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(qry);
+                if (rs.next()) {
+                    couponCounter = rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (NullPointerException | SQLException ex) {
-            System.out.println(ex.getMessage());
+            couponCounter++;
+            String code = "CasCoupon" + couponCounter;
+            Coupon c = new Coupon(1, u.getId(), "Coupon Mars", "Coupon 30% sur la livraison", "VALID", code, "2023-04-01");
+            int couponId = -1;
+            try {
+                String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
+
+                stm = cnx.createStatement();
+                stm.executeUpdate(qry, Statement.RETURN_GENERATED_KEYS);
+                ResultSet rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    couponId = rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            System.out.println("Coupon ajouté avec succès!");
+            return couponId;
         }
-        System.out.println("Coupon ajouté avec succès!");
-        return couponId;
-    }
 
     public int affecterCouponSpecial(Utilisateur u) {
         UtilisateurService cs = new UtilisateurService();
-        Coupon c = new Coupon(2, u.getId(), "Coupon Mars Silver", "Coupon 100% Livraison", "VALID", "SpecCoupon23","2023-04-01");
+        int couponCounter = 0;
+        try {
+            String qry = "SELECT MAX(id_coupon) FROM coupon";
+            stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            if (rs.next()) {
+                couponCounter = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        couponCounter++;
+        String code = "SpecCoupon" + couponCounter;
+        Coupon c = new Coupon(2, u.getId(), "Coupon Mars Silver", "Coupon 100% Livraison", "VALID", code,"2023-04-01");
         int couponId = -1;
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
@@ -113,7 +139,20 @@ public class CouponService implements IService<Coupon> {
 
     public int affecterCouponExclusif(Utilisateur u) {
         UtilisateurService cs= new UtilisateurService();
-        Coupon c = new Coupon(3, u.getId(), "Coupon Mars Gold", "Carte de recharge OOREDOO", "VALID", "LoyaltyCoupon23","2023-04-01");
+        int couponCounter = 0;
+        try {
+            String qry = "SELECT MAX(id_coupon) FROM coupon";
+            stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            if (rs.next()) {
+                couponCounter = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        couponCounter++;
+        String code = "LoyaltyCoupon" + couponCounter;
+        Coupon c = new Coupon(3, u.getId(), "Coupon Mars Gold", "Carte de recharge OOREDOO", "VALID", code,"2023-04-01");
         int couponId = -1;
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + u.getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
