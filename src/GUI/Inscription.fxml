@@ -10,11 +10,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.InscriptionController">
    <children>
@@ -57,7 +59,7 @@
             <Text fill="WHITE" layoutX="35.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" wrappingWidth="54.98307228088379" />
             <Text fill="WHITE" layoutX="35.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" wrappingWidth="66.98308661580086" />
             <Text fill="WHITE" layoutX="35.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="54.98307228088379" />
-            <Button layoutX="106.0" layoutY="526.0" mnemonicParsing="false" onAction="#add" opacity="0.64" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: #9f4ffb; -fx-background-radius: 25;" text="S'inscrire" />
+            <Button layoutX="106.0" layoutY="606.0" mnemonicParsing="false" onAction="#add" opacity="0.64" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: #9f4ffb; -fx-background-radius: 25;" text="S'inscrire" />
             <Text fill="WHITE" layoutX="197.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'inscrire" textAlignment="CENTER" wrappingWidth="126.98307228088379">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -77,6 +79,28 @@
             </RadioButton>
             <RadioButton layoutX="306.0" layoutY="256.0" mnemonicParsing="false" text="livreur" textFill="WHITE" toggleGroup="$role" />
             <PasswordField fx:id="tfpassword" layoutX="106.0" layoutY="473.0" opacity="0.6" prefHeight="28.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
+            <VBox alignment="CENTER" layoutX="99.0" layoutY="511.0" prefHeight="85.0" prefWidth="322.0" spacing="20.0">
+               <children>
+                  <AnchorPane prefHeight="150.0" prefWidth="510.0">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <WebView fx:id="reCaptcha" disable="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="53.0" prefWidth="222.0" AnchorPane.bottomAnchor="-19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <TextField fx:id="captchaResponse" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="404.0" />
+               </children>
+            </VBox>
+            <Button layoutX="379.0" layoutY="519.0" mnemonicParsing="false" onAction="#refreshCaptcha" prefHeight="35.0" prefWidth="31.0" style="-fx-background-color: black;">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/icons/blue/loop-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fitHeight="162.0" fitWidth="187.0" layoutX="626.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">

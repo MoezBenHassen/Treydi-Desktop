@@ -75,11 +75,7 @@ public class DashbordAdminController implements Initializable {
     @FXML
     private TableColumn<Utilisateur, Integer> tfscore;
     @FXML
-    private TextField textfield_email;
-    @FXML
-    private TextArea textarea_adresse;
-    @FXML
-    private TextField textfield_nom;
+    private TextField textfield_search;
     @FXML
     private CheckBox cb_type_1 ;
 
@@ -133,56 +129,29 @@ public class DashbordAdminController implements Initializable {
 
     @FXML
     private void chercher() {
-        String c_email = textfield_email.getText();
-        String c_adr = textarea_adresse.getText();
-        String c_nom = textfield_nom.getText();
+        String searchText = textfield_search.getText().toLowerCase();
 
-        List<Utilisateur> userstream = users;
+        List<Utilisateur> userstream = users.stream()
+                .filter((t) -> t.getEmail().toLowerCase().contains(searchText)
+                        || t.getNom().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
 
-        if (!(c_email.equals("") || c_email.equals("Insérer email"))) {
-            userstream = userstream.stream().filter((t) -> t.getEmail().toLowerCase().contains(c_email.toLowerCase())).collect(Collectors.toList());
-        }
-
-        if (!(c_adr.equals("") || c_adr.equals("Insérer mots clés"))) {
-            userstream = userstream.stream().filter(t -> t.getAdresse().toLowerCase().contains(c_adr.toLowerCase())).collect(Collectors.toList());
-        }
-        if (!(c_nom.equals("") || c_nom.equals("Insérer nom"))) {
-            userstream = userstream.stream().filter(t -> t.getNom().toLowerCase().contains(c_nom.toLowerCase())).collect(Collectors.toList());
-        }
-
-        List<Utilisateur> userstreamc1 = userstream;
-        List<Utilisateur> userstreamc2 = userstream;
-        List<Utilisateur> userstreamc3 = userstream;
-
+        List<Utilisateur> filteredUsers = new ArrayList<>();
 
         if (cb_type_1.isSelected()) {
-            userstreamc1 = userstreamc1.stream().filter((t) -> t.getRole() == Roles.admin)
-                    .collect(Collectors.toList());
-        } else {
-            userstreamc1 = new ArrayList<>();
+            filteredUsers.addAll(userstream.stream().filter((t) -> t.getRole() == Roles.admin).collect(Collectors.toList()));
         }
-
         if (cb_type_2.isSelected()) {
-            userstreamc2 = userstreamc2.stream().filter((t) -> t.getRole() == Roles.trader)
-                    .collect(Collectors.toList());
-        } else {
-            userstreamc2 = new ArrayList<>();
+            filteredUsers.addAll(userstream.stream().filter((t) -> t.getRole() == Roles.trader).collect(Collectors.toList()));
         }
-
         if (cb_type_3.isSelected()) {
-            userstreamc3 = userstreamc3.stream().filter((t) -> t.getRole() == Roles.livreur)
-                    .collect(Collectors.toList());
-        } else {
-            userstreamc3 = new ArrayList<>();
+            filteredUsers.addAll(userstream.stream().filter((t) -> t.getRole() == Roles.livreur).collect(Collectors.toList()));
         }
 
-        if (!((cb_type_1.isSelected()) || (cb_type_2.isSelected()) || (cb_type_3.isSelected()))) {
+        if (filteredUsers.isEmpty()) {
             tableView.setItems(FXCollections.observableArrayList(userstream));
         } else {
-            List<Utilisateur> userstreamcf = userstreamc1;
-            userstreamcf.addAll(userstreamc2);
-            userstreamcf.addAll(userstreamc3);
-            tableView.setItems(FXCollections.observableArrayList(userstreamcf));
+            tableView.setItems(FXCollections.observableArrayList(filteredUsers));
         }
     }
 
@@ -321,10 +290,7 @@ public class DashbordAdminController implements Initializable {
 
     @FXML
     private void route_ChercherItemR(MouseEvent event) throws IOException {
-        textfield_email.setText("Insérer email");
-        textarea_adresse.setText("Insérer mots clés");
-        textfield_nom.setText("Insérer nom");
-
+        textfield_search.setText("chercher");
         cb_type_1.setSelected(false);
         cb_type_2.setSelected(false);
         cb_type_3.setSelected(false);

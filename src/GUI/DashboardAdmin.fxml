@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
@@ -191,9 +190,9 @@
       </TableView>
 
 
-      <Pane fx:id="chercherPane" layoutX="3.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0" visible="false">
+      <Pane fx:id="chercherPane" layoutX="3.0" layoutY="202.0" prefHeight="651.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="651.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="367.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
                <effect>
                   <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
                </effect>
@@ -207,37 +206,26 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <TextField fx:id="textfield_email" layoutX="20.0" layoutY="88.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 16; -fx-font-family: impact;" text="Insérer email" />
-            <Text fill="#eccecf" layoutX="20.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+            <TextField fx:id="textfield_search" layoutX="20.0" layoutY="88.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 16; -fx-font-family: impact;" text="chercher" />
+            <Text fill="#eccecf" layoutX="20.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
                <font>
                   <Font name="Impact" size="20.0" />
                </font>
             </Text>
-            <Text fill="#eccecf" layoutX="20.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+            <CheckBox fx:id="cb_type_1" layoutX="20.0" layoutY="195.0" mnemonicParsing="false" onAction="#chercher" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Admin" />
+            <CheckBox fx:id="cb_type_2" layoutX="20.0" layoutY="234.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Trader" />
+            <CheckBox fx:id="cb_type_3" layoutX="20.0" layoutY="273.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Livreur" />
+            <Text fill="#eccecf" layoutX="20.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role">
                <font>
                   <Font name="Impact" size="20.0" />
                </font>
             </Text>
-            <CheckBox fx:id="cb_type_1" layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#chercher" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Admin" />
-            <CheckBox fx:id="cb_type_2" layoutX="20.0" layoutY="304.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Trader" />
-            <CheckBox fx:id="cb_type_3" layoutX="20.0" layoutY="343.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Livreur" />
-            <Text fill="#eccecf" layoutX="20.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role">
-               <font>
-                  <Font name="Impact" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="#eccecf" layoutX="20.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mots Clés d'Adresse" wrappingWidth="136.13818359375">
-               <font>
-                  <Font name="Impact" size="20.0" />
-               </font>
-            </Text>
-            <TextArea id="textarea_description" fx:id="textarea_adresse" layoutX="20.0" layoutY="439.0" onInputMethodTextChanged="#chercher" onKeyPressed="#chercher" onKeyTyped="#chercher" prefHeight="130.0" prefWidth="172.0" style="-fx-background-radius: 20; -fx-border-width: 0.5; -fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-radius: 20; -fx-font-size: 16;" stylesheets="@Assets/CSSs/desc.css" text="Insérer mots clés" />
             <Text fill="#eccecf" layoutX="44.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher">
                <font>
                   <Font name="Impact" size="25.0" />
                </font>
             </Text>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="620.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="330.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
                </image>
@@ -245,7 +233,7 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="618.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="328.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
                <image>
                   <Image url="@Assets/icons/blue/right-arrow.png" />
                </image>
@@ -253,7 +241,6 @@
                   <ColorAdjust brightness="0.31" />
                </effect>
             </ImageView>
-            <TextField fx:id="textfield_nom" layoutX="20.0" layoutY="178.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 16; -fx-font-family: impact;" text="Insérer nom" />
          </children>
       </Pane>
 
