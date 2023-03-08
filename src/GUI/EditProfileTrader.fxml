@@ -149,23 +149,23 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="357.0" layoutY="523.0" text="Mot de passe" textFill="WHITE">
+      <Label layoutX="357.0" layoutY="499.0" text="Mot de passe" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="tfprenom" accessibleRole="RADIO_MENU_ITEM" layoutX="502.0" layoutY="428.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-width: 0;">
+      <TextField fx:id="tfprenom" accessibleRole="RADIO_MENU_ITEM" layoutX="502.0" layoutY="415.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-width: 0;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextField>
-      <Label layoutX="357.0" layoutY="430.0" text="Prenom" textFill="WHITE">
+      <Label layoutX="357.0" layoutY="417.0" text="Prenom" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Button layoutX="1090.0" layoutY="403.0" mnemonicParsing="false" onAction="#select_image" opacity="0.57" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: black;" text="Update image" textFill="WHITE" />
-      <Button fx:id="btupdate" layoutX="502.0" layoutY="631.0" mnemonicParsing="false" onAction="#modifier" opacity="0.57" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: black;" textFill="WHITE">
+      <Button fx:id="btupdate" layoutX="502.0" layoutY="681.0" mnemonicParsing="false" onAction="#modifier" opacity="0.57" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: black;" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -174,6 +174,16 @@
             </ImageView>
          </graphic>
       </Button>
-      <PasswordField fx:id="tfpassword" layoutX="502.0" layoutY="523.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
+      <PasswordField fx:id="tfpassword" layoutX="502.0" layoutY="499.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25;" />
+      <Label layoutX="357.0" layoutY="580.0" text="Date naissance" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfdate" accessibleRole="RADIO_MENU_ITEM" layoutX="502.0" layoutY="578.0" opacity="0.7" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 25; -fx-border-width: 0;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
    </children>
 </AnchorPane>

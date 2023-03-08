@@ -123,7 +123,7 @@ public class InscriptionController implements Initializable {
         if (validateCaptcha()) {
             if (srt.equals("trader")) {
                 rt = Roles.valueOf("trader");
-                Utilisateur user = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), null, rt, 0, new Date(0, 0, 0), 0);
+                Utilisateur user = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), null, rt, 0,"2000-2-2", 0);
                 if (tfpassword.getText().isEmpty() || tfnom.getText().isEmpty() || tfprenom.getText().isEmpty() || tfemail.getText().isEmpty() || tfadresse.getText().isEmpty()) {
 
                     System.out.println("Error: Please fill in all the fields.");

@@ -71,7 +71,7 @@ public class DashbordAdminController implements Initializable {
     @FXML
     private TableColumn<Utilisateur, Roles> tfrole;
     @FXML
-    private TableColumn<Utilisateur, Date> tfdate;
+    private TableColumn<Utilisateur, String> tfdate;
     @FXML
     private TableColumn<Utilisateur, Integer> tfscore;
     @FXML

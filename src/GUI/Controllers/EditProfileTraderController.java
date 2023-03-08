@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,9 +32,11 @@ import java.util.ResourceBundle;
 public class EditProfileTraderController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
-    private Utilisateur selectedUser;
+    private Trader selectedUser;
     @FXML
     private TextField tfpassword;
+    @FXML
+    private TextField tfdate;
     @FXML
     private TextField tfnom;
     @FXML
@@ -55,8 +54,8 @@ public class EditProfileTraderController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-    public void setSelectedUser(Utilisateur item) {
-        selectedUser = item;
+    public void setSelectedUser(Trader tr) {
+        selectedUser = tr;
         populateFields();
     }
 
@@ -84,6 +83,7 @@ public class EditProfileTraderController implements Initializable {
         tfnom.setText(selectedUser.getNom());
         tfprenom.setText(selectedUser.getPrenom());
         tfpassword.setText(selectedUser.getPassword());
+        tfdate.setText(selectedUser.getDate_naissance());
 
        /* Image image = new Image(selectedUser.getAvatar_url());
         imageview_imageurl.setImage(image); */
@@ -93,13 +93,13 @@ public class EditProfileTraderController implements Initializable {
     @FXML
     private void modifier(ActionEvent event) throws IOException {
         UtilisateurService us = new UtilisateurService();
-        if (tfnom.getText().equals("") || tfprenom.getText().equals("") || tfpassword.getText().equals("")) {
+        if (tfnom.getText().equals("") || tfprenom.getText().equals("") || tfpassword.getText().equals("")|| tfdate.getText().equals("")) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText("Erreur");
             a.setContentText("Veuillez remplir tous les champs.");
             a.show();
         } else  {
-            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),null,CurrentUser.getInstance().getRole(),12,new Date(0,0,0),CurrentUser.getInstance().getId_user(),0);
+            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),null,CurrentUser.getInstance().getRole(),12,tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Notification");

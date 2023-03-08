@@ -118,7 +118,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
                     trader.setAvatar_url(rs.getString("avatar_url"));
                     trader.setRole(Roles.valueOf(rs.getString("role")));
                     trader.setScore((rs.getInt("score")));
-                    trader.setDate_naissance(rs.getDate("date_naissance"));
+                    trader.setDate_naissance(rs.getString("date_naissance"));
                     utilisateurs.add(trader);
 
                 }
