@@ -55,11 +55,8 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     HBox hbox1 ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         afficher() ;
-
     }
-
 
      @FXML
      private void afficher(){
@@ -89,7 +86,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             Label etat = new Label(rec.getEtat_reclamation().toString());
 
             Image image = new Image(getClass().getResource("/GUI/Assets/icons/blue/trash-bin.png").toExternalForm());
-            Image image2 = new Image(getClass().getResource("/GUI/Assets/icons/blue/pencil.png").toExternalForm());
+            Image image2 = new Image(getClass().getResource("/GUI/Assets/icons/pink/pencil.png").toExternalForm());
             ImageView mod = new ImageView();
             mod.setImage(image2);
             mod.setFitWidth(35);
@@ -134,9 +131,9 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 supp.setScaleY(1);
             });
 
-            titrerec.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
-            descriptionrec.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
-            etat.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            titrerec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
+            descriptionrec.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
+            etat.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             HBox hbox1 = new HBox( titrerec, descriptionrec,etat,supp,mod );
             // set the spacing between elements
             hbox1.setSpacing(30);
@@ -154,12 +151,13 @@ public class AffichageReclamationControlleurUser  implements Initializable {
             hbox1.setPrefWidth(1120);
             //hbox1.setPrefHeight(100);
             hbox1.setMaxWidth(descriptionrec.getMaxWidth());
-            hbox1.setStyle("-fx-background-radius: 25 ;-fx-background-color: rgba(255, 255, 255, 0.5);");
+            hbox1.setStyle("-fx-background-radius: 25 ;-fx-background-color: transparant;");
+            hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-radius: 15; -fx-background-color: #56144D;"));
+            hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15; -fx-background-color: transparent;"));
 
 
-
-            hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
-            hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
+           // hbox1.setOnMouseEntered(e -> hbox1.setStyle("-fx-background-color: #56144D; -fx-background-radius: 15;"));
+           // hbox1.setOnMouseExited(e -> hbox1.setStyle("-fx-background-radius: 15;  -fx-background-color: #56144D;"));
 
             hbox1.setAlignment(Pos.CENTER_LEFT);
             vbox1.setAlignment(Pos.CENTER);
@@ -193,7 +191,14 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                 }
 
             });
+          /*  titrechercher.onInputMethodTextChangedProperty().addListener((obs, oldVal, newVal) -> {
+                String titre = titrechercher.getText().trim();
+                List<Reclamation> reclamationsFiltrees = reclist.stream()
+                        .filter(recc -> recc.getTitre_reclamation().toLowerCase().contains(titre.toLowerCase()))
+                        .collect(Collectors.toList());
+                afficherReclamationsFiltrees(reclamationsFiltrees);
 
+            });*/
 
             supp.setOnMouseClicked(event1 -> {
                     Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
@@ -234,7 +239,6 @@ public class AffichageReclamationControlleurUser  implements Initializable {
                         modificationreclamationControlleur.setTitreText(rec.getTitre_reclamation());
                         modificationreclamationControlleur.setDescriptionText(rec.getDescription());
                         modificationreclamationControlleur.setIdReclamation(rec.getId_reclamation());
-
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
@@ -248,6 +252,10 @@ public class AffichageReclamationControlleurUser  implements Initializable {
 
 
     }
+
+
+
+
 
 
 

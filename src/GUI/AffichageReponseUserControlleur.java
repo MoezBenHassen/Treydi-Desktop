@@ -121,8 +121,8 @@ public class AffichageReponseUserControlleur  implements Initializable {
             });
 
 
-            titrerep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
-            descriptionrep.setStyle("-fx-text-fill: black;-fx-font-family: 'Sans serif' !important;");
+            titrerep.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
+            descriptionrep.setStyle("-fx-text-fill: white;-fx-font-family: 'Sans serif' !important;");
             HBox hbox= new HBox(titrerep, descriptionrep,supp);
             hbox.setSpacing(30);
 
@@ -204,17 +204,17 @@ public class AffichageReponseUserControlleur  implements Initializable {
             hbox.setPrefWidth(1120);
             hbox.setPrefHeight(100);
             hbox.setMaxWidth(descriptionrep.getMaxWidth());
-            hbox.setStyle("-fx-background-radius: 25 ;-fx-background-color: rgba(255, 255, 255, 0.5);");
+            hbox.setStyle("-fx-background-radius: 25 ;-fx-background-color: transparant;");
 
            // hbox.setOnMouseEntered(e -> finalhbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
             // HBox finalHBox1 = hBox;
             // hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
 
-            hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+            hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-radius: 15; -fx-background-color: #56144D;"));
+            hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-radius: 15; -fx-background-color: transparent;"));
 
-            hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
 
-          //  hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
+            //  hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
            // hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-color: transparent;"));
             hbox.setAlignment(Pos.CENTER_LEFT);
             vbox.setAlignment(Pos.CENTER);
@@ -237,9 +237,9 @@ public class AffichageReponseUserControlleur  implements Initializable {
 */
 
     @FXML
-    void gotoajout(MouseEvent event) throws IOException {
+    void gotoreclamation(MouseEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReponse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutReclamationUser.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

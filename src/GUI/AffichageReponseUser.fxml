@@ -58,7 +58,7 @@
                         <Image url="@Assets/icons/blue/loop-arrow.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" onMouseClicked="#gotoreclamation" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Assets/icons/blue/help%20(2).png" />
                     </image>

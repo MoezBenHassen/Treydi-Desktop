@@ -35,16 +35,20 @@ public class StatistiqueLivraisonControleur implements Initializable {
             ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-            series.setName("Nombre Reclamation");
+            series.setName("Livraison");
             String[] mois = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
             for (int i = 0; i < mois.length ; i++) {
                 int NombrelivrasonA = li.getNombreLivraisonAnnulerParMois(i+1, 2023);
                 int nbrLT = li.getNombreLivraisonTerminerParMois(i+1, 2023);
                 series.getData().add(new XYChart.Data<>(mois[i], NombrelivrasonA));
                 series2.getData().add(new XYChart.Data<>(mois[i], nbrLT));
-                System.out.println( nbrLT);
+
             }
             barChartData.addAll(series,series2);
+
+            xAxis.setStyle("-fx-text-fill: white;-fx-font-size: 16px; -fx-font-weight: bold;");
+            yAxis.setStyle("-fx-text-fill: white;-fx-font-size: 16px; -fx-font-weight: bold;");
+
             series.setName("Livraison");
             series2.setName("Livraison Annuler");
             xAxis.setLabel("Mois");
@@ -55,9 +59,6 @@ public class StatistiqueLivraisonControleur implements Initializable {
                     String categoryName = barChartData.get(i).getData().get(j).getXValue();
                 }
             }
-
-
-
 
 
         }

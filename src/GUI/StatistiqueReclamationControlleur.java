@@ -44,13 +44,16 @@ public class StatistiqueReclamationControlleur implements Initializable {
             int nbrTR = re.getNombreReclamationTraiteesParMois(i+1, 2023);
             series.getData().add(new XYChart.Data<>(mois[i], NombreReclamation));
             series2.getData().add(new XYChart.Data<>(mois[i], nbrTR));
-            System.out.println( nbrTR);
+
         }
 
         barChartData.addAll(series,series2);
         series.setName("reclamation");
         series2.setName("reclamation traité");
+
         xAxis.setLabel("Mois");
+        xAxis.setStyle("-fx-text-fill: white;-fx-font-size: 20px; -fx-font-weight: bold;");
+        yAxis.setStyle("-fx-text-fill: white;-fx-font-size: 20px; -fx-font-weight: bold;");
         yAxis.setLabel("Nombre Reclamation");
         barChart.setData(barChartData);
         for (int i = 0; i < barChartData.size(); i++) {

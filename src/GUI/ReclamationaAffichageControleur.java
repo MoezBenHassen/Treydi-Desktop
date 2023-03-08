@@ -1,9 +1,11 @@
 package GUI;
 
+import Entities.Etat_reclamation;
 import Entities.Reclamation;
 import Entities.Reponse;
 import Services.ServiceReclamation;
 import Services.ServiceReponse;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +25,13 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class ReclamationaAffichageControleur implements Initializable {
 
@@ -44,8 +48,13 @@ public class ReclamationaAffichageControleur implements Initializable {
 
     @FXML
     private TableColumn<Reclamation,Integer> id_reclamation;
+    @FXML
+    private TableColumn<Reclamation, Etat_reclamation> etat_reclamation;
 
+    @FXML
+    private TextField  titrecher ;
 
+    private List<Reclamation> reclamationss ;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -54,7 +63,18 @@ public class ReclamationaAffichageControleur implements Initializable {
         titreC.setCellValueFactory(new PropertyValueFactory<>("titre_reclamation"));
         descriptionC.setCellValueFactory(new PropertyValueFactory<>("description"));
         id_reclamation.setCellValueFactory(new PropertyValueFactory<>("id_reclamation"));
+        etat_reclamation.setCellValueFactory(new PropertyValueFactory<>("etat_reclamation"));
         afficher();
+
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                try {
+                    openReponse(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
@@ -124,6 +144,26 @@ public class ReclamationaAffichageControleur implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
             afficher();
+        }
+    }
+    @FXML
+     void chercher() {
+        String searchText = titrecher.getText().toLowerCase();
+        ServiceReclamation sp = new ServiceReclamation() ;
+        reclamationss = sp.afficher();
+        List<Reclamation> recstream = reclamationss.stream()
+                .filter((t) -> t.getTitre_reclamation().toLowerCase().contains(searchText)
+                        || t.getDescription().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
+
+        List<Reclamation> filtererec = new ArrayList<>();
+
+
+
+        if (filtererec.isEmpty()) {
+            tableView.setItems(FXCollections.observableArrayList(recstream));
+        } else {
+            tableView.setItems(FXCollections.observableArrayList(filtererec));
         }
     }
 

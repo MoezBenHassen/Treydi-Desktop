@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -168,6 +169,7 @@
                 <Image url="@Assets/icons/blue/pencil.png" />
             </image>
         </ImageView>
+        <TextField fx:id="titrecher" layoutX="494.0" layoutY="49.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
 
     </children>
 </AnchorPane>

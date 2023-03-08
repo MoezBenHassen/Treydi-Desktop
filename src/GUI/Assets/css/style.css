@@ -77,6 +77,16 @@
 .table-view .corner{
     -fx-background-color: none;
 }
+.column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
+
+
+
+
+
 
 
 .custom-alert {

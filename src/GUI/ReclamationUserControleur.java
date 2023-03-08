@@ -68,6 +68,10 @@ public class ReclamationUserControleur implements Initializable {
         ServiceReclamation sr = new ServiceReclamation();
         Reclamation R = new Reclamation( titre,4, description);
         sr.ajouter(R);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("La réclamation a été ajoutée avec succès !");
+        alert.showAndWait();
     }
 
     @FXML

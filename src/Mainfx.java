@@ -15,7 +15,7 @@ public class Mainfx extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/AjoutReclamationUser.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/AjoutReclamationAdmin.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Treydi");
 
@@ -47,9 +47,9 @@ public class Mainfx extends Application {
             primaryStage.setWidth(1600);
             primaryStage.setHeight(900);
 
-            Image image = new Image("/GUI/Assets/images/log-04.png",32,32,true,true);
+            Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
             scene.getStylesheets().add("/GUI/Assets/css/style.css");
-
+            primaryStage.getIcons().add(image);
 
 
 

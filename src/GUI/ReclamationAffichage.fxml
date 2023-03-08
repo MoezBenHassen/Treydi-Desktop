@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
@@ -61,7 +62,7 @@
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Assets/icons/blue/help%20(2).png" />
+                        <Image url="@Assets/icons/yellow/help.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
@@ -79,7 +80,7 @@
                         <Image url="@Assets/icons/blue/minusbLUE.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="667.0" onMouseClicked="#openReponse" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="667.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Assets/icons/blue/replay%20(2).png" />
                     </image>
@@ -132,10 +133,11 @@
                     </color>
                 </DropShadow>
             </effect></Rectangle>
-        <TableView fx:id="tableView" layoutX="235.0" layoutY="188.0" prefHeight="576.0" prefWidth="1069.0" stylesheets="@Assets/css/style.css">
+        <TableView fx:id="tableView" layoutX="235.0" layoutY="188.0" prefHeight="601.0" prefWidth="1095.0" stylesheets="@Assets/css/style.css">
             <columns>
                 <TableColumn fx:id="titreC" prefWidth="250.00003051757812" text="titre" />
-                <TableColumn fx:id="descriptionC" prefWidth="711.0" text="description" />
+                <TableColumn fx:id="descriptionC" prefWidth="604.0" text="description" />
+                <TableColumn fx:id="etat_reclamation" minWidth="0.0" prefWidth="159.0" text="etat reclamation" />
                 <TableColumn fx:id="id_reclamation" minWidth="0.0" prefWidth="52.0" text="id" visible="false" />
             </columns>
         </TableView>
@@ -168,6 +170,7 @@
             <Image url="@Assets/icons/blue/pencil.png" />
          </image>
       </ImageView>
+        <TextField fx:id="titrecher" layoutX="490.0" layoutY="65.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
 
     </children>
 </AnchorPane>

@@ -4,7 +4,9 @@ package GUI;
 import Entities.Reclamation;
 import Entities.Reponse;
 
+import Services.ServiceReclamation;
 import Services.ServiceReponse;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,8 +25,10 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ReponseAffichageControlleur implements Initializable {
     
@@ -40,6 +41,9 @@ public class ReponseAffichageControlleur implements Initializable {
     @FXML
     private TableColumn<Reponse, String> descriptionR;
 
+    @FXML
+    private TextField titrecher ;
+    private List<Reponse> reponsess ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -118,6 +122,26 @@ public class ReponseAffichageControlleur implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Veuillez sélectionner  .");
             alert.showAndWait();
+        }
+    }
+    @FXML
+    void chercher() {
+        String searchText = titrecher.getText().toLowerCase();
+        ServiceReponse sp = new ServiceReponse() ;
+        reponsess = sp.afficher();
+        List<Reponse> repstream = reponsess.stream()
+                .filter((t) -> t.getTitre_reponse().toLowerCase().contains(searchText)
+                        || t.getDescription_reponse().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
+
+        List<Reponse> filteredrep = new ArrayList<>();
+
+
+
+        if (filteredrep.isEmpty()) {
+            tableView.setItems(FXCollections.observableArrayList(repstream));
+        } else {
+            tableView.setItems(FXCollections.observableArrayList(filteredrep));
         }
     }
 
