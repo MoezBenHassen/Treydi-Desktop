@@ -63,7 +63,7 @@
                   <Image url="@Assets/icons/avatar4.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" onMouseClicked="#goToItems" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/treasure-chest1.png" />
                </image>

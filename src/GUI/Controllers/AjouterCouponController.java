@@ -82,7 +82,7 @@ public class AjouterCouponController implements Initializable {
        int id_cat = list.stream().filter((t) -> t.getNom_categorie().equals(cbs)).mapToInt((t) -> t.getId_categoriecoupon()).sum();
        System.out.println(id_cat);
 
-       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
        if (dateexpiration.getValue()==null){
            Alert alert= new Alert(Alert.AlertType.ERROR);
            alert.setHeaderText(null);

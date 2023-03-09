@@ -329,6 +329,38 @@ public class DashbordAdminController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void goToCoupon(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GestionCoupon.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png", 32, 32, true, true);
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+    }
+
 
 /*
     @FXML

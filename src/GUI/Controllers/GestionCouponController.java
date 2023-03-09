@@ -28,7 +28,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -221,6 +224,39 @@ public class GestionCouponController implements Initializable {
         }
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void goToItems(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemAdminFXML.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        javafx.scene.image.Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
     }

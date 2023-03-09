@@ -79,7 +79,7 @@
                   <Image url="@Assets/icons/blue/fast-delivery.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="goToCoupon" fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" onMouseClicked="#goToCoupon" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/coupon.png" />
                </image>
@@ -91,7 +91,7 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/help%20(2).png" />
+                  <Image url="@Assets/icons/blue/help.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">

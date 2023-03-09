@@ -182,7 +182,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView id="tablecoupons" fx:id="tablecategories" layoutX="364.0" layoutY="256.0" prefHeight="472.0" prefWidth="894.0" stylesheets="@Assets/css/style.css">
+      <TableView id="tablecoupons" fx:id="categorieCoupon" layoutX="364.0" layoutY="256.0" prefHeight="472.0" prefWidth="894.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/categorieCouponStyle.css">
          <columns>
             <TableColumn fx:id="nomcategorie" prefWidth="450.0" text="Nom Categorie" />
             <TableColumn fx:id="descriptioncategorie" minWidth="0.0" prefWidth="258.0" text="Description Categorie" />

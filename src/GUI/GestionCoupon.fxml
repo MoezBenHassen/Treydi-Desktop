@@ -64,7 +64,7 @@
                   <Image url="@Assets/icons/avatar4.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" onMouseClicked="#goToItems" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/treasure-chest1.png" />
                </image>
@@ -164,7 +164,7 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Button fx:id="supprimer" layoutX="58.0" layoutY="580.0" mnemonicParsing="false" onAction="#supprimer" onMouseClicked="#supprimer" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="supprimer" layoutX="58.0" layoutY="580.0" mnemonicParsing="false" onAction="#supprimer" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fx:id="supression" fitHeight="46.0" fitWidth="46.0" onMouseClicked="#supprimer" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -173,7 +173,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="categorie" layoutX="57.0" layoutY="662.0" mnemonicParsing="false" onAction="#gotoCategorie" onMouseClicked="#gotoCategorie" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button fx:id="categorie" layoutX="57.0" layoutY="662.0" mnemonicParsing="false" onAction="#gotoCategorie" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -182,7 +182,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView id="tablecoupons" fx:id="tablecoupons" layoutX="275.0" layoutY="256.0" prefHeight="472.0" prefWidth="1070.0" stylesheets="@Assets/css/style.css">
+      <TableView id="tablecoupons" fx:id="tablecoupons" layoutX="275.0" layoutY="256.0" prefHeight="472.0" prefWidth="1070.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/categorieCouponStyle.css">
          <columns>
             <TableColumn fx:id="nomcoupon" prefWidth="126.00003051757812" text="Nom Coupon" />
             <TableColumn fx:id="descriptioncoupon" prefWidth="222.0" text="Description Coupon" />

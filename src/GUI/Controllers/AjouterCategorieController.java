@@ -5,6 +5,7 @@ import Entities.Coupon;
 import Services.CategorieCouponService;
 import Services.CouponService;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -99,7 +103,7 @@ public class AjouterCategorieController implements Initializable {
         stage.show();
     }
     @FXML
-    public void goToCategorie(ActionEvent actionEvent) {
+    void goToCategorie(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GestionCategories.fxml"));
         Parent root = null;
         try {
@@ -108,7 +112,40 @@ public class AjouterCategorieController implements Initializable {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void goToItems(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemAdminFXML.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double xOffset = event.getSceneX();
+                double yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
     }
