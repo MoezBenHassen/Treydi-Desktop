@@ -98,7 +98,7 @@ public class LoginController implements  Initializable {
                             user.getRole(), user.getId_user()));
 
                     System.out.println(CurrentUser.getInstance().getId_user());
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../LivreurHome.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AffListEchangeLivreur.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();

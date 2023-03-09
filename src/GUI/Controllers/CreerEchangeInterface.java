@@ -107,7 +107,7 @@ public class CreerEchangeInterface {
     }
 
     private void echange_creation() {
-        List<Item> items = is.afficherUserItems(5);
+        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId_user());
         int column = 0, row = 0;
 
         for (int i = 0; i < items.size(); i++) {
