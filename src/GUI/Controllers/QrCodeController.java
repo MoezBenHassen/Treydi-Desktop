@@ -47,7 +47,7 @@ GridPane pane;
 
     public void setQrCode(String c) throws IOException {
             String text = c;
-            String filePath = "C:\\Users\\admin\\Desktop\\Treydi-Desktop\\src\\APIs\\img\\MyQR.png";
+            String filePath = "src/APIs/img/MyQR.png";
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
             Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);

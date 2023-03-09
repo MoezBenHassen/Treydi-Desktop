@@ -14,7 +14,7 @@ public class CategorieCouponService implements IService<CategorieCoupon> {
         Statement stm;
 
         public CategorieCouponService() {
-            cnx = MyDB.getInstance().getCon();
+            cnx = MyDB.getInstance().getCnx();
 
         }
 

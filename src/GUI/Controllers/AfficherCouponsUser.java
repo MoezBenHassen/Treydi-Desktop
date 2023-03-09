@@ -84,7 +84,7 @@ public class AfficherCouponsUser implements Initializable {
 
         etatbox.getItems().add("Tous");
         etatbox.getItems().add("VALID");
-        etatbox.getItems().add("NOT VALID");
+        etatbox.getItems().add("NOT_VALID");
             }
 
 
@@ -110,7 +110,7 @@ public class AfficherCouponsUser implements Initializable {
         for (Coupon obj : coupons) {
             {
                 if (obj.getId_categoriecoupon() == 1) {
-                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/bronze.png");
+                    Image image = new Image(getClass().getResourceAsStream("../Assets/images/bronze.png"));
                     ImageView imageView = new ImageView(image);
                     imageView.setFitHeight(182);
                     imageView.setFitWidth(182);
@@ -150,7 +150,7 @@ public class AfficherCouponsUser implements Initializable {
                         row++;
                     }
                 } else if (obj.getId_categoriecoupon() == 2) {
-                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/silver.png");
+                    Image image = new Image(getClass().getResourceAsStream("../Assets/images/silver.png"));
                     ImageView imageView = new ImageView(image);
                     imageView.setFitHeight(182);
                     imageView.setFitWidth(182);
@@ -190,7 +190,7 @@ public class AfficherCouponsUser implements Initializable {
                         row++;
                     }
                 } else if (obj.getId_categoriecoupon() == 3) {
-                    Image image = new Image("file:///C:/Users/admin/Desktop/Treydi-Desktop/src/GUI/assets/images/gold.png");
+                    Image image = new Image(getClass().getResourceAsStream("../Assets/images/gold.png"));
                     ImageView imageView = new ImageView(image);
                     imageView.setFitHeight(182);
                     imageView.setFitWidth(182);
@@ -307,7 +307,18 @@ public class AfficherCouponsUser implements Initializable {
         motscles.clear();
         categoriecouponsbox.getItems().clear();
         etatbox.getItems().clear();
+
         afficher(coupons);
+        categoriecouponsbox.getItems().add("Toutes");
+        for (CategorieCoupon categorieCoupon : categories) {
+            categoriecouponsbox.getItems().add(categorieCoupon.getNom_categorie());
+        }
+
+        etatbox.getItems().add("Tous");
+        etatbox.getItems().add("VALID");
+        etatbox.getItems().add("NOT VALID");
     }
+
 }
+
 

@@ -37,6 +37,10 @@ public class Trader extends Utilisateur{
 
     }
 
+    public Trader(int id_user) {
+        super(id_user);
+    }
+
 
     public int getScore() {
         return score;

@@ -1,5 +1,6 @@
 package GUI.Controllers;
 
+import Entities.Trader;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import javafx.event.ActionEvent;
@@ -87,9 +88,9 @@ public class MainFideliteController implements Initializable {
 
 
     public void getScore() {
-        Utilisateur user= new Utilisateur(5);
+
         UtilisateurService u= new UtilisateurService();
-        int sc= u.afficherscore(user);
+        int sc= u.afficherscore();
         score.setText(String.valueOf(sc));
 
     }

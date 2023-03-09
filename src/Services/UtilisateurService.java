@@ -9,6 +9,7 @@ import Entities.Admin;
 import Entities.Livreur;
 import Entities.Trader;
 import Entities.Utilisateur;
+import Utils.CurrentUser;
 import Utils.MyDB;
 import Utils.Enums.Roles;
 
@@ -33,12 +34,12 @@ public class UtilisateurService  implements IService<Utilisateur> {
     }
     
     
-        public int afficherscore(Utilisateur c) {
+        public int afficherscore() {
         int s = 0;
         try {
             String qry = "SELECT `score` FROM `utilisateur` WHERE `id_user`=?";
             PreparedStatement stmt = cnx.prepareStatement(qry);
-            stmt.setInt(1, c.getId());
+            stmt.setInt(1, CurrentUser.getInstance().getId_user());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 s = rs.getInt("score");
@@ -50,16 +51,16 @@ public class UtilisateurService  implements IService<Utilisateur> {
     }
 
 
-    public boolean setScore(Utilisateur c, int somme) {
+    public boolean setScore(Trader c, int somme) {
         UtilisateurService us= new UtilisateurService();
-        int sub= us.afficherscore(c)-somme;
+        int sub= us.afficherscore()-somme;
         System.out.println(somme);
-        System.out.println(us.afficherscore(c));
+        System.out.println(us.afficherscore());
         System.out.println(sub);
         try {
             String qry = "UPDATE `utilisateur` SET `score` ='" + sub +  "'WHERE `id_user`=?";
             PreparedStatement stmt = cnx.prepareStatement(qry);
-            stmt.setInt(1, c.getId());
+            stmt.setInt(1, CurrentUser.getInstance().getId_user());
             int rs = stmt.executeUpdate();
             System.out.println("Update Successful!");
             return true;
@@ -68,51 +69,30 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return false; }
 
-
-    public List<Utilisateur> afficherUsers() {
-        List<Utilisateur> users = new ArrayList();
-        try {
-            String qry = "SELECT * FROM `utilisateur`";
-            stm = cnx.createStatement();
-            ResultSet rs = stm.executeQuery(qry);
-
-            while (rs.next()) {
-                Utilisateur c = new Utilisateur();
-                c.setId(rs.getInt("id_user"));
-                c.setPassword(rs.getString("password"));
-                c.setNom(rs.getString("nom"));
-                c.setPrenom(rs.getString("prenom"));
-                c.setAdresse(rs.getString("adresse"));
-                c.setEmail(rs.getString("email"));
-                c.setImage_url(rs.getString("avatar_url"));
-                c.setRole(rs.getString("role"));
-                c.setDatenaissance(rs.getString("date_naissance"));
-                c.setScore(rs.getInt("score"));
-                users.add(c);
-            } }
-        catch ( SQLException ex) { System.out.println(ex.getMessage());
-        }
-        return users;
+    public int getScore() {
+        UtilisateurService u = new UtilisateurService();
+        int sc = u.afficherscore();
+        return sc;
     }
-    
-    public List<Utilisateur> afficherTraders() {
-        List<Utilisateur> users = new ArrayList();
+
+    public List<Trader> afficherTraders() {
+        List<Trader> users = new ArrayList();
         try {
             String qry = "SELECT * FROM `utilisateur` where `role`='trader'";
             stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
 
             while (rs.next()) {
-                Utilisateur c = new Utilisateur();
-                c.setId(rs.getInt("id_user"));
+                Trader c = new Trader();
+                c.setId_user(rs.getInt("id_user"));
                 c.setPassword(rs.getString("password"));
                 c.setNom(rs.getString("nom"));
                 c.setPrenom(rs.getString("prenom"));
                 c.setAdresse(rs.getString("adresse"));
                 c.setEmail(rs.getString("email"));
-                c.setImage_url(rs.getString("avatar_url"));
-                c.setRole(rs.getString("role"));
-                c.setDatenaissance(rs.getString("date_naissance"));
+                c.setAvatar_url(rs.getString("avatar_url"));
+                c.setRole(Roles.trader);
+                c.setDate_naissance(rs.getString("date_naissance"));
                 c.setScore(rs.getInt("score"));
                 users.add(c);
             } }

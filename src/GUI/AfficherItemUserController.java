@@ -703,8 +703,8 @@ public class AfficherItemUserController implements Initializable {
         stage.show();
     }
 
-    public void goToUserCRUD(MouseEvent mouseEvent){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI/EditProfileTrader.fxml"));
+    public void goToCoupon(MouseEvent mouseEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainFidelite.fxml"));
         Parent root = null;
         try {
             root = loader.load();

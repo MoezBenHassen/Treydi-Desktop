@@ -133,8 +133,6 @@ public class EditProfileTraderController implements Initializable {
                     stage.setY(event.getScreenY() - yOffset);
                 }
             });
-
-
             stage.setScene(scene);
             stage.show();
 

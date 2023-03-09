@@ -94,14 +94,14 @@
                   <Image url="@Assets/icons/blue/fast-delivery.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="goToCoupon" fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" onMouseClicked="#goToCoupon" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/diamond.png" />
+                  <Image url="@Assets/icons/blue/coupon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="759.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/help%20(2).png" />
+                  <Image url="@Assets/icons/blue/help.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
@@ -117,11 +117,6 @@
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/control-panel.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="goToProfile1" fitHeight="62.0" fitWidth="62.0" layoutX="44.0" layoutY="66.0" onMouseClicked="#route_Profile" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/avatar4.png" />
                </image>
             </ImageView>
 

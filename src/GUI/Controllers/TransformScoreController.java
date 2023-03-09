@@ -1,9 +1,11 @@
 package GUI.Controllers;
 
 import Entities.Coupon;
+import Entities.Trader;
 import Entities.Utilisateur;
 import Services.CouponService;
 import Services.UtilisateurService;
+import Utils.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +39,7 @@ public class TransformScoreController implements Initializable {
     @FXML
     private TextField transform1, transform2, transform3;
 
-    Utilisateur user = new Utilisateur(5);
+    Trader user = new Trader(CurrentUser.getInstance().getId_user());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,7 +69,7 @@ public class TransformScoreController implements Initializable {
 
     public int getScore() {
         UtilisateurService u = new UtilisateurService();
-        int sc = u.afficherscore(user);
+        int sc = u.afficherscore();
         return sc;
     }
 
@@ -154,6 +156,33 @@ public class TransformScoreController implements Initializable {
 
     public void gotoafficher(MouseEvent mouseEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../MyCoupons.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void goToFidelite(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MainFidelite.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToItems(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemUserFXML.fxml"));
         Parent root = null;
         try {
             root = loader.load();

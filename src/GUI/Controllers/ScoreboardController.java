@@ -1,6 +1,7 @@
 package GUI.Controllers;
 
 import Entities.Coupon;
+import Entities.Trader;
 import Entities.Utilisateur;
 import Services.CouponService;
 import Services.UtilisateurService;
@@ -57,11 +58,11 @@ public class ScoreboardController implements Initializable {
     @FXML
     private void afficher() {
         UtilisateurService us = new UtilisateurService();
-        List<Utilisateur> users = us.afficherTraders();
+        List<Trader> users = us.afficherTraders();
 
-        Collections.sort(users, new Comparator<Utilisateur>() {
+        Collections.sort(users, new Comparator<Trader>() {
                     @Override
-                    public int compare(Utilisateur u1, Utilisateur u2) {
+                    public int compare(Trader u1, Trader u2) {
                         return u2.getScore() - u1.getScore();
                     }
                 });
