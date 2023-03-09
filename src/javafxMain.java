@@ -1,16 +1,16 @@
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class javafxMain extends Application {
+import java.io.IOException;
 
+public class javafxMain extends Application {
     private double xOffset;
     private double yOffset;
 
@@ -20,6 +20,8 @@ public class javafxMain extends Application {
 
             Parent root=FXMLLoader.load(getClass().getResource("GUI/login.fxml"));
            // Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+           Parent root = loader.load();
+            DatabaseMonitor databaseMonitor = new DatabaseMonitor();
             Scene scene = new Scene(root);
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -36,8 +38,13 @@ public class javafxMain extends Application {
                 primaryStage.setX(event.getScreenX() - xOffset);
                 primaryStage.setY(event.getScreenY() - yOffset);
             });
+
+
+            primaryStage.setWidth(1600);
+
             // set window size
             /*primaryStage.setWidth(1600);
+
             primaryStage.setHeight(900);
 
              */
@@ -46,16 +53,22 @@ public class javafxMain extends Application {
             //Add app icon
             Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
             primaryStage.getIcons().add(image);
-            //Add app title
             primaryStage.setTitle("Treydi");
-            // make scene tranparent
-
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            // databasemonitoring
+            Thread databaseThread = new Thread(databaseMonitor);
+            databaseThread.setDaemon(true);
+            databaseThread.start();
+
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }
