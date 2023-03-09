@@ -23,6 +23,7 @@ public class javafxMain extends Application {
             Scene scene = new Scene(root);
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
+
             scene.setFill(Color.TRANSPARENT);
             primaryStage.initStyle(StageStyle.TRANSPARENT);
 
@@ -51,10 +52,6 @@ public class javafxMain extends Application {
 
             primaryStage.setScene(scene);
             primaryStage.show();
-
-
-
-
     }
 
     public static void main(String[] args) {

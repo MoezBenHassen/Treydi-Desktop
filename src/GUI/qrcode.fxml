@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="877.0" prefWidth="930.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.QrCodeController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="0.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="658.0" layoutX="137.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="673.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect></Rectangle>
+      <Label id="txt" accessibleRole="BUTTON" layoutX="189.0" layoutY="289.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Scanner votre QR Code pour obtenir " textAlignment="CENTER" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/images/treydi3.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="58.0" layoutY="580.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="285.0" layoutY="339.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="votre code de coupon:" textAlignment="CENTER" />
+      <Label id="txt" fx:id="label" accessibleRole="BUTTON" alignment="CENTER" layoutX="264.0" layoutY="211.0" prefHeight="50.0" prefWidth="421.0" style="-fx-text-fill: white; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" textAlignment="CENTER" />
+      <GridPane fx:id="pane" layoutX="321.0" layoutY="421.0" prefHeight="300.0" prefWidth="300.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+
+   </children>
+</AnchorPane>

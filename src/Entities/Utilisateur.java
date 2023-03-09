@@ -1,4 +1,5 @@
 package Entities;
+
 import Utils.Enums.Roles;
 import javafx.scene.image.Image;
 
@@ -93,6 +94,7 @@ public class Utilisateur {
 
     public void setPassword(String password) {
         this.password = password;
+
     }
 
     public String getNom() {
@@ -111,6 +113,7 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
+
     public String getEmail() {
         return email;
     }
@@ -126,6 +129,7 @@ public class Utilisateur {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
 
     public String getAvatar_url() {
         return avatar_url;

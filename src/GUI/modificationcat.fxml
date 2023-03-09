@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="650.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.ModifierCategorieController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="0.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="417.0" layoutX="64.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="522.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect></Rectangle>
+      <Label id="txt" accessibleRole="BUTTON" layoutX="145.0" layoutY="139.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Modifier une catégorie" textAlignment="CENTER" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/images/treydiAdmin-05.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="58.0" layoutY="580.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <TextField fx:id="nomcategorie" layoutX="88.0" layoutY="266.0" opacity="0.59" prefHeight="53.0" prefWidth="474.0" promptText="Titre Categorie" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <TextField fx:id="descriptioncategorie" layoutX="89.0" layoutY="364.0" opacity="0.59" prefHeight="53.0" prefWidth="474.0" promptText="Description de la catégorie" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <Button id="addButton" fx:id="envoyer" layoutX="191.0" layoutY="499.0" mnemonicParsing="false" onAction="#modifier" prefHeight="36.0" prefWidth="281.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Envoyer" textFill="#eccecf">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+
+   </children>
+</AnchorPane>

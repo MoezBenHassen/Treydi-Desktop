@@ -17,6 +17,10 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector-j-8.0.32" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="zxing-1.7-javase" level="project" />
+    <orderEntry type="library" name="zxing-core-2.0" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -67,6 +71,5 @@
     <orderEntry type="library" exported="" name="recaptcha4j-0.0.7" level="project" />
     <orderEntry type="library" exported="" name="mysql-connector-j-8.0.32" level="project" />
     <orderEntry type="library" exported="" name="javax.mail" level="project" />
-
   </component>
 </module>

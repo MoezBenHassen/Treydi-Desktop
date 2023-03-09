@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.TransformScoreController">
+   <children>
+      <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <RadialGradient centerX="0.7611111111111111" centerY="0.7" radius="0.5">
+               <stops>
+                  <Stop color="#851e5fdf" />
+                  <Stop color="#871e5f5d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <GaussianBlur radius="63.0" />
+         </effect>
+      </Ellipse>
+      <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
+               <stops>
+                  <Stop color="#b25815ab" />
+                  <Stop color="#ccae7a2e" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <GaussianBlur radius="63.0" />
+         </effect>
+      </Circle>
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-1.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/icons/blue/power_icon2.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/avatar4.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/treasure-chest1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/fast-delivery.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/diamond.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="759.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/help.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/hot_article_icon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/minusbLUE.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/control-panel.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/pink/coupon.png" />
+               </image>
+            </ImageView>
+
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="201.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
+               <stops>
+                  <Stop color="#891e5f" />
+                  <Stop color="#871e5f" offset="0.5085910652920962" />
+                  <Stop color="#2c2449" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+         </effect></Rectangle>
+      <Label id="txt" fx:id="score" accessibleRole="BUTTON" alignment="CENTER" contentDisplay="CENTER" layoutX="1018.0" layoutY="238.0" onMouseClicked="#getScore" prefHeight="50.0" prefWidth="200.0" style="-fx-text-fill: #e0d42c; -fx-font-size: 50; -fx-font-family: passion one;" styleClass="txt" stylesheets="@Assets/css/style.css" text="   " textAlignment="CENTER" textFill="#e0d42c" />
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="174.0" layoutX="32.0" layoutY="391.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+         <effect>
+            <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
+         </effect>
+      </Rectangle>
+      
+      <Button fx:id="afficher" layoutX="56.0" layoutY="345.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Button layoutX="56.0" layoutY="433.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Button layoutX="61.0" layoutY="525.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/images/treydi3.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_titre1" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="390.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="1000 XP►                      Coupon Casual" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="1198.0" layoutY="249.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="XP" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="608.0" layoutY="136.0" prefHeight="56.0" prefWidth="468.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Transformer votre score" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="523.0" layoutY="303.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 30; -fx-font-family: arial;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Saisir le nombre des points à transformer:" textAlignment="CENTER" />
+      <TextField fx:id="transform1" alignment="CENTER" layoutX="951.0" layoutY="392.0" onKeyTyped="#NumberOnly" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="452.0" layoutY="458.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="2000 XP►                      Coupon Spécial" textAlignment="CENTER" />
+      <Label id="txt" accessibleRole="BUTTON" layoutX="454.0" layoutY="524.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 26; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="5000 XP►                      Coupon Exclusif" textAlignment="CENTER" />
+      <Button id="addButton" fx:id="envoyer" layoutX="676.0" layoutY="618.0" mnemonicParsing="false" onAction="#goToQR" prefHeight="36.0" prefWidth="248.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@Assets/css/style.css" text="Envoyer" textFill="#eccecf">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="search" fitHeight="62.0" fitWidth="69.0" layoutX="59.0" layoutY="446.0" onMouseClicked="#gotoafficher" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="transform2" alignment="CENTER" layoutX="951.0" layoutY="461.0" onKeyTyped="#NumberOnly" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
+      <TextField fx:id="transform3" alignment="CENTER" layoutX="951.0" layoutY="527.0" opacity="0.59" prefHeight="11.0" prefWidth="200.0" promptText="Transform me!" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000;" text="0" />
+
+   </children>
+</AnchorPane>
