@@ -1,0 +1,11 @@
+.text-area {
+    text-area-background:  #383a40 ;
+	-fx-background-radius: 20;
+	-fx-text-fill: white;
+	-fx-font-family: Impact;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+	
+}

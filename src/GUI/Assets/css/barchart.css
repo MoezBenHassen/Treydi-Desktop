@@ -1,0 +1,19 @@
+.chart-axis {
+    -fx-stroke: black;
+    -fx-font-size: 12px;
+}
+
+/* Set the color of the bar chart bars */
+
+
+
+/* Set the color of the bar chart background and make it transparent */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* Set the color of the chart title */
+.chart-title {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+}

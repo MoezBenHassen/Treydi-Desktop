@@ -3,70 +3,88 @@ package Entities;
 import java.util.Date;
 
 public class Livraison {
-    private int id;
-    private Date date_livraison;
 
-    private String etat_livraison;
-    private String adresse_livraison;
-    private int id_livreur;
-    private int id_echange;
+    int id_livraison, id_livreur, id_echange;
+    String adresse_livraison1, adresse_livraison2;
+    public enum ETAT {Encours, Termine, Annule};
+    private ETAT etat;
+    Date date_creation_livraison, date_terminer_livraison;
 
-    public Livraison() {
+
+    public Livraison() {}
+
+    public Livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
     }
 
-    public Livraison(String etat_livraison, String adresse_livraison, int id_livreur, int id_echange) {
-        this.etat_livraison = etat_livraison;
-        this.adresse_livraison = adresse_livraison;
+    public Livraison(int id_livreur, int id_echange, String adresse_livraison1, ETAT etat) {
         this.id_livreur = id_livreur;
         this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.etat = etat;
     }
 
-    public Livraison(int id, Date date_livraison, String etat_livraison, String adresse_livraison, int id_livreur, int id_echange) {
-        this.id = id;
-        this.date_livraison = date_livraison;
-        this.etat_livraison = etat_livraison;
-        this.adresse_livraison = adresse_livraison;
+    public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, ETAT etat) {
+        this.id_livraison = id_livraison;
         this.id_livreur = id_livreur;
         this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.etat = etat;
     }
-    public Livraison(Date date_livraison, String etat_livraison, String adresse_livraison, int id_livreur, int id_echange) {
-        this.date_livraison = date_livraison;
-        this.etat_livraison = etat_livraison;
-        this.adresse_livraison = adresse_livraison;
+
+    public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat) {
+        this.id_livraison = id_livraison;
         this.id_livreur = id_livreur;
         this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.adresse_livraison2 = adresse_livraison2;
+        this.etat = etat;
     }
 
-    public int getId() {
-        return id;
+    public Livraison(int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat) {
+        this.id_livraison = id_livraison;
+        this.id_livreur = id_livreur;
+        this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.adresse_livraison2 = adresse_livraison2;
+        this.etat = etat;
+    }
+    public Livraison(int id_livraison, int id_livreur, int id_echange, String adresse_livraison1, String adresse_livraison2, ETAT etat, Date date_creation_livraison, Date date_terminer_livraison) {
+        this.id_livraison = id_livraison;
+        this.id_livreur = id_livreur;
+        this.id_echange = id_echange;
+        this.adresse_livraison1 = adresse_livraison1;
+        this.adresse_livraison2 = adresse_livraison2;
+        this.etat = etat;
+        this.date_creation_livraison = date_creation_livraison;
+        this.date_terminer_livraison = date_terminer_livraison;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+
+    public String getAdresse_livraison2() {
+        return adresse_livraison2;
     }
 
-    public Date getDate_livraison() {
-        return date_livraison;
+    public void setAdresse_livraison2(String adresse_livraison2) {
+        this.adresse_livraison2 = adresse_livraison2;
     }
 
-    public void setDate_livraison(Date date_livraison) {
-        this.date_livraison = date_livraison;
+    public Date getDate_terminer_livraison() {
+        return date_terminer_livraison;
     }
 
-    public String getEtat_livraison() {
-        return etat_livraison;
+    public void setDate_terminer_livraison(Date date_terminer_livraison) {
+        this.date_terminer_livraison = date_terminer_livraison;
     }
 
-    public void setEtat_livraison(String etat_livraison) {
-        this.etat_livraison = etat_livraison;
+    public int getId_livraison() {
+        return id_livraison;
     }
 
-    public String getAdresse_livraison() {
-        return adresse_livraison;
-    }
+    public void setId_livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
 
-    public void setAdresse_livraison(String adresse_livraison) {
-        this.adresse_livraison = adresse_livraison;
     }
 
     public int getId_livreur() {
@@ -85,14 +103,41 @@ public class Livraison {
         this.id_echange = id_echange;
     }
 
+    public String getAdresse_livraison1() {
+        return adresse_livraison1;
+    }
+
+    public void setAdresse_livraison1(String adresse_livraison1) {
+        this.adresse_livraison1 = adresse_livraison1;
+    }
+
+    public Date getDate_creation_livraison() {
+        return date_creation_livraison;
+    }
+
+    public void setDate_creation_livraison(Date date_creation_livraison) {
+        this.date_creation_livraison = date_creation_livraison;
+    }
+
+    public ETAT getEtat() {
+        return etat;
+    }
+
+    public void setEtat(ETAT etat) {
+        this.etat = etat;
+    }
+
     @Override
     public String toString() {
-        return "\nLivraison{" +
-                "date_livraison='" + date_livraison + '\'' +
-                ", etat_livraison='" + etat_livraison + '\'' +
-                ", adresse_livraison='" + adresse_livraison + '\'' +
+        return "Livraison{" +
+                "id_livraison=" + id_livraison +
                 ", id_livreur=" + id_livreur +
                 ", id_echange=" + id_echange +
-                "}";
+                ", adresse_livraison1='" + adresse_livraison1 + '\'' +
+                ", adresse_livraison2='" + adresse_livraison2 + '\'' +
+                ", etat=" + etat +
+                ", date_creation_livraison=" + date_creation_livraison +
+                ", date_terminer_livraison=" + date_terminer_livraison +
+                '}';
     }
 }

@@ -1,12 +1,17 @@
-package Services;
+package Interfaces;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface IService<T> {
+
+    public void ajouter(T t );
+
     public void add(T t );
-    public List<T> affciher();
+    public List<T> afficher();
     public Boolean modifier(T t);
     public Boolean supprimer(T t);
+
 }
+
 
