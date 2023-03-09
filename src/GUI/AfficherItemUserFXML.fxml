@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemUserController">
+   <children>
+      <Rectangle fx:id="rect11" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="41.0" layoutY="587.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+         <effect>
+            <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
+         </effect>
+      </Rectangle>
+      <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="72.0" layoutY="611.0" onMouseClicked="#fact" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/fileBlue.png" />
+         </image>
+      </ImageView>
+      <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <RadialGradient centerX="0.7611111111111111" centerY="0.7" radius="0.5">
+               <stops>
+                  <Stop color="#851e5fdf" />
+                  <Stop color="#871e5f5d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <GaussianBlur radius="63.0" />
+         </effect>
+      </Ellipse>
+      <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
+               <stops>
+                  <Stop color="#b25815ab" />
+                  <Stop color="#ccae7a2e" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <GaussianBlur radius="63.0" />
+         </effect>
+      </Circle>
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onMouseClicked="#shutdown" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="36.0" onMouseClicked="#shutdown" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/icons/blue/power_icon2.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fx:id="goToProfile" fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" onMouseClicked="#route_Profile" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/avatar4.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/pink/treasure-chest%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="listeEchange" fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" onMouseClicked="#goToListeEchange" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/fast-delivery.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="goToCoupon" fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" onMouseClicked="#goToCoupon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/coupon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="759.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/help.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/minusbLUE.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/control-panel.png" />
+               </image>
+            </ImageView>
+
+         </children>
+      </AnchorPane>
+      <Label id="txt" fx:id="itemTitle" accessibleRole="BUTTON" layoutX="704.0" layoutY="104.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Vos Items" textAlignment="CENTER" />
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="225.0" layoutX="41.0" layoutY="342.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+         <effect>
+            <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
+         </effect>
+      </Rectangle>
+      
+      <Button layoutX="64.0" layoutY="378.0" mnemonicParsing="false" onAction="#route_AfficherItem" prefWidth="43.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/pink/list.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="64.0" layoutY="483.0" mnemonicParsing="false" onAction="#route_AjouterItem" prefWidth="43.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/addition.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/images/treydi3.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txt_titre1" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+      <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b81d6db2" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
+         <effect>
+            <DropShadow color="#00000090" />
+         </effect>
+      </Rectangle>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1272.0" layoutY="52.0" onMouseClicked="#exls" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/filetype-xls.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <Text layoutX="1174.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: impact; -fx-fill: #ffffff; -fx-font-size: 20;" text="Exporter :" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1319.0" layoutY="52.0" onMouseClicked="#epdf" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Icons/file-pdf.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="41.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+         <effect>
+            <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
+         </effect>
+      </Rectangle>
+      <Button layoutX="64.0" layoutY="246.0" mnemonicParsing="false" onAction="#route_ChercherItem" prefWidth="43.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/magnifier.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane fx:id="chercherPane" layoutX="24.0" layoutY="104.0" prefHeight="749.0" prefWidth="200.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="749.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
+               <effect>
+                  <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
+               </effect>
+               <fill>
+                  <LinearGradient endX="0.5333333333333333" endY="0.023809523809523836" startX="0.9952380952380953" startY="0.5666666666666667">
+                     <stops>
+                        <Stop color="#4f4f4fda" />
+                        <Stop color="#4f4f4fda" offset="0.0078125" />
+                        <Stop color="#9c9c9c47" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <TextField fx:id="textfield_libelle" layoutX="20.0" layoutY="88.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" prefHeight="39.0" prefWidth="172.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 16; -fx-font-family: impact;" text="Insérer libellé" />
+            <Text fill="#eccecf" layoutX="20.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#eccecf" layoutX="20.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <ComboBox id="dropbox_etat" fx:id="combobox_cat" layoutX="20.0" layoutY="175.0" onAction="#chercher" onContextMenuRequested="#chercher" onInputMethodTextChanged="#chercher" onKeyPressed="#chercher" onKeyReleased="#chercher" onKeyTyped="#chercher" onMouseClicked="#chercher" onMouseDragged="#chercher" onMouseEntered="#chercher" onMouseExited="#chercher" onMouseMoved="#chercher" onMousePressed="#chercher" onMouseReleased="#chercher" onScroll="#chercher" onScrollFinished="#chercher" onScrollStarted="#chercher" prefHeight="39.0" prefWidth="172.0" promptText="Toutes" style="-fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-text-fill: #eccecf; list-cell: #eccecf; -fx-font-size: 16;" styleClass=".combo-box .cell:selected {    -fx-text-fill: red;}" stylesheets="@Assets/CSSs/combobox.css" />
+            <CheckBox fx:id="cb_type_1" layoutX="20.0" layoutY="265.0" mnemonicParsing="false" onAction="#chercher" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Physique Neuf" />
+            <CheckBox fx:id="cb_type_2" layoutX="20.0" layoutY="304.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Physique Occasion" />
+            <CheckBox fx:id="cb_type_3" layoutX="20.0" layoutY="343.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Virtuelle" />
+            <CheckBox fx:id="cb_type_4" layoutX="20.0" layoutY="381.0" mnemonicParsing="false" onAction="#chercher" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 16;" text="Service" />
+            <Text fill="#eccecf" layoutX="20.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type et État">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#eccecf" layoutX="20.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mots Clés de Description" wrappingWidth="136.13818359375">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <TextArea id="textarea_description" fx:id="textarea_description" layoutX="20.0" layoutY="479.0" onInputMethodTextChanged="#chercher" onKeyPressed="#chercher" onKeyTyped="#chercher" prefHeight="130.0" prefWidth="172.0" style="-fx-background-radius: 20; -fx-border-width: 0.5; -fx-background-color: #383a40; -fx-border-color: #000000; -fx-border-radius: 20; -fx-font-size: 16;" stylesheets="@Assets/CSSs/desc.css" text="Insérer mots clés" />
+            <Text fill="#eccecf" layoutX="44.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher">
+               <font>
+                  <Font name="Impact" size="25.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="113.0" layoutY="715.0" onMouseClicked="#route_ChercherItemH" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/minusbLUE.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.31" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="56.0" layoutY="714.0" onMouseClicked="#route_ChercherItemR" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+               <image>
+                  <Image url="@Assets/icons/blue/loop-arrow.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.31" />
+               </effect>
+            </ImageView>
+            <Text fill="#eccecf" layoutX="20.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Triéer par" wrappingWidth="136.13818359375">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </Text>
+            <RadioButton id="radio_type_1" fx:id="radio_type_1" layoutX="20.0" layoutY="648.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Type et état" textFill="#eccecf" toggleGroup="$radio_type">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radio_type" />
+               </toggleGroup>
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
+            <RadioButton id="radio_type_2" fx:id="radio_type_2" layoutX="20.0" layoutY="681.0" mnemonicParsing="false" onAction="#chercher" prefWidth="202.0" style="-fx-text-fill: #ffffff;" text="Libellé" textFill="#eccecf" toggleGroup="$radio_type">
+               <font>
+                  <Font name="Impact" size="20.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" onMouseClicked="#route_Profile" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
+      <TableView fx:id="tableView" layoutX="229.0" layoutY="178.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css" visible="false">
+         <columns>
+            <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
+            <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />
+            <TableColumn fx:id="libelleColumn" minWidth="0.0" prefWidth="230.0" text="Libélle" />
+            <TableColumn fx:id="categorieColumn" minWidth="0.0" prefWidth="145.0" text="Categorie" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="428.0" text="Description" />
+            <TableColumn fx:id="typeColumn" prefWidth="122.0" text="Type" />
+            <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="101.0" text="État" />
+         </columns>
+      </TableView>
+      <CheckBox fx:id="all" layoutX="291.0" layoutY="45.0" mnemonicParsing="false" onAction="#allitems" opacity="0.48" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 20;" text="Afficher Tous" />
+
+   </children>
+</AnchorPane>

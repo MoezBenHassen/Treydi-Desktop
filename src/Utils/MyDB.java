@@ -3,30 +3,32 @@ package Utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MyDB {
-    final String url = "jdbc:mysql://localhost:3306/treydi_db";
-    final String user = "root";
-    final String password = "";
-    static MyDB instance;
-    private Connection con;
+    final String URL ="jdbc:mysql://127.0.0.1:3306/treydi_db";
+    final String USER ="root";
+    final String PWD ="";
+    private  Connection cnx;
+    private  static MyDB instance;
+
     private MyDB(){
         try {
-            con = DriverManager.getConnection(url, user, password);
-            System.out.println("Connection established");
-        } catch (SQLException ex){
+            cnx = DriverManager.getConnection(URL, USER, PWD);
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
     }
-    public static MyDB getInstance(){
-        if (instance == null){
+    public static MyDB getInstance (){
+        if(instance == null){
             instance = new MyDB();
         }
         return instance;
     }
-
-    public Connection getCon() {
-        return con;
+    public Connection getCnx(){
+        return cnx;
     }
 }

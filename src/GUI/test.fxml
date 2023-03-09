@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterInterface">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <StackPane fx:id="registerContent" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                    </BorderPane.margin>
+                    <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" stylesheets="@../Style/LoginStyle.css">
+                            <children>
+                                <VBox alignment="CENTER">
+                                    <children>
+                                        <Label text="Create An Account">
+                                            <font>
+                                                <Font name="Lato Bold" size="48.0" />
+                                            </font>
+                                        </Label>
+                                        <Label text="Welcome to EsprIN" textFill="#ff3737">
+                                            <font>
+                                                <Font name="Lato Regular" size="28.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <GridPane alignment="CENTER" hgap="80.0" prefHeight="751.0" prefWidth="1199.0" vgap="30.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="655.0" minWidth="10.0" prefWidth="650.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="693.0" minWidth="10.0" prefWidth="649.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="140.0" minHeight="0.0" prefHeight="95.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="244.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="99.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="121.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="217.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <VBox alignment="CENTER_LEFT" prefHeight="188.0" prefWidth="560.0" spacing="20.0">
+                                            <children>
+                                                <Label text="First name">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="firstNameInput" prefHeight="47.0" prefWidth="587.0" promptText="First name" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="20.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1">
+                                            <children>
+                                                <Label text="Last name">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="lastNameInput" prefHeight="47.0" prefWidth="587.0" promptText="Last name" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="20.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="Email">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="emailInput" prefHeight="63.0" prefWidth="1299.0" promptText="Type your ESPRIT Email" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="20.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="174.0" prefWidth="610.0" spacing="20.0" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Password">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <PasswordField fx:id="passwordInput" prefHeight="62.0" prefWidth="610.0" promptText="Password" />
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="320.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <children>
+                                                <Label text="Confirm Password">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <PasswordField fx:id="passwordInputConfirm" prefHeight="64.0" prefWidth="609.0" promptText="Confirm Password" />
+                                            </children>
+                                        </VBox>
+                                        <VBox layoutX="10.0" layoutY="242.0" prefHeight="200.0" prefWidth="610.0" spacing="20.0" GridPane.rowIndex="3">
+                                            <children>
+                                                <Label text="You are a ?">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="roleSelection" onAction="#selectRole" prefHeight="64.0" prefWidth="390.0" promptText="Are you a student , professor or a club ?" styleClass="combo-box">
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                            </children>
+                                        </VBox>
+                                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCreateUser" prefHeight="44.0" prefWidth="255.0" styleClass="btn" text="Create account" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <VBox fx:id="domaineVBox" layoutX="10.0" layoutY="445.0" prefHeight="200.0" prefWidth="610.0" spacing="20.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <children>
+                                                <Label text="Select your Domaine">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="domaineSelection" prefHeight="64.0" prefWidth="390.0" styleClass="combo-box">
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox fx:id="typeClubVBox" layoutX="10.0" layoutY="445.0" prefHeight="200.0" prefWidth="610.0" spacing="20.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <children>
+                                                <Label text="What type of Club ?">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <ComboBox fx:id="clubTypeSelection" prefHeight="64.0" prefWidth="390.0" promptText="Select your club type" styleClass="combo-box">
+                                                    <VBox.margin>
+                                                        <Insets />
+                                                    </VBox.margin>
+                                                </ComboBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox fx:id="classVbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="610.0" spacing="20.0" visible="false" GridPane.rowIndex="4">
+                                            <children>
+                                                <HBox prefHeight="54.0" prefWidth="610.0" spacing="30.0">
+                                                    <children>
+                                                        <VBox>
+                                                            <children>
+                                                                <Label text="Level">
+                                                                    <font>
+                                                                        <Font name="Lato Regular" size="26.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TextField fx:id="classLvl" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="415.0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox layoutX="10.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label text="speciality">
+                                                                    <font>
+                                                                        <Font name="Lato Regular" size="26.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TextField fx:id="classSoec" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="415.0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox layoutX="315.0" layoutY="10.0">
+                                                            <children>
+                                                                <Label text="Class Number">
+                                                                    <font>
+                                                                        <Font name="Lato Regular" size="26.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <TextField fx:id="classNum" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="415.0" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="145.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <Label text="CIN">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="26.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="cinNumberInput" prefHeight="63.0" prefWidth="1299.0" promptText="Type your CIN number" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                                                    <font>
+                                                        <Font name="Lato Regular" size="20.0" />
+                                                    </font>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                        <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+                                            <children>
+                                                <VBox alignment="CENTER" prefHeight="141.0" prefWidth="609.0" spacing="20.0">
+                                                    <children>
+                                                        <AnchorPane prefHeight="150.0" prefWidth="510.0">
+                                                            <VBox.margin>
+                                                                <Insets left="50.0" right="50.0" />
+                                                            </VBox.margin>
+                                                            <children>
+                                                                <WebView fx:id="reCaptcha" disable="true" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="48.0" prefWidth="509.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <TextField fx:id="captchaResponse" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="404.0" />
+                                                    </children>
+                                                </VBox>
+                                                <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#refreshCaptcha" style="-fx-background-color: transparent;" text="Button">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                    <graphic>
+                                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../Icons/update.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#backbtn" prefHeight="65.0" prefWidth="257.0" styleClass="btn" stylesheets="@../Style/LoginStyle.css" text="Back" GridPane.rowIndex="5" />
+
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </center>
+            <right>
+                <AnchorPane prefHeight="1080.0" prefWidth="521.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="1080.0" fitWidth="735.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-313.0" AnchorPane.topAnchor="0.0">
+                            <image>
+                                <Image url="file:/C:/Users/Bairem/Desktop/Vikings/EsprIN/src/Views/Icons/register.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </children>
+</AnchorPane>

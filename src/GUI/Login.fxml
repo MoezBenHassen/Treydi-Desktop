@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controllers.LoginController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="650.0" layoutX="462.0" stroke="BLACK" strokeType="INSIDE" width="438.0">
+            <fill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#99226d" />
+                        <Stop color="#99226d" offset="0.007246376811594203" />
+                        <Stop color="BLACK" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <AnchorPane layoutX="-10.0" layoutY="-7.0" prefHeight="657.0" prefWidth="478.0" style="-fx-background-color: #3c2253;">
+            <children>
+                <TextField fx:id="tfemail" accessibleRole="RADIO_MENU_ITEM" layoutX="97.0" layoutY="262.0" opacity="0.57" prefHeight="35.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-width: 0;">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </TextField>
+                <Text fill="#eed1d1" layoutX="178.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="126.98307228088379">
+               <font>
+                  <Font name="Impact" size="44.0" />
+               </font></Text>
+            <Hyperlink layoutX="294.0" layoutY="480.0" onAction="#ForgetPass" prefHeight="0.0" prefWidth="125.0" text="Mot de passe oublié ?" />
+            <Label layoutX="110.0" layoutY="312.0" text="Mot de passe*" textFill="#eed1d1" />
+            <Label layoutX="110.0" layoutY="232.0" text="Email*" textFill="#eed1d1" />
+            <Hyperlink fx:id="inscriptionLink" layoutX="101.0" layoutY="480.0" onAction="#inscription" text="créer un compte" />
+            <Button layoutX="97.0" layoutY="412.0" mnemonicParsing="false" onAction="#login" opacity="0.85" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: #b81d6d; -fx-background-radius: 10;" text="Login" textFill="#eed1d1">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font></Button>
+            <ImageView fitHeight="64.0" fitWidth="156.0" layoutX="25.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/treydi3.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="erreurfd" layoutX="107.0" layoutY="606.0" opacity="0.14" prefHeight="37.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <PasswordField fx:id="tfpassword" layoutX="97.0" layoutY="344.0" opacity="0.57" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 10;" />
+            </children>
+        </AnchorPane>
+      <ImageView fitHeight="214.0" fitWidth="192.0" layoutX="585.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/images/log-04.png" />
+         </image></ImageView>
+      <Text fill="#f5f5f5" layoutX="508.0" layoutY="561.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Impact;" text="Treydi, Dont't Sell" textAlignment="CENTER" wrappingWidth="345.5537109375">
+         <font>
+            <Font name="Arial" size="39.0" />
+         </font>
+      </Text>
+    </children>
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+    </padding>
+</AnchorPane>

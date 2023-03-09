@@ -1,25 +1,29 @@
-import Entities.Reclamation;
-import Entities.Reponse;
-import Services.ServiceReclamation;
-import Services.ServiceReponse;
 
-import Entities.Etat_reclamation ;
-import java.sql.Date ;
+
+import Entities.Coupon;
+import Entities.Utilisateur;
+import APIs.GenerateQRCode;
+import Services.CouponService;
+import Services.UtilisateurService;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args)  {
-     // Reclamation R1 =new Reclamation(8,"reclamation333333","produit33333","En_cours",new Date(2022,3,4),new Date(2022,3,4),9,0);
-        ServiceReclamation sr =new ServiceReclamation() ;
-        ServiceReponse sre = new ServiceReponse() ;
-        //Reponse Re = new Reponse(5,"Reponse 3","acscqsqcscq",new Date(2022,3,4));
-     //Reclamation R = new Reclamation("reclamation","produit",Etat_reclamation.En_cours,new Date(2022,3,4),44, 0);
-      //  sr.ajouter(R);
-        System.out.println(sr.afficher()) ;
-        //System.out.println(sr.afficher());
-       // sr.supprimer(R1) ;
-        //sr.modifier(R) ;
-        // sre.ajouter(Re);
-        //System.out.println(sre.afficher());
-        //sre.supprimer(Re) ;
+    public static void main(String[] args) throws IOException, SQLException {
+        CouponService cs= new CouponService();
+        Utilisateur u= new Utilisateur(6);
+        cs.affecterCouponExclusif(u);
+        List<Coupon> coupons = cs.afficherParUser(u);
+        System.out.println(coupons);
+        // UtilisateurService us= new UtilisateurService();
+        // System.out.println(us.afficherUsers());
+        // System.out.println(us.afficherTraders());
+        //us.setScore(u,1000);
+        //GenerateQRCode g= new GenerateQRCode();
+        //g.generate(s);
+
     }
 }
+
