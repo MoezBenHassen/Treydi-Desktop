@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="855.0" prefWidth="557.0" style="-fx-background-color: #2c2449; -fx-border-width: 7; -fx-border-color: #301934;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CategorieItemsAdminController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="855.0" prefWidth="557.0" style="-fx-background-color: #2c2449; -fx-border-width: 7; -fx-border-color: #DBD32D; -fx-border-radius: 15; -fx-background-radius: 15;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CategorieItemsAdminController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="549.0" layoutX="23.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 80; -fx-arc-width: 80;" width="513.0">
          <fill>
@@ -33,7 +33,7 @@
          </effect></Rectangle>
       <Label id="txt" accessibleRole="BUTTON" layoutX="22.0" layoutY="49.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Categorie Items" textAlignment="CENTER" />
 
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="311.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d02ed3" height="48.0" layoutX="311.0" layoutY="49.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
          <effect>
             <DropShadow color="#00000090" />
          </effect>

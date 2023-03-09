@@ -19,7 +19,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
     Statement stm;
 
     public UtilisateurService() {
-        cnx = MyDB.getInstance().getCon();
+        cnx = MyDB.getInstance().getCnx();
     }
 
     @Override

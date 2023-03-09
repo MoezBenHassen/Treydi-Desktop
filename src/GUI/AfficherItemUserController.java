@@ -7,6 +7,7 @@ import Entities.Item;
 import Entities.Utilisateur;
 import Services.CategorieItemsService;
 import Services.ItemService;
+import Utils.CurrentUser;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -45,7 +46,8 @@ public class AfficherItemUserController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
-
+    @FXML
+    private Label itemTitle;
     @FXML
     private TableView<Item> tableView ;
 
@@ -102,6 +104,8 @@ public class AfficherItemUserController implements Initializable {
     private ComboBox combobox_cat ;
 
     @FXML
+    private ImageView goToProfile;
+    @FXML
     private Pane chercherPane;
 
     @FXML
@@ -153,78 +157,8 @@ public class AfficherItemUserController implements Initializable {
             combobox_cat.getItems().add(categorieItems.getNom_categorie());
         }
 
-
-
-        /**
-        tableView.setItems(FXCollections.observableArrayList(items));
-
-        CategorieItemsService sp2 = new CategorieItemsService();
-        categories = sp2.afficher();
-
-        imageurlColumn.setCellValueFactory(new PropertyValueFactory<>("imageurl"));
-
-        imageurlColumn.setVisible(false);
-
-        imageColumn.setPrefWidth(130);
-        imageColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, ImageView>, ObservableValue<ImageView>>() {
-
-            @Override
-            public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<Item, ImageView> param) {
-                try {
-                String imagePath = param.getValue().getImageurl();
-
-                    Image image = new Image(imagePath);
-                    ImageView imageView = new ImageView();
-                    imageView.setImage(image);
-                    imageView.setFitHeight(120);
-                    imageView.setFitWidth(120);
-
-
-                return new SimpleObjectProperty<>(imageView);
-            } catch (Exception e) {
-                    System.out.println(e);
-            }
-                return null;
-            }
-        });
-
-        categorieColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Item, String>, ObservableValue<String>>() {
-
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Item, String> param) {
-                try {
-                    int catid = param.getValue().getId_categorie();
-                    CategorieItemsService sp2 = new CategorieItemsService();
-                    List<Categorie_Items> list = sp2.afficher();
-                    String cat = list.stream().filter((t) -> t.getId_categorie() == catid).limit(1).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", "));
-                    ;
-
-                    return new SimpleObjectProperty<>(cat);
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-                return null;
-            }
-        });
-
-
-        libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        etatColumn.setCellValueFactory(new PropertyValueFactory<>("etat"));
-
-        tableView.setOnMouseClicked(event -> {
-                    if (event.getClickCount() == 2) { // check if it's a double click
-                        try {
-                            route_ItemDetails(event);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-        );
-*/
-
+        Image image = new Image(CurrentUser.getInstance().getAvatar_url());
+        goToProfile.setImage(image);
 
 
     }
@@ -244,6 +178,8 @@ public class AfficherItemUserController implements Initializable {
             gridpane.setScaleX(newValue.doubleValue());
             gridpane.setScaleY(newValue.doubleValue());
         });
+
+
 
 
         int row = 0;
@@ -316,7 +252,7 @@ public class AfficherItemUserController implements Initializable {
 
             HBox buttons = new HBox();
 
-            if (obj.getId_user() == Utilisateur.getLoginid())
+            if (obj.getId_user() == CurrentUser.getInstance().getId_user())
             {
                  buttons = new HBox(modimageView, supimageView, detimageView);
                 buttons.setSpacing(24);
@@ -668,11 +604,13 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private void allitems(ActionEvent event) throws IOException {
         if (all.isSelected()) {
+            itemTitle.setText("Tous Items");
             ItemService sp = new ItemService();
             items = sp.afficherAdmin();
             afficher(items);
             chercher();
         } else {
+            itemTitle.setText("Vos Items");
             ItemService sp = new ItemService();
             items = sp.afficher();
             afficher(items);
@@ -729,7 +667,7 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private void fact(MouseEvent event)  {
         ToPDF exporter = new ToPDF();
-        int user = Utilisateur.getLoginid() ;
+        int user = CurrentUser.getInstance().getId_user(); ;
         List<Integer> ech = items.stream().map(t -> t.getId_echange()).collect(Collectors.toList());
         System.out.println(ech);
 
@@ -749,5 +687,51 @@ public class AfficherItemUserController implements Initializable {
     private void minimize(MouseEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    @FXML
+    private void route_Profile(MouseEvent mouseEvent) throws IOException {
+        System.out.println("0000");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditProfileTrader.fxml"));
+        System.out.println("1");
+        Parent root = loader.load();
+        System.out.println("2");
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToUserCRUD(MouseEvent mouseEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI/EditProfileTrader.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
     }
 }

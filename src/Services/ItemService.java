@@ -10,6 +10,7 @@ import java.util.List;
 import Entities.Item;
 import Entities.Utilisateur;
 import Interfaces.IItemCategorieService;
+import Utils.CurrentUser;
 import Utils.MyDB;
 
 
@@ -47,7 +48,7 @@ public class ItemService implements IItemCategorieService<Item> {
     public List<Item> afficher() {
         List<Item> items = new ArrayList();
         try {
-            String qry = "SELECT * FROM `item` WHERE `archived` = 0 AND `id_user` = "+Utilisateur.getLoginid()+";";
+            String qry = "SELECT * FROM `item` WHERE `archived` = 0 AND `id_user` = "+ CurrentUser.getInstance().getId_user() +";";
             stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
 
@@ -150,22 +151,22 @@ public class ItemService implements IItemCategorieService<Item> {
         Statement stm2 = cnx.createStatement();
         Statement stm3 = cnx.createStatement();
         try {
-            String qry = "SELECT * FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0";
+            String qry = "SELECT * FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0";
             stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while (!rs.next()) {
-                String qryy = "SELECT * FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1";
+                String qryy = "SELECT * FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1";
                 ResultSet rss = stm3.executeQuery(qryy);
                 while (rss.next()) {
 
                     String qryy3 = "UPDATE `item` SET `dislikes`= `dislikes` - 1  WHERE `id_item`='" + i.getId_item() + "';";
                     stm2.executeUpdate(qryy3);
-                    String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1;";
+                    String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1;";
                     stm2.executeUpdate(qryy2);
                 }
                 rss.close();
 
-                String qry2 = "INSERT INTO `like_items` (`id_user`, `id_item`, `choice`) VALUES (" + Utilisateur.getLoginid() + "," + i.getId_item() + ",0);";
+                String qry2 = "INSERT INTO `like_items` (`id_user`, `id_item`, `choice`) VALUES (" + CurrentUser.getInstance().getId_user() + "," + i.getId_item() + ",0);";
                 stm2.executeUpdate(qry2);
                 String qry3 = "UPDATE `item` SET `likes`= `likes` + 1  WHERE `id_item`='" + i.getId_item() + "';";
                 stm2.executeUpdate(qry3);
@@ -176,7 +177,7 @@ public class ItemService implements IItemCategorieService<Item> {
             if (x == false) {
                 String qryy3 = "UPDATE `item` SET `likes`= `likes` - 1  WHERE `id_item`='" + i.getId_item() + "';";
                 stm2.executeUpdate(qryy3);
-                String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0;";
+                String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0;";
                 stm2.executeUpdate(qryy2);
 
 
@@ -198,24 +199,24 @@ public class ItemService implements IItemCategorieService<Item> {
         Statement stm2 = cnx.createStatement();
         Statement stm3 = cnx.createStatement();
         try {
-            String qry = "SELECT * FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1";
+            String qry = "SELECT * FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1";
             stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while (!rs.next()) {
                 x = true ;
-                String qryy = "SELECT * FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0";
+                String qryy = "SELECT * FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0";
                 ResultSet rss = stm3.executeQuery(qryy);
 
                 while (rss.next()) {
 
                     String qryy3 = "UPDATE `item` SET `likes`= `likes` - 1  WHERE `id_item`='" + i.getId_item() + "';";
                     stm2.executeUpdate(qryy3);
-                    String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0;";
+                    String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 0;";
                     stm2.executeUpdate(qryy2);
                 }
                 rss.close();
 
-                String qry2 = "INSERT INTO `like_items` (`id_user`, `id_item`, `choice`) VALUES (" + Utilisateur.getLoginid() + "," + i.getId_item() + ",1);";
+                String qry2 = "INSERT INTO `like_items` (`id_user`, `id_item`, `choice`) VALUES (" + CurrentUser.getInstance().getId_user() + "," + i.getId_item() + ",1);";
                 stm2.executeUpdate(qry2);
                 String qry3 = "UPDATE `item` SET `dislikes`= `dislikes` + 1  WHERE `id_item`='" + i.getId_item() + "';";
                 stm2.executeUpdate(qry3);
@@ -226,7 +227,7 @@ public class ItemService implements IItemCategorieService<Item> {
             if (x == false) {
                 String qryy3 = "UPDATE `item` SET `dislikes`= `dislikes` - 1  WHERE `id_item`='" + i.getId_item() + "';";
                 stm2.executeUpdate(qryy3);
-                String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+Utilisateur.getLoginid()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1;";
+                String qryy2 = "DELETE FROM `like_items` WHERE `id_user` = "+CurrentUser.getInstance().getId_user()+" AND `id_item` = "+i.getId_item() + " AND `choice` = 1;";
                 stm2.executeUpdate(qryy2);
 
 

@@ -42,6 +42,8 @@ public class AfficherItemAdminController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    @FXML
+    private ImageView goToUserCRUD;
 
     @FXML
     private TableView<Item> tableView;
@@ -105,7 +107,7 @@ public class AfficherItemAdminController implements Initializable {
     private  List<Item> items ;
     private  List<Categorie_Items> categories ;
 
-
+    Stage stage;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -372,8 +374,6 @@ public class AfficherItemAdminController implements Initializable {
             a.show();
 
         }
-
-
     }
 
 
@@ -534,7 +534,6 @@ public class AfficherItemAdminController implements Initializable {
         stage.show();
     }
 
-
     @FXML
     private void shutdown(MouseEvent event) throws IOException {
         Platform.exit();
@@ -542,8 +541,53 @@ public class AfficherItemAdminController implements Initializable {
     }
 
     @FXML
-    private void minimize(MouseEvent event) throws IOException {
+    private void Minimize(MouseEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+
+
+    public void goToUserCRUD(MouseEvent mouseEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/DashboardAdmin.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+
+
 }

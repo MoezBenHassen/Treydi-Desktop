@@ -1,1 +1,27 @@
 .scroll-pane > .viewport  { -fx-background-color: transparent; }
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* SCROLL BAR*/
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #b81d6d;
+}
+
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-background-color: none;
+}
+
+.scroll-pane .corner{
+    -fx-background-color: none;
+}
+.scroll-pane .scroll-bar .increment-arrow,
+.scroll-pane .scroll-bar .decrement-arrow {
+    -fx-background-color: #b81d6d;
+}

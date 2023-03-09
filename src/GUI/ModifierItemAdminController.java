@@ -5,6 +5,7 @@ import Entities.Item;
 import Entities.Utilisateur;
 import Services.CategorieItemsService;
 import Services.ItemService;
+import Utils.CurrentUser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -196,7 +197,7 @@ public class ModifierItemAdminController implements Initializable {
                                 a.setHeaderText("Erreur");a.setContentText("Assurez-vous d'insérer des entrées valides pour les détails de votre item.");
                     a.show();
                 } else {
-                    Item i = new Item(Integer.parseInt(textfield_id.getText()), textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), Utilisateur.getLoginid(), id_cat, 0,0,0);
+                    Item i = new Item(Integer.parseInt(textfield_id.getText()), textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), CurrentUser.getInstance().getId_user(), id_cat, 0,0,0);
                     sp.modifier(i);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setHeaderText("Notification");

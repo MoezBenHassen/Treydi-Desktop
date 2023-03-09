@@ -54,16 +54,16 @@
             <GaussianBlur radius="63.0" />
          </effect>
       </Circle>
-      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="AnchorPane" layoutX="1473.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="130.0" style="-fx-background-color: #272042;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-1.0">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onMouseClicked="#shutdown" style="-fx-background-color: none;">
+            <Button fx:id="logoutButton" layoutX="38.0" layoutY="818.0" mnemonicParsing="false" onAction="#shutdown" style="-fx-background-color: none;">
                <graphic>
-                  <ImageView fitHeight="36.0" fitWidth="36.0" onMouseClicked="#shutdown" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/icons/blue/power_icon2.png" />
+                        <Image url="@Assets/icons/yellow/power.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -85,33 +85,38 @@
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/blue/diamond.png" />
+                  <Image url="@Assets/icons/blue/coupon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="44.0" layoutY="759.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/loop-arrow.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/help%20(2).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="goToUserCRUD" fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="520.0" onMouseClicked="#goToUserCRUD" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/blue/helmet.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="45.0" layoutY="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/icons8-hot-article-50%20(2).png" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minimize" fitHeight="12.0" fitWidth="11.0" layoutX="102.0" layoutY="13.0" onMouseClicked="#Minimize" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/minusbLUE.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="48.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/control-panel.png" />
                </image>
             </ImageView>
 
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="729.0" layoutX="205.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1227.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="719.0" layoutX="205.0" layoutY="158.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1227.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                <stops>
@@ -186,7 +191,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d02e" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
          <effect>
             <DropShadow color="#00000090" />
          </effect>
@@ -224,7 +229,7 @@
       </Button>
       <Pane fx:id="chercherPane" layoutX="-3.0" layoutY="114.0" prefHeight="749.0" prefWidth="200.0" visible="false">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="749.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="187.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="749.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="187.0">
                <effect>
                   <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
                </effect>
@@ -306,7 +311,7 @@
             </RadioButton>
          </children>
       </Pane>
-      <TableView fx:id="tableView" layoutX="230.0" layoutY="168.0" prefHeight="697.0" prefWidth="1175.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
+      <TableView fx:id="tableView" layoutX="247.0" layoutY="182.0" prefHeight="672.0" prefWidth="1167.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css">
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
             <TableColumn fx:id="imageColumn" prefWidth="132.0" text="Image" />

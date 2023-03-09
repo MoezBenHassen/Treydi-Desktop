@@ -15,10 +15,10 @@ public class javafxMain extends Application {
     private double yOffset;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
-        try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+
+            Parent root=FXMLLoader.load(getClass().getResource("GUI/login.fxml"));
            // Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
             Scene scene = new Scene(root);
 
@@ -52,9 +52,7 @@ public class javafxMain extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-        } catch (IOException ex) {
-            System.out.println("Err"+ex.getMessage());
-        }
+
 
 
     }

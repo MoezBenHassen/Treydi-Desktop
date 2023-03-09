@@ -97,7 +97,6 @@ public class EditProfileTraderController implements Initializable {
         Image image = new Image(CurrentUser.getInstance().getAvatar_url());
         imageview_imageurl.setImage(image);
         avatarImg.setImage(image);
-
     }
     @FXML
     private void modifier(ActionEvent event) throws IOException {
@@ -115,7 +114,7 @@ public class EditProfileTraderController implements Initializable {
             a.setHeaderText("Notification");
             a.setContentText("L'utilisateur a été modifié avec succès!");
             a.show();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/TraderHome.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemUserFXML.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -134,9 +133,7 @@ public class EditProfileTraderController implements Initializable {
                     stage.setY(event.getScreenY() - yOffset);
                 }
             });
-            stage.initStyle(StageStyle.UNDECORATED);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
+     
 
             stage.setScene(scene);
             stage.show();

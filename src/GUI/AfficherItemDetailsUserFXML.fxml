@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="525.0" prefWidth="1127.0" style="-fx-background-color: #2c2449; -fx-border-width: 7; -fx-border-color: #301934;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemDetailsUserController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="525.0" prefWidth="1127.0" style="-fx-background-color: #2c2449; -fx-border-width: 7; -fx-border-color: #b81d6d; -fx-border-radius: 15; -fx-background-radius: 15;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemDetailsUserController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="275.0" layoutX="14.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1094.0">
          <fill>

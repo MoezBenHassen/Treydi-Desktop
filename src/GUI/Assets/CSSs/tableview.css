@@ -6,7 +6,7 @@
 #tableView .column-header .filler,
 #tableView .column-header-background .filler {
     -fx-background-color: none;
-    -fx-h
+
     -fx-border-width: 0;
 }
 

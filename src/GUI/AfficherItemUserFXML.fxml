@@ -29,14 +29,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemUserController">
    <children>
-      <Rectangle fx:id="rect11" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="39.0" layoutY="554.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Rectangle fx:id="rect11" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="41.0" layoutY="587.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
-      <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="70.0" layoutY="578.0" onMouseClicked="#fact" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="72.0" layoutY="611.0" onMouseClicked="#fact" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Assets/icons/blue/loop-arrow.png" />
+            <Image url="@Assets/icons/blue/fileBlue.png" />
          </image>
       </ImageView>
       <Ellipse layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
@@ -79,7 +79,7 @@
                   </ImageView>
                </graphic></Button>
             <Circle fill="#b81d6d" layoutX="65.0" layoutY="87.0" radius="38.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="goToProfile" fitHeight="62.0" fitWidth="62.0" layoutX="34.0" layoutY="56.0" onMouseClicked="#route_Profile" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/avatar4.png" />
                </image>
@@ -119,17 +119,22 @@
                   <Image url="@Assets/icons/blue/control-panel.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="goToProfile1" fitHeight="62.0" fitWidth="62.0" layoutX="44.0" layoutY="66.0" onMouseClicked="#route_Profile" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/icons/avatar4.png" />
+               </image>
+            </ImageView>
 
          </children>
       </AnchorPane>
-      <Label id="txt" accessibleRole="BUTTON" layoutX="730.0" layoutY="99.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Vos Items" textAlignment="CENTER" />
-      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="225.0" layoutX="39.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Label id="txt" fx:id="itemTitle" accessibleRole="BUTTON" layoutX="704.0" layoutY="104.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Vos Items" textAlignment="CENTER" />
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="225.0" layoutX="41.0" layoutY="342.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
       
-      <Button layoutX="62.0" layoutY="345.0" mnemonicParsing="false" onAction="#route_AfficherItem" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="64.0" layoutY="378.0" mnemonicParsing="false" onAction="#route_AfficherItem" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -137,7 +142,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="62.0" layoutY="433.0" mnemonicParsing="false" onAction="#route_AjouterItem" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="64.0" layoutY="483.0" mnemonicParsing="false" onAction="#route_AjouterItem" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -157,7 +162,7 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a2c57" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b81d6db2" height="48.0" layoutX="1148.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="225.0">
          <effect>
             <DropShadow color="#00000090" />
          </effect>
@@ -179,12 +184,12 @@
             <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
          </effect>
       </ImageView>
-      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="39.0" layoutY="193.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="98.0" layoutX="41.0" layoutY="226.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
          <effect>
             <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
          </effect>
       </Rectangle>
-      <Button layoutX="64.0" layoutY="209.0" mnemonicParsing="false" onAction="#route_ChercherItem" prefWidth="43.0" style="-fx-background-color: none;">
+      <Button layoutX="64.0" layoutY="246.0" mnemonicParsing="false" onAction="#route_ChercherItem" prefWidth="43.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -277,7 +282,7 @@
             </RadioButton>
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
+      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" onMouseClicked="#route_Profile" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
       <TableView fx:id="tableView" layoutX="229.0" layoutY="178.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css" visible="false">
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
@@ -289,7 +294,7 @@
             <TableColumn fx:id="etatColumn" minWidth="0.0" prefWidth="101.0" text="État" />
          </columns>
       </TableView>
-      <CheckBox fx:id="all" layoutX="293.0" layoutY="52.0" mnemonicParsing="false" onAction="#allitems" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 20;" text="Afficher Tous" />
+      <CheckBox fx:id="all" layoutX="291.0" layoutY="45.0" mnemonicParsing="false" onAction="#allitems" opacity="0.48" prefHeight="29.0" prefWidth="162.0" style="-fx-text-fill: #ffffff; -fx-font-family: impact; -fx-font-size: 20;" text="Afficher Tous" />
 
    </children>
 </AnchorPane>

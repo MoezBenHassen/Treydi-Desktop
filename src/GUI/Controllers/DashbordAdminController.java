@@ -4,6 +4,7 @@ import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.Enums.Roles;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +38,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -95,6 +95,10 @@ public class DashbordAdminController implements Initializable {
     private AnchorPane scenePane;
 
     private List<Utilisateur> users;
+
+
+    @FXML
+    private ImageView goToItems;
     Stage stage;
 
     @Override
@@ -293,7 +297,38 @@ public class DashbordAdminController implements Initializable {
         chercher() ;
     }
 
+    @FXML
+    void goToItems(MouseEvent mouseEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemAdminFXML.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
 
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 /*
     @FXML

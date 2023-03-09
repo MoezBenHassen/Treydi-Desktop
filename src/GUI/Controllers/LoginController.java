@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -35,10 +36,8 @@ public class LoginController implements  Initializable {
     private Roles role;
     @FXML
     private Button logoutButton;
-
     @FXML
     private AnchorPane scenePane;
-
     @FXML
     private TextField tfemail;
     @FXML
@@ -62,8 +61,6 @@ public class LoginController implements  Initializable {
             Trader trader =  us.getTraderById(id);
             try {
                 // Set the current user instance
-
-
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setTitle("Welcome to Treydi");
                 System.out.println("User role: " + user.getRole());
@@ -85,7 +82,8 @@ public class LoginController implements  Initializable {
                     stage.initStyle(StageStyle.UNDECORATED);
                     scene.setFill(Color.TRANSPARENT);
                     stage.initStyle(StageStyle.TRANSPARENT);
-
+                    Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+                    stage.getIcons().add(image);
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                     CurrentUser currentUser = CurrentUser.getInstance();
@@ -112,6 +110,11 @@ public class LoginController implements  Initializable {
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+                    stage.getIcons().add(image);
                  /*   System.out.println(CurrentUser.getInstance().getScore());
                     System.out.println(CurrentUser.getInstance().getDate_naissance());
                     System.out.println("----------");
@@ -126,7 +129,7 @@ public class LoginController implements  Initializable {
                             user.getPassword(), user.getNom(), user.getPrenom(),
                             user.getEmail(), user.getAdresse(), user.getAvatar_url(),
                             user.getRole(),trader.getScore(),trader.getDate_naissance(), user.getId_user()));
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../TraderHome.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../AfficherItemUserFXML.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
@@ -134,7 +137,8 @@ public class LoginController implements  Initializable {
                     stage.initStyle(StageStyle.UNDECORATED);
                     scene.setFill(Color.TRANSPARENT);
                     stage.initStyle(StageStyle.TRANSPARENT);
-
+                    Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+                    stage.getIcons().add(image);
 
                     stage.setTitle("Login");
                     stage.setScene(scene);
@@ -154,7 +158,6 @@ public class LoginController implements  Initializable {
                     System.out.println(CurrentUser.getInstance().getDate_naissance());
                     System.out.println(CurrentUser.getInstance().getNom());
                     */
-
                 }
             } catch (IOException ex) {
                 System.out.println("Exception loading FXML file: " + ex.getMessage());
