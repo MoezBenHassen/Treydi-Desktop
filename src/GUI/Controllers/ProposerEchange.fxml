@@ -71,7 +71,7 @@
                         <Image url="@../Assets/icons/blue/treasure-chest1.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" onMouseClicked="#moveToAffListEchange" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Assets/icons/blue/fast-delivery.png" />
                     </image>
@@ -104,7 +104,7 @@
 
             </children>
         </AnchorPane>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="314.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="973.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="586.0" layoutX="10.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 100; -fx-arc-width: 100;" width="1441.0">
             <fill>
                 <LinearGradient endX="1.0" endY="1.0" startX="0.9952380952380953">
                     <stops>
@@ -118,38 +118,10 @@
                 <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
             </effect></Rectangle>
         <Label id="txt" accessibleRole="BUTTON" layoutX="632.0" layoutY="145.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="Proposer Echange" textAlignment="CENTER" />
-        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="373.0" layoutX="32.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
-            <effect>
-                <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
-            </effect>
-        </Rectangle>
 
-        <Button layoutX="56.0" layoutY="345.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-            <graphic>
-                <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Assets/icons/blue/list.png" />
-                    </image>
-                </ImageView>
-            </graphic></Button>
-        <Button layoutX="56.0" layoutY="433.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-            <graphic>
-                <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Assets/icons/pink/additionpink.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
-        <Button layoutX="61.0" layoutY="525.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-            <graphic>
-                <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Assets/icons/blue/pencil.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
+        <Button layoutX="56.0" layoutY="345.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+        <Button layoutX="56.0" layoutY="433.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
+        <Button layoutX="61.0" layoutY="525.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../Assets/images/treydi3.png" />
@@ -161,17 +133,9 @@
                 <Image url="@../Assets/icons/blue/magnifier.png" />
             </image>
         </ImageView>
-        <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-            <graphic>
-                <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Assets/icons/blue/trash-bin.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
+        <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
         <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
-        <GridPane fx:id="user1_items" gridLinesVisible="true" layoutX="359.0" layoutY="221.0" prefHeight="276.0" prefWidth="458.0">
+        <GridPane fx:id="user1_items" gridLinesVisible="true" layoutX="28.0" layoutY="270.0" prefHeight="451.0" prefWidth="458.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -186,7 +150,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <GridPane fx:id="items_grid" gridLinesVisible="true" layoutX="833.0" layoutY="264.0" prefHeight="451.0" prefWidth="413.0">
+        <GridPane fx:id="items_grid" gridLinesVisible="true" layoutX="1013.0" layoutY="270.0" prefHeight="451.0" prefWidth="413.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -201,7 +165,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-      <GridPane fx:id="user2_items" gridLinesVisible="true" layoutX="359.0" layoutY="508.0" prefHeight="263.0" prefWidth="458.0">
+      <GridPane fx:id="user2_items" gridLinesVisible="true" layoutX="521.0" layoutY="270.0" prefHeight="451.0" prefWidth="458.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -216,12 +180,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button id="addButton" layoutX="422.0" layoutY="788.0" mnemonicParsing="false" onAction="#proposerEchange" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@../Assets/css/style.css" text="Proposer" textFill="#eccecf">
+      <Button id="addButton" layoutX="374.0" layoutY="734.0" mnemonicParsing="false" onMouseClicked="#proposerEchange" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@../Assets/css/style.css" text="Proposer" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="entryLabel" layoutX="889.0" layoutY="213.0" prefHeight="35.0" prefWidth="185.0" text="Label" />
 
     </children>
 </AnchorPane>

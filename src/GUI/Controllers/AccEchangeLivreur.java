@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -55,6 +56,18 @@ public class AccEchangeLivreur implements Initializable {
     @FXML
     private GridPane user2_items;
 
+    @FXML
+    private Label user_name1;
+
+    @FXML
+    private Label user_name2;
+
+    @FXML
+    private Label adresseliv1;
+
+    @FXML
+    private Label adresseliv2;
+
     Stage stage;
 
     ItemService is = new ItemService();
@@ -69,6 +82,10 @@ public class AccEchangeLivreur implements Initializable {
         this.selectedEchange = echange;
         loadItemsUser1();
         loadItemsUser2();
+        user_name1.setText(es.getUsername1(selectedEchange));
+        user_name2.setText(es.getUsername2(selectedEchange));
+
+
     }
 
     @FXML
@@ -80,6 +97,7 @@ public class AccEchangeLivreur implements Initializable {
         Optional<ButtonType> result = a.showAndWait();
         result.ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK) {
+                //current USER
                 Livraison l = new Livraison(4, selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
                 ls.add(l);
                 es.updateEchangeLivToAcc(selectedEchange);

@@ -1,13 +1,20 @@
 package GUI.Controllers;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import Entities.Echange;
 import Services.EchangeService;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,7 +25,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+
 
 public class AffListEchange {
 
@@ -34,12 +44,17 @@ public class AffListEchange {
     @FXML
     private TableColumn<Echange, Date> date_creation;
 
+    @FXML
+    private TextField recherche;
+
     EchangeService es = new EchangeService();
 
-    Connection con;
-    Statement stm;
+    private List<Echange> echanges;
 
     Echange selectedEchange;
+
+    private double xOffset;
+    private double yOffset;
 
     @FXML
     void initialize() {
@@ -79,9 +94,24 @@ public class AffListEchange {
     }
 
     @FXML
+    private void chercher() {
+        String searchText = recherche.getText().toLowerCase();
+        List<Echange> echangestream = echanges.stream().filter((t) -> t.getTitre_echange().toLowerCase().contains(searchText))
+                .collect(Collectors.toList());
+
+        List<Echange> filteredEchanges = new ArrayList<>();
+
+        if (filteredEchanges.isEmpty()) {
+            echange_table_view.setItems(FXCollections.observableArrayList(echangestream));
+        } else {
+            echange_table_view.setItems(FXCollections.observableArrayList(filteredEchanges));
+        }
+    }
+
+    @FXML
     private void afficher_echange_list() {
         EchangeService es = new EchangeService();
-        List<Echange> echanges = es.afficherEchangeNonAccepter();
+        echanges = es.afficherEchangeNonAccepter();
 
         echange_table_view.getItems().clear();
         echange_table_view.getItems().addAll(echanges);
@@ -89,7 +119,6 @@ public class AffListEchange {
     }
 
     private void moveToProposerEch(MouseEvent event) throws IOException {
-        //Parent root = FXMLLoader.load(getClass().getResource("/GUI/AccEchangeLivreur.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/ProposerEchange.fxml"));
         Parent root = loader.load();
         ProposerEchange controller = loader.getController();
@@ -99,6 +128,33 @@ public class AffListEchange {
         stage.setScene(scene);
         scene.getStylesheets().add("GUI/Assets/css/style.css");
         stage.setTitle("Acc");
+        stage.show();
+    }
+
+    @FXML
+    private void moveToCreerEchange(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CreerEchangeInterface.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene.getStylesheets().add("GUI/Assets/css/style.css");
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
         stage.show();
     }
 

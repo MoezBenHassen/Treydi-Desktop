@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -54,6 +56,19 @@ public class InfoLivraisonLivreur implements Initializable {
     @FXML
     private GridPane user2_items;
 
+    @FXML
+    private Label user_name1;
+
+    @FXML
+    private Label user_name2;
+
+    @FXML
+    private Label adresseliv1;
+
+    @FXML
+    private Label adresseliv2;
+
+
     Stage stage;
 
     ItemService is = new ItemService();
@@ -72,6 +87,13 @@ public class InfoLivraisonLivreur implements Initializable {
         e = es.getEchangeByLivraison(selectedLivraison);
         loadItemsUser1();
         loadItemsUser2();
+        adresseliv1.setText(selectedLivraison.getAdresse_livraison1());
+        adresseliv2.setText(selectedLivraison.getAdresse_livraison2());
+        user_name1.setText(es.getUsername1(e));
+        user_name2.setText(es.getUsername2(e));
+        adresseliv1.setText(es.getAdresse1(e));
+        adresseliv2.setText(es.getAdresse2(e));
+
     }
 
     public void loadItemsUser1(){

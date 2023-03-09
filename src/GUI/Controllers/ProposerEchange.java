@@ -3,12 +3,17 @@ package GUI.Controllers;
 import Entities.Echange;
 import Entities.Item;
 import Services.EchangeService;
+import Services.EchangeProposerService;
 import Services.ItemService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -21,9 +26,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.sql.Types.NULL;
 
@@ -40,13 +48,18 @@ public class ProposerEchange {
     @FXML
     private GridPane user2_items;
 
+    private double xOffset;
+    private double yOffset;
+
     ItemService is = new ItemService();
     EchangeService es = new EchangeService();
+    EchangeProposerService eps = new EchangeProposerService();
 
     List<Item> items_selectionner = new ArrayList<>();
 
     public void setSelectedEchangeProposer(Echange echange) {
         selectedEchange = echange;
+        System.out.println(selectedEchange);
         loadUser1Items();
         echange_proposer();
     }
@@ -57,13 +70,37 @@ public class ProposerEchange {
     }
 
     @FXML
-    private void proposerEchange(ActionEvent event) {
+    private void proposerEchange(MouseEvent event) {
         System.out.println(items_selectionner);
         if (items_selectionner.size() == 0) {
-            System.out.println("EMPTY");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Vide");
+            alert.setContentText("Ajouter des items");
         } else {
-            Echange e = new Echange(5, 8);
-            es.ProposerEchange(selectedEchange, items_selectionner);
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setHeaderText("Confirmer");
+            a.setContentText("vous etes sure ?");
+            Optional<ButtonType> result = a.showAndWait();
+            result.ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    //CURRENT USER ID
+                    eps.ProposerEchange(selectedEchange, items_selectionner, 6);
+
+                    try {
+                        moveToAffListEchange(event);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+
+            Platform.runLater(() -> {
+                // show notification
+                Notifications.create()
+                        .title("Proposer")
+                        .text("Proposition Envoyé")
+                        .showInformation();
+            });
         }
     }
 
@@ -146,6 +183,33 @@ public class ProposerEchange {
                 });
             }
         }
+    }
+
+    @FXML
+    private void moveToAffListEchange(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AffListEchange.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene.getStylesheets().add("GUI/Assets/css/style.css");
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        //move around here
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

@@ -71,7 +71,7 @@
                         <Image url="@../Assets/icons/blue/treasure-chest1.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" onMouseClicked="#moveToAffListEchange" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Assets/icons/blue/fast-delivery.png" />
                     </image>
@@ -117,7 +117,7 @@
             <effect>
                 <DropShadow color="#0000004f" height="104.02" radius="66.3375" spread="0.4" width="163.33" />
             </effect></Rectangle>
-        <Label id="txt" accessibleRole="BUTTON" layoutX="632.0" layoutY="145.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="Echange" textAlignment="CENTER" />
+        <Label id="txt" accessibleRole="BUTTON" layoutX="740.0" layoutY="152.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="Echange" textAlignment="CENTER" />
         <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="373.0" layoutX="32.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
             <effect>
                 <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
@@ -155,7 +155,7 @@
                 <Image url="@../Assets/images/treydi3.png" />
             </image>
         </ImageView>
-        <TextField fx:id="txt_titre1" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
+        <TextField fx:id="chercher" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
         <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../Assets/icons/blue/magnifier.png" />
@@ -201,7 +201,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <Button id="addButton" layoutX="423.0" layoutY="742.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@../Assets/css/style.css" text="Creer" textFill="#eccecf">
+      <Button id="addButton" layoutX="423.0" layoutY="742.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="36.0" prefWidth="774.0" style="-fx-background-color: #99226d; -fx-font-family: impact; -fx-background-radius: 10; " styleClass="unitedK" stylesheets="@../Assets/css/style.css" text="Creer" textFill="#eccecf">
          <font>
             <Font size="18.0" />
          </font>

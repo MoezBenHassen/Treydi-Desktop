@@ -12,12 +12,11 @@ import java.io.IOException;
 public class javafxMain extends Application {
     private double xOffset;
     private double yOffset;
-    private Label entryLabel;
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/AffListEchangeLivreur.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Controllers/CreerEchangeInterface.fxml"));
             Parent root = loader.load();
 
             DatabaseMonitor databaseMonitor = new DatabaseMonitor();
@@ -50,17 +49,6 @@ public class javafxMain extends Application {
             Thread databaseThread = new Thread(databaseMonitor);
             databaseThread.setDaemon(true);
             databaseThread.start();
-
-            // ui notif label changes text after new entry
-            /*entryLabel = (Label) loader.getNamespace().get("entryLabel");
-            entryLabel.textProperty().bind(databaseMonitor.messageProperty());
-            databaseMonitor.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                @Override
-                public void handle(WorkerStateEvent event) {
-                    entryLabel.textProperty().unbind();
-                    entryLabel.setText("");
-                }
-            });*/
 
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());

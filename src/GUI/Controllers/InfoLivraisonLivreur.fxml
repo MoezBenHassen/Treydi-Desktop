@@ -223,6 +223,10 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Label id="txt" fx:id="user_name1" accessibleRole="BUTTON" layoutX="345.0" layoutY="221.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="username1" textAlignment="CENTER" />
+      <Label id="txt" fx:id="user_name2" accessibleRole="BUTTON" layoutX="853.0" layoutY="221.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="username2" textAlignment="CENTER" />
+      <Label id="txt" fx:id="adresseliv1" accessibleRole="BUTTON" layoutX="345.0" layoutY="284.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 20; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="adresseliv1" textAlignment="CENTER" />
+      <Label id="txt" fx:id="adresseliv2" accessibleRole="BUTTON" layoutX="853.0" layoutY="284.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 20; -fx-font-family: impact;" styleClass="txt" stylesheets="@../Assets/css/style.css" text="adresseliv2" textAlignment="CENTER" />
 
     </children>
 </AnchorPane>

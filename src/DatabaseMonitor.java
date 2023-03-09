@@ -1,16 +1,36 @@
+import Entities.Echange;
+import Entities.EchangeProposer;
+import Services.EchangeProposerService;
+import Services.EchangeService;
 import Utils.MyDB;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import org.controlsfx.control.Notifications;
 
+import java.io.*;
 import java.sql.*;
 
 public class DatabaseMonitor extends Task<Void> {
-    private String previousEntry = "";
+    private int previousEntry = 0;
+    EchangeService es = new EchangeService();
+    EchangeProposerService eps = new EchangeProposerService();
+    EchangeProposer ep = new EchangeProposer();
+    Echange e = new Echange();
 
     @Override
     protected Void call() throws Exception {
+        // read the last value from file
+        File file = new File("last_value.txt");
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                previousEntry = Integer.parseInt(reader.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         Connection con = MyDB.getInstance().getCon();
-        PreparedStatement stm = con.prepareStatement("SELECT * FROM echange ORDER BY id_echange DESC LIMIT 1");
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM echange_proposer ORDER BY id_prop DESC LIMIT 1");
 
         System.out.println("Database connection established");
         System.out.println("Checking database...");
@@ -19,25 +39,42 @@ public class DatabaseMonitor extends Task<Void> {
             try {
                 ResultSet resultSet = stm.executeQuery();
 
-                // last entry retrieval
-                String latestEntry;
+                // retrieve last entry
+                int latestEntry;
+
                 if (resultSet.next()) {
-                    latestEntry = resultSet.getString("titre_echange");
+                    latestEntry = resultSet.getInt("id_prop");
+                    ep = eps.getProp(latestEntry);
+                    e = es.getEchangeByProp(ep);
                 } else {
-                    latestEntry = "";
+                    latestEntry = 0;
                 }
 
                 // compare
-                if (!latestEntry.equals(previousEntry)) {
+                if (latestEntry != previousEntry) {
                     previousEntry = latestEntry;
-                    Platform.runLater(() -> updateMessage(latestEntry));
-                    System.out.println("New entry added: " + latestEntry);
+
+                    // last value write
+                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                        writer.write(String.valueOf(previousEntry));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> {
+                        // show notification
+                        Notifications.create()
+                                .title("Nouvelle Proposition")
+                                .text(String.valueOf("Vous avais une nouvelle propoisition pour l'Echange: " + e.getTitre_echange() ))
+                                .showInformation();
+                    });
+                    System.out.println("New entry added: " + previousEntry);
                 } else {
                     System.out.println("No new entry added");
                 }
 
-                //timer sleep
-                Thread.sleep(5000);
+                //Timerrrrrrrrr
+                Thread.sleep(1000);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -57,5 +94,4 @@ public class DatabaseMonitor extends Task<Void> {
 
         return null;
     }
-
 }

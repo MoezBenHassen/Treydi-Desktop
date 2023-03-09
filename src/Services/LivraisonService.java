@@ -133,10 +133,29 @@ public class LivraisonService implements Services.IService<Livraison> {
 
 
     //afficher la list des livraison qui appartient a se livreur to be replaced with current user
-    public List<Livraison> afficherIdLivreur(int id_livreur) {
+    public List<Livraison> afficherListLivraisonLivreur(int id_livreur) {
         List<Livraison> livraison = new ArrayList<>();
 
         String query = "SELECT * from `livraison` WHERE `id_livreur` = '"+id_livreur+"' AND archived = 0";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(query);
+            while (result.next()) {
+                Livraison l = new Livraison(result.getInt("id_livraison"), result.getInt("id_livreur"), result.getInt("id_echange"),
+                        result.getString("adresse_livraison1"), result.getString("adresse_livraison2"), Livraison.ETAT.valueOf(result.getString("etat_livraison")),
+                        result.getDate("date_creation_livraison"), result.getDate("date_terminer_livraison"));
+                livraison.add(l);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return livraison;
+    }
+
+    public List<Livraison> afficherListLivraisonUser(Echange ee) {
+        List<Livraison> livraison = new ArrayList<>();
+        String query = "SELECT * from `livraison` WHERE `id_user` = '"+ee.getId_echange()+"' AND archived = 0";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);

@@ -1,6 +1,7 @@
 package Services;
 
 import Entities.Echange;
+import Entities.EchangeProposer;
 import Entities.Item;
 import Entities.Livraison;
 import Utils.MyDB;
@@ -89,24 +90,29 @@ public class EchangeService implements Services.IService<Echange> {
 
         String req="INSERT INTO `echange` (`id_user1`, `date_echange`) VALUES ('" + e.getId_user1() + "', '"+current_date+"')";
         try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
-            ResultSet result = stmt.getGeneratedKeys();
+            stm = con.createStatement();
+            stm.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
+            ResultSet result = stm.getGeneratedKeys();
             if (result.next()){
                 id_echange = result.getInt(1);
             }
             for (Item i : items) {
-                stmt = con.createStatement();
-                stmt.executeUpdate("UPDATE `item` SET `id_echange` = '" + id_echange + "' WHERE `id_item`='" + i.getId_item() + "'");
+                stm = con.createStatement();
+                stm.executeUpdate("UPDATE `item` SET `id_echange` = '" + id_echange + "' WHERE `id_item`='" + i.getId_item() + "'");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    public void ProposerEchange(Echange e, List<Item> items) {
+    /*public void ProposerEchange(Echange e, List<Item> items) {
+        java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
+        int id_echange = -1;
 
+        String req="INSERT INTO `proposer_echange` (`id_echange`, `date_proposer`) VALUES ('" + e.getId_echange() + "', '"+current_date+"')";
         try {
+            stm = con.createStatement();
+            stm.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
             for (Item i : items) {
                 stm = con.createStatement();
                 stm.executeUpdate("UPDATE `item` SET `id_echange` = '" + e.getId_echange() + "' WHERE `id_item`='" + i.getId_item() + "'");
@@ -114,7 +120,7 @@ public class EchangeService implements Services.IService<Echange> {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-    }
+    }*/
 
     public String getUsername1(Echange e){
         String req = "SELECT `prenom` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
@@ -124,7 +130,7 @@ public class EchangeService implements Services.IService<Echange> {
             if (result.next()) {
                 return result.getString("prenom");
             } else {
-                throw new RuntimeException("No record found");
+                return null;
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -138,11 +144,47 @@ public class EchangeService implements Services.IService<Echange> {
             if (result.next()) {
                 return result.getString("prenom");
             } else {
-                throw new RuntimeException("No record found");
+                return null;
+                //throw new RuntimeException("No record found");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+
+    }
+
+    public String getAdresse1(Echange e){
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()) {
+                return result.getString("prenom");
+            } else {
+                return null;
+                //throw new RuntimeException("No record found");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+
+    public String getAdresse2(Echange e){
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user2()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()) {
+                return result.getString("prenom");
+            } else {
+                return null;
+                //throw new RuntimeException("No record found");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
     }
     //for livreur
     public List afficherEchangeAccepter()  {
@@ -200,6 +242,44 @@ public class EchangeService implements Services.IService<Echange> {
         return null;
     }
 
+    public Echange getEchangeByProp(EchangeProposer ep) {
+        String req = "SELECT * FROM echange WHERE id_echange = '"+ep.getId_echange()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()){
+                Echange e = new Echange();
+                e.setId_echange(result.getInt("id_echange"));
+                e.setTitre_echange(result.getString("titre_echange"));
+                e.setId_user1(result.getInt("id_user1"));
+                e.setId_user2(result.getInt("id_user2"));
+                return e;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    //current user id
+    public List getEchangeByIdUser(int id_user) {
+        List<Echange> echanges = new ArrayList<>();
+
+        String query="SELECT * from `echange` WHERE archived = 0 AND id_user1 = '"+id_user+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result=stm.executeQuery(query);
+            while (result.next()){
+                Echange e = new Echange(result.getInt("id_echange"), result.getString("titre_echange"), result.getInt("id_user1"), result.getInt("id_user2"),
+                        result.getDate("date_echange"));
+                echanges.add(e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return echanges;
+    }
+
     public Boolean updateEchangeLivToAcc(Echange e) {
         String req = "UPDATE `echange` SET `liv_etat` = '"+Echange.ETAT.Accepter+"' WHERE `id_echange` = '"+e.getId_echange()+"'";
         try {
@@ -214,5 +294,21 @@ public class EchangeService implements Services.IService<Echange> {
             throw new RuntimeException(ex);
         }
     }
+
+    public String getTitreEchange(Echange e){
+        String req = "SELECT `titre_echange` FROM `echange` WHERE id_echange = '"+e.getId_echange()+"'";
+        try {
+            stm = con.createStatement();
+            ResultSet result = stm.executeQuery(req);
+            if (result.next()) {
+                return result.getString("titre_echange");
+            } else {
+                throw new RuntimeException("No record found");
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 
 }

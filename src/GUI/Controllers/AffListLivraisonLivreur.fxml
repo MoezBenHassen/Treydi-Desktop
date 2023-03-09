@@ -187,7 +187,7 @@
                 </ImageView>
             </graphic>
         </Button>
-      <TableView fx:id="livraison_table_view" layoutX="411.0" layoutY="233.0" prefHeight="408.0" prefWidth="802.0">
+      <TableView fx:id="livraison_table_view" blendMode="MULTIPLY" layoutX="411.0" layoutY="233.0" prefHeight="408.0" prefWidth="802.0">
         <columns>
           <TableColumn fx:id="titre_echange" prefWidth="188.0" text="Titre Echange" />
           <TableColumn fx:id="adresse_livraison_1" prefWidth="303.0" text="Adresse livraison 1" />
