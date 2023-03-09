@@ -125,28 +125,10 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/icons/pink/list.png" />
+                  <Image url="@Assets/icons/blue/home.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="56.0" layoutY="433.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/pink/additionpink.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="61.0" layoutY="525.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/pencil.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Assets/images/treydi3.png" />
@@ -158,15 +140,6 @@
             <Image url="@Assets/icons/blue/magnifier.png" />
          </image>
       </ImageView>
-      <Button layoutX="58.0" layoutY="605.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
-         <graphic>
-            <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/icons/blue/trash-bin.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Button layoutX="57.0" layoutY="662.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" />
       <ScrollPane fx:id="scrollPane" layoutX="343.0" layoutY="221.0" prefHeight="546.0" prefWidth="911.0" style="-fx-background-color: transparent;" stylesheets="@Assets/css/style.css" />
    </children>

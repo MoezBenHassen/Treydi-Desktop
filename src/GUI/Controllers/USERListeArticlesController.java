@@ -110,7 +110,7 @@ public class USERListeArticlesController implements Initializable {
                 hBox = loader.load();
                 cardAController cardAController = loader.getController();
 
-                System.out.println("CCCCCC");
+                //System.out.println("CCCCCC");
                 cardAController.setData(obj.getTitre(), obj.getDescription(), obj.getId_categorie());
 
                 vBox.setAlignment(Pos.CENTER);
@@ -120,7 +120,7 @@ public class USERListeArticlesController implements Initializable {
                 HBox finalHBox1 = hBox;
                 hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
                 vBox.setSpacing(8);
-                System.out.println("FFFFF");
+               // System.out.println("FFFFF");
 
                 AtomicInteger clickCounter = new AtomicInteger();
                 HBox finalHBox2 = hBox;
@@ -128,16 +128,23 @@ public class USERListeArticlesController implements Initializable {
                     clickCounter.getAndIncrement();
 
                     if (event.getClickCount() == 2) {
-                        try {
+
                             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../ArticleDetails.fxml"));
                             //FXMLLoader loader2 = new FXMLLoader(getClass().getResource("AffichageReponseUser.fxml"));
-                            Parent root = loader2.load();
+                        Parent root = null;
+                        try {
+                            root = loader2.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            throw new RuntimeException(e);
 
-                            //AffichageReponseUserControlleur controller = loader2.getController();
+                        }
+
+                        //AffichageReponseUserControlleur controller = loader2.getController();
 
                             ArticleDetailsController articleDetailsController = loader2.getController();
                             articleDetailsController.setSelectedArticle(obj);
-                            System.out.println(obj);
+                            //System.out.println(obj);
 
 
 
@@ -164,9 +171,7 @@ public class USERListeArticlesController implements Initializable {
                             stage1.setScene(scene);
                             stage1.showAndWait();
                             afficherArticles(articleList);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
                         clickCounter.set(0);
                     }
 

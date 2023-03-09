@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entities.ArticleRating;
 public class ArticleService implements IArticleService<Article> {
     Connection connection;
     Statement statement;
@@ -15,6 +16,38 @@ public class ArticleService implements IArticleService<Article> {
         connection = MyDB.getInstance().getCon();
     }
 
+    public void addRating(int articleId, int userId, double rating) throws SQLException {
+        int rowsInsterd = 0;
+        String query = "INSERT INTO article_ratings (id_article, id_user, rating) VALUES (?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, articleId);
+        preparedStatement.setInt(2, userId);
+        preparedStatement.setDouble(3, rating);
+        rowsInsterd = preparedStatement.executeUpdate();
+        if (rowsInsterd >0){
+            System.out.println("Inserted Rating successfully ");
+        }else{
+            System.out.println("Inserting rating failed !!! ");
+        }
+    }
+    public int rate(float rating){
+        int rowsInserted = 0;
+        String query = "INSERT INTO `article_ratings` (`id_article`, `id_user`, `rating`) VALUES (1, 4, 4);";
+        try {
+            statement = connection.createStatement();
+            rowsInserted = statement.executeUpdate(query);
+            if (rowsInserted >0){
+                System.out.println("Inserted Rating successfully ");
+            }else{
+                System.out.println("Inserting rating failed !!! ");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ;
+
+        return rowsInserted;
+    }
     @Override
     public int add(Article article) {
         int rowsInserted = 0;
@@ -51,6 +84,7 @@ public class ArticleService implements IArticleService<Article> {
             String query="SELECT * FROM `article` WHERE `archived`=0";
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
+
             while (resultSet.next()){
                 Article article = new Article();
                 article.setId_article(resultSet.getInt("id_article"));
@@ -62,6 +96,7 @@ public class ArticleService implements IArticleService<Article> {
                 article.setArchived(resultSet.getInt("archived"));
                 article.setId_user(resultSet.getInt("id_user"));
                 article.setAuteur(resultSet.getString("auteur"));
+                article.setAvgRating(resultSet.getFloat("avg_rating"));
                 articles.add(article);
             }
             return  articles;

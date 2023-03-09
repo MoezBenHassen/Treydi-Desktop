@@ -1,16 +1,16 @@
 import java.io.IOException;
+import java.sql.SQLException;
 
+import Services.ArticleService;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import Entities.ArticleRating;
 public class javafxMain extends Application {
 
     private double xOffset;
@@ -20,7 +20,7 @@ public class javafxMain extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("/GUI/ListeArticles.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("/GUI/USERListeArticles.fxml"));
 
             Scene scene = new Scene(root);
 
@@ -50,9 +50,16 @@ public class javafxMain extends Application {
             // make scene tranparent
 
 
-
             primaryStage.setScene(scene);
             primaryStage.show();
+  /*  ArticleRating articleRating = new ArticleRating(4,1, 3.1f);
+            ArticleService articleService = new ArticleService();
+            try {
+                articleService.addRating(1  ,4,3.1f);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+*/
 
         } catch (IOException ex) {
             System.out.println("Err"+ex.getMessage());

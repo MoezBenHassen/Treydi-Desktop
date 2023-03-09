@@ -11,9 +11,21 @@ public class Article {
     private int archived;
     private int id_user;
     private String auteur;
+    private float AvgRating;
+
+    public float getAvgRating() {
+        return AvgRating;
+    }
+
+    public void setAvgRating(float average_ratings) {
+        this.AvgRating = average_ratings;
+    }
+
+
 //CONSTRUCTORS
     public Article() {
     }
+
 
     public Article(String titre, String description, int id_categorie) {
         this.titre = titre;

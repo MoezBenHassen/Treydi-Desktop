@@ -108,7 +108,6 @@
     -fx-border-width: 3 !important;
     -fx-border-radius: 10 !important;
     -fx-background-radius: 10 !important;
-
 }
 @font-face {
     src: url('../fonts/unitedKingdom.otf');
@@ -126,9 +125,16 @@
 
 .categorieButton{
     -fx-background-radius: 50;
-    -fx-background-color: yellow;
+    -fx-background-color: blue;
+    -fx-text-fill:  #eed1d1;
+    -fx-font-weight: bold;
 }
 
+.ratingButton{
+    -fx-background-radius: 50;
+    -fx-background-color: #b81d6d;
+    -fx-text-fill:  #eed1d1;
+}
 .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
