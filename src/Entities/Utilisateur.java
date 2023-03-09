@@ -1,54 +1,98 @@
 package Entities;
+import Utils.Enums.Roles;
+import javafx.scene.image.Image;
 
 public class Utilisateur {
-    static int loginid = 0 ;
-    static int logintype = 0 ;
-
-    public static int getLoginid() {
-        return loginid;
-    }
-
-    public static void setLoginid(int x) {
-        loginid = x;
-    }
-
-    public static int getLogintype() {
-        return logintype;
-    }
-
-    public static void setLogintype(int x) {
-        logintype = x;
-    }
-
     private int id_user;
-    private String nom, prenom, avatar_url, email, adresse;
+    private String password,nom,prenom,email,adresse,avatar_url;
+    public  Roles role;
+    private int archived;
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role) {
 
-    public Utilisateur() {
-    }
-
-    public Utilisateur(String nom, String prenom, String avatar_url, String email, String adresse) {
+        this.password = password;
         this.nom = nom;
         this.prenom = prenom;
-        this.avatar_url = avatar_url;
         this.email = email;
         this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role = role;
     }
 
-    public Utilisateur(int id_user, String nom, String prenom, String avatar_url, String email, String adresse) {
+    public  Utilisateur(){
+
+    }
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url,Roles role,int archived) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role= role;
+        this.archived = archived;
+
+    }
+
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int id_user, int archived) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.avatar_url = avatar_url;
+        this.role = role;
         this.id_user = id_user;
+        this.archived = archived;
+    }
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, Roles role) {
+        this.password = password;
         this.nom = nom;
         this.prenom = prenom;
-        this.avatar_url = avatar_url;
         this.email = email;
         this.adresse = adresse;
+        this.role = role;
+    }
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, int id_user) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.adresse = adresse;
+        this.id_user = id_user;
+    }
+    public Utilisateur(int id_user) {
+        this.id_user = id_user;
     }
 
+    public Utilisateur(String password, String nom, String prenom, String avatarUrl, int id_user, int archived) {
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_user = id_user;
+        this.archived = archived;
+    }
+
+
+    public int getArchived() {
+        return archived;
+    }
+
+    public void setArchived(int archived) {
+        this.archived = archived;
+    }
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
     public int getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNom() {
@@ -67,14 +111,6 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
-    }
-
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -91,15 +127,34 @@ public class Utilisateur {
         this.adresse = adresse;
     }
 
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public  void setRole(Roles role) {
+        this.role = role;
+    }
+
+
     @Override
     public String toString() {
-        return "Utilisateur{" +
+        return "\nutilisateur{" +
                 "id_user=" + id_user +
+                ", password='" + password + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", avatar_url='" + avatar_url + '\'' +
                 ", email='" + email + '\'' +
                 ", adresse='" + adresse + '\'' +
+                ", avatar_url='" + avatar_url + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

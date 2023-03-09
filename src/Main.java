@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.io.IOException;
 
 import Entities.Utilisateur;
@@ -10,6 +11,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.input.MouseEvent;
+
+import Entities.Admin;
+import Entities.Livreur;
+import Entities.Trader;
+
+import Services.UtilisateurService;
+import Utils.Enums.Roles;
+
+import java.sql.SQLException;
+import java.sql.Date;
 
 public class Main extends Application {
     private double xOffset = 0;
@@ -85,11 +96,17 @@ public class Main extends Application {
         }
 
 
-    }
 
 
+
+public class Main {
     public static void main(String[] args) {
-        launch(args);
+        UtilisateurService us = new UtilisateurService();
+        Utilisateur tr = new Trader("aaz", "NewNom5", "NewPrenom5", "aaz","Tunis","file:/D:/avatar1.png",Roles.trader, 12,"2000-1-1",0);
+
+        us.add(tr);
+
+
     }
 
 }
