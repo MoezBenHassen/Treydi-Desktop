@@ -29,7 +29,7 @@ public class DatabaseMonitor extends Task<Void> {
             }
         }
 
-        Connection con = MyDB.getInstance().getCon();
+        Connection con = MyDB.getInstance().getCnx();
         PreparedStatement stm = con.prepareStatement("SELECT * FROM echange_proposer ORDER BY id_prop DESC LIMIT 1");
 
         System.out.println("Database connection established");

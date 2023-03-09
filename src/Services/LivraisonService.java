@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-public class LivraisonService implements Services.IService<Livraison> {
+import Interfaces.IService;
+public class LivraisonService implements IService<Livraison> {
     Connection con;
     Statement stm;
     public LivraisonService() {
-        con = MyDB.getInstance().getCon();
+        con = MyDB.getInstance().getCnx();
     }
 
     @Override

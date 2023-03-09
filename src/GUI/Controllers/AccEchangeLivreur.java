@@ -6,6 +6,7 @@ import Entities.Livraison;
 import Services.EchangeService;
 import Services.ItemService;
 import Services.LivraisonService;
+import Utils.CurrentUser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -98,7 +99,7 @@ public class AccEchangeLivreur implements Initializable {
         result.ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 //current USER
-                Livraison l = new Livraison(4, selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
+                Livraison l = new Livraison(CurrentUser.getInstance().getId_user(), selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
                 ls.add(l);
                 es.updateEchangeLivToAcc(selectedEchange);
                 try {

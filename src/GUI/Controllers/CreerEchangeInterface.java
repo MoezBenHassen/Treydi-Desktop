@@ -10,6 +10,7 @@ import Entities.Item;
 import Entities.Livraison;
 import Services.EchangeService;
 import Services.ItemService;
+import Utils.CurrentUser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -84,9 +85,8 @@ public class CreerEchangeInterface {
             result.ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     //current USER
-                    Echange e = new Echange(5, NULL);
+                    Echange e = new Echange(CurrentUser.getInstance().getId_user(), NULL);
                     es.CreerEchange(e, items_selectionner);
-
                     try {
                         moveToAffListEchange(event);
                     } catch (IOException ex) {

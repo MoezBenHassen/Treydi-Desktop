@@ -89,7 +89,7 @@
                   <Image url="@Assets/icons/pink/treasure-chest%20(1).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="listeEchange" fitHeight="35.0" fitWidth="35.0" layoutX="46.0" layoutY="240.0" onMouseClicked="#goToListeEchange" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/fast-delivery.png" />
                </image>

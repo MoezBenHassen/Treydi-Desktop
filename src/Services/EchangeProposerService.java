@@ -5,6 +5,7 @@ import Entities.EchangeProposer;
 import Entities.Item;
 import Utils.MyDB;
 
+import Interfaces.IService;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EchangeProposerService implements Services.IService<EchangeProposer> {
+public class EchangeProposerService implements IService<EchangeProposer> {
     Connection con;
     Statement stm;
 
-    public EchangeProposerService() { con = MyDB.getInstance().getCon(); }
+    public EchangeProposerService() { con = MyDB.getInstance().getCnx(); }
 
     @Override
     public void add(EchangeProposer echangeProposer) {

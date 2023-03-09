@@ -8,14 +8,14 @@ import Utils.MyDB;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import Interfaces.IService;
 import static java.sql.JDBCType.NULL;
 
-public class EchangeService implements Services.IService<Echange> {
+public class EchangeService implements IService<Echange> {
     Connection con;
     Statement stm;
     public EchangeService() {
-        con = MyDB.getInstance().getCon();
+        con = MyDB.getInstance().getCnx();
     }
     @Override
     public void add(Echange e) {

@@ -8,7 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="mysql-connector-j-8.0.32" level="project" />
-    <orderEntry type="library" name="controlsfx-8.40.11" level="project" />
+    <orderEntry type="library" exported="" name="controlsfx-8.40.11" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>

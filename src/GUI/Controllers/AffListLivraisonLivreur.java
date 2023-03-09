@@ -2,6 +2,7 @@ package GUI.Controllers;
 
 import Entities.Livraison;
 import Services.LivraisonService;
+import Utils.CurrentUser;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -73,7 +74,7 @@ public class AffListLivraisonLivreur {
     @FXML
     private void afficher_livraison_list() {
         //CURRENT USER ID
-        List<Livraison> livraisons = ls.afficherListLivraisonLivreur(4);
+        List<Livraison> livraisons = ls.afficherListLivraisonLivreur(CurrentUser.getInstance().getId_user());
         livraison_table_view.getItems().clear();
         livraison_table_view.getItems().addAll(livraisons);
     }

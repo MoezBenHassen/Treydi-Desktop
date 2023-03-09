@@ -32,7 +32,18 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id_item, String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange,int likes,int dislikes) {
+    public Item(int id_item, String libelle, String description, Item.type type, state etat, int id_user, int id_categorie, int id_echange) {
+        this.id_item = id_item;
+        this.libelle = libelle;
+        this.description = description;
+        this.type = type;
+        this.etat = etat;
+        this.id_user = id_user;
+        this.id_categorie = id_categorie;
+        this.id_echange = id_echange;
+    }
+
+    public Item(int id_item, String libelle, String description, Item.type type, state etat, String imageurl, int id_user, int id_categorie, int id_echange, int likes, int dislikes) {
         this.id_item = id_item;
         this.libelle = libelle;
         this.description = description;

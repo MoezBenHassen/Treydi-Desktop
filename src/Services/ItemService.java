@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entities.Echange;
 import Entities.Item;
 import Entities.Utilisateur;
 import Interfaces.IItemCategorieService;
@@ -241,5 +242,65 @@ public class ItemService implements IItemCategorieService<Item> {
             System.out.println(ex.getMessage());
         }
         return false;
+    }
+
+
+
+    public List<Item> afficherUserItems(int u) {
+        List<Item> items = new ArrayList();
+        try {
+            String qry = "SELECT * FROM item WHERE id_user = '"+u+"';";
+            stm = cnx.createStatement();
+
+            ResultSet rs = stm.executeQuery(qry);
+
+            while (rs.next()) {
+                Item i = new Item();
+                i.setId_item(rs.getInt("id_item"));
+                i.setLibelle(rs.getString("libelle"));
+                i.setDescription(rs.getString("description"));
+                i.setType(Item.type.valueOf(rs.getString("type")));
+                i.setEtat(Item.state.valueOf(rs.getString("etat")));
+                i.setId_user(rs.getInt("id_user"));
+                i.setId_categorie(rs.getInt("id_categorie"));
+                i.setId_echange(rs.getInt("id_echange"));
+
+                items.add(i);
+            }
+            return items;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return items;
+    }
+
+    public List<Item> afficherUserItemsEchange(int u, Echange e) {
+        List<Item> items = new ArrayList();
+        try {
+            String qry = "SELECT * FROM item WHERE id_user = '"+u+"' AND id_echange = '"+e.getId_echange()+"'";
+            stm = cnx.createStatement();
+
+            ResultSet rs = stm.executeQuery(qry);
+
+            while (rs.next()) {
+                Item i = new Item();
+                i.setId_item(rs.getInt("id_item"));
+                i.setLibelle(rs.getString("libelle"));
+                i.setDescription(rs.getString("description"));
+                i.setType(Item.type.valueOf(rs.getString("type")));
+                i.setEtat(Item.state.valueOf(rs.getString("etat")));
+                i.setId_user(rs.getInt("id_user"));
+                i.setId_categorie(rs.getInt("id_categorie"));
+                i.setId_echange(rs.getInt("id_echange"));
+
+                items.add(i);
+            }
+            return items;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return items;
     }
 }

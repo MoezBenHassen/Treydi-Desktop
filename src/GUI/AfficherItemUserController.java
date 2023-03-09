@@ -734,4 +734,34 @@ public class AfficherItemUserController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    public void goToListeEchange(MouseEvent mouseEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Controllers/AffListEchange.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

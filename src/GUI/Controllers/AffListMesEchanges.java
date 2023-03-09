@@ -8,6 +8,7 @@ import java.util.List;
 
 import Entities.Echange;
 import Services.EchangeService;
+import Utils.CurrentUser;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,7 +103,7 @@ public class AffListMesEchanges {
     @FXML
     private void afficher_echange_list() {
         //CURRENT USER ID
-        List<Echange> echanges = es.getEchangeByIdUser(5);
+        List<Echange> echanges = es.getEchangeByIdUser(CurrentUser.getInstance().getId_user());
 
         echange_table_view.getItems().clear();
         echange_table_view.getItems().addAll(echanges);

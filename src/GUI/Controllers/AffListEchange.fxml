@@ -122,7 +122,7 @@
             </effect>
         </Rectangle>
 
-        <Button layoutX="56.0" layoutY="345.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;">
+        <Button layoutX="56.0" layoutY="345.0" mnemonicParsing="false" onAction="#goToMesEchanges" prefWidth="43.0" style="-fx-background-color: none;">
             <graphic>
                 <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -130,7 +130,7 @@
                     </image>
                 </ImageView>
             </graphic></Button>
-        <Button fx:id="gotocreerechange" layoutX="56.0" layoutY="433.0" mnemonicParsing="false" prefWidth="43.0" style="-fx-background-color: none;" onMouseClicked="#moveToCreerEchange">
+        <Button fx:id="gotocreerechange" layoutX="56.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#moveToCreerEchange" prefWidth="43.0" style="-fx-background-color: none;">
             <graphic>
                 <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                     <image>

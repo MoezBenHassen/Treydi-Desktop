@@ -5,6 +5,7 @@ import Entities.Item;
 import Services.EchangeService;
 import Services.EchangeProposerService;
 import Services.ItemService;
+import Utils.CurrentUser;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import org.omg.CORBA.Current;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,8 +86,7 @@ public class ProposerEchange {
             result.ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     //CURRENT USER ID
-                    eps.ProposerEchange(selectedEchange, items_selectionner, 6);
-
+                    eps.ProposerEchange(selectedEchange, items_selectionner, CurrentUser.getInstance().getId_user());
                     try {
                         moveToAffListEchange(event);
                     } catch (IOException ex) {
@@ -106,7 +107,8 @@ public class ProposerEchange {
 
     private void loadUser1Items() {
         List<Item> items = is.afficherUserItemsEchange(selectedEchange.getId_user1(), selectedEchange);
-        System.out.println(selectedEchange);
+        System.out.println(items);
+
         System.out.println(items);
         int column = 0, row = 0;
 
@@ -123,7 +125,7 @@ public class ProposerEchange {
     }
 
     private void echange_proposer() {
-        List<Item> items = is.afficherUserItems(6);
+        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId_user());
         int column = 0, row = 0;
 
         for (int i = 0; i < items.size(); i++) {

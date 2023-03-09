@@ -186,4 +186,18 @@ public class AffListEchange {
         Stage stage1= (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage1.setIconified(true);
     }
+    @FXML
+    void goToMesEchanges(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AffListMesEchanges.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
