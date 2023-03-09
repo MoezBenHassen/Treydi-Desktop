@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,6 +47,17 @@ public class ModifierCouponController implements Initializable {
             String date = dateexpiration1.getText().trim();
             String code = code1.getText().trim();
 
+            LocalDate expirationDate = LocalDate.parse(date);
+
+            LocalDate today = LocalDate.now();
+
+            if (expirationDate.isBefore(today)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("La date d'expiration est antérieure à la date d'aujourd'hui !");
+                alert.showAndWait();
+                return;
+            }
 
             if (titre.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
