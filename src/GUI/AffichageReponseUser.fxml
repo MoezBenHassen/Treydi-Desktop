@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.GaussianBlur?>
@@ -10,16 +11,30 @@
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" stylesheets="@Assets/css/scrollpane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageReponseUserControlleur">
     <children>
-        <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+        <Ellipse fx:id="azer" layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <fill>
+                <RadialGradient centerX="0.7611111111111111" centerY="0.7" radius="0.5">
+                    <stops>
+                        <Stop color="#851e5fdf" />
+                        <Stop color="#871e5f5d" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <GaussianBlur radius="63.0" />
+            </effect>
+        </Ellipse>
+        <Circle fx:id="aze" layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
             <fill>
                 <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
                     <stops>
-                        <Stop color="#b5a814ab" />
-                        <Stop color="#b5cc7a2e" offset="1.0" />
+                        <Stop color="#b25815ab" />
+                        <Stop color="#ccae7a2e" offset="1.0" />
                     </stops>
                 </RadialGradient>
             </fill>
@@ -135,29 +150,14 @@
             <image>
                 <Image url="@Assets/images/treydi3.png" />
             </image></ImageView>
-        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="386.0" layoutX="30.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
+        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="103.0" layoutX="30.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="90.0">
             <effect>
                 <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
             </effect>
         </Rectangle>
-        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/addition.png" />
-            </image>
-        </ImageView>
         <ImageView fitHeight="50.0" fitWidth="62.0" layoutX="50.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Assets/icons/pink/list.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="supp" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/trash-bin.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="mod" fitHeight="50.0" fitWidth="44.0" layoutX="53.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/pencil.png" />
             </image>
         </ImageView>
       <ScrollPane fx:id="scrollpane" layoutX="219.0" layoutY="167.0" prefHeight="641.0" prefWidth="1123.0" style="-fx-background-color: transparant;" stylesheets="@Assets/css/scrollepane.css">
@@ -165,6 +165,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
+        <Label id="txt" fx:id="a" accessibleRole="BUTTON" layoutX="659.0" layoutY="81.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Affichage Reponse" textAlignment="CENTER" />
 
     </children>
 

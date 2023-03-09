@@ -14,14 +14,28 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.shape.Ellipse?>
 <AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: #2c2449;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AffichageReclamationControlleurUser">
     <children>
-        <Circle layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+        <Ellipse fx:id="azer" layoutX="1352.0" layoutY="666.0" opacity="0.73" radiusX="234.0" radiusY="211.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <fill>
+                <RadialGradient centerX="0.7611111111111111" centerY="0.7" radius="0.5">
+                    <stops>
+                        <Stop color="#851e5fdf" />
+                        <Stop color="#871e5f5d" offset="1.0" />
+                    </stops>
+                </RadialGradient>
+            </fill>
+            <effect>
+                <GaussianBlur radius="63.0" />
+            </effect>
+        </Ellipse>
+        <Circle fx:id="aze" layoutX="228.0" layoutY="221.0" opacity="0.48" radius="172.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
             <fill>
                 <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-0.023255813953488413" radius="0.43023255813953487">
                     <stops>
-                        <Stop color="#b5a814ab" />
-                        <Stop color="#b5cc7a2e" offset="1.0" />
+                        <Stop color="#b25815ab" />
+                        <Stop color="#ccae7a2e" offset="1.0" />
                     </stops>
                 </RadialGradient>
             </fill>

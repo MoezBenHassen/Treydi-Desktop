@@ -35,11 +35,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class AffichageReponseUserControlleur  implements Initializable {
 
-    @FXML
-    private ImageView mod ;
     HBox hbox ;
-    @FXML
-    private ImageView supp ;
     @FXML
     private VBox pnrep = null;
     @FXML
@@ -206,16 +202,10 @@ public class AffichageReponseUserControlleur  implements Initializable {
             hbox.setMaxWidth(descriptionrep.getMaxWidth());
             hbox.setStyle("-fx-background-radius: 25 ;-fx-background-color: transparant;");
 
-           // hbox.setOnMouseEntered(e -> finalhbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
-            // HBox finalHBox1 = hBox;
-            // hBox.setOnMouseExited(e -> finalHBox1.setStyle("-fx-background-radius: 15;  -fx-background-color: rgba(255, 255, 255, 0.5);"));
 
             hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-radius: 15; -fx-background-color: #56144D;"));
             hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-radius: 15; -fx-background-color: transparent;"));
 
-
-            //  hbox.setOnMouseEntered(e -> hbox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7); -fx-background-radius: 15;"));
-           // hbox.setOnMouseExited(e -> hbox.setStyle("-fx-background-color: transparent;"));
             hbox.setAlignment(Pos.CENTER_LEFT);
             vbox.setAlignment(Pos.CENTER);
             vbox.setSpacing(8);
@@ -226,15 +216,7 @@ public class AffichageReponseUserControlleur  implements Initializable {
         }
 }
 
-    /*@FXML
-    private void afficher() {
-        ServiceReponse sr = new ServiceReponse();
-        List<Reponse> Reponses = sr.afficher() ;
-        tableView.getItems().clear();
-        tableView.getItems().addAll(Reponses);
 
-    }
-*/
 
     @FXML
     void gotoreclamation(MouseEvent event) throws IOException {

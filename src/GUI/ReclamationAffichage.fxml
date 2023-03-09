@@ -136,10 +136,10 @@
             </effect></Rectangle>
         <TableView fx:id="tableView" layoutX="244.0" layoutY="207.0" prefHeight="609.0" prefWidth="1095.0" stylesheets="@Assets/css/style.css">
             <columns>
-                <TableColumn fx:id="titreC" prefWidth="250.00003051757812" text="titre" />
-                <TableColumn fx:id="descriptionC" prefWidth="604.0" text="description" />
-                <TableColumn fx:id="etat_reclamation" minWidth="0.0" prefWidth="159.0" text="etat reclamation" />
-                <TableColumn fx:id="id_reclamation" minWidth="0.0" prefWidth="52.0" text="id" visible="false" />
+                <TableColumn fx:id="titreC" prefWidth="214.00003051757812" text="titre" />
+                <TableColumn fx:id="descriptionC" prefWidth="746.0" style="-fx-text-fill: white;" text="description" />
+                <TableColumn fx:id="etat_reclamation" minWidth="0.0" prefWidth="117.0" text="etat reclamation" />
+                <TableColumn fx:id="id_reclamation" minWidth="0.0" prefWidth="2.0" text="id" visible="false" />
             </columns>
         </TableView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="30.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
@@ -163,5 +163,10 @@
       </ImageView>
         <TextField fx:id="titrecher" layoutX="507.0" layoutY="58.0" onAction="#chercher" onInputMethodTextChanged="#chercher" onKeyTyped="#chercher" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
         <Label id="txt" accessibleRole="BUTTON" layoutX="571.0" layoutY="101.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="Affichage une Reclamation" textAlignment="CENTER" />
+      <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="1057.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/magnifier.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

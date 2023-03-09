@@ -118,7 +118,7 @@
 
         </TextField>
         <Label id="txt" accessibleRole="BUTTON" layoutX="621.0" layoutY="144.0" style="-fx-text-fill: #eed1d1; -fx-font-size: 40; -fx-font-family: impact;" styleClass="txt" stylesheets="@Assets/css/style.css" text="modifier une Reponse" textAlignment="CENTER" />
-        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="252.0" layoutX="32.0" layoutY="284.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="115.0">
+        <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#332d59" height="104.0" layoutX="39.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="103.0">
             <effect>
                 <DropShadow color="#00000073" height="50.65" radius="24.825" spread="0.21" width="50.65" />
             </effect>
@@ -128,20 +128,9 @@
                 <Image url="@Assets/images/treydiAdmin-05.png" />
             </image>
         </ImageView>
-        <TextField fx:id="txt_titre1" layoutX="492.0" layoutY="43.0" opacity="0.38" prefHeight="36.0" prefWidth="586.0" style="-fx-font-family: impact; -fx-background-color: white; -fx-border-width: 0; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #000000; -fx-text-fill: #352d50;" />
-        <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="1039.0" layoutY="49.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/blue/magnifier.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="65.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Assets/icons/yellow/addition1.png" />
-            </image>
-        </ImageView>
         <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="66.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@Assets/icons/blue/list.png" />
+                <Image url="@Assets/icons/yellow/pencil.png" />
             </image>
         </ImageView>
 

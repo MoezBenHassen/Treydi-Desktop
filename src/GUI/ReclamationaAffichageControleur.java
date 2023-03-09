@@ -19,6 +19,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -62,9 +63,32 @@ public class ReclamationaAffichageControleur implements Initializable {
 
         titreC.setCellValueFactory(new PropertyValueFactory<>("titre_reclamation"));
         descriptionC.setCellValueFactory(new PropertyValueFactory<>("description"));
+        descriptionC.setCellFactory(column -> {
+            TableCell<Reclamation, String> cell = new TableCell<Reclamation, String>() {
+                private final Text text;
+
+                {
+                    text = new Text();
+                    text.setFill(Color.WHITE);
+                    text.wrappingWidthProperty().bind(descriptionC.widthProperty());
+                    setGraphic(text);
+                    setPrefHeight(Control.USE_COMPUTED_SIZE);
+                    setWrapText(true);
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    text.setText(empty ? null : item);
+                }
+            };
+            return cell;
+        });
+
         id_reclamation.setCellValueFactory(new PropertyValueFactory<>("id_reclamation"));
         etat_reclamation.setCellValueFactory(new PropertyValueFactory<>("etat_reclamation"));
         afficher();
+
 
         tableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -133,30 +157,7 @@ public class ReclamationaAffichageControleur implements Initializable {
         stage.show();
     }
 
-   /* @FXML
-    void openModifcation(MouseEvent event) throws IOException {
-        Reclamation selectedReclamation = tableView.getSelectionModel().getSelectedItem();
-        String tittre = String.valueOf(selectedReclamation.getTitre_reclamation());
-        String description = String.valueOf(selectedReclamation.getDescription());
 
-        if (selectedReclamation != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("modificationfxml.fxml"));
-            Parent root = loader.load();
-            ModificationControlleur modificationControlleur = loader.getController();
-            modificationControlleur.setTitreText(selectedReclamation.getTitre_reclamation());
-            modificationControlleur.setDescriptionText(selectedReclamation.getDescription());
-            modificationControlleur.setIdReclamation(selectedReclamation.getId_reclamation());
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.showAndWait();
-            afficher();
-        }
-    }*/
     @FXML
      void chercher() {
         String searchText = titrecher.getText().toLowerCase();
@@ -168,8 +169,6 @@ public class ReclamationaAffichageControleur implements Initializable {
                 .collect(Collectors.toList());
 
         List<Reclamation> filtererec = new ArrayList<>();
-
-
 
         if (filtererec.isEmpty()) {
             tableView.setItems(FXCollections.observableArrayList(recstream));
