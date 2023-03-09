@@ -7,10 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.32.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/Dependencies/jxl-2.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,5 +21,55 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="zxing-1.7-javase" level="project" />
     <orderEntry type="library" name="zxing-core-2.0" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/Dependencies/io-7.2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/Dependencies/itextpdf-5.5.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/Dependencies/mysql-connector-j-8.0.32.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/Dependencies/kernel-7.2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/Dependencies/layout-7.2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="recaptcha4j-0.0.7" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-j-8.0.32" level="project" />
+    <orderEntry type="library" exported="" name="javax.mail" level="project" />
   </component>
 </module>

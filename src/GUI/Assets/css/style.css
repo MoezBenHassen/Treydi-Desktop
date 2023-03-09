@@ -2,7 +2,12 @@
 
 
 
+
 #tablecoupons{
+
+
+#tableView{
+
     -fx-background-color: transparent;
 }
 
@@ -86,4 +91,22 @@
 }
 .anchor{
 
+}
+
+/* SCROLL BAR*/
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #DBD32D;
+}
+
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-background-color: none;
+}
+
+.scroll-pane .corner{
+    -fx-background-color: none;
 }
