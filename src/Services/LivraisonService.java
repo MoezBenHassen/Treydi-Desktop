@@ -18,6 +18,11 @@ public class LivraisonService implements IService<Livraison> {
     }
 
     @Override
+    public void ajouter(Livraison livraison) {
+
+    }
+
+    @Override
     public void add(Livraison l) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
 

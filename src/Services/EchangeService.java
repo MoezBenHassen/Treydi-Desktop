@@ -17,6 +17,12 @@ public class EchangeService implements IService<Echange> {
     public EchangeService() {
         con = MyDB.getInstance().getCnx();
     }
+
+    @Override
+    public void ajouter(Echange echange) {
+
+    }
+
     @Override
     public void add(Echange e) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());

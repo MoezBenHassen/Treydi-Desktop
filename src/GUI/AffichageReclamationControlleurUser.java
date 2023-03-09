@@ -4,6 +4,7 @@ import Entities.Reclamation;
 import Entities.Reponse;
 import Services.ServiceReclamation;
 import Services.ServiceReponse;
+import Utils.CurrentUser;
 import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -55,6 +56,7 @@ public class AffichageReclamationControlleurUser  implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ServiceReclamation sp = new ServiceReclamation();
         // lena ba3eed yo5ou id_user
+        //reclist = sp.afficherUser(CurrentUser.getInstance().getId_user());
         reclist = sp.afficher();
         afficher(reclist) ;
 

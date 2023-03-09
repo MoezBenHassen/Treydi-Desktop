@@ -15,7 +15,7 @@ public class ServiceReclamation implements IService<Reclamation> {
         Statement stm;
 
         public ServiceReclamation() {
-            cnx = MyDB.getInstance().getCon();
+            cnx = MyDB.getInstance().getCnx();
 
         }
         @Override
@@ -34,7 +34,12 @@ public class ServiceReclamation implements IService<Reclamation> {
 
         }
 
-      @Override
+    @Override
+    public void add(Reclamation reclamation) {
+
+    }
+
+    @Override
         public  List<Reclamation> afficher() {
             List<Reclamation> Reclamations = new ArrayList();
             try {
@@ -66,10 +71,13 @@ public class ServiceReclamation implements IService<Reclamation> {
     public List<Reclamation> afficherUser(int id){
        List<Reclamation> Reclamations = new ArrayList();
             try {
-                String qry = "SELECT * FROM `reclamation`  WHERE archived = 0 AND id_user = "+id;
+               // String qry = "SELECT * FROM `reclamation` WHERE `id_user`="+ id+"AND `archived` = 0";
+                String query="SELECT * FROM `reclamation` WHERE `archived`=0 AND id_user="+id;
+                System.out.println(id);
+
                 stm = cnx.createStatement();
 
-                ResultSet rs = stm.executeQuery(qry);
+                ResultSet rs = stm.executeQuery(query);
 
                 while (rs.next()) {
                     Reclamation p = new Reclamation();

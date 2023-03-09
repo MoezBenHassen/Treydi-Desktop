@@ -13,7 +13,7 @@ public class StatistiqueReclamation {
     Connection cnx;
     Statement stm;
     public StatistiqueReclamation() {
-        cnx = MyDB.getInstance().getCon();
+        cnx = MyDB.getInstance().getCnx();
     }
     public int getNombreReclamationParMois(int mois, int annee) {
         int nombreReclamation = 0;

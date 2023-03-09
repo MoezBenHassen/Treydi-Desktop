@@ -8,7 +8,7 @@ public class StatistiqueLivraison {
     Connection cnx;
     Statement stm;
     public StatistiqueLivraison() {
-        cnx = MyDB.getInstance().getCon();
+        cnx = MyDB.getInstance().getCnx();
     }
     public int getNombreLivraisonAnnulerParMois(int mois, int annee) {
         int nbrRT = 0;

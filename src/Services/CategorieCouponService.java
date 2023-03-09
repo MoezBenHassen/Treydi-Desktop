@@ -18,6 +18,11 @@ public class CategorieCouponService implements IService<CategorieCoupon> {
 
         }
 
+    @Override
+    public void ajouter(CategorieCoupon categorieCoupon) {
+
+    }
+
     public void add(CategorieCoupon c) {
         try {
                 String qry = "INSERT INTO `categorie_coupon`( `nom_categorie`, `description_categorie`) VALUES ('" + c.getNom_categorie() + "','" + c.getDescription_categorie() + "')";

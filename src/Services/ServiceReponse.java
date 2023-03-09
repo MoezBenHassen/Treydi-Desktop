@@ -16,7 +16,7 @@ public class ServiceReponse implements IService<Reponse> {
     Statement stm;
 
     public ServiceReponse() {
-        cnx = MyDB.getInstance().getCon();
+        cnx = MyDB.getInstance().getCnx();
     }
    @Override
     public void ajouter(Reponse Re) {
@@ -32,6 +32,11 @@ public class ServiceReponse implements IService<Reponse> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public void add(Reponse reponse) {
+
     }
 
 

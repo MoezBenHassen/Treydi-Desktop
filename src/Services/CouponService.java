@@ -21,6 +21,11 @@ public class CouponService implements IService<Coupon> {
     }
 
     @Override
+    public void ajouter(Coupon coupon) {
+
+    }
+
+    @Override
     public void add(Coupon c) {
         try {
             String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_categorie`) VALUES ('" + c.getTitre_coupon() + " ','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() +"','"+  c.getId_categoriecoupon() + "')";

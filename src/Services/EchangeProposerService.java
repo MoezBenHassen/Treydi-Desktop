@@ -21,6 +21,11 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     public EchangeProposerService() { con = MyDB.getInstance().getCnx(); }
 
     @Override
+    public void ajouter(EchangeProposer echangeProposer) {
+
+    }
+
+    @Override
     public void add(EchangeProposer echangeProposer) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
         String req = "INSERT INTO `echange_proposer` (`id_echange`, `date_proposer`, `id_user`)"

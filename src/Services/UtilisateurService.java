@@ -100,6 +100,12 @@ public class UtilisateurService  implements IService<Utilisateur> {
         }
         return users;
     }
+
+    @Override
+    public void ajouter(Utilisateur utilisateur) {
+
+    }
+
     @Override
     public void add(Utilisateur user) {
         try {

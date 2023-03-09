@@ -89,7 +89,7 @@
                   <Image url="@Assets/icons/blue/loop-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="gotoajout" fitHeight="35.0" fitWidth="35.0" layoutX="47.0" layoutY="439.0" onMouseClicked="#gotoajout" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/icons/blue/help.png" />
                </image>
