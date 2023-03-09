@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="923.0" prefWidth="862.0" style="-fx-background-color: #2c2449; -fx-border-width: 7; -fx-border-color: #b81d6d; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="txt_2" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherItemImageController">
+   <children>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="822.0" layoutY="14.0" onMouseClicked="#shutdown" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/power_icon2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="minimize" fitHeight="20.0" fitWidth="20.0" layoutX="790.0" layoutY="22.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/icons/blue/minusbLUE.png" />
+         </image>
+      </ImageView>
+      <Text fill="#eccecf" layoutX="19.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Image">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="image" fitHeight="843.0" fitWidth="850.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="textfield_libelle" layoutX="177.0" layoutY="12.0" prefHeight="39.0" prefWidth="379.0" style="-fx-background-color: #383a40; -fx-border-width: 0.5; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #000000; -fx-text-fill: #ffffff; -fx-font-size: 18; -fx-font-family: impact;" text="Insérer libellé" />
+
+   </children>
+</AnchorPane>

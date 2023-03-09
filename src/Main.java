@@ -1,3 +1,4 @@
+
 import Entities.Coupon;
 import Entities.Utilisateur;
 import APIs.GenerateQRCode;
@@ -23,3 +24,4 @@ public class Main {
         //g.generate(s);
     }
 }
+
