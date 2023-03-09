@@ -93,7 +93,7 @@ Etapes pour l'installation du projet:
     ```java
     final String url = "jdbc:mysql://localhost:3306/treydi_db";
     ```
-1. ▶ Run
+1. ▶ Run 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <hr>
 
@@ -105,39 +105,39 @@ Etapes pour l'installation du projet:
 
 
 -   [@MoezBenHassen](https://www.github.com/MoezBenHassen)
--   [@BSnassim](https://www.github.com/BSnassim)
--   [@MoezBenHassen](https://www.github.com/MoezBenHassen)
--   [@BSnassim](https://www.github.com/BSnassim)
--   [@MoezBenHassen](https://www.github.com/MoezBenHassen)
--   [@BSnassim](https://www.github.com/BSnassim)
+-   [@dridikalthoum](https://github.com/dridikalthoum)
+-   [@MoAdem](https://www.github.com/MoAdem)
+-   [@MDJ-GitHub](https://www.github.com/MDJ-GitHub)
+-   [@Oussamabouriga](https://www.github.com/Oussamabouriga)
+-   [@Marayed](https://www.github.com/Marayed) 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <hr>
 
 ## 📖Contributing
 
 ### 🟣 To contribute as a team member
-1. Clone the project
+1. Clone the project 
     ```bash
     git clone https://github.com/MoezBenHassen/Treydi-Desktop.git
     ```
-2. Create your  Branch
+2. Create your  Branch 
     ```bash
     git checkout -b "your_branch_name"
     ```
-2. Stage your files
+2. Stage your files 
     ```bash
     git add .
     ```
-3. Commit your first commit
+3. Commit your first commit 
     ```bash
     git commit -m "initial commit"
     ```
-4. Push to the Branch to the remote
+4. Push to the Branch to the remote 
     ```bash
     git push origin your_branch_name
     ```
-5. Start working
-5. when you finish a feature you follow the usual procedure to push work to the remote repository :
+5. Start working 
+5. when you finish a feature you follow the usual procedure to push work to the remote repository :  
     ```bash
     git add .
     git commit -m " describe your changes "
