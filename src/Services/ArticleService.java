@@ -13,7 +13,7 @@ public class ArticleService implements IArticleService<Article> {
     Connection connection;
     Statement statement;
     public ArticleService() {
-        connection = MyDB.getInstance().getCon();
+        connection = MyDB.getInstance().getCnx();
     }
 
     public void addRating(int articleId, int userId, double rating) throws SQLException {

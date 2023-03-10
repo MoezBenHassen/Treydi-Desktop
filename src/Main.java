@@ -8,7 +8,6 @@ import Services.CouponService;
 import Services.UtilisateurService;
 
 import java.io.IOException;
->>>>>>> main
 import java.sql.SQLException;
 import java.util.List;
 

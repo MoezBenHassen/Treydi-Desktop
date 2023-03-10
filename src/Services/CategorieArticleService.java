@@ -13,7 +13,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
     Connection connection;
     Statement statement;
     public CategorieArticleService() {
-        connection = MyDB.getInstance().getCon();
+        connection = MyDB.getInstance().getCnx();
     }
 
     @Override

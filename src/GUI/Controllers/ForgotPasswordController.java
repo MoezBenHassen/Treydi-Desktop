@@ -99,11 +99,11 @@ public class ForgotPasswordController {
         // Get the email properties from your application configuration
         String host = "smtp.gmail.com";
         String port = "587";
-        String username = "medadem2000@gmail.com";
-        String password = "pleixhcsocxnwhdu";
+        String username = "";
+        String password = "";
 
         // Set the sender and recipient email addresses
-        String from = "medadem2000@gmail.com";
+        String from = "";
         String to = user.getEmail();
 
         // Set the email subject and content
