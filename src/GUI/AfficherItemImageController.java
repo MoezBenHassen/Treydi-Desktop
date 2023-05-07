@@ -16,8 +16,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -50,8 +52,22 @@ public class AfficherItemImageController implements Initializable {
 
     private void populateFields() {
         textfield_libelle.setText(selectedItem.getLibelle());
-        Image newImage = new Image(selectedItem.getImageurl());
-        image.setImage(newImage);
+        try {
+
+            String base64Image = selectedItem.getImageurl().split(",")[1];
+            base64Image = base64Image.replaceAll("\\s", "");
+            byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+            Image newImage = new Image(new ByteArrayInputStream(imageData));
+
+            image.setImage(newImage);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+
+            Image newImage = new Image(selectedItem.getImageurl());
+            image.setImage(newImage);
+        }
 
         textfield_libelle.setEditable(false);
 

@@ -23,9 +23,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -109,9 +111,22 @@ public class ModifierItemUserController implements Initializable {
         textarea_description.setText(selectedItem.getDescription());
         textfield_id.setText(String.valueOf(selectedItem.getId_item()));
 
-        Image image = new Image(selectedItem.getImageurl());
-        imageview_imageurl.setImage(image);
+        try {
 
+            String base64Image = selectedItem.getImageurl().split(",")[1];
+            base64Image = base64Image.replaceAll("\\s", "");
+            byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+            Image newImage = new Image(new ByteArrayInputStream(imageData));
+
+            imageview_imageurl.setImage(newImage);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+
+            Image image = new Image(selectedItem.getImageurl());
+            imageview_imageurl.setImage(image);
+        }
         CategorieItemsService sp2 = new CategorieItemsService();
         List<Categorie_Items> list = sp2.afficher();
         String cbs = list.stream().filter((t) -> t.getId_categorie() == selectedItem.getId_categorie()).map((t) -> t.getNom_categorie()).collect(Collectors.joining(", ")) ;

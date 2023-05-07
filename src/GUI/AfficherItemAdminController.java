@@ -31,8 +31,10 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -132,12 +134,37 @@ public class AfficherItemAdminController implements Initializable {
             public ObservableValue<ImageView> call(TableColumn.CellDataFeatures<Item, ImageView> param) {
                 try {
                     String imagePath = param.getValue().getImageurl();
-
-                    Image image = new Image(imagePath);
                     ImageView imageView = new ImageView();
-                    imageView.setImage(image);
-                    imageView.setFitHeight(120);
-                    imageView.setFitWidth(120);
+
+
+                    try {
+
+                        String base64Image = imagePath.split(",")[1];
+                        base64Image = base64Image.replaceAll("\\s", "");
+                        byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+                        Image newImage = new Image(new ByteArrayInputStream(imageData));
+                        imageView.setImage(newImage);
+                        imageView.setFitHeight(120);
+                        imageView.setFitWidth(120);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e);
+
+                            Image newImage = new Image(imagePath);
+                            imageView.setImage(newImage);
+                            imageView.setFitHeight(120);
+                            imageView.setFitWidth(120);
+
+                    }
+
+
+
+
+
+
+
+
 
 
                     return new SimpleObjectProperty<>(imageView);

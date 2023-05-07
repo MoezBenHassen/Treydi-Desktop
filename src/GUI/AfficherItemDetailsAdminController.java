@@ -28,7 +28,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.*;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.*;
@@ -112,8 +114,23 @@ public class AfficherItemDetailsAdminController implements Initializable {
         descla.setText(selectedItem.getDescription());
         System.out.println();
 
-        Image newImage = new Image(selectedItem.getImageurl());
-        image.setImage(newImage);
+        try {
+
+            String base64Image = selectedItem.getImageurl().split(",")[1];
+            base64Image = base64Image.replaceAll("\\s", "");
+            byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+            Image newImage = new Image(new ByteArrayInputStream(imageData));
+
+            image.setImage(newImage);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+
+            Image newImage = new Image(selectedItem.getImageurl());
+            image.setImage(newImage);
+
+        }
 
 
         CategorieItemsService sp2 = new CategorieItemsService();

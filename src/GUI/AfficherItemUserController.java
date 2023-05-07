@@ -34,6 +34,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -157,6 +158,8 @@ public class AfficherItemUserController implements Initializable {
             combobox_cat.getItems().add(categorieItems.getNom_categorie());
         }
 
+
+
         Image image = new Image(CurrentUser.getInstance().getAvatar_url());
         goToProfile.setImage(image);
 
@@ -186,10 +189,28 @@ public class AfficherItemUserController implements Initializable {
         int col = 0;
         for (Item obj : items) {
 
-            Image image = new Image(obj.getImageurl());
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(182);
-            imageView.setFitWidth(182);
+            ImageView imageView = null;
+            try {
+
+                String base64Image = obj.getImageurl().split(",")[1];
+                base64Image = base64Image.replaceAll("\\s", "");
+                byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+                Image newImage = new Image(new ByteArrayInputStream(imageData));
+
+                imageView = new ImageView(newImage);
+                imageView.setFitHeight(182);
+                imageView.setFitWidth(182);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+
+                Image image = new Image(obj.getImageurl());
+                imageView = new ImageView(image);
+                imageView.setFitHeight(182);
+                imageView.setFitWidth(182);
+            }
+
 
             Label libelleLabel = new Label(obj.getLibelle());
             libelleLabel.setStyle("-fx-text-fill: #eed1d1; -fx-font-family: impact; -fx-font-size: 20");

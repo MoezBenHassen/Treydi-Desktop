@@ -7,6 +7,7 @@ import Services.CategorieItemsService;
 import Services.ItemService;
 import Utils.CurrentUser;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,9 +24,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -122,7 +127,19 @@ public class AjouterItemUserController implements Initializable {
             a.setContentText("Assurez-vous d'insérer des entrées valides pour les détails de votre item.") ;
             a.show();
         } else {
-            Item i = new Item(textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), CurrentUser.getInstance().getId_user(), id_cat,0,0,0);
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageview_imageurl.getImage(), null);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            } catch (IOException e) {
+
+            }
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+
+            String base64Image = "data:image/jpeg;base64, "+ Base64.getEncoder().encodeToString(imageBytes);
+
+            Item i = new Item(textfield_libelle.getText(), textarea_description.getText(), type, etat, base64Image, CurrentUser.getInstance().getId_user(), id_cat,0,0,0);
             sp.ajouter(i);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Operation");

@@ -53,7 +53,7 @@ public class CategorieItemsService implements IItemCategorieService<Categorie_It
 
             while (rs.next()) {
                 Categorie_Items c = new Categorie_Items();
-                c.setId_categorie(rs.getInt("id_categorie"));
+                c.setId_categorie(rs.getInt("id"));
                 c.setNom_categorie(rs.getString("nom_categorie"));
 
                 categories.add(c);
@@ -75,7 +75,7 @@ public class CategorieItemsService implements IItemCategorieService<Categorie_It
     @Override
     public Boolean modifier(Categorie_Items c) {
         try {
-            String qry = "UPDATE `categorie_items` SET `nom_categorie`='" + c.getNom_categorie() + "' WHERE `id_categorie`='" + c.getId_categorie() + "';";
+            String qry = "UPDATE `categorie_items` SET `nom_categorie`='" + c.getNom_categorie() + "' WHERE `id`='" + c.getId_categorie() + "';";
             stm = cnx.createStatement();
             int res = stm.executeUpdate(qry);
             if (res > 0) {
@@ -92,7 +92,7 @@ public class CategorieItemsService implements IItemCategorieService<Categorie_It
     @Override
     public Boolean supprimer(Categorie_Items c) {
         try {
-            String qry = "UPDATE `categorie_items` SET `archived` = 1 WHERE `id_categorie`='" + c.getId_categorie() + "';";
+            String qry = "UPDATE `categorie_items` SET `archived` = 1 WHERE `id`='" + c.getId_categorie() + "';";
             stm = cnx.createStatement();
             int res = stm.executeUpdate(qry);
             if (res > 0) {
