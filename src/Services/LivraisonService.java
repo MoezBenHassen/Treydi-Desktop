@@ -29,7 +29,7 @@ public class LivraisonService implements IService<Livraison> {
 
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
 
-        String req = "INSERT INTO `livraison` ( `date_creation_livraison`, `etat_livraison`, `adresse_livraison1`, `adresse_livraison2`,  `id_livreur`, `id_echange`)"
+        String req = "INSERT INTO `livraison` ( `date_creation_livraison`, `etat_livraison`, `adresse_livraison1`, `adresse_livraison2`,  `id_livreur_id`, `id_echange_id`)"
                 + "VALUES ('"+current_date+"', '"+l.getEtat()+"', '"+l.getAdresse_livraison1()+"', '"+l.getAdresse_livraison2()+"', '"+l.getId_livreur()+"', '"+l.getId_echange()+"')";
         try {
             stm = con.createStatement();
@@ -62,7 +62,7 @@ public class LivraisonService implements IService<Livraison> {
 
     @Override
     public Boolean modifier(Livraison l) {
-        String req = "UPDATE `livraison` SET `id_echange` = '"+l.getId_echange()+"', `adresse_livraison` = '"+l.getAdresse_livraison1()+"', `etat_livraison` = '"+l.getEtat()+"' WHERE id_livraison = '"+l.getId_livraison()+"'";
+        String req = "UPDATE `livraison` SET `id_echange_id` = '"+l.getId_echange()+"', `adresse_livraison` = '"+l.getAdresse_livraison1()+"', `etat_livraison` = '"+l.getEtat()+"' WHERE id = '"+l.getId_livraison()+"'";
         try {
             stm = con.createStatement();
             int rowsUpdated = stm.executeUpdate(req);
@@ -78,7 +78,7 @@ public class LivraisonService implements IService<Livraison> {
 
     @Override
     public Boolean supprimer(Livraison l) {
-        String req = "UPDATE livraison SET archived = 1 WHERE id_livraison = '"+ l.getId_livraison()+"' ";
+        String req = "UPDATE livraison SET archived = 1 WHERE id = '"+ l.getId_livraison()+"' ";
 
         try {
             stm = con.createStatement();
@@ -94,7 +94,7 @@ public class LivraisonService implements IService<Livraison> {
     }
 
     public String getTitreEchange(Livraison l) {
-        String req = "SELECT `titre_echange` FROM `echange` WHERE id_echange = '"+l.getId_echange()+"'";
+        String req = "SELECT `titre_echange` FROM `echange` WHERE id = '"+l.getId_echange()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -111,7 +111,7 @@ public class LivraisonService implements IService<Livraison> {
 
     //for user adresse livraison
     public String userAdresse1(Echange e){
-        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id = '"+e.getId_user1()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -125,7 +125,7 @@ public class LivraisonService implements IService<Livraison> {
         }
     }
     public String userAdresse2(Echange e){
-        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user2()+"'";
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id = '"+e.getId_user2()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -144,7 +144,7 @@ public class LivraisonService implements IService<Livraison> {
     public List<Livraison> afficherListLivraisonLivreur(int id_livreur) {
         List<Livraison> livraison = new ArrayList<>();
 
-        String query = "SELECT * from `livraison` WHERE `id_livreur` = '"+id_livreur+"' AND archived = 0";
+        String query = "SELECT * from `livraison` WHERE `id_livreur_id` = '"+id_livreur+"' AND archived = 0";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
@@ -163,7 +163,7 @@ public class LivraisonService implements IService<Livraison> {
 
     public List<Livraison> afficherListLivraisonUser(Echange ee) {
         List<Livraison> livraison = new ArrayList<>();
-        String query = "SELECT * from `livraison` WHERE `id_user` = '"+ee.getId_echange()+"' AND archived = 0";
+        String query = "SELECT * from `livraison` WHERE `id_user_id` = '"+ee.getId_echange()+"' AND archived = 0";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
@@ -181,13 +181,13 @@ public class LivraisonService implements IService<Livraison> {
     }
 
     public Boolean annulerLivraisonLivreur(Livraison l, Echange e){
-        String req1 = "UPDATE livraison SET archived = 1 AND etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id_livraison = '"+ l.getId_livraison()+"' ";
+        String req1 = "UPDATE livraison SET archived = 1 AND etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id = '"+ l.getId_livraison()+"' ";
 
         try {
             stm = con.createStatement();
             int rowsDeleted = stm.executeUpdate(req1);
             if (rowsDeleted > 0) {
-                String req2 = "UPDATE echange SET liv_etat = '"+Echange.ETAT.Non_Accepter+"' WHERE id_echange = '"+e.getId_echange()+"' ";
+                String req2 = "UPDATE echange SET liv_etat = '"+Echange.ETAT.Non_Accepter+"' WHERE id = '"+e.getId_echange()+"' ";
                 stm.executeUpdate(req2);
                 return true;
             } else {
@@ -199,7 +199,7 @@ public class LivraisonService implements IService<Livraison> {
     }
 
     public void completerLivraisonLivreur(Livraison l){
-        String req1 = "UPDATE livraison SET etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id_livraison = '"+ l.getId_livraison()+"' ";
+        String req1 = "UPDATE livraison SET etat_livraison = '"+Livraison.ETAT.Termine+"' WHERE id = '"+ l.getId_livraison()+"' ";
 
         try {
             stm = con.createStatement();

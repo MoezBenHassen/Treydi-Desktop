@@ -26,7 +26,7 @@ public class EchangeService implements IService<Echange> {
     @Override
     public void add(Echange e) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
-        String req = "INSERT INTO `echange` ( `date_echange`, `id_user1`, `id_user2`)"
+        String req = "INSERT INTO `echange` ( `date_echange`, `id_user1_id`, `id_user2_id`)"
                 + "VALUES ('"+current_date+"', '"+e.getId_user1()+"', '"+e.getId_user2()+"')";
         try {
             stm = con.createStatement();
@@ -57,7 +57,7 @@ public class EchangeService implements IService<Echange> {
 
     @Override
     public Boolean modifier(Echange e) {
-        String req = "UPDATE `echange` SET `id_user1` = '"+e.getId_user1()+"', "
+        String req = "UPDATE `echange` SET `id_user1_id` = '"+e.getId_user1()+"', "
                           + "`id_user2` = '"+e.getId_user2()+"' WHERE id_echange = '"+e.getId_echange()+"'";
         //String req = "UPDATE `echange` SET `date_echange` = '"+e.getSqlDate()+"' WHERE id_echange = '"+e.getId_echange()+"' ";
         try {
@@ -75,7 +75,7 @@ public class EchangeService implements IService<Echange> {
 
     @Override
     public Boolean supprimer(Echange e) {
-        String req = "UPDATE echange SET archived = 1 WHERE id_echange = '"+e.getId_echange()+"' ";
+        String req = "UPDATE echange SET archived = 1 WHERE id = '"+e.getId_echange()+"' ";
         try {
             stm = con.createStatement();
             int rowsDeleted = stm.executeUpdate(req);
@@ -94,7 +94,7 @@ public class EchangeService implements IService<Echange> {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
         int id_echange = -1;
 
-        String req="INSERT INTO `echange` (`id_user1`, `date_echange`) VALUES ('" + e.getId_user1() + "', '"+current_date+"')";
+        String req="INSERT INTO `echange` (`id_user1_id`, `date_echange`) VALUES ('" + e.getId_user1() + "', '"+current_date+"')";
         try {
             stm = con.createStatement();
             stm.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
@@ -104,7 +104,7 @@ public class EchangeService implements IService<Echange> {
             }
             for (Item i : items) {
                 stm = con.createStatement();
-                stm.executeUpdate("UPDATE `item` SET `id_echange` = '" + id_echange + "' WHERE `id_item`='" + i.getId_item() + "'");
+                stm.executeUpdate("UPDATE `item` SET `id_echange_id` = '" + id_echange + "' WHERE `id`='" + i.getId_item() + "'");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -129,7 +129,7 @@ public class EchangeService implements IService<Echange> {
     }*/
 
     public String getUsername1(Echange e){
-        String req = "SELECT `prenom` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
+        String req = "SELECT `prenom` FROM `utilisateur` WHERE id = '"+e.getId_user1()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -143,7 +143,7 @@ public class EchangeService implements IService<Echange> {
         }
     }
     public String getUsername2(Echange e){
-        String req = "SELECT `prenom` FROM `utilisateur` WHERE id_user = '"+e.getId_user2()+"'";
+        String req = "SELECT `prenom` FROM `utilisateur` WHERE id = '"+e.getId_user2()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -160,7 +160,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public String getAdresse1(Echange e){
-        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user1()+"'";
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id = '"+e.getId_user1()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -177,7 +177,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public String getAdresse2(Echange e){
-        String req = "SELECT `adresse` FROM `utilisateur` WHERE id_user = '"+e.getId_user2()+"'";
+        String req = "SELECT `adresse` FROM `utilisateur` WHERE id = '"+e.getId_user2()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -196,7 +196,7 @@ public class EchangeService implements IService<Echange> {
     public List afficherEchangeAccepter()  {
         List<Echange> echanges = new ArrayList<>();
 
-        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2 != '"+NULL+"' AND liv_etat = '"+Echange.ETAT.Non_Accepter+"' ";
+        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2_id != '"+NULL+"' AND liv_etat = '"+Echange.ETAT.Non_Accepter+"' ";
         try {
             stm = con.createStatement();
             ResultSet result=stm.executeQuery(req);
@@ -214,12 +214,12 @@ public class EchangeService implements IService<Echange> {
     public List afficherEchangeNonAccepter()  {
         List<Echange> echanges = new ArrayList<>();
 
-        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2 is NULL";
+        String req="SELECT * FROM `echange` WHERE archived = 0 AND id_user2_id is NULL";
         try {
             stm = con.createStatement();
             ResultSet result=stm.executeQuery(req);
             while (result.next()){
-                Echange e = new Echange(result.getInt("id_echange"), result.getString("titre_echange"), result.getInt("id_user1"), result.getInt("id_user2"),
+                Echange e = new Echange(result.getInt("id"), result.getString("titre_echange"), result.getInt("id_user1_id"), result.getInt("id_user2_id"),
                         result.getDate("date_echange"));
                 echanges.add(e);
             }
@@ -230,7 +230,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public Echange getEchangeByLivraison(Livraison l) {
-        String req = "SELECT * FROM echange WHERE id_echange = '"+l.getId_echange()+"'";
+        String req = "SELECT * FROM echange WHERE id_echange_id = '"+l.getId_echange()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -249,7 +249,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public Echange getEchangeByProp(EchangeProposer ep) {
-        String req = "SELECT * FROM echange WHERE id_echange = '"+ep.getId_echange()+"'";
+        String req = "SELECT * FROM echange WHERE id = '"+ep.getId_echange()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -271,7 +271,7 @@ public class EchangeService implements IService<Echange> {
     public List getEchangeByIdUser(int id_user) {
         List<Echange> echanges = new ArrayList<>();
 
-        String query="SELECT * from `echange` WHERE archived = 0 AND id_user1 = '"+id_user+"'";
+        String query="SELECT * from `echange` WHERE archived = 0 AND id_user1_id = '"+id_user+"'";
         try {
             stm = con.createStatement();
             ResultSet result=stm.executeQuery(query);
@@ -287,7 +287,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public Boolean updateEchangeLivToAcc(Echange e) {
-        String req = "UPDATE `echange` SET `liv_etat` = '"+Echange.ETAT.Accepter+"' WHERE `id_echange` = '"+e.getId_echange()+"'";
+        String req = "UPDATE `echange` SET `liv_etat` = '"+Echange.ETAT.Accepter+"' WHERE `id` = '"+e.getId_echange()+"'";
         try {
             stm = con.createStatement();
             int rowsUpdated = stm.executeUpdate(req);
@@ -302,7 +302,7 @@ public class EchangeService implements IService<Echange> {
     }
 
     public String getTitreEchange(Echange e){
-        String req = "SELECT `titre_echange` FROM `echange` WHERE id_echange = '"+e.getId_echange()+"'";
+        String req = "SELECT `titre_echange` FROM `echange` WHERE id = '"+e.getId_echange()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);

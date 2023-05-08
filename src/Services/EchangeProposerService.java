@@ -87,13 +87,13 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     public void ProposerEchange(Echange e, List<Item> items, int id) {
         java.sql.Date current_date = new java.sql.Date(System.currentTimeMillis());
 
-        String req = "INSERT INTO `echange_proposer` (`id_echange`, `date_proposer`, `id_user`) VALUES ('" + e.getId_echange() + "', '" + current_date + "', '" + id + "')";
+        String req = "INSERT INTO `echange_proposer` (`id_echange_id`, `date_proposer`, `id_user_id`) VALUES ('" + e.getId_echange() + "', '" + current_date + "', '" + id + "')";
         try {
             stm = con.createStatement();
             stm.executeUpdate(req, Statement.RETURN_GENERATED_KEYS);
             for (Item i : items) {
                 stm = con.createStatement();
-                stm.executeUpdate("UPDATE `item` SET `id_echange` = '" + e.getId_echange() + "' WHERE `id_item`='" + i.getId_item() + "'");
+                stm.executeUpdate("UPDATE `item` SET `id_echange_id` = '" + e.getId_echange() + "' WHERE `id`='" + i.getId_item() + "'");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -103,7 +103,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     public List<EchangeProposer> afficherPropEch(Echange ee) {
         List<EchangeProposer> epl = new ArrayList<>();
 
-        String query = "SELECT * from `echange_proposer` WHERE `id_echange` = '"+ee.getId_echange()+"' AND archived = 0";
+        String query = "SELECT * from `echange_proposer` WHERE `id_echange_id` = '"+ee.getId_echange()+"' AND archived = 0";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
@@ -118,7 +118,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     }
 
     public String getUsernameProp(EchangeProposer e){
-        String req = "SELECT `prenom` FROM `utilisateur` WHERE id_user = '"+e.getId_user()+"'";
+        String req = "SELECT `prenom` FROM `utilisateur` WHERE id = '"+e.getId_user()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -133,7 +133,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     }
 
     public Echange getEchangeByProp(EchangeProposer ep) {
-        String req = "SELECT * FROM echange WHERE id_echange = '"+ep.getId_echange()+"'";
+        String req = "SELECT * FROM echange WHERE id = '"+ep.getId_echange()+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(req);
@@ -152,13 +152,13 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     }
 
     public void accProposition(EchangeProposer ep, List<Item> items, Echange ee){
-        String req = "UPDATE echange SET id_user2 = '"+ep.getId_user()+"'";
+        String req = "UPDATE echange SET id_user2_id = '"+ep.getId_user()+"'";
         try {
             stm = con.createStatement();
             stm.executeUpdate(req);
             for (Item i : items) {
                 stm = con.createStatement();
-                stm.executeUpdate("UPDATE `item` SET `id_echange` =  NULL WHERE `id_echange`='" + ep.getId_echange() + "' AND `id_user` NOT IN ('"+ep.getId_user()+"' , '"+ee.getId_user1()+"')");
+                stm.executeUpdate("UPDATE `item` SET `id_echange` =  NULL WHERE `id_echange_id`='" + ep.getId_echange() + "' AND `id_user_id` NOT IN ('"+ep.getId_user()+"' , '"+ee.getId_user1()+"')");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -172,7 +172,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
             stm.executeUpdate(req);
             for (Item i : items) {
                 stm = con.createStatement();
-                stm.executeUpdate("UPDATE `item` SET `id_echange` = NULL WHERE `id_item`='" + i.getId_item() + "'");
+                stm.executeUpdate("UPDATE `item` SET `id_echange_id` = NULL WHERE `id`='" + i.getId_item() + "'");
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -182,7 +182,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     public List<Item> getListItemsByProp(EchangeProposer ep) {
         List<Item> items = new ArrayList();
 
-        String qry = "SELECT * FROM `item` WHERE id_echange = '"+ep.getId_echange()+"'";
+        String qry = "SELECT * FROM `item` WHERE id_echange_id = '"+ep.getId_echange()+"'";
         try {
 
             stm = con.createStatement();
