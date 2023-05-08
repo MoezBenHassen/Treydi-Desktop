@@ -115,7 +115,7 @@ public class ArticlefxmlController implements Initializable {
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            Article article = new Article(txt_titre.getText(), txt_description.getText(), txt_contenu.getText(), date, id_cat, 0, 4, txt_auteur.getText());
+            Article article = new Article(txt_titre.getText(), txt_description.getText(), txt_contenu.getText(), date, id_cat, 0, 4, 1);
             int rowsInserted = articleService.add(article);
             if (rowsInserted>0){
                 Alert a = new Alert(Alert.AlertType.INFORMATION);

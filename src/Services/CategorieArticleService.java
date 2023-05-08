@@ -43,7 +43,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
                 CategorieArticle catArticle = new CategorieArticle();
-                catArticle.setId_cat(resultSet.getInt("id_cat"));
+                catArticle.setId_cat(resultSet.getInt("id"));
                 catArticle.setLibelle_cat(resultSet.getString("libelle_cat"));
                 categorieArticles.add(catArticle);
             }
@@ -57,7 +57,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
     public List<CategorieArticle> getLibelle(int id) {
         List<CategorieArticle> categorieArticles = new ArrayList<>();
         try{
-            String query="SELECT libelle_cat FROM `categorie_article` WHERE `id_cat`="+id;
+            String query="SELECT libelle_cat FROM `categorie_article` WHERE `id`="+id;
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
@@ -83,7 +83,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
                 CategorieArticle catArticle = new CategorieArticle();
-                catArticle.setId_cat(resultSet.getInt("id_cat"));
+                catArticle.setId_cat(resultSet.getInt("id"));
                 catArticle.setLibelle_cat(resultSet.getString("libelle_cat"));
                 categorieArticles.add(catArticle);
             }
@@ -96,7 +96,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
 
     @Override
     public Boolean update(CategorieArticle categorieArticle) {
-        String query ="UPDATE `categorie_article` SET `libelle_cat`='"+categorieArticle.getLibelle_cat()+"' WHERE id_cat="+categorieArticle.getId_cat();
+        String query ="UPDATE `categorie_article` SET `libelle_cat`='"+categorieArticle.getLibelle_cat()+"' WHERE id="+categorieArticle.getId_cat();
         try{
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -114,7 +114,7 @@ public class CategorieArticleService implements IArticleService<CategorieArticle
 
     @Override
     public Boolean delete(CategorieArticle categorieArticle) {
-        String query="UPDATE `categorie_article` SET `archived`='"+1+"' WHERE id_cat="+categorieArticle.getId_cat();
+        String query="UPDATE `categorie_article` SET `archived`='"+1+"' WHERE id="+categorieArticle.getId_cat();
         try{
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             int rowsUpdated = preparedStatement.executeUpdate();

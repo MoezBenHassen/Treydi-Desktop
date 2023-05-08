@@ -17,7 +17,7 @@ public class javafxMain extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("GUI/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("GUI/ListeArticles.fxml"));
             // Image image = new Image("GUI/Assets/images/log-04.png",32,32,true,true);
             //Parent root = loader.load();
             DatabaseMonitor databaseMonitor = new DatabaseMonitor();

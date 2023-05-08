@@ -18,7 +18,7 @@ public class ArticleService implements IArticleService<Article> {
 
     public void addRating(int articleId, int userId, double rating) throws SQLException {
         int rowsInsterd = 0;
-        String query = "INSERT INTO article_ratings (id_article, id_user, rating) VALUES (?, ?, ?)";
+        String query = "INSERT INTO article_ratings (id_article_id, id_user_id, rating) VALUES (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, articleId);
         preparedStatement.setInt(2, userId);
@@ -32,7 +32,7 @@ public class ArticleService implements IArticleService<Article> {
     }
     public int rate(float rating){
         int rowsInserted = 0;
-        String query = "INSERT INTO `article_ratings` (`id_article`, `id_user`, `rating`) VALUES (1, 4, 4);";
+        String query = "INSERT INTO `article_ratings` (`id_article_id`, `id_user_id`, `rating`) VALUES (1, 4, 4);";
         try {
             statement = connection.createStatement();
             rowsInserted = statement.executeUpdate(query);
@@ -53,10 +53,15 @@ public class ArticleService implements IArticleService<Article> {
         int rowsInserted = 0;
         try {
             java.sql.Date datec = new java.sql.Date(System.currentTimeMillis());
-            String query = "INSERT INTO `article`(`titre`, `description`, `contenu`, `date_publication`," +
-                    " `id_categorie`, `archived`, `id_user`, `auteur`) VALUES ('" + article.getTitre() + "','" + article.getDescription() + "'," +
+            /*String query = "INSERT INTO `article`(`titre`, `description`, `contenu`, `date_publication`," +
+                    " `id_categorie_id`, `archived`, `id_user_id`, `auteur`) VALUES ('" + article.getTitre() + "','" + article.getDescription() + "'," +
                     "'" + article.getContenu() + "','" + datec + "','" + article.getId_categorie() + "','" + article.getArchived() + "','" + article.getId_user() + "'" +
-                    ",'" + article.getAuteur() + "')";
+                    ",'" + article.getAuteur() + "')";*/
+            String query = "INSERT INTO `article`(`titre`, `description`, `contenu`, `date_publication`," +
+                    " `id_categorie_id`, `archived`, `id_user_id`) VALUES ('" + article.getTitre() + "','" + article.getDescription() + "'," +
+                    "'" + article.getContenu() + "','" + datec + "','" + article.getId_categorie() + "','" + article.getArchived() + "','" + article.getId_user() + "'" +
+                    ")";
+                    
             statement = connection.createStatement();
             rowsInserted = statement.executeUpdate(query);
             if (rowsInserted > 0) {
@@ -87,15 +92,16 @@ public class ArticleService implements IArticleService<Article> {
 
             while (resultSet.next()){
                 Article article = new Article();
-                article.setId_article(resultSet.getInt("id_article"));
+                article.setId_article(resultSet.getInt("id"));
                 article.setTitre(resultSet.getString("titre"));
                 article.setDescription(resultSet.getString("description"));
                 article.setContenu(resultSet.getString("contenu"));
                 article.setDate_publication(resultSet.getDate("date_publication"));
-                article.setId_categorie(resultSet.getInt("id_categorie"));
+                article.setId_categorie(resultSet.getInt("id_categorie_id"));
                 article.setArchived(resultSet.getInt("archived"));
-                article.setId_user(resultSet.getInt("id_user"));
-                article.setAuteur(resultSet.getString("auteur"));
+                article.setId_user(resultSet.getInt("id_user_id"));
+                //article.setAuteur(resultSet.getString("auteur"));
+                article.setAuteur(1);
                 article.setAvgRating(resultSet.getFloat("avg_rating"));
                 articles.add(article);
             }
@@ -122,15 +128,16 @@ public class ArticleService implements IArticleService<Article> {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){
                 Article article = new Article();
-                article.setId_article(resultSet.getInt("id_article"));
+                article.setId_article(resultSet.getInt("id"));
                 article.setTitre(resultSet.getString("titre"));
                 article.setDescription(resultSet.getString("description"));
                 article.setContenu(resultSet.getString("contenu"));
                 article.setDate_publication(resultSet.getDate("date_publication"));
-                article.setId_categorie(resultSet.getInt("id_categorie"));
+                article.setId_categorie(resultSet.getInt("id_categorie_id"));
                 article.setArchived(resultSet.getInt("archived"));
-                article.setId_user(resultSet.getInt("id_user"));
-                article.setAuteur(resultSet.getString("auteur"));
+                article.setId_user(resultSet.getInt("id_user_id"));
+                //article.setAuteur(resultSet.getString("auteur"));
+                article.setAuteur(1);
                 articles.add(article);
             }
             return  articles;
@@ -148,9 +155,13 @@ public class ArticleService implements IArticleService<Article> {
      */
     @Override
     public Boolean update(Article article) {
-        String query ="UPDATE `article` SET `titre`='"+article.getTitre()+"',`description`='"+article.getDescription()+"'," +
-                     "`contenu`='"+article.getContenu()+"',`id_categorie`='"+article.getId_categorie()+"'," +
+        /*String query ="UPDATE `article` SET `titre`='"+article.getTitre()+"',`description`='"+article.getDescription()+"'," +
+                     "`contenu`='"+article.getContenu()+"',`id_categorie_id`='"+article.getId_categorie()+"'," +
                      "`auteur`='"+article.getAuteur()+"' WHERE id_article="+article.getId_article();
+          */
+          String query ="UPDATE `article` SET `titre`='"+article.getTitre()+"',`description`='"+article.getDescription()+"'," +
+          "`contenu`='"+article.getContenu()+"',`id_categorie_id`='"+article.getId_categorie()+"'," +
+          "`auteur`='"+article.getAuteur()+"' WHERE id="+article.getId_article();           
         try{
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -175,7 +186,7 @@ public class ArticleService implements IArticleService<Article> {
      */
     @Override
     public Boolean delete(Article article) {
-        String query ="UPDATE `article` SET `archived`='"+1+"' WHERE id_article="+article.getId_article();
+        String query ="UPDATE `article` SET `archived`='"+1+"' WHERE id="+article.getId_article();
         try{
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -190,6 +201,4 @@ public class ArticleService implements IArticleService<Article> {
             return false;
         }
     }
-
-
 }

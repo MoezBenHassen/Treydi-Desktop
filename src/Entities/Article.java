@@ -10,7 +10,7 @@ public class Article {
     private int id_categorie;
     private int archived;
     private int id_user;
-    private String auteur;
+    private int auteur=1;
     private float AvgRating;
 
     public float getAvgRating() {
@@ -33,7 +33,7 @@ public class Article {
         this.id_categorie = id_categorie;
     }
 
-    public Article(int id_article, String titre, String description, String contenu, int id_categorie, String auteur) {
+    public Article(int id_article, String titre, String description, String contenu, int id_categorie, int auteur) {
         this.id_article = id_article;
         this.titre = titre;
         this.description = description;
@@ -42,7 +42,7 @@ public class Article {
         this.auteur = auteur;
     }
 
-    public Article(String titre, String description, String contenu, int id_categorie, String auteur) {
+    public Article(String titre, String description, String contenu, int id_categorie, int auteur) {
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
@@ -51,7 +51,7 @@ public class Article {
     }
 
     //constructor without ID_ARTICLE
-    public Article(String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, String auteur) {
+    public Article(String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, int auteur) {
         this.titre = titre;
         this.description = description;
         this.contenu = contenu;
@@ -63,7 +63,7 @@ public class Article {
     }
 
     //CONSTRUCTOR WITH ID_ARTICLE
-    public Article(int id_article, String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, String auteur) {
+    public Article(int id_article, String titre, String description, String contenu, Date date_publication, int id_categorie, int archived, int id_user, int auteur) {
         this.id_article = id_article;
         this.titre = titre;
         this.description = description;
@@ -150,11 +150,11 @@ public class Article {
         this.id_user = id_user;
     }
 
-    public String getAuteur() {
+    public int getAuteur() {
         return auteur;
     }
 
-    public void setAuteur(String auteur) {
+    public void setAuteur(int auteur) {
         this.auteur = auteur;
     }
 

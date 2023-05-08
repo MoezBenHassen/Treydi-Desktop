@@ -221,7 +221,7 @@ public class UpdateArticlefxmlController implements Initializable {
             return;
         }else {
             ArticleService articleService = new ArticleService();
-            Article article = new Article(id_article, titre, description, contenu, id_categorie,auteur);
+            Article article = new Article(id_article, titre, description, contenu, id_categorie,1);
             articleService.update(article);
             stage = (Stage) scenePane.getScene().getWindow();
             stage.close();
