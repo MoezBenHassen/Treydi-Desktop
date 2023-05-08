@@ -9,7 +9,6 @@ import java.util.List;
 
 import Entities.Echange;
 import Entities.Item;
-import Entities.Utilisateur;
 import Interfaces.IItemCategorieService;
 import Utils.CurrentUser;
 import Utils.MyDB;

@@ -6,7 +6,6 @@ import java.util.List;
 
 import Entities.Categorie_Items;
 import Entities.Item;
-import Entities.Utilisateur;
 import Utils.CurrentUser;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;

@@ -3,7 +3,6 @@ package GUI.Controllers;
 import Entities.Trader;
 import Services.UtilisateurService;
 import Utils.CurrentUser;
-import Utils.Enums.Roles;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,20 +15,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import Entities.Utilisateur;
-import Services.UtilisateurService;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
-import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.sql.Date;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class EditProfileTraderController implements Initializable {
@@ -108,7 +101,9 @@ public class EditProfileTraderController implements Initializable {
             a.show();
 
         } else  {
-            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRole(),CurrentUser.getInstance().getScore(), tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
+
+            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRoles(),CurrentUser.getInstance().getScore(), tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
+
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Notification");

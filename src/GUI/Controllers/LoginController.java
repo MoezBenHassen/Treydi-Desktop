@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -22,7 +21,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import Utils.CurrentUser;
 import javafx.stage.StageStyle;
 
 import javax.swing.text.html.ImageView;
@@ -87,7 +85,7 @@ public class LoginController implements  Initializable {
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                     CurrentUser currentUser = CurrentUser.getInstance();
-                    Roles userRole = currentUser.getRole();
+                    Roles userRole = currentUser.getRoles();
                     System.out.println("User role: " + userRole);
 
                 }
@@ -106,7 +104,7 @@ public class LoginController implements  Initializable {
                     stage.setScene(scene);
                     stage.show();
                     CurrentUser currentUser = CurrentUser.getInstance();
-                    Roles userRole = currentUser.getRole();
+                    Roles userRole = currentUser.getRoles();
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -144,7 +142,7 @@ public class LoginController implements  Initializable {
                     stage.setScene(scene);
                     stage.show();
                     CurrentUser currentUser = CurrentUser.getInstance();
-                    Roles userRole = currentUser.getRole();
+                    Roles userRole = currentUser.getRoles();
                     System.out.println("User role: " + userRole);
                     // Close the current window
                     ((Node) (event.getSource())).getScene().getWindow().hide();

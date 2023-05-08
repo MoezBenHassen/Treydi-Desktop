@@ -7,12 +7,10 @@ import java.util.List;
 
 import Entities.Echange;
 import Entities.Item;
-import Entities.Livraison;
 import Services.EchangeService;
 import Services.ItemService;
 import Utils.CurrentUser;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

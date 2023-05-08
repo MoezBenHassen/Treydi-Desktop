@@ -2,7 +2,6 @@ package GUI;
 
 import Entities.Categorie_Items;
 import Entities.Item;
-import Entities.Utilisateur;
 import Services.CategorieItemsService;
 import Services.ItemService;
 import Utils.CurrentUser;

@@ -4,7 +4,6 @@ import APIs.ToPDF;
 import APIs.ToXLS;
 import Entities.Categorie_Items;
 import Entities.Item;
-import Entities.Utilisateur;
 import Services.CategorieItemsService;
 import Services.ItemService;
 import Utils.CurrentUser;
@@ -28,10 +27,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.io.ByteArrayInputStream;

@@ -1,7 +1,6 @@
 package GUI.Controllers;
 
-import APIs.Captcha;
-import APIs.CaptchaGenerator;
+
 import Entities.Livreur;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
@@ -44,50 +43,12 @@ public class InscriptionController implements Initializable {
     @FXML
     private TextField tfadresse;
     @FXML
-    private ToggleGroup role;
+    private ToggleGroup roles;
 
     private WebEngine webEngine;
-    Captcha captcha;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        webEngine = reCaptcha.getEngine();
-        webEngine.setJavaScriptEnabled(true);
-        captcha = CaptchaGenerator.getCaptcha();
-        webEngine.loadContent("<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <title>Document</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <style>\n" +
-                "        html, body {\n" +
-                "height: 100%;\n" +
-                "margin: 0;\n" +
-                "background-color: " + captcha.getBgColor() + ";\n" +
-                "}\n" +
-                "\n" +
-                "#section1 {\n" +
-                "    height: 90%; \n" +
-                "text-align:center; \n" +
-                "    display:table;\n" +
-                "    width:100%;\n" +
-                "}\n" +
-                "\n" +
-                "#section1 h1 {\n" +
-                "    display:table-cell; \n" +
-                "    vertical-align:middle;\n" +
-                "    color: " + captcha.getColor() + "; \n" +
-                "    font-family: " + captcha.getFont() + ";" +
-                "font-style: oblique;\n" +
-                "    font-size: 40px;" +
-                "text-decoration: line-through;" +
-                "    }\n" +
-                "    </style>\n" +
-                "    <div class=\"section\" id=\"section1\">\n" +
-                "        <h1>" + captcha.getGenenumber() + "</h1>\n" +
-                "        </div> \n" +
-                "</body>\n" +
-                "</html>");
 
     }
 
@@ -110,18 +71,15 @@ public class InscriptionController implements Initializable {
         }
     }
 
-    public boolean validateCaptcha() {
-        return captchaResponse.getText().equals(captcha.getGenenumber());
-    }
 
     @FXML
     private void add(ActionEvent event) {
         UtilisateurService us = new UtilisateurService();
-        RadioButton selected_role = (RadioButton) role.getSelectedToggle();
+        RadioButton selected_role = (RadioButton) roles.getSelectedToggle();
         Roles rt = null;
         String srt = selected_role.getText();
 
-        if (validateCaptcha()) {
+
             if (srt.equals("trader")) {
                 rt = Roles.valueOf("trader");
                 Utilisateur user = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(), tfemail.getText(), tfadresse.getText(), "GUI/Assets/icons/avatar1.png", rt, 0,"2000-2-2", 0);
@@ -143,46 +101,5 @@ public class InscriptionController implements Initializable {
                     openLoginPage(event);
                 }
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "CAPTCHA validation failed. Please try again.");
-            alert.show();
         }
     }
-    public void refreshCaptcha(ActionEvent actionEvent) {
-        captcha = CaptchaGenerator.getCaptcha();
-        webEngine.loadContent("<html lang=\"en\">\n" +
-                "<head>\n" +
-                "    <title>Document</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <style>\n" +
-                "        html, body {\n" +
-                "height: 100%;\n" +
-                "margin: 0;\n" +
-                "background-color: "+captcha.getBgColor()+";\n" +
-                "}\n" +
-                "\n" +
-                "#section1 {\n" +
-                "    height: 90%; \n" +
-                "text-align:center; \n" +
-                "    display:table;\n" +
-                "    width:100%;\n" +
-                "}\n" +
-                "\n" +
-                "#section1 h1 {\n" +
-                "    display:table-cell; \n" +
-                "    vertical-align:middle;\n" +
-                "    color: "+captcha.getColor()+"; \n" +
-                "    font-family: "+captcha.getFont()+";"+
-                "font-style: oblique;\n" +
-                "    font-size: 40px;"+
-                "text-decoration: line-through;"+
-                "    }\n" +
-                "    </style>\n" +
-                "    <div class=\"section\" id=\"section1\">\n" +
-                "        <h1>"+captcha.getGenenumber()+"</h1>\n" +
-                "        </div> \n" +
-                "</body>\n" +
-                "</html>");
-    }
-}

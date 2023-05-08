@@ -1,7 +1,6 @@
 package GUI.Controllers;
 
 import Entities.Livreur;
-import Entities.Trader;
 import Entities.Utilisateur;
 import Services.UtilisateurService;
 import Utils.CurrentUser;
@@ -29,7 +28,6 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class EditProfileLivreurController implements Initializable {
@@ -100,7 +98,9 @@ public class EditProfileLivreurController implements Initializable {
             a.setContentText("Veuillez remplir tous les champs.");
             a.show();
         } else  {
-            Utilisateur newUser = new Livreur(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRole(),CurrentUser.getInstance().getId_user(),0);
+
+            Utilisateur newUser = new Livreur(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRoles(),CurrentUser.getInstance().getId_user(),0);
+
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setHeaderText("Notification");
