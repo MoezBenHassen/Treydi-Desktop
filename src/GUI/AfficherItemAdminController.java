@@ -160,13 +160,7 @@ public class AfficherItemAdminController implements Initializable {
 
 
 
-
-
-
-
-
-
-
+                    
                     return new SimpleObjectProperty<>(imageView);
                 } catch (Exception e) {
                     System.out.println(e);

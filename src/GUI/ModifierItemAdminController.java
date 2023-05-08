@@ -118,37 +118,16 @@ public class ModifierItemAdminController implements Initializable {
         textfield_id.setText(String.valueOf(selectedItem.getId_item()));
 
 
-        String imagePath =  selectedItem.getImageurl();
-
-
-        try {
-
-
-
-            try {
-
-                String base64Image = imagePath.split(",")[1];
-                base64Image = base64Image.replaceAll("\\s", "");
-                byte[] imageData = Base64.getDecoder().decode(base64Image);
-
-
-                Image newImage = new Image(new ByteArrayInputStream(imageData));
-                imageview_imageurl.setImage(newImage);
-
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-
-                Image newImage = new Image(selectedItem.getImageurl());
-                imageview_imageurl.setImage(newImage);
-
-
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
+        String imagePath = selectedItem.getImageurl();
+        if (imagePath.startsWith("data:image")) {
+            String base64Image = imagePath.split(",")[1];
+            base64Image = base64Image.replaceAll("\\s", "");
+            byte[] imageData = Base64.getDecoder().decode(base64Image);
+            Image newImage = new Image(new ByteArrayInputStream(imageData));
+            imageview_imageurl.setImage(newImage);
+        }else{
             Image newImage = new Image(selectedItem.getImageurl());
             imageview_imageurl.setImage(newImage);
-
         }
 
         CategorieItemsService sp2 = new CategorieItemsService();

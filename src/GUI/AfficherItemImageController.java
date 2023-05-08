@@ -53,35 +53,17 @@ public class AfficherItemImageController implements Initializable {
     private void populateFields() {
         textfield_libelle.setText(selectedItem.getLibelle());
 
-
-        try {
-            String imagePath = selectedItem.getImageurl();
-
-
-
-            try {
-
+        String imagePath = selectedItem.getImageurl();
+            if (imagePath.startsWith("data:image")) {
                 String base64Image = imagePath.split(",")[1];
                 base64Image = base64Image.replaceAll("\\s", "");
                 byte[] imageData = Base64.getDecoder().decode(base64Image);
-
-
                 Image newImage = new Image(new ByteArrayInputStream(imageData));
                 image.setImage(newImage);
-
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-
-                Image newImage = new Image(imagePath);
+            }else{
+                Image newImage = new Image(selectedItem.getImageurl());
                 image.setImage(newImage);
-
-
             }
-
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
 
         textfield_libelle.setEditable(false);
