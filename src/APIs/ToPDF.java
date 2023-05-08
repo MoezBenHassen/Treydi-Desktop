@@ -239,7 +239,7 @@ public class ToPDF {
                         // add table rows
                         ObservableList<Item> items = table.getItems();
                         for (Item item : items) {
-                            if (item.getId_echange() == echint && item.getId_echange() != 0 && item.getId_user() == CurrentUser.getInstance().getId()) {
+                            if (item.getId_echange() == echint && item.getId_echange() != 0 && item.getId_user() == CurrentUser.getInstance().getId_user()) {
                                 for (TableColumn<Item, ?> column : table.getColumns()) {
                                     Object cellValue = column.getCellData(item);
                                     PdfPCell cell = new PdfPCell();

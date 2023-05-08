@@ -90,7 +90,7 @@ public class CurrentUser {
         this.date_naissance = date_naissance;
     }
 
-    public int getId() {
+    public int getId_user() {
         return id;
     }
 

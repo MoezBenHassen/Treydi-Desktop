@@ -36,7 +36,7 @@ public class TransformScoreController implements Initializable {
     @FXML
     private TextField transform1, transform2, transform3;
 
-    Trader user = new Trader(CurrentUser.getInstance().getId());
+    Trader user = new Trader(CurrentUser.getInstance().getId_user());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

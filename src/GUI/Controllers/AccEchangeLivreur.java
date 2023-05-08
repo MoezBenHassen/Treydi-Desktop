@@ -99,7 +99,7 @@ public class AccEchangeLivreur implements Initializable {
         result.ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK) {
                 //current USER
-                Livraison l = new Livraison(CurrentUser.getInstance().getId(), selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
+                Livraison l = new Livraison(CurrentUser.getInstance().getId_user(), selectedEchange.getId_echange(), ls.userAdresse1(selectedEchange), ls.userAdresse2(selectedEchange), Livraison.ETAT.Encours);
                 ls.add(l);
                 es.updateEchangeLivToAcc(selectedEchange);
                 try {
