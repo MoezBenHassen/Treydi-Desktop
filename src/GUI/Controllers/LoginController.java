@@ -67,7 +67,7 @@ public class LoginController implements  Initializable {
                             user.getPassword(), user.getNom(), user.getPrenom(),
                             user.getEmail(), user.getAdresse(), user.getAvatar_url(),
                             user.getRole(), user.getId_user()));
-                    System.out.println(CurrentUser.getInstance().getId_user());
+                    System.out.println(CurrentUser.getInstance().getId());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../DashboardAdmin.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -95,7 +95,7 @@ public class LoginController implements  Initializable {
                             user.getEmail(), user.getAdresse(), user.getAvatar_url(),
                             user.getRole(), user.getId_user()));
 
-                    System.out.println(CurrentUser.getInstance().getId_user());
+                    System.out.println(CurrentUser.getInstance().getId());
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AffListEchangeLivreur.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);

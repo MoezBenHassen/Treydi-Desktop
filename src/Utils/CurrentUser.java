@@ -91,6 +91,7 @@ public class CurrentUser {
     }
 
     public int getId_user() {
+
         return id;
     }
 

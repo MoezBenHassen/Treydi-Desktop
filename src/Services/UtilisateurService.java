@@ -27,7 +27,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
         try {
             String qry = "SELECT `score` FROM `utilisateur` WHERE `id`=?";
             PreparedStatement stmt = cnx.prepareStatement(qry);
-            stmt.setInt(1, CurrentUser.getInstance().getId_user());
+            stmt.setInt(1, CurrentUser.getInstance().getId());
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 s = rs.getInt("score");
@@ -48,7 +48,7 @@ public class UtilisateurService  implements IService<Utilisateur> {
         try {
             String qry = "UPDATE `utilisateur` SET `score` ='" + sub +  "'WHERE `id`=?";
             PreparedStatement stmt = cnx.prepareStatement(qry);
-            stmt.setInt(1, CurrentUser.getInstance().getId_user());
+            stmt.setInt(1, CurrentUser.getInstance().getId());
             int rs = stmt.executeUpdate();
             System.out.println("Update Successful!");
             return true;
