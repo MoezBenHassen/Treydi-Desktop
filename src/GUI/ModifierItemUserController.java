@@ -6,6 +6,7 @@ import Services.CategorieItemsService;
 import Services.ItemService;
 import Utils.CurrentUser;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,7 +23,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -110,21 +114,38 @@ public class ModifierItemUserController implements Initializable {
         textarea_description.setText(selectedItem.getDescription());
         textfield_id.setText(String.valueOf(selectedItem.getId_item()));
 
+        String imagePath =  selectedItem.getImageurl();
+        System.out.println(imagePath);
         try {
 
-            String base64Image = selectedItem.getImageurl().split(",")[1];
-            base64Image = base64Image.replaceAll("\\s", "");
-            byte[] imageData = Base64.getDecoder().decode(base64Image);
 
 
-            Image newImage = new Image(new ByteArrayInputStream(imageData));
 
-            imageview_imageurl.setImage(newImage);
-        } catch (IllegalArgumentException e) {
+
+            try {
+
+                String base64Image = imagePath.split(",")[1];
+                base64Image = base64Image.replaceAll("\\s", "");
+                byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+                Image newImage = new Image(new ByteArrayInputStream(imageData));
+                imageview_imageurl.setImage(newImage);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+
+                Image newImage = new Image(selectedItem.getImageurl());
+                imageview_imageurl.setImage(newImage);
+
+            }
+
+        } catch (Exception e) {
             System.out.println(e);
-
-            Image image = new Image(selectedItem.getImageurl());
-            imageview_imageurl.setImage(image);
+            Image newImage = new Image(selectedItem.getImageurl());
+            imageview_imageurl.setImage(newImage);
+            imageview_imageurl.setFitHeight(120);
+            imageview_imageurl.setFitWidth(120);
         }
         CategorieItemsService sp2 = new CategorieItemsService();
         List<Categorie_Items> list = sp2.afficher();
@@ -208,7 +229,20 @@ public class ModifierItemUserController implements Initializable {
                                 a.setHeaderText("Erreur");a.setContentText("Assurez-vous d'insérer des entrées valides pour les détails de votre item.");
                     a.show();
                 } else {
-                    Item i = new Item(Integer.parseInt(textfield_id.getText()), textfield_libelle.getText(), textarea_description.getText(), type, etat, imageview_imageurl.getImage().impl_getUrl(), CurrentUser.getInstance().getId_user(), id_cat, 0,0,0);
+
+                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageview_imageurl.getImage(), null);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    try {
+                        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+                    } catch (IOException e) {
+
+                    }
+                    byte[] imageBytes = byteArrayOutputStream.toByteArray();
+
+
+                    String base64Image = "data:image/jpeg;base64, "+ Base64.getEncoder().encodeToString(imageBytes);
+
+                    Item i = new Item(selectedItem.getId_item(),textfield_libelle.getText(), textarea_description.getText(), type, etat, base64Image, CurrentUser.getInstance().getId_user(), id_cat, 0,0,0);
                     sp.modifier(i);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                     a.setHeaderText("Notification");

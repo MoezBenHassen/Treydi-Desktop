@@ -116,21 +116,32 @@ public class AfficherItemDetailsUserController implements Initializable {
         descla.setText(selectedItem.getDescription());
         System.out.println();
 
+        String imagePath = selectedItem.getImageurl();
+
         try {
 
-            String base64Image = selectedItem.getImageurl().split(",")[1];
-            base64Image = base64Image.replaceAll("\\s", "");
-            byte[] imageData = Base64.getDecoder().decode(base64Image);
 
 
-            Image newImage = new Image(new ByteArrayInputStream(imageData));
+            try {
 
-            image.setImage(newImage);
-        } catch (IllegalArgumentException e) {
+                String base64Image = imagePath.split(",")[1];
+                base64Image = base64Image.replaceAll("\\s", "");
+                byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+                Image newImage = new Image(new ByteArrayInputStream(imageData));
+                image.setImage(newImage);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+
+                Image newImage = new Image(selectedItem.getImageurl());
+                image.setImage(newImage);
+
+            }
+
+
+        } catch (Exception e) {
             System.out.println(e);
-
-            Image newImage = new Image(selectedItem.getImageurl());
-            image.setImage(newImage);
         }
 
 
