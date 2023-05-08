@@ -112,7 +112,7 @@ public class DashbordAdminController implements Initializable {
         tfrole.setCellValueFactory(new PropertyValueFactory<>("role"));
         tfscore.setCellValueFactory(new PropertyValueFactory<>("score"));
         tfdate.setCellValueFactory(new PropertyValueFactory<>("date_naissance"));
-        tfid_user.setCellValueFactory(new PropertyValueFactory<>("id_user"));
+        tfid_user.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 
         afficher() ;

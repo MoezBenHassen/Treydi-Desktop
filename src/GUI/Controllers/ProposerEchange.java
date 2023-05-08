@@ -7,7 +7,6 @@ import Services.EchangeProposerService;
 import Services.ItemService;
 import Utils.CurrentUser;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +27,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import org.omg.CORBA.Current;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,7 +84,7 @@ public class ProposerEchange {
             result.ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     //CURRENT USER ID
-                    eps.ProposerEchange(selectedEchange, items_selectionner, CurrentUser.getInstance().getId_user());
+                    eps.ProposerEchange(selectedEchange, items_selectionner, CurrentUser.getInstance().getId());
                     try {
                         moveToAffListEchange(event);
                     } catch (IOException ex) {
@@ -125,7 +123,7 @@ public class ProposerEchange {
     }
 
     private void echange_proposer() {
-        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId_user());
+        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId());
         int column = 0, row = 0;
 
         for (int i = 0; i < items.size(); i++) {
