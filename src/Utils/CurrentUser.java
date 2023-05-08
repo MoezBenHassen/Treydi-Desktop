@@ -2,8 +2,6 @@ package Utils;
 
 import Utils.Enums.Roles;
 
-import java.util.Date;
-
 public class CurrentUser {
     // Add fields specific to Trader
     private int score;
@@ -12,52 +10,52 @@ public class CurrentUser {
 
     private static CurrentUser instance;
 
-    private int id_user;
+    private int id;
     private String password, nom, prenom, email, adresse, avatar_url;
-    private Roles role;
+    private Roles roles;
     private int archived;
 
     // Private constructor to prevent instantiation from outside the class
-    private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id_user) {
+    private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles roles, int id) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.adresse = adresse;
         this.avatar_url = avatar_url;
-        this.role = role;
-        this.id_user =id_user;
+        this.roles = roles;
+        this.id = id;
     }
- private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int score,String date_naissance, int id_user) {
+ private CurrentUser(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles roles, int score, String date_naissance, int id) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.adresse = adresse;
         this.avatar_url = avatar_url;
-        this.role = role;
+        this.roles = roles;
         this.score = score;
         this.date_naissance=date_naissance;
-        this.id_user =id_user;
+        this.id = id;
     }
 
-    public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id_user) {
+    public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id) {
         if (instance == null) {
             // Synchronize here to ensure that only one instance is created
             synchronized (CurrentUser.class) {
                 if (instance == null) {
-                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role, id_user);
+                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role, id);
                 }
             }
         }
         return instance;
     }
-  public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int score,String date_naissance, int id_user) {
+  public static CurrentUser getInstance(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int score,String date_naissance, int id) {
         if (instance == null) {
             // Synchronize here to ensure that only one instance is created
             synchronized (CurrentUser.class) {
                 if (instance == null) {
-                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role,score,date_naissance, id_user);
+                    instance = new CurrentUser(password, nom, prenom, email, adresse, avatar_url, role,score,date_naissance, id);
                 }
             }
         }
@@ -92,12 +90,12 @@ public class CurrentUser {
         this.date_naissance = date_naissance;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getId() {
+        return id;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -148,12 +146,12 @@ public class CurrentUser {
         this.avatar_url = avatar_url;
     }
 
-    public Roles getRole() {
-        return role;
+    public Roles getRoles() {
+        return roles;
     }
 
-    public void setRole(Roles role) {
-        this.role = role;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
     public int getArchived() {
@@ -167,29 +165,29 @@ public class CurrentUser {
     // Override toString method to include Trader specific fields
     @Override
     public String toString() {
-        if (this.role == Roles.trader) {
+        if (this.roles == Roles.trader) {
             return "\nTrader{" +
-                    "id_user=" + id_user +
+                    "id=" + id +
                     ", password='" + password + '\'' +
                     ", nom='" + nom + '\'' +
                     ", prenom='" + prenom + '\'' +
                     ", email='" + email + '\'' +
                     ", adresse='" + adresse + '\'' +
                     ", avatar_url='" + avatar_url + '\'' +
-                    ", role=" + role + '\'' +
+                    ", role=" + roles + '\'' +
                     ", score=" + score + '\'' +
                     ", date_naissance=" + date_naissance +
                     '}';
         } else {
             return "\nCurrentUser{" +
-                    "id_user=" + id_user +
+                    "id=" + id +
                     ", password='" + password + '\'' +
                     ", nom='" + nom + '\'' +
                     ", prenom='" + prenom + '\'' +
                     ", email='" + email + '\'' +
                     ", adresse='" + adresse + '\'' +
                     ", avatar_url='" + avatar_url + '\'' +
-                    ", role=" + role +
+                    ", role=" + roles +
                     '}';
         }
     }

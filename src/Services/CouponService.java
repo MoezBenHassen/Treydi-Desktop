@@ -92,10 +92,10 @@ public class CouponService implements IService<Coupon> {
             }
             couponCounter++;
             String code = "CasCoupon" + couponCounter;
-            Coupon c = new Coupon(1, CurrentUser.getInstance().getId_user(), "Coupon Mars", "Coupon 30% sur la livraison", "VALID", code, "2023-04-01");
+            Coupon c = new Coupon(1, CurrentUser.getInstance().getId(), "Coupon Mars", "Coupon 30% sur la livraison", "VALID", code, "2023-04-01");
             int couponId = -1;
             try {
-                String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId_user() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
+                String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
 
                 stm = cnx.createStatement();
                 stm.executeUpdate(qry, Statement.RETURN_GENERATED_KEYS);
@@ -125,10 +125,10 @@ public class CouponService implements IService<Coupon> {
         }
         couponCounter++;
         String code = "SpecCoupon" + couponCounter;
-        Coupon c = new Coupon(2, CurrentUser.getInstance().getId_user(), "Coupon Mars Silver", "Coupon 100% Livraison", "VALID", code,"2023-04-01");
+        Coupon c = new Coupon(2, CurrentUser.getInstance().getId(), "Coupon Mars Silver", "Coupon 100% Livraison", "VALID", code,"2023-04-01");
         int couponId = -1;
         try {
-            String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId_user() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
+            String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
 
             stm = cnx.createStatement();
             stm.executeUpdate(qry, Statement.RETURN_GENERATED_KEYS);
@@ -158,10 +158,10 @@ public class CouponService implements IService<Coupon> {
         }
         couponCounter++;
         String code = "LoyaltyCoupon" + couponCounter;
-        Coupon c = new Coupon(3, CurrentUser.getInstance().getId_user(), "Coupon Mars Gold", "Carte de recharge OOREDOO", "VALID", code,"2023-04-01");
+        Coupon c = new Coupon(3, CurrentUser.getInstance().getId(), "Coupon Mars Gold", "Carte de recharge OOREDOO", "VALID", code,"2023-04-01");
         int couponId = -1;
         try {
-            String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId_user() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
+            String qry = "INSERT INTO `coupon`(`titre_coupon`, `description_coupon`, `date_expiration`, `etat_coupon`, `id_user`, `id_categorie`, `code`) VALUES ('" + c.getTitre_coupon() + "','" + c.getDescription_coupon() + "','" + c.getDate_expiration() + "','" + c.getEtat_coupon() + "','" + CurrentUser.getInstance().getId() + "','" + c.getId_categoriecoupon() + "','" + c.getCode() + "')";
 
             stm = cnx.createStatement();
             stm.executeUpdate(qry, Statement.RETURN_GENERATED_KEYS);
@@ -214,7 +214,7 @@ public class CouponService implements IService<Coupon> {
         try {
             String qry = "SELECT * FROM `coupon` WHERE `archived`=0 AND `id_user`=?";
             PreparedStatement stmt = cnx.prepareStatement(qry);
-            stmt.setInt(1, CurrentUser.getInstance().getId_user());
+            stmt.setInt(1, CurrentUser.getInstance().getId());
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

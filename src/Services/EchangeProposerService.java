@@ -47,7 +47,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
-                EchangeProposer ep = new EchangeProposer(result.getInt("id_prop"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
+                EchangeProposer ep = new EchangeProposer(result.getInt("id"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
                 epl.add(ep);
             }
         } catch (SQLException e) {
@@ -67,13 +67,13 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     }
 
 
-    public EchangeProposer getProp(int id_prop) {
-        String query = "SELECT * from `echange_proposer` WHERE id_prop = '"+id_prop+"'";
+    public EchangeProposer getProp(int id) {
+        String query = "SELECT * from `echange_proposer` WHERE id = '"+id+"'";
         try {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
             if (result.next()) {
-                EchangeProposer ep = new EchangeProposer(result.getInt("id_prop"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
+                EchangeProposer ep = new EchangeProposer(result.getInt("id"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
                 return ep;
             }
         } catch (SQLException e) {
@@ -108,7 +108,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
             stm = con.createStatement();
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
-                EchangeProposer ep = new EchangeProposer(result.getInt("id_prop"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
+                EchangeProposer ep = new EchangeProposer(result.getInt("id"), result.getInt("id_echange"), result.getDate("date_proposer"), result.getInt("id_user"));
                 epl.add(ep);
             }
         } catch (SQLException e) {
@@ -166,7 +166,7 @@ public class EchangeProposerService implements IService<EchangeProposer> {
     }
 
     public void refuserPropostion(EchangeProposer ep ,List<Item> items) {
-        String req="UPDATE `echange_proposer` SET archived = 1 WHERE id_prop = '"+ep.getId_prop()+"'";
+        String req="UPDATE `echange_proposer` SET archived = 1 WHERE id = '"+ep.getId()+"'";
         try {
             stm = con.createStatement();
             stm.executeUpdate(req);

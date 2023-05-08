@@ -74,7 +74,7 @@ public class AffListLivraisonLivreur {
     @FXML
     private void afficher_livraison_list() {
         //CURRENT USER ID
-        List<Livraison> livraisons = ls.afficherListLivraisonLivreur(CurrentUser.getInstance().getId_user());
+        List<Livraison> livraisons = ls.afficherListLivraisonLivreur(CurrentUser.getInstance().getId());
         livraison_table_view.getItems().clear();
         livraison_table_view.getItems().addAll(livraisons);
     }

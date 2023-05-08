@@ -1,10 +1,9 @@
 package Entities;
 
 import Utils.Enums.Roles;
-import javafx.scene.image.Image;
 
 public class Utilisateur {
-    private int id_user;
+    private int id;
     private String password,nom,prenom,email,adresse,avatar_url;
     public  Roles role;
     private int archived;
@@ -34,7 +33,7 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur( String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role,int id_user, int archived) {
+    public Utilisateur(String password, String nom, String prenom, String email, String adresse, String avatar_url, Roles role, int id, int archived) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
@@ -42,7 +41,7 @@ public class Utilisateur {
         this.adresse = adresse;
         this.avatar_url = avatar_url;
         this.role = role;
-        this.id_user = id_user;
+        this.id = id;
         this.archived = archived;
     }
     public Utilisateur( String password, String nom, String prenom, String email, String adresse, Roles role) {
@@ -53,23 +52,23 @@ public class Utilisateur {
         this.adresse = adresse;
         this.role = role;
     }
-    public Utilisateur( String password, String nom, String prenom, String email, String adresse, int id_user) {
+    public Utilisateur( String password, String nom, String prenom, String email, String adresse, int id) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.adresse = adresse;
-        this.id_user = id_user;
+        this.id = id;
     }
-    public Utilisateur(int id_user) {
-        this.id_user = id_user;
+    public Utilisateur(int id) {
+        this.id = id;
     }
 
-    public Utilisateur(String password, String nom, String prenom, String avatarUrl, int id_user, int archived) {
+    public Utilisateur(String password, String nom, String prenom, String avatarUrl, int id, int archived) {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
-        this.id_user = id_user;
+        this.id = id;
         this.archived = archived;
     }
 
@@ -81,11 +80,11 @@ public class Utilisateur {
     public void setArchived(int archived) {
         this.archived = archived;
     }
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setId_user(int id) {
+        this.id = id;
     }
     public int getId_user() {
-        return id_user;
+        return id;
     }
 
     public String getPassword() {
@@ -151,7 +150,7 @@ public class Utilisateur {
     @Override
     public String toString() {
         return "\nutilisateur{" +
-                "id_user=" + id_user +
+                "id=" + id +
                 ", password='" + password + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

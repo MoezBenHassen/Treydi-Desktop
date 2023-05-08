@@ -1,8 +1,6 @@
 package GUI.Controllers;
 
-import Entities.Coupon;
 import Entities.Trader;
-import Entities.Utilisateur;
 import Services.CouponService;
 import Services.UtilisateurService;
 import Utils.CurrentUser;
@@ -22,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -39,7 +36,7 @@ public class TransformScoreController implements Initializable {
     @FXML
     private TextField transform1, transform2, transform3;
 
-    Trader user = new Trader(CurrentUser.getInstance().getId_user());
+    Trader user = new Trader(CurrentUser.getInstance().getId());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

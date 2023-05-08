@@ -6,7 +6,6 @@ import java.util.List;
 
 import Entities.Categorie_Items;
 import Entities.Item;
-import Entities.Utilisateur;
 import Utils.CurrentUser;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
@@ -240,7 +239,7 @@ public class ToPDF {
                         // add table rows
                         ObservableList<Item> items = table.getItems();
                         for (Item item : items) {
-                            if (item.getId_echange() == echint && item.getId_echange() != 0 && item.getId_user() == CurrentUser.getInstance().getId_user()) {
+                            if (item.getId_echange() == echint && item.getId_echange() != 0 && item.getId_user() == CurrentUser.getInstance().getId()) {
                                 for (TableColumn<Item, ?> column : table.getColumns()) {
                                     Object cellValue = column.getCellData(item);
                                     PdfPCell cell = new PdfPCell();

@@ -7,12 +7,10 @@ import java.util.List;
 
 import Entities.Echange;
 import Entities.Item;
-import Entities.Livraison;
 import Services.EchangeService;
 import Services.ItemService;
 import Utils.CurrentUser;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,7 +83,7 @@ public class CreerEchangeInterface {
             result.ifPresent(buttonType -> {
                 if (buttonType == ButtonType.OK) {
                     //current USER
-                    Echange e = new Echange(CurrentUser.getInstance().getId_user(), NULL);
+                    Echange e = new Echange(CurrentUser.getInstance().getId(), NULL);
                     es.CreerEchange(e, items_selectionner);
                     try {
                         moveToAffListEchange(event);
@@ -107,7 +105,7 @@ public class CreerEchangeInterface {
     }
 
     private void echange_creation() {
-        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId_user());
+        List<Item> items = is.afficherUserItems(CurrentUser.getInstance().getId());
         int column = 0, row = 0;
 
         for (int i = 0; i < items.size(); i++) {

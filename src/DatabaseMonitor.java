@@ -30,7 +30,7 @@ public class DatabaseMonitor extends Task<Void> {
         }
 
         Connection con = MyDB.getInstance().getCnx();
-        PreparedStatement stm = con.prepareStatement("SELECT * FROM echange_proposer ORDER BY id_prop DESC LIMIT 1");
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM echange_proposer ORDER BY id DESC LIMIT 1");
 
         System.out.println("Database connection established");
         System.out.println("Checking database...");
@@ -43,7 +43,7 @@ public class DatabaseMonitor extends Task<Void> {
                 int latestEntry;
 
                 if (resultSet.next()) {
-                    latestEntry = resultSet.getInt("id_prop");
+                    latestEntry = resultSet.getInt("id");
                     ep = eps.getProp(latestEntry);
                     e = es.getEchangeByProp(ep);
                 } else {
