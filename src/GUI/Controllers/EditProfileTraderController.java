@@ -102,7 +102,7 @@ public class EditProfileTraderController implements Initializable {
 
         } else  {
 
-            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRoles(),CurrentUser.getInstance().getScore(), tfdate.getText(),CurrentUser.getInstance().getId_user(),0);
+            Utilisateur newUser = new Trader(tfpassword.getText(), tfnom.getText(), tfprenom.getText(),CurrentUser.getInstance().getEmail(),CurrentUser.getInstance().getAdresse(),imageview_imageurl.getImage().impl_getUrl(),CurrentUser.getInstance().getRoles(),CurrentUser.getInstance().getScore(), tfdate.getText(),CurrentUser.getInstance().getId(),0);
 
             us.modifier(newUser);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
