@@ -103,7 +103,7 @@ public class AffListMesEchanges {
     @FXML
     private void afficher_echange_list() {
         //CURRENT USER ID
-        List<Echange> echanges = es.getEchangeByIdUser(CurrentUser.getInstance().getId());
+        List<Echange> echanges = es.getEchangeByIdUser(CurrentUser.getInstance().getId_user());
 
         echange_table_view.getItems().clear();
         echange_table_view.getItems().addAll(echanges);

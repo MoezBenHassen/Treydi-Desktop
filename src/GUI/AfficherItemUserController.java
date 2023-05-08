@@ -248,7 +248,7 @@ public class AfficherItemUserController implements Initializable {
 
             HBox buttons = new HBox();
 
-            if (obj.getId_user() == CurrentUser.getInstance().getId())
+            if (obj.getId_user() == CurrentUser.getInstance().getId_user())
             {
                  buttons = new HBox(modimageView, supimageView, detimageView);
                 buttons.setSpacing(24);
@@ -663,7 +663,7 @@ public class AfficherItemUserController implements Initializable {
     @FXML
     private void fact(MouseEvent event)  {
         ToPDF exporter = new ToPDF();
-        int user = CurrentUser.getInstance().getId(); ;
+        int user = CurrentUser.getInstance().getId_user(); ;
         List<Integer> ech = items.stream().map(t -> t.getId_echange()).collect(Collectors.toList());
         System.out.println(ech);
 
