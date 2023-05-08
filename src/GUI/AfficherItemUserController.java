@@ -187,26 +187,43 @@ public class AfficherItemUserController implements Initializable {
         for (Item obj : items) {
 
             ImageView imageView = null;
+
+
             try {
 
-                String base64Image = obj.getImageurl().split(",")[1];
-                base64Image = base64Image.replaceAll("\\s", "");
-                byte[] imageData = Base64.getDecoder().decode(base64Image);
+                String imagePath =  obj.getImageurl();
+                imageView = new ImageView();
 
 
-                Image newImage = new Image(new ByteArrayInputStream(imageData));
+                try {
 
-                imageView = new ImageView(newImage);
-                imageView.setFitHeight(182);
-                imageView.setFitWidth(182);
-            } catch (IllegalArgumentException e) {
+                    String base64Image = imagePath.split(",")[1];
+                    base64Image = base64Image.replaceAll("\\s", "");
+                    byte[] imageData = Base64.getDecoder().decode(base64Image);
+
+
+                    Image newImage = new Image(new ByteArrayInputStream(imageData));
+                    imageView.setImage(newImage);
+                    imageView.setFitHeight(120);
+                    imageView.setFitWidth(120);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e);
+
+                    Image newImage = new Image(obj.getImageurl());
+                    imageView.setImage(newImage);
+                    imageView.setFitHeight(120);
+                    imageView.setFitWidth(120);
+
+                }
+
+            } catch (Exception e) {
                 System.out.println(e);
-
-                Image image = new Image(obj.getImageurl());
-                imageView = new ImageView(image);
-                imageView.setFitHeight(182);
-                imageView.setFitWidth(182);
+                Image newImage = new Image(obj.getImageurl());
+                imageView.setImage(newImage);
+                imageView.setFitHeight(120);
+                imageView.setFitWidth(120);
             }
+
 
 
             Label libelleLabel = new Label(obj.getLibelle());

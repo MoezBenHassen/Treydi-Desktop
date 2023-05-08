@@ -27,7 +27,7 @@ public class ItemService implements IItemCategorieService<Item> {
     @Override
     public void ajouter(Item i) {
         try {
-            String qry = "INSERT INTO `item` (`libelle`, `description`, `type`, `etat` , `imageurl`, `id_user_id`, `id_categorie_id`, `likes`, `dislikes`, `archived`) VALUES ('" + i.getLibelle() + "','" + i.getDescription() + "','" + i.getType() + "','" + i.getEtat() + "','" + i.getImageurl() + "'," + i.getId_user() + "," + i.getId_categorie() + ",0,0,0);";
+            String qry = "INSERT INTO `item` (`libelle`, `description`, `type`, `etat` , `imageurl`, `id_user_id`, `id_categorie_id`, `likes`, `dislikes`, `archived`,`views`) VALUES ('" + i.getLibelle() + "','" + i.getDescription() + "','" + i.getType() + "','" + i.getEtat() + "','" + i.getImageurl() + "'," + i.getId_user() + "," + i.getId_categorie() + ",0,0,0,0);";
             stm = cnx.createStatement();
 
             int res = stm.executeUpdate(qry);

@@ -277,7 +277,7 @@
             </RadioButton>
          </children>
       </Pane>
-      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" onMouseClicked="#route_Profile" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
+      <ScrollPane fx:id="scrollpane" accessibleRole="NODE" layoutX="236.0" layoutY="171.0" prefHeight="706.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/transgrid.css" />
       <TableView fx:id="tableView" layoutX="229.0" layoutY="178.0" prefHeight="697.0" prefWidth="1186.0" style="-fx-background-color: transparent;" stylesheets="@Assets/CSSs/tableview.css" visible="false">
          <columns>
             <TableColumn fx:id="imageurlColumn" minWidth="0.0" prefWidth="0.0" text="ImagePath" />
